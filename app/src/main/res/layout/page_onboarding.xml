@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PageOnboarding"
+    android:background="#000000">
+    <!-- Tiêu đề -->
+    <TextView
+        android:id="@+id/txtSpecialEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sự Kiện Đặc Biệt"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:layout_margin="16dp"
+        android:textSize="14sp"
+        android:fontFamily="@font/montserrat_bold"/>
+
+    <!-- ViewPager chứa slide -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="80dp"/>
+
+    <!-- Dot indicator -->
+    <LinearLayout
+        android:id="@+id/dotsContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/viewPager"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp" />
+
+    <!-- Nút Khám phá ngay -->
+    <Button
+        android:id="@+id/btnExplore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Khám phá ngay"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#066183"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="16sp"/>
+
+</RelativeLayout>

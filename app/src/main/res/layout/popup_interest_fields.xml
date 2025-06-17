@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:flexbox="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/bg_success_popup"
+    tools:context=".PopupInterestFields"
+    android:gravity="center_horizontal">
+
+    <!-- Tiêu đề -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Những lĩnh vực có thể\nbạn quan tâm"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:layout_centerInParent="true" />
+
+<!--        <ImageView-->
+<!--            android:id="@+id/btnClose"-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:src="@drawable/ic_close"-->
+<!--            android:layout_alignParentEnd="true"/>-->
+    </RelativeLayout>
+
+<!--    &lt;!&ndash; Danh sách lựa chọn &ndash;&gt;-->
+<!--    <com.google.android.flexbox.FlexboxLayout-->
+<!--        android:id="@+id/flexInterest"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        flexbox:justifyContent="flex_start"-->
+<!--        flexbox:alignItems="center"-->
+<!--        flexbox:flexWrap="wrap">-->
+
+<!--        &lt;!&ndash; Gợi ý: dùng layout selector hoặc chip layout động &ndash;&gt;-->
+<!--        &lt;!&ndash; Gắn bằng code hoặc layout lặp lại sau &ndash;&gt;-->
+
+<!--    </com.google.android.flexbox.FlexboxLayout>-->
+
+    <!-- Nút lưu -->
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lưu"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#066183"
+        android:layout_marginTop="24dp"
+        android:paddingVertical="10dp"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/montserrat_bold"/>
+</LinearLayout>

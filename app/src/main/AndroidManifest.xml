@@ -40,13 +40,13 @@
             android:name=".ChiTietSuKien"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".trang_ve_da_mua"
             android:exported="false" />
         <activity
             android:name=".TrangVeCuaToi"
             android:exported="false" />
         <activity
-            android:name=".trang_ve_da_mua"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

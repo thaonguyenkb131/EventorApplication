@@ -1,0 +1,25 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main">
+
+    <!-- FOOTER -->
+    <include
+        android:id="@+id/footer_layout"
+        layout="@layout/activity_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+    <!-- TRANG NỘI DUNG CHI TIẾT -->
+    <ScrollView
+        android:id="@+id/scrollView_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/footer_layout">
+
+        <!-- Gọi file layout nội dung hoặc chèn trực tiếp ở đây -->
+        <include layout="@layout/activity_chi_tiet_su_kien" />
+    </ScrollView>
+
+</RelativeLayout>

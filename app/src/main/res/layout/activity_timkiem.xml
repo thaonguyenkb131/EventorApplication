@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:backgroundTint="#9e9e9e"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,15 +21,15 @@
         android:layout_marginBottom="15dp">
         <ImageView
             android:id="@+id/imgCalendar"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/iccalendar"
             android:layout_marginStart="25dp"
-            android:layout_gravity="left"/>
+            android:layout_gravity="left" />
         <ImageView
             android:id="@+id/imgFilter"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/icfilter"
             android:layout_marginStart="10dp" />
         <EditText
@@ -44,17 +43,14 @@
             android:id="@+id/imgTimkiem"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginRight="25dp"
+            android:layout_marginEnd="25dp"
             android:src="@drawable/timkiem"/>
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Thanhtimkiem"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginVertical="5dp"
-        android:backgroundTint="@color/white">
+        android:layout_marginStart="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,7 +59,6 @@
 
             <!-- List view tìm kiếm -->
 
-            <!-- Theo danh mục - Title -->
             <ListView
                 android:id="@+id/lvTimkiem"
                 android:layout_width="match_parent"
@@ -76,17 +71,6 @@
                 android:enabled="false"
                 android:nestedScrollingEnabled="false"/>
 
-
-            <LinearLayout
-                android:id="@+id/Khungtimkiem"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginVertical="10dp"
-                android:orientation="vertical">
-
-            </LinearLayout>
-
             <TextView
                 android:id="@+id/txtTheodanhmuc"
                 android:layout_width="match_parent"
@@ -98,10 +82,9 @@
                 android:text="Theo danh mục"
                 android:textColor="#006183"
                 android:textSize="20sp" />
-
             <!-- Danh mục -->
             <HorizontalScrollView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
@@ -289,7 +272,8 @@
                         android:id="@+id/DiadiemTPHCM"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
                         android:orientation="vertical">
 
                         <ImageView
@@ -306,14 +290,15 @@
                             android:gravity="center"
                             android:text="Thành phố Hồ Chí Minh"
                             android:textColor="#1c9cca"
-                            android:textSize="16dp" />
+                            android:textSize="16sp" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/DiadiemHaNoi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
                         android:orientation="vertical">
 
                         <ImageView
@@ -330,14 +315,15 @@
                             android:gravity="center"
                             android:text="Hà Nội"
                             android:textColor="#1c9cca"
-                            android:textSize="16dp" />
+                            android:textSize="16sp" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/DiadiemDaLat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
                         android:orientation="vertical">
 
                         <ImageView
@@ -354,14 +340,15 @@
                             android:gravity="center"
                             android:text="Đà Lạt"
                             android:textColor="#1c9cca"
-                            android:textSize="16dp" />
+                            android:textSize="16sp" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/Diadiemkhac"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
                         android:orientation="vertical">
 
                         <ImageView
@@ -378,7 +365,7 @@
                             android:gravity="center"
                             android:text="Thành phố khác"
                             android:textColor="#1c9cca"
-                            android:textSize="16dp" />
+                            android:textSize="16sp" />
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
@@ -399,15 +386,13 @@
                 android:id="@+id/gvPhuhopvoiban"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
+                android:layout_marginStart="15dp"
                 android:horizontalSpacing="12dp"
-                android:verticalSpacing="16dp"
                 android:numColumns="2"
                 android:focusable="false"
                 android:enabled="false"
-                android:nestedScrollingEnabled="false"/>
-
-
+                android:nestedScrollingEnabled="false"
+                android:verticalSpacing="16dp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

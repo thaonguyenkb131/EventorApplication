@@ -1,6 +1,11 @@
 package com.example.eventorapplication;
 
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.GridView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +18,7 @@ import com.example.models.TimkiemlvItem;
 import java.util.ArrayList;
 
 public class Timkiem extends AppCompatActivity {
-    ActivityTimkiemBinding binding;
+    private ActivityTimkiemBinding binding;
 
     private ArrayList<TimkiemlvItem> data;
     private TimkiemlvAdapter adapter;
@@ -35,7 +40,8 @@ public class Timkiem extends AppCompatActivity {
         setupGridView();
         addFilterEvent();
     }
-    //Xử lý sự kiện listview kết quả tìm kiếm
+
+    // Xử lý sự kiện listview kết quả tìm kiếm
     private void setupListView() {
         data = new ArrayList<>();
         data.add(new TimkiemlvItem("jun phạm", R.drawable.icclock, R.drawable.ictrash));
@@ -47,15 +53,18 @@ public class Timkiem extends AppCompatActivity {
 
         adapter = new TimkiemlvAdapter(this, data);
         binding.lvTimkiem.setAdapter(adapter);
-    }
-//Xử lý sự kiện gridview phù hợp với bạn
 
+        // Tính chiều cao ListView sau khi gán adapter
+        setListViewHeightBasedOnItems(binding.lvTimkiem);
+    }
+
+    // Xử lý sự kiện gridview
     private void setupGridView() {
         phvbList = new ArrayList<>();
         phvbList.add(new TimkiemgvItem(R.drawable.phvb1, "Sân khấu Thiên Đăng", "Từ 300.000 VND", "TP.Hồ Chí Minh", "06/06/2025"));
         phvbList.add(new TimkiemgvItem(R.drawable.phvb2, "Lễ hội âm nhạc, sáng tạo Tràng An, Ninh Bình - FORESTIVAL 2025", "Từ 700.000 VND", "Ninh Bình", "07/07/2025"));
         phvbList.add(new TimkiemgvItem(R.drawable.phvb3, "Madame Show - Những đường chim bay", "Từ 700.000 VND", "Đà Nẵng", "10/07/2025"));
-        phvbList.add(new TimkiemgvItem(R.drawable.phvb4, "Sân khấu nhạc kịch - Cái gì vui vẻ th mình ưu tiên", "Từ 300.000 VND", "TP.Hồ Chí Minh", "15/06/2025"));
+        phvbList.add(new TimkiemgvItem(R.drawable.phvb4, "Sân khấu nhạc kịch - Cái gì vui vẻ thì mình ưu tiên", "Từ 300.000 VND", "TP.Hồ Chí Minh", "15/06/2025"));
         phvbList.add(new TimkiemgvItem(R.drawable.phvb5, "BOYF DEBUT SHOWCASE", "Từ 300.000 VND", "TP.Hồ Chí Minh", "15/06/2025"));
         phvbList.add(new TimkiemgvItem(R.drawable.phvb6, "Lễ hội âm nhạc SPERFEST - Lễ hội ánh sáng", "Từ 800.000 VND", "TP.Hồ Chí Minh", "01/07/2025"));
         phvbList.add(new TimkiemgvItem(R.drawable.phvb7, "Sân khấu nhạc kịch - Hành tinh nâu", "Từ 150.000 VND", "Tp. Hồ Chí Minh", "07/07/2025"));
@@ -63,12 +72,58 @@ public class Timkiem extends AppCompatActivity {
 
         gvAdapter = new TimkiemgvAdapter(this, phvbList);
         binding.gvPhuhopvoiban.setAdapter(gvAdapter);
+
+        setGridViewHeightBasedOnChildren(binding.gvPhuhopvoiban, 2);
     }
-    //Xử lý filter bộ lọc
+
+    // Xử lý filter bộ lọc
     private void addFilterEvent() {
         binding.imgFilter.setOnClickListener(v -> {
             BolocDialog dialog = new BolocDialog();
             dialog.show(getSupportFragmentManager(), "BolocDialog");
         });
     }
+
+    // Tính chiều cao ListView để hiển thị toàn bộ nội dung trong ScrollView
+    private void setListViewHeightBasedOnItems(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) return;
+
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View item = listAdapter.getView(i, null, listView);
+            item.measure(
+                    View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+            totalHeight += item.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+    }
+    private void setGridViewHeightBasedOnChildren(GridView gridView, int numColumns) {
+        ListAdapter listAdapter = gridView.getAdapter();
+        if (listAdapter == null) return;
+
+        int totalHeight = 0;
+        int items = listAdapter.getCount();
+        int rows = (int) Math.ceil((double) items / numColumns);
+
+        View listItem = listAdapter.getView(0, null, gridView);
+        listItem.measure(
+                View.MeasureSpec.makeMeasureSpec(gridView.getWidth(), View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        );
+
+        int itemHeight = listItem.getMeasuredHeight();
+        totalHeight = itemHeight * rows + gridView.getVerticalSpacing() * (rows - 1);
+
+        ViewGroup.LayoutParams params = gridView.getLayoutParams();
+        params.height = totalHeight;
+        gridView.setLayoutParams(params);
+        gridView.requestLayout();
+    }
+
 }

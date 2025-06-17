@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="500dp"
     android:layout_margin="10dp"
     android:layout_gravity="center"
     android:gravity="center"
@@ -27,7 +27,7 @@
         android:background="#6B6B6B" />
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -75,13 +75,20 @@
                 <RadioButton
                     android:id="@+id/rdKhac"
                     android:layout_width="wrap_content"
-                    android:layout_heigh0t="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="Vị trí khác"
                     android:textSize="14sp"
                     android:fontFamily="@font/montserrat_regular"/>
             </RadioGroup>
-
-            <!-- Theo danh mục -->
+<!--            Theo danh mục-->
+            <TextView
+                android:id="@+id/txtDanhmuc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Theo danh mục"
+                android:fontFamily="@font/montserrat_semibold"
+                android:textSize="20sp"/>
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/grpDanhmuc"
                 android:layout_width="match_parent"
@@ -237,15 +244,6 @@
                     app:textStartPadding="2dp" />
             </com.google.android.material.chip.ChipGroup>
 
-            <TextView
-                android:id="@+id/txtDanhmuc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Theo danh mục"
-                android:fontFamily="@font/montserrat_semibold"
-                android:textSize="20sp"/>
-
             <!-- Giá vé -->
 
             <TextView
@@ -271,7 +269,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Miễn phí" />
+                    android:text="Miễn phí"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/montserrat_regular"/>
 
 
                 <Switch

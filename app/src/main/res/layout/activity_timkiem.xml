@@ -22,15 +22,15 @@
         android:layout_marginBottom="15dp">
         <ImageView
             android:id="@+id/imgCalendar"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/iccalendar"
             android:layout_marginStart="25dp"
             android:layout_gravity="left"/>
         <ImageView
             android:id="@+id/imgFilter"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:src="@drawable/icfilter"
             android:layout_marginStart="10dp" />
         <EditText

@@ -19,7 +19,7 @@
             android:name=".Tinnhan"
             android:exported="false" />
         <activity
-            android:name=".Timkiem"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".BolocActivity"
@@ -67,7 +67,7 @@
             android:name=".TrangVeCuaToi"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Timkiem"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

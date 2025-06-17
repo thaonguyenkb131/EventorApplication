@@ -50,11 +50,12 @@ public class SukienxuhuongAdapter extends BaseAdapter {
 
         SukienxuhuongItem item = items.get(position);
 
-        binding.imgPoster.setImageResource(item.getPosterResId());
+        binding.imgPosterSkxh.setImageResource(item.getPosterResId());
         binding.txtTen.setText(item.getTen());
         binding.txtDaban.setText(item.getDaBan());
         binding.txtGia.setText(item.getGia());
         binding.txtDiaDiem.setText(item.getDiaDiem());
+        binding.txtTop.setText(item.getTop());
 
         return convertView;
     }

@@ -6,13 +6,15 @@ public class SukienxuhuongItem {
     private String daBan;
     private String gia;
     private String diaDiem;
+    private String top;
 
-    public SukienxuhuongItem(int posterResId, String ten, String daBan, String gia, String diaDiem) {
+    public SukienxuhuongItem(int posterResId, String ten, String daBan, String gia, String diaDiem, String top) {
         this.posterResId = posterResId;
         this.ten = ten;
         this.daBan = daBan;
         this.gia = gia;
         this.diaDiem = diaDiem;
+        this.top = top;
     }
 
     public int getPosterResId() {
@@ -35,5 +37,7 @@ public class SukienxuhuongItem {
         return diaDiem;
     }
 
-
+    public String getTop() {
+        return top;
+    }
 }

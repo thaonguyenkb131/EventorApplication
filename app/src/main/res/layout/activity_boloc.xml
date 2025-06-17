@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_margin="10dp"
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical"
@@ -75,7 +75,7 @@
                 <RadioButton
                     android:id="@+id/rdKhac"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_heigh0t="wrap_content"
                     android:text="Vị trí khác"
                     android:textSize="14sp"
                     android:fontFamily="@font/montserrat_regular"/>

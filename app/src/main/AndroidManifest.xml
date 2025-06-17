@@ -13,6 +13,18 @@
         android:theme="@style/Theme.EventorApplication"
         tools:targetApi="31">
         <activity
+            android:name=".TrangthongbaoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Tinnhan"
+            android:exported="false" />
+        <activity
+            android:name=".Timkiem"
+            android:exported="false" />
+        <activity
+            android:name=".BolocActivity"
+            android:exported="false" />
+        <activity
             android:name=".Ketquatimkiem"
             android:exported="false" />
         <activity

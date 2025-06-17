@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
+    android:orientation="horizontal">
+    <ImageView
+        android:id="@+id/imglefticon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/icclock"/>
+    <TextView
+        android:id="@+id/txtnoidungsearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="jun phạm"
+        android:textSize="20sp"
+        android:layout_marginHorizontal="10dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/black"
+        android:layout_weight="1"/>
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/imgictrash"
+        android:src="@drawable/ictrash"
+        android:layout_marginHorizontal="10dp"/>
+</LinearLayout>

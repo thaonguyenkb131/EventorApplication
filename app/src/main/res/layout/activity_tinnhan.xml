@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Tinnhan">
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:layout_alignParentTop="true">
+
+        <!-- Icons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:background="#006183"
+            android:paddingTop="30dp"
+            android:paddingBottom="30dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <ImageView
+                android:id="@+id/imvtimkiem"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/timkiem" />
+
+            <ImageView
+                android:id="@+id/imvnhantin"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/nhantin" />
+        </LinearLayout>
+
+        <!-- Info người gửi -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/tn_logontpmm"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/circle_bg" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Những Thành Phố Mơ Màng"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/montserrat_semibold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hoạt động 2 giờ trước"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/montserrat_regular" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Danh sách tin nhắn -->
+    <ListView
+        android:id="@+id/lvTinnhan"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/header"
+        android:layout_above="@id/layoutBottom"
+        android:clipToPadding="false"
+        android:divider="@null"
+        android:padding="8dp"
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll" />
+
+    <!-- Emoji popup -->
+    <GridView
+        android:id="@+id/gvEmoji"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_above="@id/layoutBottom"
+        android:background="@android:color/white"
+        android:numColumns="8"
+        android:visibility="gone"
+        android:padding="8dp"
+        android:elevation="6dp" />
+
+    <!-- Footer điều hướng cố định dưới cùng -->
+    <include
+        android:id="@+id/footerLayout"
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:elevation="4dp" />
+
+    <!-- Thanh nhắn tin nằm ngay trên footer -->
+    <LinearLayout
+        android:id="@+id/layoutBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/footerLayout"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:background="@android:color/white"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/btnAttach"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:paddingRight="5dp"
+            android:src="@drawable/tn_iconattach"
+            android:background="@null"
+            android:contentDescription="Attach" />
+
+        <EditText
+            android:id="@+id/edtMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Nhập tin nhắn..."
+            android:background="@drawable/bg_message_input"
+            android:padding="8dp"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/btnEmoji"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/tn_iconemoji"
+            android:background="@null" />
+
+        <ImageButton
+            android:id="@+id/btnVoice"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/tn_iconmicrophone"
+            android:background="@null" />
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/tn_iconsend"
+            android:background="@null" />
+    </LinearLayout>
+
+</RelativeLayout>

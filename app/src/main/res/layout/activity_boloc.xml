@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".BolocActivity">
+
+    <!-- Tiêu đề -->
+    <TextView
+        android:id="@+id/txtTieude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bộ lọc"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:paddingBottom="8dp" />
+
+    <!-- Theo địa điểm -->
+    <TextView
+        android:id="@+id/txtDiadiem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Theo địa điểm"
+        android:textStyle="bold"
+        android:layout_marginTop="12dp"
+        android:textSize="14sp" />
+
+    <RadioGroup
+        android:id="@+id/rgDiadiem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="4dp">
+
+        <RadioButton
+            android:id="@+id/rdTPHCM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TP Hồ Chí Minh" />
+
+        <RadioButton
+            android:id="@+id/rdHaNoi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hà Nội" />
+
+        <RadioButton
+            android:id="@+id/rdDaLat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đà Lạt" />
+
+        <RadioButton
+            android:id="@+id/rdKhac"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vị trí khác" />
+    </RadioGroup>
+
+    <!-- Theo danh mục -->
+    <TextView
+        android:id="@+id/txtDanhmuc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Theo danh mục"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:textSize="14sp" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/grpDanhmuc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipVanhoa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Văn hóa và Nghệ thuật"
+            style="@style/Widget.MaterialComponents.Chip.Choice" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipAmnhac"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Âm nhạc"
+            style="@style/Widget.MaterialComponents.Chip.Choice" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipHocthuat"
+            android:text="Học thuật"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Choice" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipThethao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thể thao"
+            style="@style/Widget.MaterialComponents.Chip.Choice" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipXahoi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tình nguyện và Xã hội"
+            style="@style/Widget.MaterialComponents.Chip.Choice" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipMoitruong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Môi trường"
+            style="@style/Widget.MaterialComponents.Chip.Choice" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipDulich"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Du lịch và Trải nghiệm"
+            style="@style/Widget.MaterialComponents.Chip.Choice" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <!-- Giá vé -->
+    <TextView
+        android:id="@+id/txtGiave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Giá vé"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:id="@+id/layoutGiave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="4dp">
+
+        <TextView
+            android:id="@+id/txtMienphi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Miễn phí" />
+
+        <Switch
+            android:id="@+id/swMienphi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:minWidth="72dp" />
+    </LinearLayout>
+
+    <!-- Nút hành động -->
+    <LinearLayout
+        android:id="@+id/layoutNut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:id="@+id/btnReset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thiết lập lại"
+            android:textColor="#006183"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+        <Button
+            android:id="@+id/btnApdung"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Áp dụng"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="#006183"
+            style="@style/Widget.MaterialComponents.Button" />
+    </LinearLayout>
+</LinearLayout>

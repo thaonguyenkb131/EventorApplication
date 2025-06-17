@@ -67,17 +67,20 @@
             <ListView
                 android:id="@+id/lvTimkiem"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:divider="@android:color/white"
                 android:dividerHeight="10dp"
-                android:nestedScrollingEnabled="false"
-                android:padding="5dp" />
+                android:padding="5dp"
+                android:focusable="false"
+                android:enabled="false"
+                android:nestedScrollingEnabled="false"/>
+
 
             <LinearLayout
                 android:id="@+id/Khungtimkiem"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
                 android:orientation="vertical">
@@ -398,8 +401,12 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:horizontalSpacing="12dp"
+                android:verticalSpacing="16dp"
                 android:numColumns="2"
-                android:verticalSpacing="16dp" />
+                android:focusable="false"
+                android:enabled="false"
+                android:nestedScrollingEnabled="false"/>
+
 
         </LinearLayout>
     </ScrollView>

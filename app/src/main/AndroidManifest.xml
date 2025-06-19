@@ -13,7 +13,7 @@
         android:theme="@style/Theme.EventorApplication"
         tools:targetApi="31">
         <activity
-            android:name=".ChinhsachActivity"
+            android:name=".TrangthongbaoActivity"
             android:exported="false" />
         <activity
             android:name=".MapsDialogActivity"
@@ -79,7 +79,7 @@
             android:name=".TrangVeCuaToi"
             android:exported="false" />
         <activity
-            android:name=".TrangthongbaoActivity"
+            android:name=".ChinhsachActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_margin="10dp">
+
+        <!-- Thẻ thanh toán quốc tế -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="8dp"
+                android:src="@drawable/pay_iccard"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thẻ thanh toán quốc tế"
+                android:fontFamily="@font/montserrat_semibold"
+                android:textColor="#006183"
+                android:textSize="18sp"
+                android:padding="8dp" />
+        </LinearLayout>
+
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:useDefaultMargins="true">
+
+            <!-- Visa -->
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_stroke"
+                android:padding="4dp">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/pay_visa"
+                    android:scaleType="centerCrop" />
+            </FrameLayout>
+
+            <!-- Mastercard -->
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_stroke"
+                android:padding="4dp">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/pay_mastercard"
+                    android:scaleType="centerInside" />
+            </FrameLayout>
+
+            <!-- JCB -->
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_stroke"
+                android:padding="4dp">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/pay_jcb"
+                    android:scaleType="centerInside" />
+            </FrameLayout>
+        </GridLayout>
+
+        <!-- Ngân hàng nội địa -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="8dp"
+                android:src="@drawable/pay_iccard2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ngân hàng nội địa"
+                android:fontFamily="@font/montserrat_semibold"
+                android:textColor="#006183"
+                android:textSize="18sp"
+                android:padding="8dp" />
+        </LinearLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:alignmentMode="alignMargins"
+            android:useDefaultMargins="true">
+
+            <!-- Vietcombank -->
+            <FrameLayout android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_stroke"
+                android:padding="4dp">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/pay_vcb"
+                    android:scaleType="centerCrop" />
+            </FrameLayout>
+
+            <!-- MB -->
+            <FrameLayout android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_stroke"
+                android:padding="4dp">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/pay_mb"
+                    android:scaleType="centerCrop" />
+            </FrameLayout>
+
+            <!-- Vietinbank -->
+            <FrameLayout android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_stroke"
+                android:padding="4dp">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:scaleX="1.3"
+                    android:scaleY="1.3"
+                    android:src="@drawable/pay_vtb"
+                    android:scaleType="centerCrop" />
+            </FrameLayout>
+
+            <!-- ACB -->
+            <FrameLayout android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_stroke"
+                android:padding="4dp">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/pay_acb"
+                    android:scaleType="centerCrop" />
+            </FrameLayout>
+
+            <!-- Techcombank -->
+            <FrameLayout android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_stroke"
+                android:padding="4dp">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/pay_tcb"
+                    android:scaleX="1.8"
+                    android:scaleY="1.8"
+                    android:scaleType="centerCrop" />
+            </FrameLayout>
+
+            <!-- Agribank -->
+            <FrameLayout android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_stroke"
+                android:padding="4dp">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/pay_agb"
+                    android:scaleType="centerInside" />
+            </FrameLayout>
+
+            <!-- OCB -->
+            <FrameLayout android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_stroke"
+                android:padding="4dp">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/pay_ocb"
+                    android:scaleType="centerCrop" />
+            </FrameLayout>
+
+            <!-- TPBank -->
+            <FrameLayout android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_stroke"
+                android:padding="4dp">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/pay_tp"
+                    android:scaleType="centerCrop" />
+            </FrameLayout>
+
+        </GridLayout>
+    </LinearLayout>
+</ScrollView>

@@ -133,7 +133,6 @@
 
     <style name="CircleImageStyle">
         <item name="android:scaleType">centerCrop</item>
-        <!-- You can round image corners via ShapeableImageView instead -->
     </style>
 
 </resources>

@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,7 +23,7 @@
             android:orientation="horizontal"
             android:background="#006183"
             android:paddingTop="30dp"
-            android:paddingBottom="30dp"
+            android:paddingBottom="10dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp">
 
@@ -33,22 +34,22 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="Thông báo"
-                android:fontFamily="@font/montserrat_bold"
+                android:fontFamily="@font/montserrat_semibold"
                 android:textColor="@android:color/white"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/imvtimkiem"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/timkiem" />
 
             <ImageView
                 android:id="@+id/imvnhantin"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/nhantin" />
         </LinearLayout>
     </LinearLayout>
@@ -63,20 +64,18 @@
         android:gravity="center"
         android:padding="16dp">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnTatThongBao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Bật thông báo"
-            android:gravity="center"
-            android:drawableEnd="@drawable/ftbell"
-            android:drawablePadding="4dp"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:minHeight="40dp"
-            android:minWidth="120dp"
-            android:background="@drawable/batthongbao_on"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/black"
+            android:backgroundTint="#9e9e9e"
+            app:cornerRadius="12dp"
+            app:icon="@drawable/ftbell"
+            app:iconPadding="4dp"
+            />
+
     </LinearLayout>
 
 
@@ -84,7 +83,9 @@
     <ListView
         android:id="@+id/lvThongbao"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:layout_alignParentTop="false"
         android:layout_below="@id/layoutThongBao"
         android:layout_above="@id/footer"
         android:divider="#CCC"

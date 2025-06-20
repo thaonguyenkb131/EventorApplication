@@ -2,6 +2,8 @@ package com.example.eventorapplication;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.ViewGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,14 +21,21 @@ public class BolocActivity extends AppCompatActivity {
 
         binding.swMienphi.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                //Bật
                 binding.swMienphi.getThumbDrawable().setTint(Color.parseColor("#006183"));
                 binding.swMienphi.getTrackDrawable().setTint(Color.parseColor("#006183"));
             } else {
-                // Tắt
                 binding.swMienphi.getThumbDrawable().setTint(Color.GRAY);
                 binding.swMienphi.getTrackDrawable().setTint(Color.LTGRAY);
             }
         });
+
+        // Đặt chiều cao 400dp
+        float heightInPx = TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 400, getResources().getDisplayMetrics());
+        getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, (int) heightInPx);
+
+        // Cho phép bấm ra ngoài để tắt
+        setFinishOnTouchOutside(true);
     }
+
 }

@@ -8,35 +8,50 @@
     android:orientation="vertical"
     tools:context=".ChinhsachActivity">
 <!--    Header-->
-    <TextView
-        android:id="@+id/Header"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Điều khoản và Chính sách"
-        android:fontFamily="@font/montserrat_semibold"
-        android:textSize="24dp"
-        android:textColor="@color/white"
-        android:background="#006183"
-        android:padding="20dp"
-        android:gravity="center"/>
-<!--    logo-->
-    <ImageView
-        android:id="@+id/imglogo"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:src="@drawable/logoevt_color"
-        android:layout_marginVertical="15dp"
-        android:layout_gravity="center"
-        android:scaleType="centerInside"/>
+        android:background="#006183">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_back"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="center_vertical"/>
+        <TextView
+            android:id="@+id/Header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Điều khoản và Chính sách"
+            android:fontFamily="@font/montserrat_semibold"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:padding="20dp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/header">
+        android:layout_above="@id/footerLayout"
+        android:layout_below="@id/Header">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <!--    logo-->
+            <ImageView
+                android:id="@+id/imglogo"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:src="@drawable/logoevt_color"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center"
+                android:scaleType="centerInside"/>
             <!--    Tiêu đề-->
             <TextView
                 android:id="@+id/txtTieude"
@@ -59,7 +74,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
                 android:textSize="14sp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/montserrat_regular"
@@ -69,7 +85,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
                 android:textSize="14sp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/montserrat_regular"
@@ -82,7 +99,8 @@
                 android:layout_marginTop="10dp"
                 android:text="1. Điều khoản sử dụng"
                 android:textSize="14sp"
-                android:layout_marginHorizontal="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
                 android:textColor="#006183"
                 android:fontFamily="@font/montserrat_semibold"/>
             <TextView
@@ -91,7 +109,8 @@
                 android:text="1. Giới thiệu\nApp Eventor là nền tảng cung cấp dịch vụ mua bán vé sự kiện trực tuyến.\nViệc bạn sử dụng dịch vụ đồng nghĩa với việc bạn đồng ý tuân thủ các điều khoản dưới đây.\n\n2. Đăng ký tài khoản\nNgười dùng cần cung cấp thông tin chính xác, hợp lệ khi đăng ký tài khoản.\nNgười dùng chịu trách nhiệm bảo mật thông tin đăng nhập và mọi hoạt động phát sinh từ tài khoản của mình.\n\n3. Dịch vụ đặt vé và thanh toán\nVé được bán trực tuyến và thanh toán qua các phương thức hợp lệ như thẻ ngân hàng, ví điện tử.\nSau khi thanh toán thành công, vé sẽ được gửi về email hoặc hiển thị trong tài khoản người dùng.\nGiá vé đã bao gồm các loại thuế, phí liên quan (nếu có).\n\n4. Chính sách hủy vé và hoàn tiền\nViệc hủy vé và hoàn tiền tùy thuộc vào chính sách từng sự kiện.\nNếu sự kiện bị hủy bởi nhà tổ chức, khách hàng sẽ được hoàn tiền theo quy định.\nEventor không chịu trách nhiệm hoàn tiền trong các trường hợp không liên quan đến lỗi hệ thống.\n\n5. Quyền và nghĩa vụ người dùng\nNgười dùng cam kết không sử dụng vé sai mục đích, không sao chép hoặc bán lại vé trái phép.\nNgười dùng phải tuân thủ các quy định của nhà tổ chức sự kiện.\n\n6. Quyền và nghĩa vụ của Eventor\nChúng tôi có quyền chỉnh sửa, tạm ngưng hoặc ngừng cung cấp dịch vụ mà không cần thông báo trước.\nKhông chịu trách nhiệm về các lỗi, sự cố phát sinh từ phía nhà tổ chức sự kiện.\n\n7. Bảo mật thông tin\nEventor cam kết bảo vệ thông tin cá nhân người dùng theo Chính sách Bảo mật.\n\n8. Luật áp dụng và giải quyết tranh chấp\nĐiều khoản này được điều chỉnh theo pháp luật Việt Nam.\nTranh chấp phát sinh sẽ được giải quyết tại tòa án có thẩm quyền tại Việt Nam."
                 android:fontFamily="@font/montserrat_regular"
                 android:textSize="14sp"
-                android:layout_marginHorizontal="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
                 android:layout_marginTop="10dp"
                 />
             <!--            Phần 2: Điều khoản sử dụng-->
@@ -101,7 +120,8 @@
                 android:layout_marginTop="10dp"
                 android:text="2. Chính sách bảo mật"
                 android:textSize="14sp"
-                android:layout_marginHorizontal="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
                 android:textColor="#006183"
                 android:fontFamily="@font/montserrat_semibold"/>
             <TextView
@@ -110,7 +130,8 @@
                 android:text="1. Thông tin thu thập\nThu thập các thông tin cá nhân như họ tên, email, số điện thoại, thông tin thanh toán.\nThu thập dữ liệu sử dụng dịch vụ như lịch sử mua vé, tương tác trên website.\n\n2. Mục đích sử dụng thông tin\nXử lý đơn hàng, gửi vé và các thông báo liên quan.\nCải thiện dịch vụ và hỗ trợ khách hàng.\nGửi các thông tin khuyến mãi (nếu có sự đồng ý của khách hàng).\n\n3. Bảo vệ thông tin\nÁp dụng các biện pháp kỹ thuật và quản lý nhằm bảo vệ dữ liệu.\nHạn chế truy cập thông tin cá nhân chỉ với những người có thẩm quyền.\n\n4. Chia sẻ thông tin\nKhông chia sẻ thông tin cá nhân cho bên thứ ba nếu không có sự đồng ý.\nCó thể chia sẻ dữ liệu với nhà tổ chức sự kiện nhằm xác nhận vé.\n\n5. Quyền của người dùng\nNgười dùng có quyền truy cập, chỉnh sửa hoặc yêu cầu xóa thông tin cá nhân.\nCó quyền từ chối nhận thông tin quảng cáo.\n\n6. Thời gian lưu trữ\nThông tin được lưu trữ trong thời gian cần thiết theo quy định pháp luật hoặc phục vụ cho mục đích hợp lệ.\n\n7. Liên hệ\nMọi thắc mắc liên quan đến bảo mật vui lòng liên hệ qua email: eventor@gmail.com"
                 android:fontFamily="@font/montserrat_regular"
                 android:textSize="14sp"
-                android:layout_marginHorizontal="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
                 android:layout_marginTop="10dp"/>
             <TextView
                 android:layout_width="match_parent"
@@ -124,5 +145,13 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <include
+        android:id="@+id/footerLayout"
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
 
 </LinearLayout>

@@ -8,12 +8,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.PopupMenu;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.adapters.TinnhanAdapter;
 import com.example.eventorapplication.databinding.ActivityTinnhanBinding;
@@ -26,9 +22,7 @@ public class Tinnhan extends AppCompatActivity {
     private ActivityTinnhanBinding binding;
     private ArrayList<TinnhanItem> messages;
     private TinnhanAdapter adapter;
-
     private static final int PICK_FILE_REQUEST = 1;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,17 +30,24 @@ public class Tinnhan extends AppCompatActivity {
         binding = ActivityTinnhanBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Khởi tạo danh sách tin nhắn mẫu
         messages = new ArrayList<>();
         messages.add(new TinnhanItem("Dạ, em chào BTC ạ", true));
         messages.add(new TinnhanItem("BTC cho em hỏi là với sự kiện Những tp mơ màng thì thời gian soát vé vào cổng là bắt đầu từ lúc mấy giờ ạ?", true));
         messages.add(new TinnhanItem("Chào Nguyên, cảm ơn bạn đã liên hệ với BTC.\nVề thời gian soát vé, sẽ bắt đầu từ lúc 5h sáng, bạn nhớ đến sớm nhất có thể để có được chỗ ngồi ưng ý nha!", false));
-        adapter.notifyDataSetChanged();
 
-
+        // Gán adapter
         adapter = new TinnhanAdapter(this, messages);
         binding.lvTinnhan.setAdapter(adapter);
 
-        // Gửi tin
+        // Long click để mở menu tin nhắn
+        adapter.setOnMessageLongClickListener((view, position) -> {
+            PopupMenu popup = new PopupMenu(this, view);
+            popup.getMenuInflater().inflate(R.menu.message_menu, popup.getMenu());
+            popup.show();
+        });
+
+        // Gửi tin nhắn
         binding.btnSend.setOnClickListener(view -> {
             String msg = binding.edtMessage.getText().toString().trim();
             if (!msg.isEmpty()) {
@@ -57,43 +58,48 @@ public class Tinnhan extends AppCompatActivity {
             }
         });
 
-        // Mở emoji
+        // Mở/ẩn emoji
         binding.btnEmoji.setOnClickListener(view -> {
-            if (binding.gvEmoji.getVisibility() == View.GONE) {
-                binding.gvEmoji.setVisibility(View.VISIBLE);
-            } else {
-                binding.gvEmoji.setVisibility(View.GONE);
-            }
+            binding.gvEmoji.setVisibility(
+                    binding.gvEmoji.getVisibility() == View.GONE ? View.VISIBLE : View.GONE);
         });
 
+        // Emoji đầy đủ
         String[] emojis = {
-                "😀", "😁", "😂", "🤣", "😃", "😄", "😅", "😆", "😉", "😊",
-                "😋", "😎", "😍", "😘", "😗", "😙", "😚", "🙂", "🤗", "🤩",
-                "🤔", "🤨", "😐", "😑", "😶", "🙄", "😏", "😣", "😥", "😮"
+                "😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "🙂", "🙃",
+                "😉", "😌", "😍", "🥰", "😘", "😗", "😙", "😚", "😋", "😛",
+                "😜", "🤪", "😝", "🤑", "🤗", "🤭", "🤫", "🤔", "🤐", "😐",
+                "😑", "😶", "😶‍🌫️", "🙄", "😏", "😒", "😞", "😔", "😟", "😕",
+                "🙁", "☹️", "😣", "😖", "😫", "😩", "🥺", "😢", "😭", "😤",
+                "😠", "😡", "🤬", "😱", "😨", "😰", "😥", "😓", "🥶", "🥵",
+                "🤯", "😬", "😮‍💨", "😎", "🤓", "🧐", "🤠", "🥳", "🤩", "😇",
+                "🤡", "👻", "💀", "👋", "👍", "👎", "👏", "🙌", "🙏", "🤝",
+                "💪", "👀", "💬", "❤️", "🧡", "💛", "💚", "💙", "💜", "🖤",
+                "🤍", "🤎"
         };
         ArrayAdapter<String> emojiAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, emojis);
         binding.gvEmoji.setAdapter(emojiAdapter);
-
         binding.gvEmoji.setOnItemClickListener((parent, view, position, id) -> {
             binding.edtMessage.append(emojis[position]);
         });
 
-        // Nút đính kèm hiện popup chọn file hoặc thư mục
+        // Đính kèm tệp hoặc thư mục
         binding.btnAttach.setOnClickListener(v -> {
             PopupMenu popup = new PopupMenu(this, binding.btnAttach);
-            popup.getMenu().add("Chọn file");
-            popup.getMenu().add("Chọn thư mục");
-
+            popup.getMenuInflater().inflate(R.menu.attach_menu, popup.getMenu());
             popup.setOnMenuItemClickListener(item -> {
-                if (item.getTitle().equals("Chọn file")) {
+                int id = item.getItemId();
+                if (id == R.id.menu_file) {
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                     intent.setType("*/*");
                     startActivityForResult(intent, PICK_FILE_REQUEST);
-                } else if (item.getTitle().equals("Chọn thư mục")) {
+                    return true;
+                } else if (id == R.id.menu_folder) {
                     Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
                     startActivityForResult(intent, PICK_FILE_REQUEST);
+                    return true;
                 }
-                return true;
+                return false;
             });
             popup.show();
         });
@@ -107,6 +113,5 @@ public class Tinnhan extends AppCompatActivity {
             messages.add(new TinnhanItem("📎 Đã chọn: " + uri.getLastPathSegment(), true));
             adapter.notifyDataSetChanged();
         }
-
     }
 }

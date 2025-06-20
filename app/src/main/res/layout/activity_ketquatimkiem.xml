@@ -13,23 +13,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#006183"
-        android:paddingTop="50dp"
-        android:paddingBottom="30dp"
+        android:paddingTop="30dp"
+        android:paddingBottom="10dp"
         android:orientation="horizontal"
         android:layout_marginBottom="15dp">
 
         <ImageView
             android:id="@+id/imgCalendar"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/iccalendar"
             android:layout_marginStart="25dp"
             android:layout_gravity="left" />
 
         <ImageView
             android:id="@+id/imgFilter"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/icfilter"
             android:layout_marginStart="10dp" />
 
@@ -43,8 +43,8 @@
 
         <ImageView
             android:id="@+id/imgTimkiem"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginRight="25dp"
             android:src="@drawable/timkiem" />
     </LinearLayout>
@@ -62,7 +62,6 @@
 
     <!-- GridView kết quả tìm kiếm -->
 
-    <!-- Footer -->
     <GridView
         android:id="@+id/gvKetquatimkiem"
         android:layout_width="match_parent"
@@ -73,6 +72,7 @@
         android:numColumns="2"
         android:padding="8dp"
         android:verticalSpacing="10dp" />
+    <!-- Footer -->
 
     <include
         android:id="@+id/footerLayout"

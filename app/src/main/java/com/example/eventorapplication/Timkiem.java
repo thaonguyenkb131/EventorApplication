@@ -54,8 +54,9 @@ public class Timkiem extends AppCompatActivity {
         adapter = new TimkiemlvAdapter(this, data);
         binding.lvTimkiem.setAdapter(adapter);
 
-        // Tính chiều cao ListView sau khi gán adapter
-        setListViewHeightBasedOnItems(binding.lvTimkiem);
+        binding.lvTimkiem.post(() ->
+                setListViewHeightBasedOnItems(binding.lvTimkiem)
+        );
     }
 
     // Xử lý sự kiện gridview
@@ -73,10 +74,12 @@ public class Timkiem extends AppCompatActivity {
         gvAdapter = new TimkiemgvAdapter(this, phvbList);
         binding.gvPhuhopvoiban.setAdapter(gvAdapter);
 
-        setGridViewHeightBasedOnChildren(binding.gvPhuhopvoiban, 2);
+        binding.gvPhuhopvoiban.post(() ->
+                setGridViewHeightBasedOnChildren(binding.gvPhuhopvoiban, 2)
+        );
     }
 
-    // Xử lý filter bộ lọc
+    // Sự kiện filter
     private void addFilterEvent() {
         binding.imgFilter.setOnClickListener(v -> {
             BolocDialog dialog = new BolocDialog();
@@ -93,8 +96,9 @@ public class Timkiem extends AppCompatActivity {
         for (int i = 0; i < listAdapter.getCount(); i++) {
             View item = listAdapter.getView(i, null, listView);
             item.measure(
-                    View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED),
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+                    View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.AT_MOST),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+            );
             totalHeight += item.getMeasuredHeight();
         }
 
@@ -103,27 +107,31 @@ public class Timkiem extends AppCompatActivity {
         listView.setLayoutParams(params);
         listView.requestLayout();
     }
+
+    // Tính chiều cao GridView theo số cột và chiều cao item lớn nhất
     private void setGridViewHeightBasedOnChildren(GridView gridView, int numColumns) {
         ListAdapter listAdapter = gridView.getAdapter();
         if (listAdapter == null) return;
 
-        int totalHeight = 0;
         int items = listAdapter.getCount();
         int rows = (int) Math.ceil((double) items / numColumns);
 
-        View listItem = listAdapter.getView(0, null, gridView);
-        listItem.measure(
-                View.MeasureSpec.makeMeasureSpec(gridView.getWidth(), View.MeasureSpec.UNSPECIFIED),
-                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
-        );
+        // Đo chiều cao lớn nhất của item trong một hàng
+        int maxItemHeight = 0;
+        for (int i = 0; i < Math.min(numColumns, items); i++) {
+            View listItem = listAdapter.getView(i, null, gridView);
+            listItem.measure(
+                    View.MeasureSpec.makeMeasureSpec(gridView.getWidth(), View.MeasureSpec.AT_MOST),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+            );
+            maxItemHeight = Math.max(maxItemHeight, listItem.getMeasuredHeight());
+        }
 
-        int itemHeight = listItem.getMeasuredHeight();
-        totalHeight = itemHeight * rows + gridView.getVerticalSpacing() * (rows - 1);
+        int totalHeight = maxItemHeight * rows + gridView.getVerticalSpacing() * (rows - 1) + 20; // +20dp tránh cắt
 
         ViewGroup.LayoutParams params = gridView.getLayoutParams();
         params.height = totalHeight;
         gridView.setLayoutParams(params);
         gridView.requestLayout();
     }
-
 }

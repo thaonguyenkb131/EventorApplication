@@ -2,10 +2,9 @@
     android:layout_width="160dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp"
     android:backgroundTint="@android:color/white"
     android:elevation="6dp"
-    android:layout_margin="8dp"
+    android:layout_margin="5dp"
     android:gravity="center">
 
     <androidx.cardview.widget.CardView
@@ -14,7 +13,6 @@
 
         <ImageView
             android:id="@+id/imgPhvb"
-            style="@style/RoundedImageStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -27,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/montserrat_semibold"
-        android:gravity="center"
+        android:gravity="left"
         android:maxLines="2"
         android:text="Sân khấu Thiên Đăng - Ngũ Quý Tương Phùng"
         android:textColor="@color/black"

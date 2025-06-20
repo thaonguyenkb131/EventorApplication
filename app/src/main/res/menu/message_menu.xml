@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_pin"
+        android:title="Ghim tin nhắn" />
+    <item
+        android:id="@+id/menu_revoke"
+        android:title="Thu hồi tin nhắn" />
+    <item
+        android:id="@+id/menu_delete"
+        android:title="Xóa tin nhắn" />
+</menu>

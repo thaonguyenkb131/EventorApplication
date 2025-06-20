@@ -20,7 +20,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:paddingTop="30dp"
+            android:paddingBottom="10dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -40,15 +41,15 @@
 
                 <ImageView
                     android:id="@+id/imvtimkiem"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_margin="10dp"
                     android:src="@drawable/timkiem" />
 
                 <ImageView
                     android:id="@+id/imvnhantin"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_margin="10dp"
                     android:src="@drawable/nhantin" />
             </LinearLayout>
@@ -662,7 +663,8 @@
                         <TextView
                             android:id="@+id/txtDcb1t"
                             android:text="1900 Future Hits #70: Jun Phạm | Friday 30.5.2025"
-                            style="@style/EventTitle" />
+                            style="@style/EventTitle"
+                            android:maxLines="2"/>
 
                         <TextView
                             android:id="@+id/txtDcb1p"
@@ -687,7 +689,8 @@
                         <TextView
                             android:id="@+id/txtDcb2t"
                             android:text="[BẾN THÀNH] Đêm nhạc Bạch Công Khanh - Chu Thúy Quỳnh"
-                            style="@style/EventTitle"/>
+                            style="@style/EventTitle"
+                            android:maxLines="2"/>
                         <TextView
                             android:id="@+id/txtDcb2p"
                             android:text="Từ 200.000 VND"
@@ -709,7 +712,8 @@
                         <TextView
                             android:id="@+id/txtDcb3t"
                             android:text="Hành tinh nâu - Sân khấu Quốc Thảo"
-                            style="@style/EventTitle"/>
+                            style="@style/EventTitle"
+                            android:maxLines="2"/>
                         <TextView
                             android:id="@+id/txtDcb3p"
                             android:text="Từ 100.000 VND"
@@ -731,7 +735,8 @@
                         <TextView
                             android:id="@+id/txtDcb4t"
                             android:text="Lululola Show - Lắng nghe và cảm nhận"
-                            style="@style/EventTitle"/>
+                            style="@style/EventTitle"
+                            android:maxLines="2"/>
                         <TextView
                             android:id="@+id/txtDcb4p"
                             android:text="Từ 100.000 VND"
@@ -753,7 +758,8 @@
                         <TextView
                             android:id="@+id/txtDcb5t"
                             android:text="Lễ hội ẩm thực Ấn Độ - INDIAN FOOD FESTIVAL"
-                            style="@style/EventTitle"/>
+                            style="@style/EventTitle"
+                            android:maxLines="2"/>
                         <TextView
                             android:id="@+id/txtDcb5p"
                             android:text="Từ 350.000 VND"

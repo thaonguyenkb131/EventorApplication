@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.util.TypedValue;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,18 +21,32 @@ public class BolocDialog extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
         binding = ActivityBolocBinding.inflate(inflater, container, false);
 
-        binding.btnReset.setOnClickListener(v -> {
-            dismiss();
-        });
+        setCancelable(true);
 
-        binding.btnApdung.setOnClickListener(v -> {
-            dismiss();
-        });
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (getDialog() != null && getDialog().getWindow() != null) {
+            getDialog().setCanceledOnTouchOutside(true);
+
+            // Set width = MATCH_PARENT, height = 300dp
+            int width = ViewGroup.LayoutParams.MATCH_PARENT;
+
+            int height = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    300,
+                    getResources().getDisplayMetrics()
+            );
+
+            getDialog().getWindow().setLayout(width, height);
+            getDialog().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        }
     }
 
     @Override
@@ -38,5 +54,4 @@ public class BolocDialog extends DialogFragment {
         super.onDestroyView();
         binding = null;
     }
-
 }

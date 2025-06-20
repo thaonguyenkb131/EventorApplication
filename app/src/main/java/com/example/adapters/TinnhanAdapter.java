@@ -16,6 +16,16 @@ public class TinnhanAdapter extends BaseAdapter {
     private Context context;
     private List<TinnhanItem> messages;
 
+    public interface OnMessageLongClickListener {
+        void onLongClick(View view, int position);
+    }
+
+    private OnMessageLongClickListener longClickListener;
+
+    public void setOnMessageLongClickListener(OnMessageLongClickListener listener) {
+        this.longClickListener = listener;
+    }
+
     public TinnhanAdapter(Context context, List<TinnhanItem> messages) {
         this.context = context;
         this.messages = messages;
@@ -39,14 +49,20 @@ public class TinnhanAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View convertView, ViewGroup parent) {
         TinnhanItem item = messages.get(i);
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(
-                    item.isSender() ? R.layout.item_tinnhan_send : R.layout.item_tinnhan_recv,
-                    parent, false);
-        }
+
+        convertView = LayoutInflater.from(context).inflate(
+                item.isSender() ? R.layout.item_tinnhan_send : R.layout.item_tinnhan_recv,
+                parent, false);
 
         TextView txtMsg = convertView.findViewById(R.id.txtMessage);
         txtMsg.setText(item.getMessage());
+
+        convertView.setOnLongClickListener(v -> {
+            if (longClickListener != null) {
+                longClickListener.onLongClick(v, i);
+            }
+            return true;
+        });
 
         return convertView;
     }

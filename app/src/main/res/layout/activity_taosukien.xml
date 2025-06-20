@@ -1,10 +1,447 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Taosukien">
+    tools:context=".Taosukien"
+    android:background="#006183">
+<!--    Header-->
+    <TextView
+        android:id="@+id/Header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tạo sự kiện của bạn"
+        android:fontFamily="@font/montserrat_semibold"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:padding="20dp"
+        android:gravity="center"
+        android:layout_alignParentStart="true"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Header"
+        android:layout_above="@+id/footerLayout"
+        android:layout_paddingHorizontal="30dp"
+        android:background="@color/white">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/edtTenSukien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:hint="Tên sự kiện của bạn"
+                android:padding="15dp"
+                android:textSize="14sp" />
+            <EditText
+                android:id="@+id/edtThoigianmodon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:hint="Thời gian mở đơn đăng ký"
+                android:padding="15dp"
+                android:textSize="14sp" />
+            <EditText
+                android:id="@+id/edtThoigianmodonbox"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/bg_search_box"
+                android:drawableEnd="@drawable/iccalendar_scaled"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textSize="16sp" />
+            <EditText
+                android:id="@+id/edtThoigiandienra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:hint="Thời gian diễn ra sự kiện"
+                android:padding="15dp"
+                android:textSize="14sp" />
+            <!--                Bắt đầu lúc-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginVertical="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bắt đầu lúc"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="5dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/edtGiobatdau"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_search_box"
+                    android:paddingEnd="5dp"
+                    android:textSize="14sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ngày"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/edtNgaybatdau"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_search_box"
+                    android:paddingEnd="10dp"
+                    android:drawableEnd="@drawable/iccalendar_scaled"/>
+            </LinearLayout>
+
+<!--            Kết thúc lúc-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginVertical="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kết thúc lúc"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="5dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/edtGioketthuc"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_search_box"
+                    android:paddingEnd="5dp"
+                    android:textSize="14sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ngày"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"/>
+                <EditText
+                    android:id="@+id/edtNgayketthuc"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_search_box"
+                    android:paddingEnd="10dp"
+                    android:drawableEnd="@drawable/iccalendar_scaled"/>
+            </LinearLayout>
+<!--            Hình thức-->
+            <EditText
+                android:id="@+id/edtHinhthuc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Hình thức"
+                android:fontFamily="@font/montserrat_regular"
+                android:padding="15dp"
+                android:textSize="14sp" />
+            <RadioGroup
+                android:id="@+id/rgHinhthuc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <RadioButton
+                        android:id="@+id/rbOnline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Online"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:padding="15dp"
+                        android:textSize="14sp" />
+                    <RadioButton
+                        android:id="@+id/rbOffline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Offline"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:padding="15dp"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </RadioGroup>
+
+<!--            Địa điểm tổ chức-->
+            <EditText
+                android:id="@+id/edtDiadiem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Địa điểm tổ chức"
+                android:fontFamily="@font/montserrat_regular"
+                android:padding="15dp"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/edtSearch"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/bg_search_box"
+                android:drawableEnd="@drawable/ic_search"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:textSize="14sp" />
+
+<!--            Đăng ký BTC-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_semibold"
+                android:gravity="center"
+                android:textColor="#006183"
+                android:layout_marginVertical="10dp"
+                android:text="Đăng ký trở thành BTC"
+                android:textSize="16dp"/>
+
+<!--            Mô tả sự kiện-->
+            <EditText
+                android:id="@+id/edtMoTa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="250dp"
+                android:hint="Mô tả sự kiện"
+                android:fontFamily="@font/montserrat_regular"
+                android:padding="15dp"
+                android:textSize="14sp"
+                android:gravity="top|start"
+                android:inputType="textMultiLine"
+                android:maxLines="10"
+                android:scrollbars="vertical"
+                android:overScrollMode="always" />
+
+<!--            Tải ảnh thumbnail-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtTaianhthumb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tải ảnh thumbnail"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:padding="15dp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"/>
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:paddingBottom="18dp">
+
+                    <ImageView
+                        android:id="@+id/imgThumbnail"
+                        android:layout_width="150dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/banner1"
+                        style="@style/RoundedImageStyle"
+                        android:contentDescription="Ảnh thumbnail" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnDoiAnh"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="Đổi ảnh"
+                        android:textSize="13sp"
+                        android:textColor="@android:color/white"
+                        android:fontFamily="@font/montserrat_semibold"
+                        app:backgroundTint="#006183"
+                        app:cornerRadius="5dp"
+                        android:layout_gravity="bottom|center_horizontal"
+                        android:translationY="18dp"
+                        android:paddingHorizontal="16dp"
+                        android:elevation="4dp" />
+
+                </FrameLayout>
+
+
+            </LinearLayout>
+
+<!--            Cách hạng mục vé-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="24dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@drawable/white_card_bg"
+                android:elevation="4dp"
+                android:padding="16dp"
+                android:layout_gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Các hạng mục vé"
+                    android:textColor="#006183"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:layout_marginBottom="12dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="6dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="HOÀNG HÔN"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1.500.000 VND"
+                        android:textColor="#006183"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/montserrat_bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="6dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="CHIỀU TÀ"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1.300.000 VND"
+                        android:textColor="#006183"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/montserrat_bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="6dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="CHẠNG VẠNG"
+                        android:fontFamily="@font/montserrat_semibold"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1.000.000 VND"
+                        android:textColor="#006183"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/montserrat_bold" />
+                </LinearLayout>
+
+                <!-- Nút thêm vé -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnThemHangVe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thêm hạng mục vé"
+                    android:layout_marginTop="16dp"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:textSize="13sp"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingHorizontal="20dp"
+                    app:cornerRadius="5dp"
+                    app:backgroundTint="#006183" />
+
+            </LinearLayout>
+<!--Định vị vị trí-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Định vị trí tổ chức sự kiện của bạn"
+                android:textColor="#006183"
+                android:textSize="16sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginVertical="8dp" />
+
+            <!-- Bản đồ -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/white_card_bg">
+
+<!--                Chỗ này BE xử lý thả link google map vô dùm t nha-->
+<!--                <androidx.fragment.app.FragmentContainerView-->
+<!--                    android:id="@+id/mapFragment"-->
+<!--                    android:name="com.google.android.gms.maps.SupportMapFragment"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="200dp"-->
+<!--                    android:layout_margin="16dp"-->
+<!--                    tools:ignore="MissingClass"/>-->
+            </FrameLayout>
+
+            <!-- Nút đăng -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDangSukien"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đăng sự kiện"
+                app:cornerRadius="5dp"
+                app:backgroundTint="#006183"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/montserrat_semibold"
+                android:layout_gravity="end"
+                android:layout_marginHorizontal="15dp"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp"
+                android:layout_marginBottom="30dp"/>
+
+    </LinearLayout>
+
+    </ScrollView>
+    <include
+        android:id="@+id/footerLayout"
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+
+
+</RelativeLayout>

@@ -372,7 +372,7 @@
 
     <!-- Confirm Button -->
     <Button
-        android:id="@+id/btn_confirm"
+        android:id="@+id/btnXacnhan"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:text="Xác nhận"

@@ -1,6 +1,7 @@
 package com.example.eventorapplication;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -68,6 +69,15 @@ public class trang_ve_da_mua extends AppCompatActivity {
             location.setText(sp.getLocation());
             date.setText(sp.getDate());
 
+        });
+        binding.btnSavedEvents.setOnClickListener(v -> {
+            Intent intent = new Intent(trang_ve_da_mua.this, TrangVeCuaToi.class);
+            startActivity(intent);
+        });
+
+        binding.btnPostedEvents.setOnClickListener(v -> {
+            Intent intent = new Intent(trang_ve_da_mua.this, trang_su_kien_da_dang.class);
+            startActivity(intent);
         });
     }
 }

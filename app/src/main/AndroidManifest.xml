@@ -13,6 +13,9 @@
         android:theme="@style/Theme.EventorApplication"
         tools:targetApi="31">
         <activity
+            android:name=".HeaderChiTietSuKien"
+            android:exported="false" />
+        <activity
             android:name=".Popup_Taianhlen"
             android:exported="false" />
         <activity
@@ -47,10 +50,9 @@
             android:exported="false" />
         <activity
             android:name=".TrangthongbaoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".DangkyBTCActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".TrangThanhToan"
             android:exported="false" />
@@ -70,22 +72,22 @@
             android:name=".EventTag"
             android:exported="false" />
         <activity
-            android:name=".TrangChiTietSuKien"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".footer"
             android:exported="false" />
         <activity
-            android:name=".ChiTietSuKien"
+            android:name=".TrangChiTietSuKien"
             android:exported="false" />
         <activity
-            android:name=".trang_ve_da_mua"
+            android:name=".ChiTietSuKien"
             android:exported="false" />
         <activity
             android:name=".TrangVeCuaToi"
             android:exported="false" />
         <activity
-            android:name=".DangkyBTCActivity"
+            android:name=".trang_ve_da_mua"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

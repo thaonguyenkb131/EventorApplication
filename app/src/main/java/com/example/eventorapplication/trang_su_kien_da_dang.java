@@ -1,5 +1,6 @@
 package com.example.eventorapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -8,17 +9,32 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.eventorapplication.databinding.ActivityTrangSuKienDaDangBinding;
+
 public class trang_su_kien_da_dang extends AppCompatActivity {
+
+    ActivityTrangSuKienDaDangBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_trang_su_kien_da_dang);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        binding = ActivityTrangSuKienDaDangBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        addEvents();
+
+    }
+
+    private void addEvents() {
+        binding.btnSavedEvents.setOnClickListener(v -> {
+            Intent intent = new Intent(trang_su_kien_da_dang.this, TrangVeCuaToi.class);
+            startActivity(intent);
         });
+
+        binding.btnPurchasedTickets.setOnClickListener(v -> {
+            Intent intent = new Intent(trang_su_kien_da_dang.this, trang_ve_da_mua.class);
+            startActivity(intent);
+        });
+
     }
 }

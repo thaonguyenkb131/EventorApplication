@@ -1,0 +1,28 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="412dp"
+    android:layout_height="100dp"
+    android:padding="8dp"
+    android:background="#006183"
+    android:id="@+id/main">
+
+    <ImageView
+        android:id="@+id/icon_search"
+        android:layout_marginRight="40dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/timkiem"
+        android:padding="6dp"
+        android:contentDescription="Chat icon" />
+
+    <ImageView
+        android:id="@+id/icon_chat"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/nhantin"
+        android:padding="6dp"
+        android:contentDescription="Chat icon" />
+</RelativeLayout>

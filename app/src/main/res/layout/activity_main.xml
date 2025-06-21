@@ -212,7 +212,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginStart="5dp"
-                android:scrollbars="none">
+                android:scrollbars="none"
+                android:contentDescription="Sự kiện nổi bật">
 
                 <LinearLayout
                     android:layout_width="wrap_content"

@@ -13,23 +13,26 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.adapters.TinnhanAdapter;
+import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivityTinnhanBinding;
 import com.example.models.TinnhanItem;
 
 import java.util.ArrayList;
 
-public class Tinnhan extends AppCompatActivity {
+public class Tinnhan extends BaseActivity<ActivityTinnhanBinding> {
 
-    private ActivityTinnhanBinding binding;
     private ArrayList<TinnhanItem> messages;
     private TinnhanAdapter adapter;
     private static final int PICK_FILE_REQUEST = 1;
 
     @Override
+    protected ActivityTinnhanBinding inflateBinding() {
+        return ActivityTinnhanBinding.inflate(getLayoutInflater());
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityTinnhanBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
 
         // Khởi tạo danh sách tin nhắn mẫu
         messages = new ArrayList<>();

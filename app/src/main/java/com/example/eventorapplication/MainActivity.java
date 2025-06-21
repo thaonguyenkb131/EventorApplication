@@ -1,5 +1,6 @@
 package com.example.eventorapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.eventorapplication.base.BaseActivity;
@@ -43,6 +44,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     private void setupBannerSlider() {
         BannerAdapter adapter = new BannerAdapter(this, imageResIds);
         binding.viewPagerBanner.setAdapter(adapter);
+
+        binding.imvnhantin.setOnClickListener(v -> {
+            startActivity(new Intent(this, Tinnhan.class));
+        });
+
+        binding.txtXemthem.setOnClickListener(v ->
+                startActivity(new Intent(this,Sukienxuhuong.class)));
 
         binding.viewPagerBanner.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override

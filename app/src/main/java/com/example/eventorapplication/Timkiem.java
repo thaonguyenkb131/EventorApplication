@@ -8,17 +8,19 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewbinding.ViewBinding;
 
 import com.example.adapters.TimkiemgvAdapter;
 import com.example.adapters.TimkiemlvAdapter;
+import com.example.eventorapplication.base.BaseActivity;
+import com.example.eventorapplication.databinding.ActivityMainBinding;
 import com.example.eventorapplication.databinding.ActivityTimkiemBinding;
 import com.example.models.TimkiemgvItem;
 import com.example.models.TimkiemlvItem;
 
 import java.util.ArrayList;
 
-public class Timkiem extends AppCompatActivity {
-    private ActivityTimkiemBinding binding;
+public class Timkiem extends BaseActivity<ActivityTimkiemBinding> {
 
     private ArrayList<TimkiemlvItem> data;
     private TimkiemlvAdapter adapter;
@@ -27,10 +29,14 @@ public class Timkiem extends AppCompatActivity {
     private TimkiemgvAdapter gvAdapter;
 
     @Override
+    protected ActivityTimkiemBinding inflateBinding() {
+        return ActivityTimkiemBinding.inflate(getLayoutInflater());
+    }
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityTimkiemBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
 
         addEvents();
     }

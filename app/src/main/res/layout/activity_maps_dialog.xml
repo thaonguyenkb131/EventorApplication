@@ -6,7 +6,8 @@
     android:id="@+id/main"
     android:layout_width="350dp"
     android:orientation="vertical"
-    android:layout_height="match_parent"
+    android:background="#BDBDBD"
+    android:layout_height="wrap_content"
     tools:context=".MapsDialogActivity">
 
 <!--    Search bar-->

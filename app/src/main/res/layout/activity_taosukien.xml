@@ -211,6 +211,7 @@
 
 <!--            Đăng ký BTC-->
             <TextView
+                android:id="@+id/txtDangkyBTC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_semibold"

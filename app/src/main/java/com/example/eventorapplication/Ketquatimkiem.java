@@ -9,25 +9,29 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.adapters.KetquatimkiemAdapter;
+import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivityKetquatimkiemBinding;
 import com.example.models.KetquatimkiemItem;
 
 import java.util.ArrayList;
 
-public class Ketquatimkiem extends AppCompatActivity {
+public class Ketquatimkiem extends BaseActivity<ActivityKetquatimkiemBinding> {
 
-    private ActivityKetquatimkiemBinding binding;
     private KetquatimkiemAdapter adapter;
     private ArrayList<KetquatimkiemItem> dataList;
 
     @Override
+    protected ActivityKetquatimkiemBinding inflateBinding() {
+        return ActivityKetquatimkiemBinding.inflate(getLayoutInflater());
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityKetquatimkiemBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
 
         addControls();
         loadData();
+        addFilterEvent();
     }
 
     private void addControls() {
@@ -55,5 +59,13 @@ public class Ketquatimkiem extends AppCompatActivity {
         dataList.add(new KetquatimkiemItem(R.drawable.kqtk16, "Nhà hát kịch IDECAF: Tấm Cám đại chiến", "Từ 270.000 VND", "Tp. Hồ Chí Minh", "15/06/2025"));
 
         adapter.notifyDataSetChanged();
+    }
+
+    private void addFilterEvent() {
+        binding.imgFilter.setOnClickListener(v -> {
+            BolocDialog dialog = new BolocDialog();
+            dialog.show(getSupportFragmentManager(), "BolocDialog");
+        });
+
     }
 }

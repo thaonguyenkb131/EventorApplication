@@ -1,5 +1,6 @@
 package com.example.eventorapplication;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,23 +10,30 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.adapters.TrangthongbaoAdapter;
+import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivityTrangthongbaoBinding;
 import com.example.eventorapplication.databinding.ItemLvthongbaoBinding;
 import com.example.models.TrangthongbaoItem;
 
 import java.util.ArrayList;
 
-public class TrangthongbaoActivity extends AppCompatActivity {
-    ActivityTrangthongbaoBinding binding;
+public class TrangthongbaoActivity extends BaseActivity<ActivityTrangthongbaoBinding> {
     ArrayList<TrangthongbaoItem> tbao;
     TrangthongbaoAdapter adapter;
     private boolean isNotificationOn = false;
 
     @Override
+    protected ActivityTrangthongbaoBinding inflateBinding() {
+        return ActivityTrangthongbaoBinding.inflate(getLayoutInflater());
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityTrangthongbaoBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+
+        binding.imvnhantin.setOnClickListener(v -> {
+            startActivity(new Intent(this, Tinnhan.class));
+        });
 
         // Toggle nút bật thông báo
 

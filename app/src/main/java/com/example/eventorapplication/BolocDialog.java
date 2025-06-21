@@ -22,10 +22,7 @@ public class BolocDialog extends DialogFragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding = ActivityBolocBinding.inflate(inflater, container, false);
-
         setCancelable(true);
-
-
         return binding.getRoot();
     }
 
@@ -34,13 +31,10 @@ public class BolocDialog extends DialogFragment {
         super.onStart();
         if (getDialog() != null && getDialog().getWindow() != null) {
             getDialog().setCanceledOnTouchOutside(true);
-
-            // Set width = MATCH_PARENT, height = 300dp
             int width = ViewGroup.LayoutParams.MATCH_PARENT;
-
             int height = (int) TypedValue.applyDimension(
                     TypedValue.COMPLEX_UNIT_DIP,
-                    300,
+                    400,
                     getResources().getDisplayMetrics()
             );
 

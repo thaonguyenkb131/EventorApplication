@@ -19,10 +19,7 @@
             android:name=".Popup_Taianhlen"
             android:exported="false" />
         <activity
-            android:name=".PopupTaosukienthanhcongActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Sukienxuhuong"
+            android:name=".Ketquatimkiem"
             android:exported="false" />
         <activity
             android:name=".MapsDialogActivity"
@@ -34,13 +31,13 @@
             android:name=".ChinhsachActivity"
             android:exported="false" />
         <activity
-            android:name=".Ketquatimkiem"
-            android:exported="false" />
-        <activity
-            android:name=".Taosukien"
-            android:exported="false" />
-        <activity
             android:name=".Timkiem"
+            android:exported="false" />
+        <activity
+            android:name=".TrangthongbaoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".trang_ve_da_mua"
             android:exported="false" />
         <activity
             android:name=".BolocActivity"
@@ -49,10 +46,11 @@
             android:name=".Tinnhan"
             android:exported="false" />
         <activity
-            android:name=".TrangthongbaoActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".DangkyBTCActivity" -->
-        <!-- android:exported="false" /> -->
+            android:name=".Sukienxuhuong"
+            android:exported="false" />
+         <activity
+         android:name=".DangkyBTCActivity"
+         android:exported="false" />
         <activity
             android:name=".TrangThanhToan"
             android:exported="false" />
@@ -87,7 +85,7 @@
             android:name=".TrangVeCuaToi"
             android:exported="false" />
         <activity
-            android:name=".trang_ve_da_mua"
+            android:name=".Taosukien"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

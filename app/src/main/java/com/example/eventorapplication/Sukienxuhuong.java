@@ -1,5 +1,6 @@
 package com.example.eventorapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -9,26 +10,34 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.adapters.SukienxuhuongAdapter;
+import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivitySukienxuhuongBinding;
 import com.example.models.SukienxuhuongItem;
 
 import java.util.ArrayList;
 
 
-public class Sukienxuhuong extends AppCompatActivity {
+public class Sukienxuhuong extends BaseActivity<ActivitySukienxuhuongBinding> {
 
-    private ActivitySukienxuhuongBinding binding;
     private ArrayList<SukienxuhuongItem> dsSuKien;
     private SukienxuhuongAdapter adapter;
 
     @Override
+    protected ActivitySukienxuhuongBinding inflateBinding() {
+        return ActivitySukienxuhuongBinding.inflate(getLayoutInflater());
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivitySukienxuhuongBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
 
         setupListView();
+
+        binding.imvnhantin.setOnClickListener(v -> {
+            startActivity(new Intent(this, Tinnhan.class));
+        });
     }
+
 
     private void setupListView() {
         dsSuKien = new ArrayList<>();

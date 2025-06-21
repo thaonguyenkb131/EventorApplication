@@ -2,7 +2,8 @@
     android:layout_width="412dp"
     android:layout_height="100dp"
     android:padding="8dp"
-    android:background="#006183">
+    android:background="#006183"
+    android:id="@+id/main">
 
     <ImageView
         android:id="@+id/icon_search"

@@ -49,7 +49,7 @@
             android:name=".TrangthongbaoActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".DangkyBTCActivity"
             android:exported="false" />
         <activity
             android:name=".TrangThanhToan"
@@ -85,7 +85,7 @@
             android:name=".TrangVeCuaToi"
             android:exported="false" />
         <activity
-            android:name=".DangkyBTCActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

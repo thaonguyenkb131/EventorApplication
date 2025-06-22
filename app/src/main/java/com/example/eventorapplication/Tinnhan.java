@@ -11,6 +11,9 @@ import android.widget.PopupMenu;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.example.adapters.TinnhanAdapter;
 import com.example.eventorapplication.base.BaseActivity;
@@ -33,6 +36,25 @@ public class Tinnhan extends BaseActivity<ActivityTinnhanBinding> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //        Tránh che màn hình
+
+        View rootView = findViewById(R.id.main); // ConstraintLayout có id="main"
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(0, 0, 0, systemBars.bottom); // tránh bị che nút
+
+            // Đẩy TextView xuống dưới status bar
+            View txtTitle = findViewById(R.id.header);
+            txtTitle.setPadding(
+                    txtTitle.getPaddingLeft(),
+                    systemBars.top,
+                    txtTitle.getPaddingRight(),
+                    txtTitle.getPaddingBottom()
+            );
+
+            return insets;
+        });
 
         // Khởi tạo danh sách tin nhắn mẫu
         messages = new ArrayList<>();

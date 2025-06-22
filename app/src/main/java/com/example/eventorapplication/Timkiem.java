@@ -8,6 +8,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.viewbinding.ViewBinding;
 
 import com.example.adapters.TimkiemgvAdapter;
@@ -39,6 +42,25 @@ public class Timkiem extends BaseActivity<ActivityTimkiemBinding> {
         super.onCreate(savedInstanceState);
 
         addEvents();
+
+        //        Tránh che màn hình
+
+        View rootView = findViewById(R.id.main); // ConstraintLayout có id="main"
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(0, 0, 0, systemBars.bottom); // tránh bị che nút
+
+            // Đẩy TextView xuống dưới status bar
+            View txtTitle = findViewById(R.id.Thanhtimkiem);
+            txtTitle.setPadding(
+                    txtTitle.getPaddingLeft(),
+                    systemBars.top,
+                    txtTitle.getPaddingRight(),
+                    txtTitle.getPaddingBottom()
+            );
+
+            return insets;
+        });
     }
 
     private void addEvents() {

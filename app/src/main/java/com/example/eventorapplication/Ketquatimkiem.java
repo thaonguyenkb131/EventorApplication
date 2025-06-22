@@ -1,6 +1,7 @@
 package com.example.eventorapplication;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +33,25 @@ public class Ketquatimkiem extends BaseActivity<ActivityKetquatimkiemBinding> {
         addControls();
         loadData();
         addFilterEvent();
+
+        //        Tránh che màn hình
+
+        View rootView = findViewById(R.id.main); // ConstraintLayout có id="main"
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(0, 0, 0, systemBars.bottom); // tránh bị che nút
+
+            // Đẩy TextView xuống dưới status bar
+            View txtTitle = findViewById(R.id.Thanhtimkiem);
+            txtTitle.setPadding(
+                    txtTitle.getPaddingLeft(),
+                    systemBars.top,
+                    txtTitle.getPaddingRight(),
+                    txtTitle.getPaddingBottom()
+            );
+
+            return insets;
+        });
     }
 
     private void addControls() {

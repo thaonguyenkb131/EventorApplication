@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
@@ -11,25 +11,31 @@
     <!-- Thanh tìm kiếm -->
     <LinearLayout
         android:id="@+id/Thanhtimkiem"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:background="#006183"
         android:paddingTop="30dp"
         android:paddingBottom="10dp"
-        android:orientation="horizontal"
-        android:layout_marginBottom="15dp">
+        android:layout_marginBottom="15dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
         <ImageView
             android:id="@+id/imgCalendar"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/iccalendar"
-            android:layout_marginStart="25dp" />
+            android:layout_marginStart="25dp"
+            android:src="@drawable/iccalendar" />
+
         <ImageView
             android:id="@+id/imgFilter"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/icfilter"
-            android:layout_marginStart="10dp" />
+            android:layout_marginStart="10dp"
+            android:src="@drawable/icfilter" />
+
         <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -37,6 +43,7 @@
             android:hint="Tìm kiếm"
             android:padding="10dp"
             android:minHeight="48dp" />
+
         <ImageView
             android:id="@+id/imgTimkiem"
             android:layout_width="40dp"
@@ -47,21 +54,25 @@
 
     <!-- Nội dung chính -->
     <ScrollView
-        android:layout_width="match_parent"
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:fillViewport="true"
         android:clipToPadding="false"
-        android:layout_below="@+id/Header"
-        android:layout_above="@+id/footerLayout">
+        app:layout_constraintTop_toBottomOf="@id/Thanhtimkiem"
+        app:layout_constraintBottom_toTopOf="@id/footerLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Layout con bên trong ScrollView -->
         <LinearLayout
+            android:id="@+id/contentLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="40dp">
-
             <!-- ListView -->
+
             <ListView
                 android:id="@+id/lvTimkiem"
                 android:layout_width="match_parent"
@@ -456,8 +467,10 @@
     </ScrollView>
     <include
         android:id="@+id/footerLayout"
-        layout="@layout/footer"
-        android:layout_width="match_parent"
+        layout="@layout/activity_footer"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"/>
-</LinearLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

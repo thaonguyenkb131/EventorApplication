@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Tinnhan">
+    tools:context=".Tinnhan"
+    android:id="@+id/main">
 
     <!-- Header -->
     <LinearLayout
@@ -121,7 +122,7 @@
     <!-- Footer điều hướng cố định dưới cùng -->
     <include
         android:id="@+id/footerLayout"
-        layout="@layout/footer"
+        layout="@layout/activity_footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

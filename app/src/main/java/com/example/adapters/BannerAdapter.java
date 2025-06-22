@@ -1,6 +1,7 @@
 package com.example.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eventorapplication.R;
+import com.example.eventorapplication.TrangChiTietSuKien;
 
 public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerViewHolder> {
     private Context context;
@@ -29,6 +31,12 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
     @Override
     public void onBindViewHolder(@NonNull BannerViewHolder holder, int position) {
         holder.imgBanner.setImageResource(images[position]);
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, TrangChiTietSuKien.class);
+            intent.putExtra("banner_index", position); // Nếu cần truyền dữ liệu
+            context.startActivity(intent);
+        });
     }
 
     @Override

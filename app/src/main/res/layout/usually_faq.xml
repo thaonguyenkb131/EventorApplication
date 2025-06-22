@@ -34,7 +34,7 @@
     <!-- Ô tìm kiếm -->
     <EditText
         android:hint="Nhập từ khóa hoặc nội dung cần tìm"
-        android:background="@drawable/bg_search_box"
+        android:background="@drawable/bg_search_box_img"
         android:padding="12dp"
         android:textColorHint="#999999"
         android:textColor="#000000"

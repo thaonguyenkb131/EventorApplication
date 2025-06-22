@@ -70,7 +70,7 @@
     <!-- Footer cố định -->
     <include
         android:id="@+id/footerLayout"
-        layout="@layout/footer"
+        layout="@layout/activity_footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

@@ -33,11 +33,11 @@
         <activity
             android:name=".TrangChiTietSuKien"
             android:exported="false" />
+        <activity android:name=".Timkiem" />
+        <activity android:name=".Tinnhan" />
+        <activity android:name=".Ketquatimkiem" />
         <activity
             android:name=".footer"
-            android:exported="false" />
-        <activity
-            android:name=".ChiTietSuKien"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -46,7 +46,7 @@
             android:name=".TrangVeCuaToi"
             android:exported="false" />
         <activity
-            android:name=".trang_ve_da_mua"
+            android:name=".PageOnboarding"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:flexbox="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,57 +10,127 @@
     tools:context=".PopupInterestFields"
     android:gravity="center_horizontal">
 
-    <!-- Tiêu đề -->
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+        <!-- Tiêu đề -->
         <TextView
-            android:id="@+id/txtTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Những lĩnh vực có thể\nbạn quan tâm"
+            android:textSize="25sp"
             android:textColor="#000000"
-            android:textSize="18sp"
             android:textStyle="bold"
-            android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
-            android:layout_centerInParent="true" />
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp"/>
 
-<!--        <ImageView-->
-<!--            android:id="@+id/btnClose"-->
-<!--            android:layout_width="24dp"-->
-<!--            android:layout_height="24dp"-->
-<!--            android:src="@drawable/ic_close"-->
-<!--            android:layout_alignParentEnd="true"/>-->
-    </RelativeLayout>
+        <!-- Dòng 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
 
-<!--    &lt;!&ndash; Danh sách lựa chọn &ndash;&gt;-->
-<!--    <com.google.android.flexbox.FlexboxLayout-->
-<!--        android:id="@+id/flexInterest"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        flexbox:justifyContent="flex_start"-->
-<!--        flexbox:alignItems="center"-->
-<!--        flexbox:flexWrap="wrap">-->
+            <TextView
+                style="@style/InterestTag"
+                android:id="@+id/tag1"
+                android:text="🤝 Tình nguyện &amp; Xã hội"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:layout_gravity="start"/>
 
-<!--        &lt;!&ndash; Gợi ý: dùng layout selector hoặc chip layout động &ndash;&gt;-->
-<!--        &lt;!&ndash; Gắn bằng code hoặc layout lặp lại sau &ndash;&gt;-->
+            <TextView
+                style="@style/InterestTag"
+                android:id="@+id/tag2"
+                android:text="🧘‍♂️ Sức khỏe"
+                android:layout_marginStart="20dp"
+                android:textSize="15sp"
+                android:layout_weight="1"
+                android:layout_gravity="end"/>
+        </LinearLayout>
+        <!-- Dòng 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
 
-<!--    </com.google.android.flexbox.FlexboxLayout>-->
+            <TextView
+                style="@style/InterestTag"
+                android:id="@+id/tag3"
+                android:text="🐱 Động vật"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:layout_gravity="start"/>
 
-    <!-- Nút lưu -->
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Lưu"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#066183"
-        android:layout_marginTop="24dp"
-        android:paddingVertical="10dp"
-        android:textSize="16sp"
-        android:textAllCaps="false"
-        android:fontFamily="@font/montserrat_bold"/>
-</LinearLayout>
+            <TextView
+                style="@style/InterestTag"
+                android:id="@+id/tag4"
+                android:text="✈️ Du lịch &amp; Trải nghiệm"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:layout_gravity="end"/>
+        </LinearLayout>
+
+        <!-- Dòng 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                style="@style/InterestTag"
+                android:id="@+id/tag5"
+                android:text="💼 Khởi nghiệp &amp; Sáng tạo"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:layout_gravity="start"/>
+
+            <TextView
+                style="@style/InterestTag"
+                android:id="@+id/tag6"
+                android:text="♻️ Môi trường"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:layout_gravity="end"/>
+        </LinearLayout>
+
+        <!-- Dòng 4 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                style="@style/InterestTag"
+                android:id="@+id/tag7"
+                android:text="🤖 Công nghệ &amp; Kỹ thuật số"
+                android:layout_weight="1"
+                android:textSize="15sp"/>
+        </LinearLayout>
+
+        <!-- Nút Lưu -->
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lưu"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#066183"
+            android:fontFamily="@font/montserrat_bold"
+            android:textAllCaps="false"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+
+
+
+</ScrollView>

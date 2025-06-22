@@ -13,6 +13,36 @@
         android:theme="@style/Theme.EventorApplication"
         tools:targetApi="31">
         <activity
+            android:name=".UsuallyFaq"
+            android:exported="false" />
+        <activity
+            android:name=".AddPayment"
+            android:exported="false" />
+        <activity
+            android:name=".Payment"
+            android:exported="false" />
+        <activity
+            android:name=".ComboAccount"
+            android:exported="false" />
+        <activity
+            android:name=".AccountInfor"
+            android:exported="false" />
+        <activity
+            android:name=".ChangePassword"
+            android:exported="false" />
+        <activity
+            android:name=".BonusPoint"
+            android:exported="false" />
+        <activity
+            android:name=".PersonalProfile"
+            android:exported="false" />
+        <activity
+            android:name=".MyAccountLoggedIn"
+            android:exported="false" />
+        <activity
+            android:name=".MyAccountNotLoggedIn"
+            android:exported="false" />
+        <activity
             android:name=".TrangThanhToan"
             android:exported="false" />
         <activity

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/bg_popup_thanhcong"
+    android:gravity="center"
+    tools:context=".Popup_Taianhlen">
+
+    <!-- Tiêu đề -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chọn ảnh"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:fontFamily="@font/montserrat_semibold"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Gạch ngang -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#D0D0D0"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Text + icon -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+        <EditText
+            android:id="@+id/edtTenFile"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Tên file ảnh"
+            android:fontFamily="@font/montserrat_regular"
+            android:paddingStart="12dp"
+            android:paddingEnd="50dp"
+            android:background="@drawable/bg_edittext_border"
+            android:inputType="none"
+            android:focusable="false" />
+
+        <ImageView
+            android:id="@+id/icFile"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:scaleType="centerCrop"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/ic_file_plus"
+            android:contentDescription="Chọn file"
+            android:backgroundTint="#444444" />
+    </RelativeLayout>
+
+    <!-- Nút chọn ảnh -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnChonAnh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chọn ảnh"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:fontFamily="@font/montserrat_semibold"
+        app:cornerRadius="8dp"
+        app:backgroundTint="#006183"
+        android:paddingStart="28dp"
+        android:paddingEnd="28dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:elevation="4dp" />
+
+</LinearLayout>

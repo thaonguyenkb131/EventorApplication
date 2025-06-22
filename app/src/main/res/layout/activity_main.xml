@@ -1,19 +1,783 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- Thanh công cụ -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        android:background="#006183"
+        android:layout_alignParentTop="true">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="30dp"
+            android:paddingBottom="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imvlogo"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/logo" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="end">
+
+                <ImageView
+                    android:id="@+id/imvtimkiem"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/timkiem" />
+
+                <ImageView
+                    android:id="@+id/imvnhantin"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/nhantin" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Danh mục sự kiện -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#006183"
+            android:paddingBottom="5dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/danhmuc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:fontFamily="@font/montserrat_semibold">
+
+                <TextView android:id="@+id/txtamnhac"
+                    style="@style/DanhMucItem" android:text="Âm nhạc" />
+                <TextView android:id="@+id/txtvanhoa" style="@style/DanhMucItem" android:text="Văn hóa" />
+                <TextView android:id="@+id/txthocthuat" style="@style/DanhMucItem" android:text="Học thuật" />
+                <TextView android:id="@+id/txtthethao" style="@style/DanhMucItem" android:text="Thể thao" />
+                <TextView android:id="@+id/txttinhnguyen" style="@style/DanhMucItem" android:text="Tình nguyện" />
+                <TextView android:id="@+id/txtmoitruong" style="@style/DanhMucItem" android:text="Môi trường" />
+                <TextView android:id="@+id/txtdulich" style="@style/DanhMucItem" android:text="Du lịch" />
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/ScrollContent"
+        android:layout_below="@id/header"
+        android:layout_above="@id/footerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- Banner -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginBottom="5dp">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPagerBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center" />
+            </LinearLayout>
+
+            <!-- Dot giữa 3 banner -->
+            <LinearLayout
+                android:id="@+id/dotsIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center" />
+
+            <!-- Chat với trợ lý Eventor -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    style="@style/RoundedImageStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- Shadow -->
+                    <View
+                        android:background="#33000000"
+                        android:layout_height="50dp"
+                        android:layout_width="match_parent"
+                        android:alpha="0.3"
+                        android:layout_marginTop="10dp" />
+
+                    <!-- Hộp chat -->
+                    <LinearLayout
+                        android:id="@+id/chatAssistant"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:background="@android:color/white"
+                        android:padding="5dp"
+                        android:gravity="center_vertical"
+                        android:elevation="1dp"
+                        android:layout_gravity="center"
+                        android:backgroundTint="#FFFFFF">
+
+                        <ImageView
+                            android:id="@+id/chatIcon"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/ic_chat"
+                            android:paddingStart="3dp"
+                            android:layout_marginStart="3dp"
+                            android:scaleType="centerCrop" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="12dp">
+
+                            <TextView
+                                android:id="@+id/txtTrolyEventor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/montserrat_semibold"
+                                android:text="Trợ lý Eventor"
+                                android:textColor="#015B68"
+                                android:textSize="16sp"
+                                android:layout_marginTop="5dp" />
+
+                            <EditText
+                                android:id="@+id/edtChat"
+                                android:gravity="center_vertical"
+                                android:layout_width="250dp"
+                                android:layout_height="48dp"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/edittext_stroke"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:hint="Hôm nay bạn cần trợ giúp gì?"
+                                android:padding="2dp"
+                                android:textColor="#808080"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Sự kiện nổi bật - Title // Chỗ này có upsize so với figma cho cân đối -->
+            <TextView
+                android:id="@+id/txtSukiennoibat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Sự kiện nổi bật"
+                android:textColor="#006183"
+                android:textSize="20sp"
+                android:layout_gravity="start"
+                android:layout_marginStart="15dp" />
+            <!--    Sự kiện nổi bật - Scroll View-->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:scrollbars="none"
+                android:contentDescription="Sự kiện nổi bật">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <!--SK1-->
+                    <androidx.cardview.widget.CardView
+                        style="@style/RoundedCardStyleSknb">
+                        <ImageView
+                            android:id="@+id/imgSknb1"
+                            style="@style/RoundedImageStyle"
+                            android:src="@drawable/sknb1" />
+                    </androidx.cardview.widget.CardView>
+                    <!--SK2-->
+                    <androidx.cardview.widget.CardView
+                        style="@style/RoundedCardStyleSknb">
+                        <ImageView
+                            android:id="@+id/imgSknb2"
+                            style="@style/RoundedImageStyle"
+                            android:src="@drawable/sknb2" />
+                    </androidx.cardview.widget.CardView>
+
+                    <!--            SK3-->
+                    <androidx.cardview.widget.CardView
+                        style="@style/RoundedCardStyleSknb">
+                        <ImageView
+                            android:id="@+id/imgSknb3"
+                            style="@style/RoundedImageStyle"
+                            android:src="@drawable/sknb3" />
+                    </androidx.cardview.widget.CardView>
+                    <!--SK4-->
+                    <androidx.cardview.widget.CardView
+                        style="@style/RoundedCardStyleSknb">
+                        <ImageView
+                            android:id="@+id/imgSknb4"
+                            style="@style/RoundedImageStyle"
+                            android:src="@drawable/sknb4" />
+                    </androidx.cardview.widget.CardView>
+
+                    <!--            SK5-->
+                    <androidx.cardview.widget.CardView
+                        style="@style/RoundedCardStyleSknb">
+                        <ImageView
+                            android:id="@+id/imgSknb5"
+                            style="@style/RoundedImageStyle"
+                            android:src="@drawable/sknb5" />
+                    </androidx.cardview.widget.CardView>
+
+                    <!--            SK6-->
+                    <androidx.cardview.widget.CardView
+                        style="@style/RoundedCardStyleSknb">
+                        <ImageView
+                            android:id="@+id/imgSknb6"
+                            style="@style/RoundedImageStyle"
+                            android:src="@drawable/sknb6" />
+                    </androidx.cardview.widget.CardView>
+
+                    <!--            SK7-->
+                    <androidx.cardview.widget.CardView
+                        style="@style/RoundedCardStyleSknb">
+                        <ImageView
+                            android:id="@+id/imgSukiennoibat7"
+                            style="@style/RoundedImageStyle"
+                            android:src="@drawable/sknb7" />
+                    </androidx.cardview.widget.CardView>
+
+                    <!--            SK8-->
+                    <androidx.cardview.widget.CardView
+                        style="@style/RoundedCardStyleSknb">
+                        <ImageView
+                            android:id="@+id/imgSknb8"
+                            style="@style/RoundedImageStyle"
+                            android:src="@drawable/sknb8" />
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Sự kiện xu hướng - Title // Chỗ này có upsize so với figma cho cân đối -->
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iconfire"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/skxh_iconfire" />
+
+                <TextView
+                    android:id="@+id/txtSukienxuhuong"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Sự kiện xu hướng"
+                    android:textColor="#006183"
+                    android:textSize="20sp"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="5dp" />
+
+                <TextView
+                    android:id="@+id/txtXemthem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Xem thêm"
+                    android:textColor="#9e9e9e"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center_vertical"/>
+            </LinearLayout>
+            <!--    Sự kiện xu hướng - Scroll View-->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- SK1 -->
+                    <androidx.cardview.widget.CardView
+                        style="@style/RoundedCardStyleSkxh">
+                        <ImageView
+                            android:id="@+id/imgSkxh1"
+                            style="@style/RoundedImageStyle"
+                            android:src="@drawable/skxhpage1" />
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- SK2 -->
+                    <androidx.cardview.widget.CardView
+                        style="@style/RoundedCardStyleSkxh">
+                        <ImageView
+                            android:id="@+id/imgSkxh2"
+                            style="@style/RoundedImageStyle"
+                            android:src="@drawable/skxhpage2" />
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- SK3 -->
+                    <androidx.cardview.widget.CardView
+                        style="@style/RoundedCardStyleSkxh">
+                        <ImageView
+                            android:id="@+id/imgSkxh3"
+                            style="@style/RoundedImageStyle"
+                            android:src="@drawable/skxhpage3" />
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- SK4 -->
+                    <androidx.cardview.widget.CardView
+                        style="@style/RoundedCardStyleSkxh"
+                        android:layout_width="140dp"
+                        android:layout_height="75dp">
+                        <ImageView
+                            android:id="@+id/imgSkxh4"
+                            style="@style/RoundedImageStyle"
+                            android:src="@drawable/skxhpage4" />
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- SK5 -->
+                    <androidx.cardview.widget.CardView
+                        style="@style/RoundedCardStyleSkxh">
+                        <ImageView
+                            android:id="@+id/imgSkxh5"
+                            style="@style/RoundedImageStyle"
+                            android:src="@drawable/skxhpage5" />
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- SK6 -->
+                    <androidx.cardview.widget.CardView
+                        style="@style/RoundedCardStyleSkxh">
+                        <ImageView
+                            android:id="@+id/imgSkxh6"
+                            style="@style/RoundedImageStyle"
+                            android:src="@drawable/skxhpage6" />
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- SK7 -->
+                    <androidx.cardview.widget.CardView
+                        style="@style/RoundedCardStyleSkxh">
+                        <ImageView
+                            android:id="@+id/imgSkxh7"
+                            style="@style/RoundedImageStyle"
+                            android:src="@drawable/skxhpage7" />
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- SK8 -->
+                    <androidx.cardview.widget.CardView
+                        style="@style/RoundedCardStyleSkxh">
+                        <ImageView
+                            android:id="@+id/imgSkxh8"
+                            style="@style/RoundedImageStyle"
+                            android:src="@drawable/skxhpage8" />
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- SK9 -->
+                    <androidx.cardview.widget.CardView
+                        style="@style/RoundedCardStyleSkxh">
+                        <ImageView
+                            android:id="@+id/imgSkxh9"
+                            style="@style/RoundedImageStyle"
+                            android:src="@drawable/skxhpage9" />
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- SK10 -->
+                    <androidx.cardview.widget.CardView
+                        style="@style/RoundedCardStyleSkxh"
+                        android:layout_width="140dp"
+                        android:layout_height="75dp">
+                        <ImageView
+                            android:id="@+id/imgSkxh10"
+                            style="@style/RoundedImageStyle"
+                            android:src="@drawable/skxhpage10" />
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!--Danh mục sự kiện - Title-->
+            <TextView
+                android:id="@+id/txtDanhmucsukien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Danh mục sự kiện"
+                android:textColor="#006183"
+                android:textSize="20sp"
+                android:layout_gravity="start"
+                android:layout_marginStart="15dp" />
+            <!--        Danh mục sự kiện - Scroll View-->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Văn hóa -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="10dp">
+
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleDmsk">
+
+                            <ImageView
+                                android:id="@+id/imgDmskvh"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/dmskvh" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/txtDmskvh"
+                            android:text="Văn hóa"
+                            style="@style/DmskText"/>
+                    </LinearLayout>
+
+                    <!-- Âm nhạc -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="10dp">
+
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleDmsk">
+
+                            <ImageView
+                                android:id="@+id/imgDmskan"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/dmskan" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/txtDmskan"
+                            android:text="Âm nhạc"
+                            style="@style/DmskText"/>
+                    </LinearLayout>
+
+                    <!-- Học thuật -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="10dp">
+
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleDmsk">
+
+                            <ImageView
+                                android:id="@+id/imgDmskht"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/dmskht" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/txtDmskht"
+                            android:text="Học thuật"
+                            style="@style/DmskText"/>
+                    </LinearLayout>
+
+                    <!-- Theer thao -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="10dp">
+
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleDmsk">
+                            <ImageView
+                                android:id="@+id/imgDmsktt"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/dmsktt" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/txtDmsktt"
+                            android:text="Thể thao"
+                            style="@style/DmskText"/>
+                    </LinearLayout>
+
+                    <!-- Tình nguyện -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="10dp">
+
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleDmsk">
+
+                            <ImageView
+                                android:id="@+id/imgDmsktn"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/dmsktn" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/txtDmsktn"
+                            android:text="Tình nguyện"
+                            style="@style/DmskText"/>
+                    </LinearLayout>
+
+                    <!-- Môi trường -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="10dp">
+
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleDmsk">
+
+                            <ImageView
+                                android:id="@+id/imgDmskmt"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/dmskmt" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/txtDmskmt"
+                            android:text="Môi trường"
+                            style="@style/DmskText"/>
+                    </LinearLayout>
+
+                    <!-- Du lịch -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="10dp">
+
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleDmsk">
+
+                            <ImageView
+                                android:id="@+id/imgDmskdl"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/dmskdl" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/txtDmskdl"
+                            android:text="Du lịch"
+                            style="@style/DmskText"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!--        Dành cho bạn - Title-->
+            <TextView
+                android:id="@+id/txtDanhchoban"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Dành cho bạn"
+                android:textColor="#006183"
+                android:textSize="20sp"
+                android:layout_gravity="start"
+                android:layout_marginStart="15dp" />
+            <!--        Dành cho bạn - Scroll View-->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:scrollbars="none">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/Dcb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="10dp">
+
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleDcb">
+
+                            <ImageView
+                                android:id="@+id/imgDcb1"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/dcb1" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/txtDcb1t"
+                            android:text="1900 Future Hits #70: Jun Phạm | Friday 30.5.2025"
+                            style="@style/EventTitle"
+                            android:maxLines="2"/>
+
+                        <TextView
+                            android:id="@+id/txtDcb1p"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Từ 300.000 VND"
+                            style="@style/EventPrice" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Dcb2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleDcb">
+                            <ImageView
+                                android:id="@+id/imgDcb2"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/dcb2"/>
+                        </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:id="@+id/txtDcb2t"
+                            android:text="[BẾN THÀNH] Đêm nhạc Bạch Công Khanh - Chu Thúy Quỳnh"
+                            style="@style/EventTitle"
+                            android:maxLines="2"/>
+                        <TextView
+                            android:id="@+id/txtDcb2p"
+                            android:text="Từ 200.000 VND"
+                            style="@style/EventPrice"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Dcb3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleDcb">
+                            <ImageView
+                                android:id="@+id/imgDcb3"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/dcb3"/>
+                        </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:id="@+id/txtDcb3t"
+                            android:text="Hành tinh nâu - Sân khấu Quốc Thảo"
+                            style="@style/EventTitle"
+                            android:maxLines="2"/>
+                        <TextView
+                            android:id="@+id/txtDcb3p"
+                            android:text="Từ 100.000 VND"
+                            style="@style/EventPrice"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Dcb4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleDcb">
+                            <ImageView
+                                android:id="@+id/imgDcb4"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/dcb4"/>
+                        </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:id="@+id/txtDcb4t"
+                            android:text="Lululola Show - Lắng nghe và cảm nhận"
+                            style="@style/EventTitle"
+                            android:maxLines="2"/>
+                        <TextView
+                            android:id="@+id/txtDcb4p"
+                            android:text="Từ 100.000 VND"
+                            style="@style/EventPrice"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Dcb5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleDcb">
+                            <ImageView
+                                android:id="@+id/imgDcb5"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/dcb5"/>
+                        </androidx.cardview.widget.CardView>
+                        <TextView
+                            android:id="@+id/txtDcb5t"
+                            android:text="Lễ hội ẩm thực Ấn Độ - INDIAN FOOD FESTIVAL"
+                            style="@style/EventTitle"
+                            android:maxLines="2"/>
+                        <TextView
+                            android:id="@+id/txtDcb5p"
+                            android:text="Từ 350.000 VND"
+                            style="@style/EventPrice"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <!--    Navigation bar/footer-->
+    <include
+        android:id="@+id/footerLayout"
+        layout="@layout/activity_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

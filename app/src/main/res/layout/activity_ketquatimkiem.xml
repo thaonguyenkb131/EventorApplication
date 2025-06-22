@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Ketquatimkiem">
+
+    <!-- Thanh tìm kiếm -->
+    <LinearLayout
+        android:id="@+id/Thanhtimkiem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#006183"
+        android:paddingTop="30dp"
+        android:paddingBottom="10dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp">
+
+        <ImageView
+            android:id="@+id/imgCalendar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/iccalendar"
+            android:layout_marginStart="25dp"
+            android:layout_gravity="left" />
+
+        <ImageView
+            android:id="@+id/imgFilter"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/icfilter"
+            android:layout_marginStart="10dp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Tìm kiếm"
+            android:padding="10dp"
+            android:minHeight="48dp" />
+
+        <ImageView
+            android:id="@+id/imgTimkiem"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="25dp"
+            android:src="@drawable/timkiem" />
+    </LinearLayout>
+
+    <!-- Kết quả bộ lọc -->
+    <LinearLayout
+        android:id="@+id/chipLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/Thanhtimkiem"
+        android:layout_marginBottom="8dp"
+        android:gravity="start"
+        android:baselineAligned="false" />
+
+    <!-- GridView kết quả tìm kiếm -->
+
+    <GridView
+        android:id="@+id/gvKetquatimkiem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/footerLayout"
+        android:layout_below="@id/chipLayout"
+        android:horizontalSpacing="10dp"
+        android:numColumns="2"
+        android:padding="8dp"
+        android:verticalSpacing="10dp" />
+    <!-- Footer -->
+
+    <include
+        android:id="@+id/footerLayout"
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

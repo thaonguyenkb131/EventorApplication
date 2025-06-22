@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#005A71">
+
+    <!--    Header-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp">
+        <!--        Icon phía trên-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <ImageView
+                android:id="@+id/imvtimkiem"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="5dp"
+                android:src="@drawable/timkiem" />
+
+            <ImageView
+                android:id="@+id/imvnhantin"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="5dp"
+                android:src="@drawable/nhantin" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <!-- Tiêu đề -->
+    <TextView
+        android:id="@+id/txtSukienxuhuong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sự kiện xu hướng"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/montserrat_semibold"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/lvSukien"
+            android:layout_above="@id/footerLayout"
+            android:layout_below="@id/txtSukienxuhuong"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="12dp"
+            android:padding="8dp" />
+    </LinearLayout>
+
+    <!-- Footer cố định -->
+    <include
+        android:id="@+id/footerLayout"
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

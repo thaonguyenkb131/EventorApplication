@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    tools:context=".Timkiem">
+
+    <!-- Thanh tìm kiếm -->
+    <LinearLayout
+        android:id="@+id/Thanhtimkiem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#006183"
+        android:paddingTop="30dp"
+        android:paddingBottom="10dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp">
+        <ImageView
+            android:id="@+id/imgCalendar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/iccalendar"
+            android:layout_marginStart="25dp" />
+        <ImageView
+            android:id="@+id/imgFilter"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/icfilter"
+            android:layout_marginStart="10dp" />
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Tìm kiếm"
+            android:padding="10dp"
+            android:minHeight="48dp" />
+        <ImageView
+            android:id="@+id/imgTimkiem"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="25dp"
+            android:src="@drawable/timkiem" />
+    </LinearLayout>
+
+    <!-- Nội dung chính -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        android:layout_below="@+id/Header"
+        android:layout_above="@+id/footerLayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="40dp">
+
+            <!-- ListView -->
+            <ListView
+                android:id="@+id/lvTimkiem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="10dp"
+                android:focusable="false"
+                android:nestedScrollingEnabled="false"
+                android:scrollbars="none"
+                android:paddingHorizontal="12dp"
+                android:layout_marginBottom="20dp" />
+
+            <TextView
+                android:id="@+id/txtTheodanhmuc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Theo danh mục"
+                android:textColor="#006183"
+                android:textSize="20sp" />
+            <!-- Danh mục -->
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Văn hóa -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView style="@style/RoundedCardStyleDmsk">
+
+                            <ImageView
+                                android:id="@+id/imgDmskvh"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/dmskvh" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/txtDmskvh"
+                            style="@style/DmskText"
+                            android:text="Văn hóa" />
+                    </LinearLayout>
+
+                    <!-- Âm nhạc -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView style="@style/RoundedCardStyleDmsk">
+
+                            <ImageView
+                                android:id="@+id/imgDmskan"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/dmskan" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/txtDmskan"
+                            style="@style/DmskText"
+                            android:text="Âm nhạc" />
+                    </LinearLayout>
+
+                    <!-- Học thuật -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView style="@style/RoundedCardStyleDmsk">
+
+                            <ImageView
+                                android:id="@+id/imgDmskht"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/dmskht" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/txtDmskht"
+                            style="@style/DmskText"
+                            android:text="Học thuật" />
+                    </LinearLayout>
+
+                    <!-- Theer thao -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView style="@style/RoundedCardStyleDmsk">
+
+                            <ImageView
+                                android:id="@+id/imgDmsktt"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/dmsktt" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/txtDmsktt"
+                            style="@style/DmskText"
+                            android:text="Thể thao" />
+                    </LinearLayout>
+
+                    <!-- Tình nguyện -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView style="@style/RoundedCardStyleDmsk">
+
+                            <ImageView
+                                android:id="@+id/imgDmsktn"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/dmsktn" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/txtDmsktn"
+                            style="@style/DmskText"
+                            android:text="Tình nguyện" />
+                    </LinearLayout>
+
+                    <!-- Môi trường -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView style="@style/RoundedCardStyleDmsk">
+
+                            <ImageView
+                                android:id="@+id/imgDmskmt"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/dmskmt" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/txtDmskmt"
+                            style="@style/DmskText"
+                            android:text="Môi trường" />
+                    </LinearLayout>
+
+                    <!-- Du lịch -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView style="@style/RoundedCardStyleDmsk">
+
+                            <ImageView
+                                android:id="@+id/imgDmskdl"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/dmskdl" />
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/txtDmskdl"
+                            style="@style/DmskText"
+                            android:text="Du lịch" />
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Theo địa điểm - Title -->
+            <TextView
+                android:id="@+id/txtTheodiadiem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Theo địa điểm"
+                android:textColor="#006183"
+                android:textSize="20sp" />
+
+            <!--            Địa điểm Scroll View-->
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+<!--                    TP HCM-->
+                    <LinearLayout
+                        android:id="@+id/DiadiemTPHCM"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:orientation="vertical">
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleDiadiem">
+                            <ImageView
+                                android:id="@+id/imgTPHCM"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/tphcm"
+                                android:scaleType="centerCrop"/>
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/txtTPHCM"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:gravity="center"
+                            android:text="Thành phố Hồ Chí Minh"
+                            android:textColor="#1c9cca"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+<!--                    Hà Nội-->
+                    <LinearLayout
+                        android:id="@+id/DiadiemHaNoi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:orientation="vertical">
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleDiadiem">
+                            <ImageView
+                                android:id="@+id/imgHaNoi"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/hanoi"
+                                android:scaleType="centerCrop"/>
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/txtHaNoi"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:gravity="center"
+                            android:text="Hà Nội"
+                            android:textColor="#1c9cca"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+<!--                    Đà Nẵng-->
+                    <LinearLayout
+                        android:id="@+id/DiadiemDaNang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:orientation="vertical">
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleDiadiem">
+                            <ImageView
+                                android:id="@+id/imgDaNang"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/danang"
+                                android:scaleType="centerCrop"/>
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/txtDaNang"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:gravity="center"
+                            android:text="Đà Nẵng"
+                            android:textColor="#1c9cca"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+<!--                    Đà Lạt-->
+                    <LinearLayout
+                        android:id="@+id/DiadiemDaLat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:orientation="vertical">
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleDiadiem">
+                            <ImageView
+                                android:id="@+id/imgDaLat"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/dalat"
+                                android:scaleType="centerCrop"/>
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/txtDaLat"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:gravity="center"
+                            android:text="Đà Lạt"
+                            android:textColor="#1c9cca"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+<!--                    Khác-->
+                    <LinearLayout
+                        android:id="@+id/DiadiemKhac"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:orientation="vertical">
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleDiadiem">
+                            <ImageView
+                                android:id="@+id/imgKhac"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/tpkhac"
+                                android:scaleType="centerCrop"/>
+                        </androidx.cardview.widget.CardView>
+
+                        <TextView
+                            android:id="@+id/txtKhac"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:gravity="center"
+                            android:text="Thành phố khác"
+                            android:textColor="#1c9cca"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Phù hợp với bạn -->
+            <TextView
+                android:id="@+id/txtPhuhopvoiban"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Phù hợp với bạn"
+                android:textColor="#006183"
+                android:textSize="20sp" />
+
+            <!-- GridView -->
+            <GridView
+                android:id="@+id/gvPhuhopvoiban"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:horizontalSpacing="12dp"
+                android:verticalSpacing="16dp"
+                android:numColumns="2"
+                android:focusable="false"
+                android:nestedScrollingEnabled="false"
+                android:scrollbars="none"
+                android:paddingHorizontal="8dp"
+                android:layout_marginBottom="20dp"
+                android:paddingBottom="30dp"/>
+        </LinearLayout>
+    </ScrollView>
+    <include
+        android:id="@+id/footerLayout"
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+</LinearLayout>

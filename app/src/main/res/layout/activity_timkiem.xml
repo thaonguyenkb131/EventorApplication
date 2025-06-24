@@ -42,6 +42,8 @@
             android:layout_weight="1"
             android:hint="Tìm kiếm"
             android:padding="10dp"
+            android:textColorHint="#7FFFFFFF"
+            android:backgroundTint="#78FFFFFF"
             android:minHeight="48dp" />
 
         <ImageView

@@ -66,14 +66,14 @@
                 android:textColor="@color/white"
                 android:background="#006183"
                 style="@style/DabanTextViewStyle"
-                android:textSize="10sp"
+                android:textSize="13sp"
                 android:fontFamily="@font/montserrat_semibold" />
 
             <TextView
                 android:id="@+id/txtGia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
+                android:textSize="0sp"
                 android:textColor="#1c9cca"
                 android:fontFamily="@font/montserrat_regular"
                 android:layout_marginTop="2dp" />

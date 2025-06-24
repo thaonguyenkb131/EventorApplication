@@ -1,8 +1,10 @@
 package com.example.eventorapplication;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +29,6 @@ public class TrangChiTietSuKien extends BaseActivity<ActivityTrangChiTietSuKienB
         super.onCreate(savedInstanceState);
 
         //        Tránh che màn hình
-
         View rootView = findViewById(R.id.main); // ConstraintLayout có id="main"
         ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -44,6 +45,39 @@ public class TrangChiTietSuKien extends BaseActivity<ActivityTrangChiTietSuKienB
 
             return insets;
         });
+
+        binding.btnContact.setOnClickListener(v -> {
+            Intent intent = new Intent(TrangChiTietSuKien.this, Tinnhan.class);
+            startActivity(intent);
+        });
+
+        binding.btnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog dialog = new Dialog(TrangChiTietSuKien.this);
+                dialog.setContentView(R.layout.activity_popup_chia_se_su_kien);
+
+                dialog.show();
+            }
+        });
+
+        binding.btnBuyTicket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog dialog = new Dialog(TrangChiTietSuKien.this);
+                dialog.setContentView(R.layout.activity_popup_so_luong_ve);
+
+                dialog.show();
+
+                Button btnXacnhan = dialog.findViewById(R.id.btnXacnhan);
+                btnXacnhan.setOnClickListener(view -> {
+                    Intent intent = new Intent(TrangChiTietSuKien.this, TrangThanhToan.class);
+                    startActivity(intent);
+                    dialog.dismiss();
+                });
+            }
+        });
+
 
     }
 }

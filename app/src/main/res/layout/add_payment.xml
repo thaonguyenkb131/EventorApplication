@@ -1,127 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddPayment"
-    android:background="#FFFFFF"
-    android:padding="16dp">
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    tools:context=".AddPayment">
 
-    <!-- Thông tin của bạn -->
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:background="@drawable/bg_card_white"
-        android:layout_marginBottom="16dp"
-        android:gravity="top">
-
-        <ImageView
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:src="@drawable/ic_card" />
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:padding="16dp">
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_marginStart="12dp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Thông tin của bạn -->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/bg_card_white"
+                android:gravity="top"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="49dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_card"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="4dp"
+                    android:text="Thông tin của bạn"
+                    android:textColor="#006183"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="36dp"
+                    android:text="Tên"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="36dp"
+                    android:text="Nguyễn Minh Anh"
+                    app:layout_constraintStart_toEndOf="@+id/textView2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="0dp"
+                    android:text="Số thẻ"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="80dp"
+                    android:text="12556677"
+                    app:layout_constraintStart_toEndOf="@+id/textView4"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="Loại thẻ"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="68dp"
+                    android:text="Ngân hàng nội địa"
+                    app:layout_constraintStart_toEndOf="@+id/textView6"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:text="Ngân hàng"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="44dp"
+                    android:text="Vietcombank"
+                    app:layout_constraintStart_toEndOf="@+id/textView8"
+                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:text="Thông tin của bạn"
+                android:text="THÊM PTTT"
                 android:textColor="#006183"
-                android:textSize="16sp"
                 android:textStyle="bold"
+                android:textSize="22sp"
+                android:layout_marginBottom="8dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/montserrat_bold"/>
 
-            <LinearLayout
-                android:orientation="horizontal"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="53dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_visa"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="Tên"
-                    android:textStyle="bold" />
-                <TextView
-                    android:layout_height="wrap_content"
+                    android:id="@+id/textView10"
                     android:layout_width="wrap_content"
-                    android:text="Nguyễn Minh Anh" />
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="Thẻ thanh toán quốc tế"
+                    android:textColor="#006183"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/imageView2"
+                    tools:layout_editor_absoluteY="0dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
+            <GridView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="Số thẻ"
-                    android:textStyle="bold" />
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="12556677" />
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:numColumns="3"
+                android:gravity="center"/>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="Loại thẻ"
-                    android:textStyle="bold" />
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="Ngân hàng nội địa" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="Ngân hàng"
-                    android:textStyle="bold" />
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="Vietcombank" />
-            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-    <!-- Thêm PTTT -->
-    <TextView
-        android:text="THÊM PTTT"
-        android:textColor="#006183"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:layout_marginBottom="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_bold"/>
-
-    <!-- Thẻ thanh toán quốc tế -->
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

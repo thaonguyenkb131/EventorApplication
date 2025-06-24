@@ -6,7 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import com.example.eventorapplication.R;
 import com.example.models.SuKienDaDangItem;
@@ -66,6 +69,42 @@ public class SuKienDaDangAdapter extends BaseAdapter {
         holder.txtDaban.setText(item.getDaBan());
         holder.txtGia.setText(item.getGia());
         holder.txtDiaDiem.setText(item.getDiaDiem());
+
+        // Thêm sự kiện nhấn vào biểu tượng bookmark để hiển thị popup
+        holder.imvBookmark.setOnClickListener(view -> {
+            View popupView = LayoutInflater.from(context).inflate(R.layout.activity_popup_sukien_menu, null);
+            PopupWindow popupWindow = new PopupWindow(popupView,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    true);
+
+            popupWindow.setElevation(20);
+            popupWindow.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.bg_popup_menusk));
+
+            // Hiển thị popup tại vị trí của nút
+            popupWindow.showAsDropDown(holder.imvBookmark, -250, 0); // chỉnh vị trí nếu cần
+
+            // Gán sự kiện cho các nút trong popup
+            popupView.findViewById(R.id.btnEditsk).setOnClickListener(v -> {
+                popupWindow.dismiss();
+                // TODO: Xử lý chỉnh sửa
+            });
+
+            popupView.findViewById(R.id.btnDeletesk).setOnClickListener(v -> {
+                popupWindow.dismiss();
+                // TODO: Xử lý xóa
+            });
+
+            popupView.findViewById(R.id.btnViewAtt).setOnClickListener(v -> {
+                popupWindow.dismiss();
+                // TODO: Xem danh sách người tham gia
+            });
+
+            popupView.findViewById(R.id.btnViewRep).setOnClickListener(v -> {
+                popupWindow.dismiss();
+                // TODO: Xem phân tích báo cáo
+            });
+        });
 
         return convertView;
     }

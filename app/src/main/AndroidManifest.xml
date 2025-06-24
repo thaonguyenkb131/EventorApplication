@@ -16,9 +16,6 @@
             android:name=".PopupSukienMenu"
             android:exported="false" />
         <activity
-            android:name=".popup_sukien_menu"
-            android:exported="false" />
-        <activity
             android:name=".SukiendadangItem"
             android:exported="false" />
         <activity

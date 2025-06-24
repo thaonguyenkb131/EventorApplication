@@ -94,6 +94,5 @@ public class TrangChiTietSuKien extends BaseActivity<ActivityTrangChiTietSuKienB
                 isSaved = false;
             }
         });
-
     }
 }

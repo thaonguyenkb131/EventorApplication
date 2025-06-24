@@ -10,42 +10,39 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.adapters.SuKienDaDangAdapter;
 import com.example.eventorapplication.R;
+import com.example.eventorapplication.base.BaseActivity;
+import com.example.eventorapplication.databinding.ActivityTrangSuKienDaDangBinding;
 import com.example.models.SuKienDaDangItem;
 
 import java.util.ArrayList;
 
-public class trang_su_kien_da_dang extends AppCompatActivity {
+public class trang_su_kien_da_dang extends BaseActivity<ActivityTrangSuKienDaDangBinding> {
     ListView lvSkdd;
     ArrayList<SuKienDaDangItem> dsSuKien;
     SuKienDaDangAdapter adapter;
 
     @Override
+    protected ActivityTrangSuKienDaDangBinding inflateBinding() {
+        return ActivityTrangSuKienDaDangBinding.inflate(getLayoutInflater());
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trang_su_kien_da_dang); // dùng đúng layout
 
-        // Ánh xạ ListView
-        lvSkdd = findViewById(R.id.lvSkdd);
-
-        // Ánh xạ nút "Vé đã mua"
-        Button btnPurchasedTickets = findViewById(R.id.btnPurchasedTickets);
-
-        // Gán sự kiện chuyển trang
-        btnPurchasedTickets.setOnClickListener(v -> {
-            Intent intent = new Intent(trang_su_kien_da_dang.this, trang_ve_da_mua.class);
+        // Gán sự kiện cho các nút
+        binding.btnPurchasedTickets.setOnClickListener(v -> {
+            Intent intent = new Intent(this, trang_ve_da_mua.class);
             startActivity(intent);
         });
 
-        Button btnSavedEvents = findViewById(R.id.btnSavedEvents);
-
-        btnSavedEvents.setOnClickListener(v -> {
-            Intent intent = new Intent(trang_su_kien_da_dang.this, trang_ve_da_mua.class);
+        binding.btnSavedEvents.setOnClickListener(v -> {
+            Intent intent = new Intent(this, trang_ve_da_mua.class);
             intent.putExtra("clicked_button", "saved");
             startActivity(intent);
         });
 
-
-        // Dữ liệu sự kiện
+        // Khởi tạo danh sách dữ liệu
         dsSuKien = new ArrayList<>();
         dsSuKien.add(new SuKienDaDangItem(R.drawable.skxh1, "SuperFest - Concert Mùa Hè Rực Sáng", "Số vé đã bán: 10,982 vé", "", "Quảng Ninh"));
         dsSuKien.add(new SuKienDaDangItem(R.drawable.skxh2, "[River Flows In You] Đêm Nhạc Xương Rồng", "Số vé đã bán: 8,422 vé", "", "Hà Nội"));
@@ -58,7 +55,8 @@ public class trang_su_kien_da_dang extends AppCompatActivity {
         dsSuKien.add(new SuKienDaDangItem(R.drawable.skxh9, "Hội Chợ Sách & Văn Hóa Đọc", "Số vé đã bán: 5,247 vé", "Miễn phí vào cửa", "Đà Nẵng"));
         dsSuKien.add(new SuKienDaDangItem(R.drawable.skxh10, "Lễ Hội Ẩm Thực Việt - Vị Quê Hương", "Số vé đã bán: 7,980 vé", "Từ 100.000 VND", "Cần Thơ"));
 
+        // Gắn adapter vào ListView qua binding
         adapter = new SuKienDaDangAdapter(this, dsSuKien);
-        lvSkdd.setAdapter(adapter);
+        binding.lvSkdd.setAdapter(adapter);
     }
 }

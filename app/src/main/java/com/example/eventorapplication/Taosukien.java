@@ -63,7 +63,7 @@ public class Taosukien extends BaseActivity<ActivityTaosukienBinding> {
 
         binding.edtSearch.setOnClickListener(view -> showPopupMap(view));
 
-        binding.txtDangkyBTC.setOnClickListener(view ->
+        binding.btnDangkyBTC.setOnClickListener(view ->
                 startActivity(new Intent(this, DangkyBTCActivity.class)));
 
         binding.btnDoiAnh.setOnClickListener(view -> showPopupTaianh(view));

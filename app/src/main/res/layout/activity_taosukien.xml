@@ -215,18 +215,22 @@
                 android:textSize="14sp" />
 
 <!--            Đăng ký BTC-->
-            <TextView
-                android:id="@+id/txtDangkyBTC"
-                android:layout_width="match_parent"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDangkyBTC"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_semibold"
-                android:gravity="center"
-                android:textColor="#006183"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:text="Đăng ký trở thành BTC"
-                android:textSize="16dp"/>
+                android:textColor="#006183"
+                android:textSize="16sp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:layout_gravity="center"
+                app:strokeColor="#006183"
+                app:strokeWidth="2dp"
+                app:cornerRadius="12dp"
+                app:backgroundTint="@android:color/transparent" />
 
-<!--            Mô tả sự kiện-->
+            <!--            Mô tả sự kiện-->
             <EditText
                 android:id="@+id/edtMoTa"
                 android:layout_width="match_parent"

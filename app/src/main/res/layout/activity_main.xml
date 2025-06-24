@@ -71,10 +71,12 @@
                 android:padding="5dp"
                 android:fontFamily="@font/montserrat_semibold">
 
-                <TextView android:id="@+id/txtamnhac"
+                <TextView
+                    android:id="@+id/txtamnhac"
                     style="@style/DanhMucItem"
                     android:text="Âm nhạc" />
-                <TextView android:id="@+id/txtvanhoa"
+                <TextView
+                    android:id="@+id/txtvanhoa"
                     style="@style/DanhMucItem"
                     android:text="Văn hóa" />
                 <TextView android:id="@+id/txthocthuat"
@@ -235,7 +237,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Sự kiện nổi bật"
                 android:textColor="#006183"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:layout_gravity="start"
                 android:layout_marginStart="15dp" />
             <!--    Sự kiện nổi bật - Scroll View-->
@@ -254,7 +256,7 @@
                     android:orientation="horizontal">
                     <!--SK1-->
                     <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSknb">
+                        style="@style/RoundedCardStyleSkxh">
                         <ImageView
                             android:id="@+id/imgSknb1"
                             style="@style/RoundedImageStyle"
@@ -262,7 +264,7 @@
                     </androidx.cardview.widget.CardView>
                     <!--SK2-->
                     <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSknb">
+                        style="@style/RoundedCardStyleSkxh">
                         <ImageView
                             android:id="@+id/imgSknb2"
                             style="@style/RoundedImageStyle"
@@ -271,7 +273,7 @@
 
                     <!--            SK3-->
                     <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSknb">
+                        style="@style/RoundedCardStyleSkxh">
                         <ImageView
                             android:id="@+id/imgSknb3"
                             style="@style/RoundedImageStyle"
@@ -279,7 +281,7 @@
                     </androidx.cardview.widget.CardView>
                     <!--SK4-->
                     <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSknb">
+                        style="@style/RoundedCardStyleSkxh">
                         <ImageView
                             android:id="@+id/imgSknb4"
                             style="@style/RoundedImageStyle"
@@ -288,7 +290,7 @@
 
                     <!--            SK5-->
                     <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSknb">
+                        style="@style/RoundedCardStyleSkxh">
                         <ImageView
                             android:id="@+id/imgSknb5"
                             style="@style/RoundedImageStyle"
@@ -297,7 +299,7 @@
 
                     <!--            SK6-->
                     <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSknb">
+                        style="@style/RoundedCardStyleSkxh">
                         <ImageView
                             android:id="@+id/imgSknb6"
                             style="@style/RoundedImageStyle"
@@ -306,7 +308,7 @@
 
                     <!--            SK7-->
                     <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSknb">
+                        style="@style/RoundedCardStyleSkxh">
                         <ImageView
                             android:id="@+id/imgSukiennoibat7"
                             style="@style/RoundedImageStyle"
@@ -315,7 +317,7 @@
 
                     <!--            SK8-->
                     <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSknb">
+                        style="@style/RoundedCardStyleSkxh">
                         <ImageView
                             android:id="@+id/imgSknb8"
                             style="@style/RoundedImageStyle"
@@ -330,12 +332,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/icfire"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="5dp"/>
 
                 <TextView
                     android:id="@+id/txtSukienxuhuong"
@@ -345,7 +341,8 @@
                     android:fontFamily="@font/montserrat_bold"
                     android:text="Sự kiện xu hướng"
                     android:textColor="#006183"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
+                    android:padding="5dp"
                     android:gravity="center_vertical" />
 
                 <TextView
@@ -385,12 +382,12 @@
                                 android:src="@drawable/skxhpage1" />
                             <ImageView
                                 android:id="@+id/imgnb1"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/nb1"
                                 android:layout_gravity="bottom|start"
-                                android:layout_marginStart="-10dp"
+                                android:layout_marginStart="0dp"
                                 android:layout_marginBottom="0dp"/>
                         </androidx.cardview.widget.CardView>
                     </FrameLayout>
@@ -408,12 +405,12 @@
                                 android:src="@drawable/skxhpage2" />
                             <ImageView
                                 android:id="@+id/imgnb2"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/nb2"
                                 android:layout_gravity="bottom|start"
-                                android:layout_marginStart="-10dp"
+                                android:layout_marginStart="0dp"
                                 android:layout_marginBottom="0dp"/>
                         </androidx.cardview.widget.CardView>
                     </FrameLayout>
@@ -431,12 +428,12 @@
                                 android:src="@drawable/skxhpage3" />
                             <ImageView
                                 android:id="@+id/imgnb3"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/nb3"
                                 android:layout_gravity="bottom|start"
-                                android:layout_marginStart="-10dp"
+                                android:layout_marginStart="0dp"
                                 android:layout_marginBottom="0dp"/>
                         </androidx.cardview.widget.CardView>
                     </FrameLayout>
@@ -454,12 +451,12 @@
                                 android:src="@drawable/skxhpage4" />
                             <ImageView
                                 android:id="@+id/imgnb4"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/nb4"
                                 android:layout_gravity="bottom|start"
-                                android:layout_marginStart="-10dp"
+                                android:layout_marginStart="0dp"
                                 android:layout_marginBottom="0dp"/>
                         </androidx.cardview.widget.CardView>
                     </FrameLayout>
@@ -477,12 +474,12 @@
                                 android:src="@drawable/skxhpage5" />
                             <ImageView
                                 android:id="@+id/imgnb5"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/nb5"
                                 android:layout_gravity="bottom|start"
-                                android:layout_marginStart="-10dp"
+                                android:layout_marginStart="0dp"
                                 android:layout_marginBottom="0dp"/>
                         </androidx.cardview.widget.CardView>
                     </FrameLayout>
@@ -500,12 +497,12 @@
                                 android:src="@drawable/skxhpage6" />
                             <ImageView
                                 android:id="@+id/imgnb6"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/nb6"
                                 android:layout_gravity="bottom|start"
-                                android:layout_marginStart="-10dp"
+                                android:layout_marginStart="0dp"
                                 android:layout_marginBottom="0dp"/>
                         </androidx.cardview.widget.CardView>
                     </FrameLayout>
@@ -523,12 +520,12 @@
                                 android:src="@drawable/skxhpage7" />
                             <ImageView
                                 android:id="@+id/imgnb7"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/nb7"
                                 android:layout_gravity="bottom|start"
-                                android:layout_marginStart="-10dp"
+                                android:layout_marginStart="0dp"
                                 android:layout_marginBottom="0dp"/>
                         </androidx.cardview.widget.CardView>
                     </FrameLayout>
@@ -546,12 +543,12 @@
                                 android:src="@drawable/skxhpage8" />
                             <ImageView
                                 android:id="@+id/imgnb8"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/nb8"
                                 android:layout_gravity="bottom|start"
-                                android:layout_marginStart="-10dp"
+                                android:layout_marginStart="0dp"
                                 android:layout_marginBottom="0dp"/>
                         </androidx.cardview.widget.CardView>
                     </FrameLayout>
@@ -569,12 +566,12 @@
                                 android:src="@drawable/skxhpage9" />
                             <ImageView
                                 android:id="@+id/imgnb9"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/nb9"
                                 android:layout_gravity="bottom|start"
-                                android:layout_marginStart="-10dp"
+                                android:layout_marginStart="0dp"
                                 android:layout_marginBottom="0dp"/>
                         </androidx.cardview.widget.CardView>
                     </FrameLayout>
@@ -592,13 +589,11 @@
                                 android:src="@drawable/skxhpage10" />
                             <ImageView
                                 android:id="@+id/imgnb10"
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/nb10"
-                                android:layout_gravity="bottom|start"
-                                android:layout_marginStart="-10dp"
-                                android:layout_marginBottom="0dp"/>
+                                android:layout_gravity="bottom|start"/>
                         </androidx.cardview.widget.CardView>
                     </FrameLayout>
                 </LinearLayout>
@@ -613,7 +608,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Danh mục sự kiện"
                 android:textColor="#006183"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:layout_gravity="start"
                 android:layout_marginStart="15dp" />
             <!--        Danh mục sự kiện - Scroll View-->
@@ -788,7 +783,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Dành cho bạn"
                 android:textColor="#006183"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:layout_gravity="start"
                 android:layout_marginStart="15dp" />
 
@@ -832,6 +827,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Từ 300.000 VND"
+                            android:layout_gravity="left"
                             style="@style/EventPrice" />
                     </LinearLayout>
 

@@ -36,6 +36,7 @@ public class BolocActivity extends AppCompatActivity {
 
         // Cho phép bấm ra ngoài để tắt
         setFinishOnTouchOutside(true);
+
     }
 
 }

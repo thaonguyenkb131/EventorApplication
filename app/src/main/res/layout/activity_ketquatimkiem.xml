@@ -41,8 +41,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Tìm kiếm"
+            android:textColorHint="#B7FFFFFF"
             android:padding="10dp"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:backgroundTint="#72FFFFFF"/>
 
         <ImageView
             android:id="@+id/imgTimkiem"

@@ -9,6 +9,8 @@
     android:layout_margin="8dp"
     android:gravity="center">
 <!--sửa j đó-->
+    <!--sửa j đó 2-->
+
     <androidx.cardview.widget.CardView
         style="@style/RoundedCardStyleGrid"
         android:layout_gravity="center">

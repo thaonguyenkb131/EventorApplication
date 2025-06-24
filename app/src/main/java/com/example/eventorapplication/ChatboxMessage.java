@@ -8,17 +8,18 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class ChatboxMessage extends AppCompatActivity {
+import com.example.eventorapplication.base.BaseActivity;
+import com.example.eventorapplication.databinding.ChatboxMessageBinding;
+
+public class ChatboxMessage extends BaseActivity<ChatboxMessageBinding> {
+
+    @Override
+    protected ChatboxMessageBinding inflateBinding() {
+        return ChatboxMessageBinding.inflate(getLayoutInflater());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.chatbox_message);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
     }
 }

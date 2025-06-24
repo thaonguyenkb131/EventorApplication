@@ -57,5 +57,13 @@ public class MyAccountLoggedIn extends BaseActivity<MyAccountLoggedInBinding> {
                 startActivity(intent);
             }
         });
+
+        binding.chatbot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyAccountLoggedIn.this, ChatboxMessage.class);
+                startActivity(intent);
+            }
+        });
     }
 }

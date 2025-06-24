@@ -283,6 +283,7 @@
 
             <!-- Mục 6 -->
             <LinearLayout
+                android:id="@+id/chatbot"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
@@ -309,9 +310,9 @@
                     android:fontFamily="@font/montserrat_bold"
                     android:layout_weight="1" />
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/logo"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/logoevt_color"
                     android:layout_marginEnd="100dp"
                     android:layout_marginBottom="4dp"/>
 

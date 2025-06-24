@@ -31,7 +31,7 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         binding = inflateBinding();
         setContentView(binding.getRoot());
         setupFooterNavigation();
-        setupAutoHideFooter(); // <-- Gọi hàm xử lý scroll ở đây
+        setupAutoHideFooter();
     }
 
     private void setupFooterNavigation() {

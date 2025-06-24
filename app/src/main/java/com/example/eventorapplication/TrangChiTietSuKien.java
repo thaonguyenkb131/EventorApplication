@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,8 @@ import com.example.eventorapplication.databinding.ActivityTrangChiTietSuKienBind
 
 public class TrangChiTietSuKien extends BaseActivity<ActivityTrangChiTietSuKienBinding> {
 
+
+    private boolean isSaved = false;
 
     @Override
     protected ActivityTrangChiTietSuKienBinding inflateBinding() {
@@ -80,6 +83,18 @@ public class TrangChiTietSuKien extends BaseActivity<ActivityTrangChiTietSuKienB
             }
         });
 
+        // Sự kiện đổi hình nền khi nhấn "Lưu sự kiện"
+        LinearLayout btnSave = findViewById(R.id.btnSave);
+        LinearLayout saveIcon = (LinearLayout) btnSave.getChildAt(0); // layout nền chứa icon
 
+        btnSave.setOnClickListener(v -> {
+            if (!isSaved) {
+                saveIcon.setBackgroundResource(R.drawable.save2); // đổi sang ảnh đã lưu
+                isSaved = true;
+            } else {
+                saveIcon.setBackgroundResource(R.drawable.save); // trở lại ảnh gốc
+                isSaved = false;
+            }
+        });
     }
 }

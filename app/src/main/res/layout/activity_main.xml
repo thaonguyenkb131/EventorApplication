@@ -79,13 +79,16 @@
                     android:id="@+id/txtvanhoa"
                     style="@style/DanhMucItem"
                     android:text="Văn hóa" />
-                <TextView android:id="@+id/txthocthuat"
+                <TextView
+                    android:id="@+id/txthocthuat"
                     style="@style/DanhMucItem"
                     android:text="Học thuật" />
-                <TextView android:id="@+id/txtthethao"
+                <TextView
+                    android:id="@+id/txtthethao"
                     style="@style/DanhMucItem"
                     android:text="Thể thao" />
-                <TextView android:id="@+id/txttinhnguyen"
+                <TextView
+                    android:id="@+id/txttinhnguyen"
                     style="@style/DanhMucItem"
                     android:text="Tình nguyện" />
                 <TextView
@@ -191,7 +194,7 @@
                                     android:fontFamily="@font/montserrat_semibold"
                                     android:text="Trợ lý Eventor"
                                     android:textColor="#015B68"
-                                    android:textSize="18sp"
+                                    android:textSize="16sp"
                                     android:layout_marginTop="5dp" />
 
                                 <LinearLayout
@@ -211,7 +214,7 @@
                                         android:hint="Hôm nay bạn cần trợ giúp gì?"
                                         android:padding="7dp"
                                         android:textColor="#808080"
-                                        android:textSize="14sp"
+                                        android:textSize="12sp"
                                         android:textStyle="bold" />
 
                                     <ImageView
@@ -351,7 +354,7 @@
                     android:layout_height="wrap_content"
                     android:text="Xem thêm"
                     android:textColor="#9e9e9e"
-                    android:textSize="20sp"
+                    android:textSize="14sp"
                     android:fontFamily="@font/montserrat_semibold"
                     android:layout_marginEnd="10dp"
                     android:gravity="center_vertical"/>

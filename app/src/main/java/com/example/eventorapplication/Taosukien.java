@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.example.adapters.MapAdapter;
 import com.example.eventorapplication.base.BaseActivity;
@@ -34,6 +37,25 @@ public class Taosukien extends BaseActivity<ActivityTaosukienBinding> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //        Tránh che màn hình
+
+        View rootView = findViewById(R.id.main); // ConstraintLayout có id="main"
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(0, 0, 0, systemBars.bottom); // tránh bị che nút
+
+            // Đẩy TextView xuống dưới status bar
+            View txtTitle = findViewById(R.id.Header);
+            txtTitle.setPadding(
+                    txtTitle.getPaddingLeft(),
+                    systemBars.top,
+                    txtTitle.getPaddingRight(),
+                    txtTitle.getPaddingBottom()
+            );
+
+            return insets;
+        });
 
         binding.edtSearch.setFocusable(false);
         binding.edtSearch.setClickable(true);

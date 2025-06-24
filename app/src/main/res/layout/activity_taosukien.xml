@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Taosukien"
-    android:background="#006183">
-<!--    Header-->
+    android:background="#006183"
+    tools:context=".Taosukien">
+
     <TextView
         android:id="@+id/Header"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Tạo sự kiện của bạn"
         android:fontFamily="@font/montserrat_semibold"
@@ -19,16 +19,21 @@
         android:paddingBottom="10dp"
         android:paddingTop="30dp"
         android:gravity="center"
-        android:layout_alignParentStart="true"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/Header"
-        android:layout_above="@+id/footerLayout"
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:paddingStart="30dp"
         android:paddingEnd="30dp"
-        android:background="@color/white">
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/Header"
+        app:layout_constraintBottom_toTopOf="@+id/footerLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -226,7 +231,6 @@
                 android:id="@+id/edtMoTa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="250dp"
                 android:hint="Mô tả sự kiện"
                 android:fontFamily="@font/montserrat_regular"
                 android:padding="15dp"
@@ -455,10 +459,10 @@
     <include
         android:id="@+id/footerLayout"
         layout="@layout/activity_footer"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

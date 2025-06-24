@@ -10,17 +10,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivityTrangChiTietSuKienBinding;
 
-public class TrangChiTietSuKien extends AppCompatActivity {
+public class TrangChiTietSuKien extends BaseActivity<ActivityTrangChiTietSuKienBinding> {
 
     ActivityTrangChiTietSuKienBinding binding;
 
     @Override
+    protected ActivityTrangChiTietSuKienBinding inflateBinding() {
+        return ActivityTrangChiTietSuKienBinding.inflate(getLayoutInflater());
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityTrangChiTietSuKienBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
 
         //        Tránh che màn hình
 

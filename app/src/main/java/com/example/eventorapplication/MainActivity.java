@@ -20,6 +20,9 @@ import android.os.Handler;
 
 import com.example.adapters.BannerAdapter;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     private Handler sliderHandler = new Handler();
@@ -42,6 +45,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         setupDots();
         setupAutoSlide();
         applyHoverEffects();
+        addCardClickEvents(R.id.linearLayoutSknb);
+        addCardClickEvents(R.id.linearLayoutSkxh);
+        addCardClickEvents(R.id.linearLayoutDcb);
+        
+        setupDanhmucClick();
 
         //        Tránh che màn hình
 
@@ -52,16 +60,81 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
             // Đẩy TextView xuống dưới status bar
             View txtTitle = findViewById(R.id.header);
-            txtTitle.setPadding(
-                    txtTitle.getPaddingLeft(),
-                    systemBars.top,
-                    txtTitle.getPaddingRight(),
-                    txtTitle.getPaddingBottom()
-            );
+            if(txtTitle != null) {
+                txtTitle.setPadding(
+                        txtTitle.getPaddingLeft(),
+                        systemBars.top,
+                        txtTitle.getPaddingRight(),
+                        txtTitle.getPaddingBottom()
+                );
+            }
 
             return insets;
         });
 
+    }
+
+    private void setupDanhmucClick() {
+        List<View> danhMucCardViews = Arrays.asList(
+                binding.Dmskan,
+                binding.Dmskvh,
+                binding.Dmskht,
+                binding.Dmsktt,
+                binding.Dmsktn,
+                binding.Dmskmt,
+                binding.Dmskdl
+        );
+
+        for (View cardView : danhMucCardViews) {
+            cardView.setOnClickListener(v -> {
+                // Lấy TextView phía dưới cùng cha LinearLayout
+                View parent = (View) cardView.getParent();
+                if (parent instanceof LinearLayout) {
+                    LinearLayout parentLayout = (LinearLayout) parent;
+                    for (int i = 0; i < parentLayout.getChildCount(); i++) {
+                        View child = parentLayout.getChildAt(i);
+                        if (child instanceof TextView) {
+                            String category = ((TextView) child).getText().toString();
+                            Intent intent = new Intent(this, Ketquatimkiem.class);
+                            intent.putExtra("category", category);
+                            startActivity(intent);
+                            break;
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    private void addCardClickEvents(int layoutContainerId) {
+        LinearLayout layoutContainer = findViewById(layoutContainerId);
+
+        if (layoutContainer == null) return;
+
+        for (int i = 0; i < layoutContainer.getChildCount(); i++) {
+            View child = layoutContainer.getChildAt(i);
+
+            if (child instanceof androidx.cardview.widget.CardView) {
+                // Trường hợp CardView nằm trực tiếp
+                child.setOnClickListener(v -> openChiTietSuKien());
+
+            } else if (child instanceof LinearLayout) {
+                // Trường hợp CardView lồng trong LinearLayout
+                LinearLayout innerLayout = (LinearLayout) child;
+                for (int j = 0; j < innerLayout.getChildCount(); j++) {
+                    View innerChild = innerLayout.getChildAt(j);
+                    if (innerChild instanceof androidx.cardview.widget.CardView) {
+                        innerChild.setOnClickListener(v -> openChiTietSuKien());
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    private void openChiTietSuKien() {
+        Intent intent = new Intent(this, TrangChiTietSuKien.class);
+        startActivity(intent);
     }
 
     private void setupBannerSlider() {
@@ -104,8 +177,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
             startActivity(new Intent(this,Ketquatimkiem.class));
         });
 
-        binding.txtXemthem.setOnClickListener(v ->
-                startActivity(new Intent(this,Sukienxuhuong.class)));
+        binding.txtXemthem.setOnClickListener(v -> {
+            startActivity(new Intent(this,Sukienxuhuong.class));
+        });
 
         binding.viewPagerBanner.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override

@@ -231,6 +231,7 @@
                 android:contentDescription="Sự kiện nổi bật">
 
                 <LinearLayout
+                    android:id="@+id/linearLayoutSknb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -346,6 +347,7 @@
                 android:scrollbars="none">
 
                 <LinearLayout
+                    android:id="@+id/linearLayoutSkxh"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -481,16 +483,16 @@
                         android:layout_marginEnd="10dp">
 
                         <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDmsk">
+                            style="@style/RoundedCardStyleDmsk"
+                            android:id="@+id/Dmskvh"
+                            >
 
                             <ImageView
-                                android:id="@+id/imgDmskvh"
                                 style="@style/RoundedImageStyle"
                                 android:src="@drawable/dmskvh" />
                         </androidx.cardview.widget.CardView>
 
                         <TextView
-                            android:id="@+id/txtDmskvh"
                             android:text="Văn hóa"
                             style="@style/DmskText"/>
                     </LinearLayout>
@@ -503,16 +505,15 @@
                         android:layout_marginEnd="10dp">
 
                         <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDmsk">
+                            style="@style/RoundedCardStyleDmsk"
+                            android:id="@+id/Dmskan">
 
                             <ImageView
-                                android:id="@+id/imgDmskan"
                                 style="@style/RoundedImageStyle"
                                 android:src="@drawable/dmskan" />
                         </androidx.cardview.widget.CardView>
 
                         <TextView
-                            android:id="@+id/txtDmskan"
                             android:text="Âm nhạc"
                             style="@style/DmskText"/>
                     </LinearLayout>
@@ -525,21 +526,20 @@
                         android:layout_marginEnd="10dp">
 
                         <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDmsk">
+                            style="@style/RoundedCardStyleDmsk"
+                            android:id="@+id/Dmskht">
 
                             <ImageView
-                                android:id="@+id/imgDmskht"
                                 style="@style/RoundedImageStyle"
                                 android:src="@drawable/dmskht" />
                         </androidx.cardview.widget.CardView>
 
                         <TextView
-                            android:id="@+id/txtDmskht"
                             android:text="Học thuật"
                             style="@style/DmskText"/>
                     </LinearLayout>
 
-                    <!-- Theer thao -->
+                    <!-- The thao -->
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -547,15 +547,14 @@
                         android:layout_marginEnd="10dp">
 
                         <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDmsk">
+                            style="@style/RoundedCardStyleDmsk"
+                            android:id="@+id/Dmsktt">
                             <ImageView
-                                android:id="@+id/imgDmsktt"
                                 style="@style/RoundedImageStyle"
                                 android:src="@drawable/dmsktt" />
                         </androidx.cardview.widget.CardView>
 
                         <TextView
-                            android:id="@+id/txtDmsktt"
                             android:text="Thể thao"
                             style="@style/DmskText"/>
                     </LinearLayout>
@@ -568,16 +567,15 @@
                         android:layout_marginEnd="10dp">
 
                         <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDmsk">
+                            style="@style/RoundedCardStyleDmsk"
+                            android:id="@+id/Dmsktn">
 
                             <ImageView
-                                android:id="@+id/imgDmsktn"
                                 style="@style/RoundedImageStyle"
                                 android:src="@drawable/dmsktn" />
                         </androidx.cardview.widget.CardView>
 
                         <TextView
-                            android:id="@+id/txtDmsktn"
                             android:text="Tình nguyện"
                             style="@style/DmskText"/>
                     </LinearLayout>
@@ -590,16 +588,15 @@
                         android:layout_marginEnd="10dp">
 
                         <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDmsk">
+                            style="@style/RoundedCardStyleDmsk"
+                            android:id="@+id/Dmskmt">
 
                             <ImageView
-                                android:id="@+id/imgDmskmt"
                                 style="@style/RoundedImageStyle"
                                 android:src="@drawable/dmskmt" />
                         </androidx.cardview.widget.CardView>
 
                         <TextView
-                            android:id="@+id/txtDmskmt"
                             android:text="Môi trường"
                             style="@style/DmskText"/>
                     </LinearLayout>
@@ -612,16 +609,15 @@
                         android:layout_marginEnd="10dp">
 
                         <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDmsk">
+                            style="@style/RoundedCardStyleDmsk"
+                            android:id="@+id/Dmskdl">
 
                             <ImageView
-                                android:id="@+id/imgDmskdl"
                                 style="@style/RoundedImageStyle"
                                 android:src="@drawable/dmskdl" />
                         </androidx.cardview.widget.CardView>
 
                         <TextView
-                            android:id="@+id/txtDmskdl"
                             android:text="Du lịch"
                             style="@style/DmskText"/>
                     </LinearLayout>
@@ -640,6 +636,7 @@
                 android:textSize="20sp"
                 android:layout_gravity="start"
                 android:layout_marginStart="15dp" />
+
             <!--        Dành cho bạn - Scroll View-->
             <HorizontalScrollView
                 android:layout_width="match_parent"
@@ -651,7 +648,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:id="@+id/linearLayoutDcb">
                     <LinearLayout
                         android:id="@+id/Dcb1"
                         android:layout_width="wrap_content"

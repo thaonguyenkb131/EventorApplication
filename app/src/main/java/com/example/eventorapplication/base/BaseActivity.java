@@ -11,6 +11,7 @@ import com.example.eventorapplication.MainActivity;
 import com.example.eventorapplication.Taosukien;
 import com.example.eventorapplication.TrangthongbaoActivity;
 import com.example.eventorapplication.R;
+import com.example.eventorapplication.trang_ve_da_mua;
 
 public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActivity {
 
@@ -30,6 +31,7 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         View homepage = binding.getRoot().findViewById(R.id.Homepage);
         View taosukien = binding.getRoot().findViewById(R.id.taosukien);
         View thongbao = binding.getRoot().findViewById(R.id.thongbao);
+        View sukiencuatoi = binding.getRoot().findViewById(R.id.Sukiencuatoi);
 
         if (homepage != null) {
             homepage.setOnClickListener(v -> {
@@ -51,5 +53,14 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
                 finish();
             });
         }
+
+        if (sukiencuatoi != null) {
+            sukiencuatoi.setOnClickListener(v -> {
+                startActivity(new Intent(this, trang_ve_da_mua.class));
+                finish();
+            });
+        }
+
+
     }
 }

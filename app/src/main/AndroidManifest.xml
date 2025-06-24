@@ -36,6 +36,9 @@
         <activity android:name=".Timkiem" />
         <activity android:name=".Tinnhan" />
         <activity android:name=".Ketquatimkiem" />
+        <activity android:name=".Sukienxuhuong" />
+        <activity android:name=".Taosukien" />
+        <activity android:name=".trang_ve_da_mua"/>
         <activity
             android:name=".footer"
             android:exported="false" />

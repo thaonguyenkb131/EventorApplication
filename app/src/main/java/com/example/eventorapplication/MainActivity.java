@@ -11,6 +11,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager2.widget.ViewPager2;
+
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ImageView;
 import android.view.MotionEvent;
@@ -118,9 +121,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                 // Trường hợp CardView nằm trực tiếp
                 child.setOnClickListener(v -> openChiTietSuKien());
 
-            } else if (child instanceof LinearLayout) {
-                // Trường hợp CardView lồng trong LinearLayout
-                LinearLayout innerLayout = (LinearLayout) child;
+            } else if (child instanceof LinearLayout || child instanceof FrameLayout) {
+                // CardView lồng trong LinearLayout hoặc FrameLayout
+                ViewGroup innerLayout = (ViewGroup) child;
                 for (int j = 0; j < innerLayout.getChildCount(); j++) {
                     View innerChild = innerLayout.getChildAt(j);
                     if (innerChild instanceof androidx.cardview.widget.CardView) {
@@ -188,6 +191,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                 updateDots(position);
                 sliderHandler.removeCallbacks(slideRunnable);
                 sliderHandler.postDelayed(slideRunnable, 3000);
+            }
+        });
+
+        binding.imgSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ChatboxMessage.class);
+                startActivity(intent);
             }
         });
 

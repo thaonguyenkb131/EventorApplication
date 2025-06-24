@@ -40,8 +40,7 @@
                     android:layout_height="225dp"
                     android:layout_marginBottom="6dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/eventimage"
-                    android:padding="8dp"/>
+                    android:src="@drawable/eventimage" />
 
                 <TextView
                     android:layout_width="match_parent"

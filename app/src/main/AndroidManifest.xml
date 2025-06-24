@@ -13,6 +13,12 @@
         android:theme="@style/Theme.EventorApplication"
         tools:targetApi="31">
         <activity
+            android:name=".PopupSukienMenu"
+            android:exported="false" />
+        <activity
+            android:name=".SukiendadangItem"
+            android:exported="false" />
+        <activity
             android:name=".UsuallyFaq"
             android:exported="false" />
         <activity

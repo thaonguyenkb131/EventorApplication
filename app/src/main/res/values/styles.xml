@@ -63,8 +63,9 @@
         <item name="android:layout_marginStart">5dp</item>
         <item name="android:layout_marginEnd">5dp</item>
         <item name="cardBackgroundColor">@android:color/white</item>
-        <item name="android:layout_width">140dp</item>
-        <item name="android:layout_height">75dp</item>
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:scaleType">centerCrop</item>
     </style>
 
     <style name="RoundedCardStyleDmsk" parent="Widget.MaterialComponents.CardView">
@@ -93,12 +94,12 @@
         <item name="android:layout_marginStart">5dp</item>
         <item name="android:layout_marginEnd">5dp</item>
         <item name="cardBackgroundColor">@android:color/white</item>
-        <item name="android:layout_width">190dp</item>
+        <item name="android:layout_width">150dp</item>
         <item name="android:layout_height">100dp</item>
     </style>
 
     <style name="EventTitle">
-        <item name="android:layout_width">190dp</item>
+        <item name="android:layout_width">150dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:textColor">#000000</item>
@@ -108,7 +109,7 @@
     </style>
 
     <style name="EventPrice">
-        <item name="android:layout_width">190dp</item>
+        <item name="android:layout_width">160dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:layout_marginStart">5dp</item>

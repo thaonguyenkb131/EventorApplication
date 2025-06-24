@@ -168,7 +168,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:padding="8dp"
                             android:gravity="center_vertical">
 
                             <ImageView
@@ -211,7 +210,6 @@
                                         android:fontFamily="@font/montserrat_regular"
                                         android:gravity="center_vertical"
                                         android:hint="Hôm nay bạn cần trợ giúp gì?"
-                                        android:padding="7dp"
                                         android:textColor="#808080"
                                         android:textSize="12sp"
                                         android:textStyle="bold" />
@@ -241,7 +239,7 @@
                 android:textColor="#006183"
                 android:textSize="16sp"
                 android:layout_gravity="start"
-                android:layout_marginStart="15dp" />
+                android:layout_marginStart="5dp" />
             <!--    Sự kiện nổi bật - Scroll View-->
             <HorizontalScrollView
                 android:layout_width="match_parent"
@@ -258,7 +256,7 @@
                     android:orientation="horizontal">
                     <!--SK1-->
                     <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSkxh">
+                        style="@style/RoundedCardStyleSknb">
                         <ImageView
                             android:id="@+id/imgSknb1"
                             style="@style/RoundedImageStyle"
@@ -266,7 +264,7 @@
                     </androidx.cardview.widget.CardView>
                     <!--SK2-->
                     <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSkxh">
+                        style="@style/RoundedCardStyleSknb">
                         <ImageView
                             android:id="@+id/imgSknb2"
                             style="@style/RoundedImageStyle"
@@ -275,7 +273,7 @@
 
                     <!--            SK3-->
                     <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSkxh">
+                        style="@style/RoundedCardStyleSknb">
                         <ImageView
                             android:id="@+id/imgSknb3"
                             style="@style/RoundedImageStyle"
@@ -283,7 +281,7 @@
                     </androidx.cardview.widget.CardView>
                     <!--SK4-->
                     <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSkxh">
+                        style="@style/RoundedCardStyleSknb">
                         <ImageView
                             android:id="@+id/imgSknb4"
                             style="@style/RoundedImageStyle"
@@ -292,7 +290,7 @@
 
                     <!--            SK5-->
                     <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSkxh">
+                        style="@style/RoundedCardStyleSknb">
                         <ImageView
                             android:id="@+id/imgSknb5"
                             style="@style/RoundedImageStyle"
@@ -301,7 +299,7 @@
 
                     <!--            SK6-->
                     <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSkxh">
+                        style="@style/RoundedCardStyleSknb">
                         <ImageView
                             android:id="@+id/imgSknb6"
                             style="@style/RoundedImageStyle"
@@ -310,7 +308,7 @@
 
                     <!--            SK7-->
                     <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSkxh">
+                        style="@style/RoundedCardStyleSknb">
                         <ImageView
                             android:id="@+id/imgSukiennoibat7"
                             style="@style/RoundedImageStyle"
@@ -319,7 +317,7 @@
 
                     <!--            SK8-->
                     <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSkxh">
+                        style="@style/RoundedCardStyleSknb">
                         <ImageView
                             android:id="@+id/imgSknb8"
                             style="@style/RoundedImageStyle"
@@ -363,7 +361,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginStart="5dp"
                 android:scrollbars="none">
 
                 <LinearLayout
@@ -375,7 +372,7 @@
                     <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp">
+                        android:layout_margin="5dp">
                         <androidx.cardview.widget.CardView
                             style="@style/RoundedCardStyleSkxh">
                             <ImageView
@@ -398,7 +395,7 @@
                     <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp">
+                        android:layout_margin="5dp">
                         <androidx.cardview.widget.CardView
                             style="@style/RoundedCardStyleSkxh">
                             <ImageView
@@ -421,7 +418,7 @@
                     <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp">
+                        android:layout_margin="5dp">
                         <androidx.cardview.widget.CardView
                             style="@style/RoundedCardStyleSkxh">
                             <ImageView
@@ -444,7 +441,7 @@
                     <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp">
+                        android:layout_margin="5dp">
                         <androidx.cardview.widget.CardView
                             style="@style/RoundedCardStyleSkxh">
                             <ImageView
@@ -467,7 +464,7 @@
                     <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp">
+                        android:layout_margin="5dp">
                         <androidx.cardview.widget.CardView
                             style="@style/RoundedCardStyleSkxh">
                             <ImageView
@@ -490,7 +487,7 @@
                     <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp">
+                        android:layout_margin="5dp">
                         <androidx.cardview.widget.CardView
                             style="@style/RoundedCardStyleSkxh">
                             <ImageView
@@ -513,7 +510,7 @@
                     <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp">
+                        android:layout_margin="5dp">
                         <androidx.cardview.widget.CardView
                             style="@style/RoundedCardStyleSkxh">
                             <ImageView
@@ -536,7 +533,7 @@
                     <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp">
+                        android:layout_margin="5dp">
                         <androidx.cardview.widget.CardView
                             style="@style/RoundedCardStyleSkxh">
                             <ImageView
@@ -559,7 +556,7 @@
                     <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp">
+                        android:layout_margin="5dp">
                         <androidx.cardview.widget.CardView
                             style="@style/RoundedCardStyleSkxh">
                             <ImageView
@@ -582,7 +579,7 @@
                     <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="8dp">
+                        android:layout_margin="5dp">
                         <androidx.cardview.widget.CardView
                             style="@style/RoundedCardStyleSkxh">
                             <ImageView
@@ -635,7 +632,7 @@
                         android:layout_marginEnd="10dp">
 
                         <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDmsk"
+                            style="@style/RoundedCardStyleSkxh"
                             android:id="@+id/Dmskvh"
                             >
 
@@ -657,7 +654,7 @@
                         android:layout_marginEnd="10dp">
 
                         <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDmsk"
+                            style="@style/RoundedCardStyleSkxh"
                             android:id="@+id/Dmskan">
 
                             <ImageView
@@ -678,7 +675,7 @@
                         android:layout_marginEnd="10dp">
 
                         <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDmsk"
+                            style="@style/RoundedCardStyleSkxh"
                             android:id="@+id/Dmskht">
 
                             <ImageView
@@ -699,7 +696,7 @@
                         android:layout_marginEnd="10dp">
 
                         <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDmsk"
+                            style="@style/RoundedCardStyleSkxh"
                             android:id="@+id/Dmsktt">
                             <ImageView
                                 style="@style/RoundedImageStyle"
@@ -719,7 +716,7 @@
                         android:layout_marginEnd="10dp">
 
                         <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDmsk"
+                            style="@style/RoundedCardStyleSkxh"
                             android:id="@+id/Dmsktn">
 
                             <ImageView
@@ -740,7 +737,7 @@
                         android:layout_marginEnd="10dp">
 
                         <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDmsk"
+                            style="@style/RoundedCardStyleSkxh"
                             android:id="@+id/Dmskmt">
 
                             <ImageView
@@ -761,7 +758,7 @@
                         android:layout_marginEnd="10dp">
 
                         <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDmsk"
+                            style="@style/RoundedCardStyleSkxh"
                             android:id="@+id/Dmskdl">
 
                             <ImageView
@@ -807,10 +804,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_marginEnd="10dp">
+                        android:layout_marginEnd="5dp">
 
                         <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDcb">
+                            style="@style/RoundedCardStyleSkxh">
 
                             <ImageView
                                 android:id="@+id/imgDcb1"
@@ -839,7 +836,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDcb">
+                            style="@style/RoundedCardStyleSkxh">
                             <ImageView
                                 android:id="@+id/imgDcb2"
                                 style="@style/RoundedImageStyle"
@@ -862,7 +859,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDcb">
+                            style="@style/RoundedCardStyleSkxh">
                             <ImageView
                                 android:id="@+id/imgDcb3"
                                 style="@style/RoundedImageStyle"
@@ -885,7 +882,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDcb">
+                            style="@style/RoundedCardStyleSkxh">
                             <ImageView
                                 android:id="@+id/imgDcb4"
                                 style="@style/RoundedImageStyle"
@@ -908,7 +905,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDcb">
+                            style="@style/RoundedCardStyleSkxh">
                             <ImageView
                                 android:id="@+id/imgDcb5"
                                 style="@style/RoundedImageStyle"

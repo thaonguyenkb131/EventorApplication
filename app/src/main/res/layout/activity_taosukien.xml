@@ -27,7 +27,7 @@
         android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/white"
+        android:background="#F2F2F2"
         app:layout_constraintTop_toBottomOf="@+id/Header"
         app:layout_constraintBottom_toTopOf="@+id/footerLayout"
         app:layout_constraintStart_toStartOf="parent"

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.EventorApplication"
         tools:targetApi="31">
         <activity
+            android:name=".SukiendadangItem"
+            android:exported="false" />
+        <activity
             android:name=".UsuallyFaq"
             android:exported="false" />
         <activity
@@ -71,7 +74,7 @@
         <activity android:name=".Ketquatimkiem" />
         <activity android:name=".Sukienxuhuong" />
         <activity android:name=".Taosukien" />
-        <activity android:name=".trang_ve_da_mua"/>
+        <activity android:name=".trang_ve_da_mua" />
         <activity
             android:name=".footer"
             android:exported="false" />

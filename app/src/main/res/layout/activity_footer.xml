@@ -3,12 +3,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="662dp"
+    android:gravity="bottom"
     android:id="@+id/main">
     <LinearLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:background="#006183"
         android:orientation="horizontal"
@@ -25,10 +25,10 @@
             android:paddingTop="6dp">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
-                android:src="@drawable/fthomepage" />
+                android:src="@drawable/ic_homepage" />
         </LinearLayout>
 
         <!-- Sự kiện của tôi -->
@@ -42,10 +42,10 @@
             android:paddingTop="6dp">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ftticket" />
+                android:src="@drawable/ic_ticket" />
 
         </LinearLayout>
 
@@ -60,8 +60,8 @@
             android:paddingTop="6dp">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ftadd" />
         </LinearLayout>
@@ -77,10 +77,10 @@
             android:paddingTop="6dp">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ftbell" />
+                android:src="@drawable/ic_bell" />
         </LinearLayout>
 
         <!-- Tài khoản -->
@@ -94,10 +94,10 @@
             android:paddingTop="6dp">
 
             <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ftaccount" />
+                android:src="@drawable/ic_account" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

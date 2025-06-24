@@ -3,12 +3,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="662dp"
+    android:gravity="bottom"
     android:id="@+id/main">
     <LinearLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:background="#006183"
         android:orientation="horizontal"
@@ -21,24 +21,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:paddingTop="6dp">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
-                android:src="@drawable/fthomepage" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Trang chủ"
-                android:layout_marginTop="10dp"
-                android:textSize="12sp"
-                android:textColor="@android:color/white"
-                android:fontFamily="@font/montserrat_bold" />
+                android:src="@drawable/ic_homepage" />
         </LinearLayout>
 
         <!-- Sự kiện của tôi -->
@@ -48,24 +38,15 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:paddingTop="6dp">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ftticket" />
+                android:src="@drawable/ic_ticket" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text=" Sự kiện \ncủa tôi"
-                android:textSize="12sp"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="3dp"
-                android:fontFamily="@font/montserrat_semibold" />
         </LinearLayout>
 
         <!-- Tạo sự kiện -->
@@ -75,24 +56,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:paddingTop="6dp">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ftadd" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Tạo sự kiện"
-                android:textSize="12sp"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/montserrat_semibold" />
         </LinearLayout>
 
         <!-- Thông báo -->
@@ -102,24 +73,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:paddingTop="6dp">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ftbell" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Thông báo"
-                android:textSize="12sp"
-                android:textColor="@android:color/white"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/montserrat_semibold" />
+                android:src="@drawable/ic_bell" />
         </LinearLayout>
 
         <!-- Tài khoản -->
@@ -129,23 +90,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:paddingTop="6dp">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ftaccount" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Tài khoản của tôi"
-                android:textSize="12sp"
-                android:textColor="@android:color/white"
-                android:fontFamily="@font/montserrat_semibold" />
+                android:src="@drawable/ic_account" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

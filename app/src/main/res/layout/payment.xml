@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Payment"
-    android:orientation="vertical"
     android:background="#FFFFFF"
     android:paddingTop="16dp"
     android:paddingHorizontal="16dp">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp">
 
         <!-- Item: Thêm phương thức thanh toán -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="72dp"
-            android:orientation="horizontal"
-            android:background="@drawable/bg_item_account_option"
-            android:gravity="center_vertical"
-            android:padding="16dp"
             android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_item_account_option"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?attr/selectableItemBackground">
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="16dp">
 
             <ImageView
                 android:layout_width="36dp"
@@ -34,10 +41,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/montserrat_bold"
                 android:text="Thêm phương thức thanh toán"
                 android:textColor="#000000"
-                android:textSize="16sp"
-                android:fontFamily="@font/montserrat_bold" />
+                android:textSize="16sp" />
 
             <ImageView
                 android:layout_width="20dp"
@@ -49,13 +56,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="72dp"
-            android:orientation="horizontal"
             android:background="@drawable/bg_item_account_option"
-            android:gravity="center_vertical"
-            android:padding="16dp"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?attr/selectableItemBackground">
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="16dp">
 
             <ImageView
                 android:layout_width="36dp"
@@ -67,10 +74,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_weight="1"
+                android:fontFamily="@font/montserrat_bold"
                 android:text="Lịch sử thanh toán"
                 android:textColor="#000000"
-                android:textSize="16sp"
-                android:fontFamily="@font/montserrat_bold" />
+                android:textSize="16sp" />
 
             <ImageView
                 android:layout_width="20dp"
@@ -78,4 +85,8 @@
                 android:src="@drawable/ic_arrow_right" />
         </LinearLayout>
 
-</LinearLayout>
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

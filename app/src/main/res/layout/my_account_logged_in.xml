@@ -16,7 +16,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="150dp">
 
             <!-- Ảnh nền -->
             <ImageView
@@ -109,6 +109,7 @@
 
             <!-- Mục 1 -->
             <LinearLayout
+                android:id="@+id/trangcanhan"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
@@ -143,6 +144,7 @@
             <!-- Các mục khác (2 đến 8) tương tự, sửa layout_width="wrap_content" => "0dp" khi dùng layout_weight -->
             <!-- Mục 2 -->
             <LinearLayout
+                android:id="@+id/bonuspoint"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
@@ -177,6 +179,7 @@
 
             <!-- Mục 3 -->
             <LinearLayout
+                android:id="@+id/caidattk"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
@@ -245,6 +248,7 @@
 
             <!-- Mục 5 -->
             <LinearLayout
+                android:id="@+id/thanhtoan"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
@@ -279,6 +283,7 @@
 
             <!-- Mục 6 -->
             <LinearLayout
+                android:id="@+id/chatbot"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal"
@@ -305,9 +310,9 @@
                     android:fontFamily="@font/montserrat_bold"
                     android:layout_weight="1" />
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/logo"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/logoevt_color"
                     android:layout_marginEnd="100dp"
                     android:layout_marginBottom="4dp"/>
 

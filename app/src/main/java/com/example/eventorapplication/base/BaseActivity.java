@@ -68,6 +68,12 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
                 finish();
             });
         }
+        if(taikhoan != null) {
+            taikhoan.setOnClickListener(v -> {
+                startActivity(new Intent(this, MyAccountLoggedIn.class));
+                finish();
+            });
+        }
     }
 
 
@@ -78,12 +84,7 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         footerView = root.findViewById(R.id.footerLayout);
         ScrollView scrollView = root.findViewById(R.id.scrollView);
 
-        if(taikhoan != null) {
-            taikhoan.setOnClickListener(v -> {
-                startActivity(new Intent(this, MyAccountLoggedIn.class));
-                finish();
-            });
-        }
+
         if (footerView != null && scrollView != null) {
             scrollView.getViewTreeObserver().addOnScrollChangedListener(() -> {
                 int currentScrollY = scrollView.getScrollY();

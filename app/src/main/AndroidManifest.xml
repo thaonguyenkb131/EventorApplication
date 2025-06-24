@@ -46,6 +46,9 @@
             android:name=".ChatboxMessage"
             android:exported="false" />
         <activity
+            android:name=".TrangthongbaoActivity"
+            android:exported="false" />
+        <activity
             android:name=".TrangThanhToan"
             android:exported="false"
             android:windowSoftInputMode="adjustPan"/>

@@ -27,8 +27,6 @@
         android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
         android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/Header"
         app:layout_constraintBottom_toTopOf="@+id/footerLayout"
@@ -37,6 +35,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:orientation="vertical">
             <EditText
                 android:id="@+id/edtTenSukien"

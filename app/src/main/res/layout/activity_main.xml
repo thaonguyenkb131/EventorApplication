@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     tools:context=".MainActivity"
     android:layout_height="wrap_content"
@@ -137,40 +137,32 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@drawable/bg_chat_shadow">
 
-                <FrameLayout
-                    style="@style/RoundedImageStyle"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    app:cardElevation="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardBackgroundColor="@android:color/white">
 
-                    <!-- Shadow -->
-                    <View
-                        android:background="#33000000"
-                        android:layout_height="50dp"
-                        android:layout_width="match_parent"
-                        android:alpha="0.3"
-                        android:layout_marginTop="10dp" />
-
-                    <!-- Hộp chat -->
+                    <!-- Hộp chat bên trong -->
                     <LinearLayout
                         android:id="@+id/chatAssistant"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:background="@android:color/white"
-                        android:padding="5dp"
-                        android:gravity="center_vertical"
-                        android:elevation="1dp"
-                        android:layout_gravity="center"
-                        android:backgroundTint="#FFFFFF">
+                        android:padding="8dp"
+                        android:gravity="center_vertical">
 
                         <ImageView
                             android:id="@+id/chatIcon"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
                             android:src="@drawable/ic_chat"
-                            android:paddingStart="3dp"
                             android:layout_marginStart="3dp"
                             android:scaleType="centerCrop" />
 
@@ -188,25 +180,40 @@
                                 android:fontFamily="@font/montserrat_semibold"
                                 android:text="Trợ lý Eventor"
                                 android:textColor="#015B68"
-                                android:textSize="16sp"
+                                android:textSize="18sp"
                                 android:layout_marginTop="5dp" />
 
-                            <EditText
-                                android:id="@+id/edtChat"
-                                android:gravity="center_vertical"
-                                android:layout_width="250dp"
-                                android:layout_height="48dp"
-                                android:layout_margin="10dp"
-                                android:background="@drawable/edittext_stroke"
-                                android:fontFamily="@font/montserrat_regular"
-                                android:hint="Hôm nay bạn cần trợ giúp gì?"
-                                android:padding="2dp"
-                                android:textColor="#808080"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <EditText
+                                    android:id="@+id/edtChat"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="40dp"
+                                    android:layout_margin="5dp"
+                                    android:background="@drawable/edittext_stroke"
+                                    android:fontFamily="@font/montserrat_regular"
+                                    android:gravity="center_vertical"
+                                    android:hint="Hôm nay bạn cần trợ giúp gì?"
+                                    android:padding="7dp"
+                                    android:textColor="#808080"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <ImageView
+                                    android:id="@+id/imgSend"
+                                    android:layout_width="35dp"
+                                    android:layout_height="35dp"
+                                    android:src="@drawable/icsend"
+                                    android:padding="5dp"
+                                    android:layout_gravity="center" />
+                            </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
-                </FrameLayout>
+                </androidx.cardview.widget.CardView>
             </LinearLayout>
 
             <!-- Sự kiện nổi bật - Title // Chỗ này có upsize so với figma cho cân đối -->
@@ -308,7 +315,6 @@
                 </LinearLayout>
             </HorizontalScrollView>
 
-            <!-- Sự kiện xu hướng - Title // Chỗ này có upsize so với figma cho cân đối -->
             <LinearLayout
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
@@ -333,7 +339,7 @@
                     android:layout_height="wrap_content"
                     android:text="Xem thêm"
                     android:textColor="#9e9e9e"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:fontFamily="@font/montserrat_semibold"
                     android:layout_marginEnd="10dp"
                     android:gravity="center_vertical"/>

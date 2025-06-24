@@ -43,6 +43,9 @@
             android:name=".MyAccountNotLoggedIn"
             android:exported="false" />
         <activity
+            android:name=".ChatboxMessage"
+            android:exported="false" />
+        <activity
             android:name=".TrangThanhToan"
             android:exported="false" />
         <activity

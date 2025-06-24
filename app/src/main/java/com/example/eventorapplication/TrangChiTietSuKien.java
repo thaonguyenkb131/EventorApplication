@@ -17,7 +17,6 @@ import com.example.eventorapplication.databinding.ActivityTrangChiTietSuKienBind
 
 public class TrangChiTietSuKien extends BaseActivity<ActivityTrangChiTietSuKienBinding> {
 
-    ActivityTrangChiTietSuKienBinding binding;
 
     @Override
     protected ActivityTrangChiTietSuKienBinding inflateBinding() {
@@ -46,9 +45,12 @@ public class TrangChiTietSuKien extends BaseActivity<ActivityTrangChiTietSuKienB
             return insets;
         });
 
-        binding.btnContact.setOnClickListener(v -> {
-            Intent intent = new Intent(TrangChiTietSuKien.this, Tinnhan.class);
-            startActivity(intent);
+        binding.btnContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrangChiTietSuKien.this, Tinnhan.class);
+                startActivity(intent);
+            }
         });
 
         binding.btnShare.setOnClickListener(new View.OnClickListener() {

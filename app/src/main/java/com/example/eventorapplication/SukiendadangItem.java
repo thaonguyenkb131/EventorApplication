@@ -1,6 +1,5 @@
 package com.example.eventorapplication;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -9,16 +8,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.eventorapplication.databinding.ActivityEventTagBinding;
+import com.example.eventorapplication.databinding.ActivitySukiendadangItemBinding;
 
-public class EventTag extends AppCompatActivity {
+public class SukiendadangItem extends AppCompatActivity {
 
-    ActivityEventTagBinding binding;
+    ActivitySukiendadangItemBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityEventTagBinding.inflate(getLayoutInflater());
+        binding = ActivitySukiendadangItemBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
     }

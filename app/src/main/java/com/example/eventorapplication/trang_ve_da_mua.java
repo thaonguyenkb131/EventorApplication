@@ -1,19 +1,14 @@
 package com.example.eventorapplication;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.adapters.VeDaMuaAdapter;
-import com.example.eventorapplication.R;
 import com.example.eventorapplication.base.BaseActivity;
 import com.example.models.VeDaMua;
 import com.example.eventorapplication.databinding.ActivityTrangVeDaMuaBinding;
@@ -36,16 +31,24 @@ public class trang_ve_da_mua extends BaseActivity<ActivityTrangVeDaMuaBinding> {
         loadData();
         addEvents();
 
-        //        Tránh che màn hình
+        Intent intent = getIntent();
+        String clickedButton = intent.getStringExtra("clicked_button");
+        if ("saved".equals(clickedButton)) {
+            highlightButton(binding.btnSavedEvents);
+        } else if ("purchased".equals(clickedButton)) {
+            highlightButton(binding.btnPurchasedTickets);
+        } else if ("posted".equals(clickedButton)) {
+            highlightButton(binding.btnPostedEvents);
+        }
 
-        View rootView = findViewById(R.id.main); // ConstraintLayout có id="main"
+        // Tránh che màn hình
+        View rootView = findViewById(R.id.main);
         ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(0, 0, 0, systemBars.bottom); // tránh bị che nút
+            v.setPadding(0, 0, 0, systemBars.bottom);
 
-            // Đẩy TextView xuống dưới status bar
             View txtTitle = findViewById(R.id.header);
-            if(txtTitle != null) {
+            if (txtTitle != null) {
                 txtTitle.setPadding(
                         txtTitle.getPaddingLeft(),
                         systemBars.top,
@@ -56,6 +59,13 @@ public class trang_ve_da_mua extends BaseActivity<ActivityTrangVeDaMuaBinding> {
 
             return insets;
         });
+    }
+
+    private void highlightButton(View activeButton) {
+        binding.btnSavedEvents.setAlpha(0.5f);
+        binding.btnPurchasedTickets.setAlpha(0.5f);
+        binding.btnPostedEvents.setAlpha(0.5f);
+        activeButton.setAlpha(1.0f);
     }
 
     private void loadData() {
@@ -78,29 +88,12 @@ public class trang_ve_da_mua extends BaseActivity<ActivityTrangVeDaMuaBinding> {
 
     private void addEvents() {
         binding.gvVdm.setOnItemClickListener((parent, view, position, id) -> {
-            VeDaMua sp = listEvent.get(position);
-
-            Dialog dialog = new Dialog(trang_ve_da_mua.this);
-            dialog.setCancelable(false);
-
-            ImageView imv = dialog.findViewById(R.id.imvThumb);
-            TextView name = dialog.findViewById(R.id.tvTitle);
-            TextView price = dialog.findViewById(R.id.tvPrice);
-            TextView location = dialog.findViewById(R.id.tvLocation);
-            TextView date = dialog.findViewById(R.id.tvDate);
-
-            // Giả lập ảnh thumbnail nếu có (nếu không có có thể dùng ảnh mặc định)
-            imv.setImageResource(R.drawable.eventimage);
-            name.setText(sp.getTitle());
-            price.setText(sp.getPrice());
-            location.setText(sp.getLocation());
-            date.setText(sp.getDate());
-
-        });
-        binding.btnSavedEvents.setOnClickListener(v -> {
-            Intent intent = new Intent(trang_ve_da_mua.this, TrangVeCuaToi.class);
+            Intent intent = new Intent(trang_ve_da_mua.this, TrangChiTietSuKien.class);
             startActivity(intent);
         });
+
+        binding.btnSavedEvents.setOnClickListener(v -> highlightButton(binding.btnSavedEvents));
+        binding.btnPurchasedTickets.setOnClickListener(v -> highlightButton(binding.btnPurchasedTickets));
 
         binding.btnPostedEvents.setOnClickListener(v -> {
             Intent intent = new Intent(trang_ve_da_mua.this, trang_su_kien_da_dang.class);

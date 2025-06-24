@@ -134,87 +134,97 @@
                 android:layout_gravity="center" />
 
             <!-- Chat với trợ lý Eventor -->
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="@drawable/bg_chat_shadow">
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="0dp"
+                app:cardElevation="12dp"
+                app:cardCornerRadius="16dp"
+                app:cardBackgroundColor="@android:color/white">
 
-                <androidx.cardview.widget.CardView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    app:cardElevation="12dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardBackgroundColor="@android:color/white">
+                    android:orientation="vertical">
 
-                    <!-- Hộp chat bên trong -->
-                    <LinearLayout
-                        android:id="@+id/chatAssistant"
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="8dp"
-                        android:gravity="center_vertical">
+                        android:layout_margin="8dp"
+                        app:cardElevation="0dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardBackgroundColor="@android:color/white">
 
-                        <ImageView
-                            android:id="@+id/chatIcon"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:src="@drawable/ic_chat"
-                            android:layout_marginStart="3dp"
-                            android:scaleType="centerCrop" />
-
+                        <!-- Hộp chat bên trong -->
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:id="@+id/chatAssistant"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:layout_marginStart="12dp">
+                            android:orientation="horizontal"
+                            android:padding="8dp"
+                            android:gravity="center_vertical">
 
-                            <TextView
-                                android:id="@+id/txtTrolyEventor"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/montserrat_semibold"
-                                android:text="Trợ lý Eventor"
-                                android:textColor="#015B68"
-                                android:textSize="18sp"
-                                android:layout_marginTop="5dp" />
+                            <ImageView
+                                android:id="@+id/chatIcon"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/ic_chat"
+                                android:layout_marginStart="3dp"
+                                android:scaleType="centerCrop" />
 
                             <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:layout_marginStart="12dp">
 
-                                <EditText
-                                    android:id="@+id/edtChat"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:layout_height="40dp"
-                                    android:layout_margin="5dp"
-                                    android:background="@drawable/edittext_stroke"
-                                    android:fontFamily="@font/montserrat_regular"
-                                    android:gravity="center_vertical"
-                                    android:hint="Hôm nay bạn cần trợ giúp gì?"
-                                    android:padding="7dp"
-                                    android:textColor="#808080"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/txtTrolyEventor"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/montserrat_semibold"
+                                    android:text="Trợ lý Eventor"
+                                    android:textColor="#015B68"
+                                    android:textSize="18sp"
+                                    android:layout_marginTop="5dp" />
 
-                                <ImageView
-                                    android:id="@+id/imgSend"
-                                    android:layout_width="35dp"
-                                    android:layout_height="35dp"
-                                    android:src="@drawable/icsend"
-                                    android:padding="5dp"
-                                    android:layout_gravity="center" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <EditText
+                                        android:id="@+id/edtChat"
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
+                                        android:layout_height="40dp"
+                                        android:layout_margin="5dp"
+                                        android:background="@drawable/edittext_stroke"
+                                        android:fontFamily="@font/montserrat_regular"
+                                        android:gravity="center_vertical"
+                                        android:hint="Hôm nay bạn cần trợ giúp gì?"
+                                        android:padding="7dp"
+                                        android:textColor="#808080"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+
+                                    <ImageView
+                                        android:id="@+id/imgSend"
+                                        android:layout_width="35dp"
+                                        android:layout_height="35dp"
+                                        android:src="@drawable/icsend"
+                                        android:padding="5dp"
+                                        android:layout_gravity="center" />
+                                </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <!-- Sự kiện nổi bật - Title // Chỗ này có upsize so với figma cho cân đối -->
             <TextView
@@ -362,101 +372,235 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-
                     <!-- SK1 -->
-                    <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSkxh">
-                        <ImageView
-                            android:id="@+id/imgSkxh1"
-                            style="@style/RoundedImageStyle"
-                            android:src="@drawable/skxhpage1" />
-                    </androidx.cardview.widget.CardView>
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp">
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleSkxh">
+                            <ImageView
+                                android:id="@+id/imgSkxh1"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/skxhpage1" />
+                            <ImageView
+                                android:id="@+id/imgnb1"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/nb1"
+                                android:layout_gravity="bottom|start"
+                                android:layout_marginStart="-10dp"
+                                android:layout_marginBottom="0dp"/>
+                        </androidx.cardview.widget.CardView>
+                    </FrameLayout>
 
                     <!-- SK2 -->
-                    <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSkxh">
-                        <ImageView
-                            android:id="@+id/imgSkxh2"
-                            style="@style/RoundedImageStyle"
-                            android:src="@drawable/skxhpage2" />
-                    </androidx.cardview.widget.CardView>
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp">
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleSkxh">
+                            <ImageView
+                                android:id="@+id/imgSkxh2"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/skxhpage2" />
+                            <ImageView
+                                android:id="@+id/imgnb2"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/nb2"
+                                android:layout_gravity="bottom|start"
+                                android:layout_marginStart="-10dp"
+                                android:layout_marginBottom="0dp"/>
+                        </androidx.cardview.widget.CardView>
+                    </FrameLayout>
 
                     <!-- SK3 -->
-                    <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSkxh">
-                        <ImageView
-                            android:id="@+id/imgSkxh3"
-                            style="@style/RoundedImageStyle"
-                            android:src="@drawable/skxhpage3" />
-                    </androidx.cardview.widget.CardView>
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp">
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleSkxh">
+                            <ImageView
+                                android:id="@+id/imgSkxh3"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/skxhpage3" />
+                            <ImageView
+                                android:id="@+id/imgnb3"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/nb3"
+                                android:layout_gravity="bottom|start"
+                                android:layout_marginStart="-10dp"
+                                android:layout_marginBottom="0dp"/>
+                        </androidx.cardview.widget.CardView>
+                    </FrameLayout>
 
                     <!-- SK4 -->
-                    <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSkxh"
-                        android:layout_width="140dp"
-                        android:layout_height="75dp">
-                        <ImageView
-                            android:id="@+id/imgSkxh4"
-                            style="@style/RoundedImageStyle"
-                            android:src="@drawable/skxhpage4" />
-                    </androidx.cardview.widget.CardView>
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp">
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleSkxh">
+                            <ImageView
+                                android:id="@+id/imgSkxh4"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/skxhpage4" />
+                            <ImageView
+                                android:id="@+id/imgnb4"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/nb4"
+                                android:layout_gravity="bottom|start"
+                                android:layout_marginStart="-10dp"
+                                android:layout_marginBottom="0dp"/>
+                        </androidx.cardview.widget.CardView>
+                    </FrameLayout>
 
                     <!-- SK5 -->
-                    <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSkxh">
-                        <ImageView
-                            android:id="@+id/imgSkxh5"
-                            style="@style/RoundedImageStyle"
-                            android:src="@drawable/skxhpage5" />
-                    </androidx.cardview.widget.CardView>
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp">
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleSkxh">
+                            <ImageView
+                                android:id="@+id/imgSkxh5"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/skxhpage5" />
+                            <ImageView
+                                android:id="@+id/imgnb5"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/nb5"
+                                android:layout_gravity="bottom|start"
+                                android:layout_marginStart="-10dp"
+                                android:layout_marginBottom="0dp"/>
+                        </androidx.cardview.widget.CardView>
+                    </FrameLayout>
 
                     <!-- SK6 -->
-                    <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSkxh">
-                        <ImageView
-                            android:id="@+id/imgSkxh6"
-                            style="@style/RoundedImageStyle"
-                            android:src="@drawable/skxhpage6" />
-                    </androidx.cardview.widget.CardView>
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp">
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleSkxh">
+                            <ImageView
+                                android:id="@+id/imgSkxh6"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/skxhpage6" />
+                            <ImageView
+                                android:id="@+id/imgnb6"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/nb6"
+                                android:layout_gravity="bottom|start"
+                                android:layout_marginStart="-10dp"
+                                android:layout_marginBottom="0dp"/>
+                        </androidx.cardview.widget.CardView>
+                    </FrameLayout>
 
                     <!-- SK7 -->
-                    <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSkxh">
-                        <ImageView
-                            android:id="@+id/imgSkxh7"
-                            style="@style/RoundedImageStyle"
-                            android:src="@drawable/skxhpage7" />
-                    </androidx.cardview.widget.CardView>
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp">
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleSkxh">
+                            <ImageView
+                                android:id="@+id/imgSkxh7"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/skxhpage7" />
+                            <ImageView
+                                android:id="@+id/imgnb7"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/nb7"
+                                android:layout_gravity="bottom|start"
+                                android:layout_marginStart="-10dp"
+                                android:layout_marginBottom="0dp"/>
+                        </androidx.cardview.widget.CardView>
+                    </FrameLayout>
 
                     <!-- SK8 -->
-                    <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSkxh">
-                        <ImageView
-                            android:id="@+id/imgSkxh8"
-                            style="@style/RoundedImageStyle"
-                            android:src="@drawable/skxhpage8" />
-                    </androidx.cardview.widget.CardView>
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp">
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleSkxh">
+                            <ImageView
+                                android:id="@+id/imgSkxh8"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/skxhpage8" />
+                            <ImageView
+                                android:id="@+id/imgnb8"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/nb8"
+                                android:layout_gravity="bottom|start"
+                                android:layout_marginStart="-10dp"
+                                android:layout_marginBottom="0dp"/>
+                        </androidx.cardview.widget.CardView>
+                    </FrameLayout>
 
                     <!-- SK9 -->
-                    <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSkxh">
-                        <ImageView
-                            android:id="@+id/imgSkxh9"
-                            style="@style/RoundedImageStyle"
-                            android:src="@drawable/skxhpage9" />
-                    </androidx.cardview.widget.CardView>
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp">
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleSkxh">
+                            <ImageView
+                                android:id="@+id/imgSkxh9"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/skxhpage9" />
+                            <ImageView
+                                android:id="@+id/imgnb9"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/nb9"
+                                android:layout_gravity="bottom|start"
+                                android:layout_marginStart="-10dp"
+                                android:layout_marginBottom="0dp"/>
+                        </androidx.cardview.widget.CardView>
+                    </FrameLayout>
 
                     <!-- SK10 -->
-                    <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSkxh"
-                        android:layout_width="140dp"
-                        android:layout_height="75dp">
-                        <ImageView
-                            android:id="@+id/imgSkxh10"
-                            style="@style/RoundedImageStyle"
-                            android:src="@drawable/skxhpage10" />
-                    </androidx.cardview.widget.CardView>
-
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp">
+                        <androidx.cardview.widget.CardView
+                            style="@style/RoundedCardStyleSkxh">
+                            <ImageView
+                                android:id="@+id/imgSkxh10"
+                                style="@style/RoundedImageStyle"
+                                android:src="@drawable/skxhpage10" />
+                            <ImageView
+                                android:id="@+id/imgnb10"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/nb10"
+                                android:layout_gravity="bottom|start"
+                                android:layout_marginStart="-10dp"
+                                android:layout_marginBottom="0dp"/>
+                        </androidx.cardview.widget.CardView>
+                    </FrameLayout>
                 </LinearLayout>
             </HorizontalScrollView>
 

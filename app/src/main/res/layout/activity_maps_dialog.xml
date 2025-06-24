@@ -8,7 +8,8 @@
     android:orientation="vertical"
     android:background="#BDBDBD"
     android:layout_height="wrap_content"
-    tools:context=".MapsDialogActivity">
+    tools:context=".MapsDialogActivity">'
+<!--    test github HL -->
 
 <!--    Search bar-->
     <LinearLayout

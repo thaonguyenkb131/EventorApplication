@@ -8,7 +8,6 @@
     android:elevation="6dp"
     android:layout_margin="8dp"
     android:gravity="center">
-<!--sửa j đó-->
     <androidx.cardview.widget.CardView
         style="@style/RoundedCardStyleGrid"
         android:layout_gravity="center">

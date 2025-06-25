@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TkchuadangnhapActivity"
+    android:background="#FFFFFF">
+    <!-- Ảnh nền trên cùng -->
+    <ImageView
+        android:id="@+id/imgCover"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_account_header" />
+
+    <!-- Avatar -->
+    <ImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/imgCover"
+        android:layout_marginTop="-100dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/avt1_login"
+        android:scaleType="centerCrop" />
+
+    <!-- Tiêu đề Đăng nhập / Đăng ký -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtTitle"
+        android:layout_below="@id/imgAvatar"
+        android:layout_marginTop="12dp"
+        android:layout_centerHorizontal="true"
+        android:text="Đăng nhập / Đăng ký"
+        android:textColor="#066183"
+        android:textSize="25sp"
+        android:fontFamily="@font/montserrat_bold" />
+
+    <!-- Subtitle -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtSub"
+        android:layout_below="@id/txtTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="4dp"
+        android:text="để tiếp tục với Eventor"
+        android:textColor="#444444"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat_regular" />
+
+    <!-- Danh sách lựa chọn -->
+    <LinearLayout
+        android:id="@+id/optionList"
+        android:layout_below="@id/txtSub"
+        android:layout_marginTop="32dp"
+        android:layout_marginHorizontal="24dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Mục 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="@drawable/bg_item_account_option"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icfaq" />
+
+            <TextView
+                android:layout_marginStart="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Câu hỏi thường gặp"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_arrow_right" />
+        </LinearLayout>
+
+        <!-- Mục 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="@drawable/bg_item_account_option"
+            android:layout_marginTop="12dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_policy" />
+
+            <TextView
+                android:layout_marginStart="12dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Điều khoản &amp; Chính sách"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_arrow_right" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Bottom Navigation -->
+<!--    <include-->
+<!--        android:id="@+id/bottomNav"-->
+<!--        layout="@layout/bottom_navigation" />-->
+
+</RelativeLayout>

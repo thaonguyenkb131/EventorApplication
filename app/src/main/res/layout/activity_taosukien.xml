@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#006183"
-    tools:context=".Taosukien">
+    tools:context=".TaosukienActivity">
 
     <TextView
         android:id="@+id/Header"
@@ -209,7 +209,7 @@
                 android:layout_height="35dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/bg_search_box_img"
-                android:drawableEnd="@drawable/ic_search"
+                android:drawableEnd="@drawable/ic_search_blue"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 android:textSize="14sp" />

@@ -3,18 +3,17 @@ package com.example.eventorapplication.base;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.ScrollView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewbinding.ViewBinding;
 
-import com.example.eventorapplication.MainActivity;
-import com.example.eventorapplication.MyAccountLoggedIn;
-import com.example.eventorapplication.Taosukien;
+import com.example.eventorapplication.TrangchuActivity;
+import com.example.eventorapplication.TkdadangnhapActivity;
+import com.example.eventorapplication.TaosukienActivity;
 import com.example.eventorapplication.TrangthongbaoActivity;
 import com.example.eventorapplication.R;
-import com.example.eventorapplication.trang_ve_da_mua;
+import com.example.eventorapplication.VedamuaActivity;
 
 public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActivity {
 
@@ -43,14 +42,14 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
 
         if (homepage != null) {
             homepage.setOnClickListener(v -> {
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, TrangchuActivity.class));
                 finish();
             });
         }
 
         if (taosukien != null) {
             taosukien.setOnClickListener(v -> {
-                startActivity(new Intent(this, Taosukien.class));
+                startActivity(new Intent(this, TaosukienActivity.class));
                 finish();
             });
         }
@@ -64,13 +63,13 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
 
         if (sukiencuatoi != null) {
             sukiencuatoi.setOnClickListener(v -> {
-                startActivity(new Intent(this, trang_ve_da_mua.class));
+                startActivity(new Intent(this, VedamuaActivity.class));
                 finish();
             });
         }
         if(taikhoan != null) {
             taikhoan.setOnClickListener(v -> {
-                startActivity(new Intent(this, MyAccountLoggedIn.class));
+                startActivity(new Intent(this, TkdadangnhapActivity.class));
                 finish();
             });
         }
@@ -80,7 +79,7 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
     private void setupAutoHideFooter() {
         View root = binding.getRoot();
 
-        // Footer phải có id là R.id.footerLayout trong layout include
+        // FooterActivity phải có id là R.id.footerLayout trong layout include
         footerView = root.findViewById(R.id.footerLayout);
         ScrollView scrollView = root.findViewById(R.id.scrollView);
 

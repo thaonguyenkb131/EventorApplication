@@ -44,7 +44,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/timkiem" />
+                android:src="@drawable/ic_search_blue" />
 
             <ImageView
                 android:id="@+id/imvnhantin"
@@ -102,7 +102,7 @@
         android:textSize="14sp"
         android:gravity="center" />
 
-    <!-- Footer -->
+    <!-- FooterActivity -->
     <include
         android:id="@+id/footer"
         layout="@layout/activity_footer"

@@ -1,7 +1,6 @@
 package com.example.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 
 import com.example.eventorapplication.R;
 import com.example.models.VeDaMua;
-import com.example.eventorapplication.TrangChiTietSuKien; // nhớ import class đích
 
 import java.util.List;
 
@@ -43,7 +41,7 @@ public class VeDaMuaAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.activity_event_tag, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_thesukien, parent, false);
         }
 
         VeDaMua item = list.get(i);

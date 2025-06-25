@@ -50,7 +50,7 @@ public class SuKienDaDangAdapter extends BaseAdapter {
     public View getView(int i, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.activity_sukiendadang_item, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_sukiendadang, parent, false);
             holder = new ViewHolder();
             holder.imgPoster = convertView.findViewById(R.id.imgPosterSkxh);
             holder.imvBookmark = convertView.findViewById(R.id.imvBookmark);
@@ -72,7 +72,7 @@ public class SuKienDaDangAdapter extends BaseAdapter {
 
         // Thêm sự kiện nhấn vào biểu tượng bookmark để hiển thị popup
         holder.imvBookmark.setOnClickListener(view -> {
-            View popupView = LayoutInflater.from(context).inflate(R.layout.activity_popup_sukien_menu, null);
+            View popupView = LayoutInflater.from(context).inflate(R.layout.dialog_menusukien, null);
             PopupWindow popupWindow = new PopupWindow(popupView,
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT,

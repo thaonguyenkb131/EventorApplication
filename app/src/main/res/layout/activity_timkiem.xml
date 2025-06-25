@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
-    tools:context=".Timkiem">
+    tools:context=".TimkiemActivity">
 
     <!-- Thanh tìm kiếm -->
     <LinearLayout
@@ -27,14 +27,14 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="25dp"
-            android:src="@drawable/iccalendar" />
+            android:src="@drawable/ic_calendar" />
 
         <ImageView
             android:id="@+id/imgFilter"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="10dp"
-            android:src="@drawable/icfilter" />
+            android:src="@drawable/ic_filter" />
 
         <EditText
             android:layout_width="0dp"
@@ -51,7 +51,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginEnd="25dp"
-            android:src="@drawable/timkiem" />
+            android:src="@drawable/ic_search_white" />
     </LinearLayout>
 
     <!-- Nội dung chính -->

@@ -13,19 +13,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.eventorapplication.databinding.ActivityBolocBinding;
+import com.example.eventorapplication.databinding.DialogBolocBinding;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
 public class BolocDialog extends DialogFragment {
-    private ActivityBolocBinding binding;
+    private DialogBolocBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        binding = ActivityBolocBinding.inflate(inflater, container, false);
+        binding = DialogBolocBinding.inflate(inflater, container, false);
         setCancelable(true);
 
         // Cho phép chọn nhiều chip cùng lúc

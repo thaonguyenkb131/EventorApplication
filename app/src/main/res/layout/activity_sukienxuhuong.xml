@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#005A71"
-    tools:context=".Sukienxuhuong">
+    tools:context=".SukienxuhuongActivity">
 
     <!-- Header -->
 
     <include
         android:id="@+id/header_layout"
-        layout="@layout/activity_header_chi_tiet_su_kien"
+        layout="@layout/activity_headerver2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -44,7 +44,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Footer -->
+    <!-- FooterActivity -->
     <include
         android:id="@+id/footerLayout"
         layout="@layout/activity_footer"

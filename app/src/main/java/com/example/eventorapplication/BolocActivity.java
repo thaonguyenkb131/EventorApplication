@@ -7,16 +7,16 @@ import android.view.ViewGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.eventorapplication.databinding.ActivityBolocBinding;
+import com.example.eventorapplication.databinding.DialogBolocBinding;
 
 public class BolocActivity extends AppCompatActivity {
 
-    private ActivityBolocBinding binding;
+    private DialogBolocBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityBolocBinding.inflate(getLayoutInflater());
+        binding = DialogBolocBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.swMienphi.setOnCheckedChangeListener((buttonView, isChecked) -> {

@@ -2,7 +2,12 @@ package com.example.eventorapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
+
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.example.adapters.SuKienDaDangAdapter;
 import com.example.eventorapplication.base.BaseActivity;
@@ -24,6 +29,25 @@ public class SukiendadangActivity extends BaseActivity<ActivitySukiendadangBindi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Tránh che màn hình
+        View rootView = findViewById(R.id.main);
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(0, 0, 0, systemBars.bottom);
+
+            View txtTitle = findViewById(R.id.header_layout);
+            if (txtTitle != null) {
+                txtTitle.setPadding(
+                        txtTitle.getPaddingLeft(),
+                        systemBars.top,
+                        txtTitle.getPaddingRight(),
+                        txtTitle.getPaddingBottom()
+                );
+            }
+
+            return insets;
+        });
 
         // Gán sự kiện cho các nút
         binding.btnPurchasedTickets.setOnClickListener(v -> {

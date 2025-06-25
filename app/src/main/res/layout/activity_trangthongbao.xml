@@ -50,7 +50,7 @@
                 android:id="@+id/imvnhantin"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/nhantin" />
+                android:src="@drawable/ic_message" />
         </LinearLayout>
     </LinearLayout>
 

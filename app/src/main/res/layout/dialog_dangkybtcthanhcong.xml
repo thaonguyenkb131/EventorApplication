@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".DangkythanhcongDialog"
+    android:layout_height="180dp"
+    tools:context=".DangkybtcthanhcongDialog"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:background="@color/white">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
         android:layout_marginBottom="20dp">
 
         <!-- Icon thành công -->
@@ -27,7 +28,7 @@
             android:id="@+id/txtSuccess"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Đăng ký tài khoản\nthành công"
+            android:text="Đăng ký BTC thành công"
             android:textColor="#000000"
             android:textStyle="bold"
             android:textSize="25sp"
@@ -35,14 +36,13 @@
     </LinearLayout>
     <!-- Nút đến trang chủ -->
     <Button
-        android:id="@+id/btnGoHome"
+        android:id="@+id/btnTaosukien"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Đến Trang chủ"
+        android:text="Tạo sự kiện"
         android:textColor="#FFFFFF"
         android:backgroundTint="#066183"
         android:paddingHorizontal="24dp"
-        android:paddingVertical="10dp"
         android:textSize="14sp"
         android:fontFamily="@font/montserrat_bold"
         android:textAllCaps="false"

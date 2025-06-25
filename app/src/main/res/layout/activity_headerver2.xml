@@ -25,7 +25,7 @@
             android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/nhantin"
+            android:src="@drawable/ic_message"
             android:padding="6dp"
             android:contentDescription="Chat icon" />
     </RelativeLayout>

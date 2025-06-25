@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="#006183"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="#006183"
     tools:context=".DangkybtcActivity">
 
-<!--    Header-->
+    <!-- Header -->
     <LinearLayout
         android:id="@+id/header"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@android:color/white"
-        android:layout_alignParentTop="true">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:background="#006183"
-            android:paddingTop="30dp"
+            android:paddingTop="20dp"
             android:paddingBottom="10dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp">
@@ -46,24 +46,27 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_search_blue" />
+                android:src="@drawable/ic_search_white" />
 
             <ImageView
                 android:id="@+id/imvnhantin"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/nhantin" />
+                android:src="@drawable/ic_message" />
         </LinearLayout>
     </LinearLayout>
-<!--    Content-->
+
+    <!-- ScrollView Content -->
     <ScrollView
         android:id="@+id/scrollContent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/footerLayout"
-        android:layout_below="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:fillViewport="true"
-        android:background="@android:color/white">
+        android:background="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        app:layout_constraintBottom_toTopOf="@+id/footerLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -276,11 +279,15 @@
                 app:cornerRadius="8dp" />
         </LinearLayout>
     </ScrollView>
-<!--    FooterActivity-->
+
+    <!-- Footer -->
     <include
         android:id="@+id/footerLayout"
         layout="@layout/activity_footer"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
-</RelativeLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

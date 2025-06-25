@@ -9,6 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
 import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivityDangkybtcBinding;
 
@@ -26,7 +30,26 @@ public class DangkybtcActivity extends BaseActivity<ActivityDangkybtcBinding> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding.txtTaigiayto.setOnClickListener(view -> showPopupTaianh(view));
+        // Tránh che màn hình
+        View rootView = findViewById(R.id.main);
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(0, 0, 0, systemBars.bottom);
+
+            View txtTitle = findViewById(R.id.header);
+            if (txtTitle != null) {
+                txtTitle.setPadding(
+                        txtTitle.getPaddingLeft(),
+                        systemBars.top,
+                        txtTitle.getPaddingRight(),
+                        txtTitle.getPaddingBottom()
+                );
+            }
+
+            return insets;
+        });
+
+        binding.txtTaigiayto.setOnClickListener(this::showPopupTaianh);
 
         binding.edtSearch.setFocusable(false);
         binding.edtSearch.setClickable(true);
@@ -34,6 +57,21 @@ public class DangkybtcActivity extends BaseActivity<ActivityDangkybtcBinding> {
 
         binding.edtSearch.setOnClickListener(view -> showPopupMap(view));
         binding.btnChon.setOnClickListener(view -> showPopupThanhToan());
+        binding.btnDangky.setOnClickListener(view -> showPopupDangkybtcthanhcong());
+
+    }
+
+    private void showPopupDangkybtcthanhcong() {
+        View popupView = LayoutInflater.from(this).inflate(R.layout.dialog_dangkybtcthanhcong, null);
+
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(popupView);
+        dialog.setCancelable(true);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setGravity(Gravity.CENTER);
+
+        dialog.show();
 
     }
 

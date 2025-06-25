@@ -1,13 +1,13 @@
 package com.example.models;
 
-public class VeDaMua {
+public class VedamuaItem {
     private int image;
     private String title;
     private String price;
     private String location;
     private String date;
 
-    public VeDaMua(int image, String title, String price, String location, String date) {
+    public VedamuaItem(int image, String title, String price, String location, String date) {
         this.image = image;
         this.title = title;
         this.price = price;

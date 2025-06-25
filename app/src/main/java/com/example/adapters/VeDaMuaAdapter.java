@@ -10,15 +10,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.eventorapplication.R;
-import com.example.models.VeDaMua;
+import com.example.models.VedamuaItem;
 
 import java.util.List;
 
 public class VeDaMuaAdapter extends BaseAdapter {
     private Context context;
-    private List<VeDaMua> list;
+    private List<VedamuaItem> list;
 
-    public VeDaMuaAdapter(Context context, List<VeDaMua> list) {
+    public VeDaMuaAdapter(Context context, List<VedamuaItem> list) {
         this.context = context;
         this.list = list;
     }
@@ -44,7 +44,7 @@ public class VeDaMuaAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_thesukien, parent, false);
         }
 
-        VeDaMua item = list.get(i);
+        VedamuaItem item = list.get(i);
         ImageView imvThumb = convertView.findViewById(R.id.imvThumb);
         TextView tvTitle = convertView.findViewById(R.id.tvTitle);
         TextView tvPrice = convertView.findViewById(R.id.tvPrice);

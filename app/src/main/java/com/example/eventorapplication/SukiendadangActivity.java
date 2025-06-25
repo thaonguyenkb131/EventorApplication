@@ -7,13 +7,13 @@ import android.widget.ListView;
 import com.example.adapters.SuKienDaDangAdapter;
 import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivitySukiendadangBinding;
-import com.example.models.SuKienDaDangItem;
+import com.example.models.SukiendadangItem;
 
 import java.util.ArrayList;
 
 public class SukiendadangActivity extends BaseActivity<ActivitySukiendadangBinding> {
     ListView lvSkdd;
-    ArrayList<SuKienDaDangItem> dsSuKien;
+    ArrayList<SukiendadangItem> dsSuKien;
     SuKienDaDangAdapter adapter;
 
     @Override
@@ -39,16 +39,16 @@ public class SukiendadangActivity extends BaseActivity<ActivitySukiendadangBindi
 
         // Khởi tạo danh sách dữ liệu
         dsSuKien = new ArrayList<>();
-        dsSuKien.add(new SuKienDaDangItem(R.drawable.skxh1, "SuperFest - Concert Mùa Hè Rực Sáng", "Số vé đã bán: 10,982 vé", "", "Quảng Ninh"));
-        dsSuKien.add(new SuKienDaDangItem(R.drawable.skxh2, "[River Flows In You] Đêm Nhạc Xương Rồng", "Số vé đã bán: 8,422 vé", "", "Hà Nội"));
-        dsSuKien.add(new SuKienDaDangItem(R.drawable.skxh3, "Lễ Hội Ẩm Thực Việt - Vị Quê Hương", "Đã bán: 15,000 vé", "", "Hà Nội"));
-        dsSuKien.add(new SuKienDaDangItem(R.drawable.skxh4, "The “Traditional Water Puppet Show” - Múa rối nước", "Đã bán: 14,500 vé", "", "TP.HCM"));
-        dsSuKien.add(new SuKienDaDangItem(R.drawable.skxh5, "Hội Chợ Sách & Văn Hóa Đọc", "Đã bán: 14,500 vé", "", "TP.HCM"));
-        dsSuKien.add(new SuKienDaDangItem(R.drawable.skxh6, "Đại Nhạc Hội Mùa Đông - Winter Beat", "Số vé đã bán: 12,314 vé", "Từ 750.000 VND", "Hà Nội"));
-        dsSuKien.add(new SuKienDaDangItem(R.drawable.skxh7, "Hội Thảo Công Nghệ - TechNext 2025", "Số vé đã bán: 6,832 vé", "Từ 300.000 VND", "TP. Hồ Chí Minh"));
-        dsSuKien.add(new SuKienDaDangItem(R.drawable.skxh8, "Festival Ánh Sáng Hội An", "Số vé đã bán: 9,105 vé", "Từ 500.000 VND", "Quảng Nam"));
-        dsSuKien.add(new SuKienDaDangItem(R.drawable.skxh9, "Hội Chợ Sách & Văn Hóa Đọc", "Số vé đã bán: 5,247 vé", "Miễn phí vào cửa", "Đà Nẵng"));
-        dsSuKien.add(new SuKienDaDangItem(R.drawable.skxh10, "Lễ Hội Ẩm Thực Việt - Vị Quê Hương", "Số vé đã bán: 7,980 vé", "Từ 100.000 VND", "Cần Thơ"));
+        dsSuKien.add(new SukiendadangItem(R.drawable.skxh1, "SuperFest - Concert Mùa Hè Rực Sáng", "Số vé đã bán: 10,982 vé", "", "Quảng Ninh"));
+        dsSuKien.add(new SukiendadangItem(R.drawable.skxh2, "[River Flows In You] Đêm Nhạc Xương Rồng", "Số vé đã bán: 8,422 vé", "", "Hà Nội"));
+        dsSuKien.add(new SukiendadangItem(R.drawable.skxh3, "Lễ Hội Ẩm Thực Việt - Vị Quê Hương", "Đã bán: 15,000 vé", "", "Hà Nội"));
+        dsSuKien.add(new SukiendadangItem(R.drawable.skxh4, "The “Traditional Water Puppet Show” - Múa rối nước", "Đã bán: 14,500 vé", "", "TP.HCM"));
+        dsSuKien.add(new SukiendadangItem(R.drawable.skxh5, "Hội Chợ Sách & Văn Hóa Đọc", "Đã bán: 14,500 vé", "", "TP.HCM"));
+        dsSuKien.add(new SukiendadangItem(R.drawable.skxh6, "Đại Nhạc Hội Mùa Đông - Winter Beat", "Số vé đã bán: 12,314 vé", "Từ 750.000 VND", "Hà Nội"));
+        dsSuKien.add(new SukiendadangItem(R.drawable.skxh7, "Hội Thảo Công Nghệ - TechNext 2025", "Số vé đã bán: 6,832 vé", "Từ 300.000 VND", "TP. Hồ Chí Minh"));
+        dsSuKien.add(new SukiendadangItem(R.drawable.skxh8, "Festival Ánh Sáng Hội An", "Số vé đã bán: 9,105 vé", "Từ 500.000 VND", "Quảng Nam"));
+        dsSuKien.add(new SukiendadangItem(R.drawable.skxh9, "Hội Chợ Sách & Văn Hóa Đọc", "Số vé đã bán: 5,247 vé", "Miễn phí vào cửa", "Đà Nẵng"));
+        dsSuKien.add(new SukiendadangItem(R.drawable.skxh10, "Lễ Hội Ẩm Thực Việt - Vị Quê Hương", "Số vé đã bán: 7,980 vé", "Từ 100.000 VND", "Cần Thơ"));
 
         // Gắn adapter vào ListView qua binding
         adapter = new SuKienDaDangAdapter(this, dsSuKien);

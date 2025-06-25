@@ -1,10 +1,10 @@
 package com.example.models;
 
-public class SuKienDaDangItem {
+public class SukiendadangItem {
     private int hinhAnh;
     private String ten, daBan, gia, diaDiem;
 
-    public SuKienDaDangItem(int hinhAnh, String ten, String daBan, String gia, String diaDiem) {
+    public SukiendadangItem(int hinhAnh, String ten, String daBan, String gia, String diaDiem) {
         this.hinhAnh = hinhAnh;
         this.ten = ten;
         this.daBan = daBan;

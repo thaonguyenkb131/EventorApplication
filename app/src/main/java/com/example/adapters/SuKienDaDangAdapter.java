@@ -12,16 +12,16 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 
 import com.example.eventorapplication.R;
-import com.example.models.SuKienDaDangItem;
+import com.example.models.SukiendadangItem;
 
 import java.util.ArrayList;
 
 public class SuKienDaDangAdapter extends BaseAdapter {
 
     Context context;
-    ArrayList<SuKienDaDangItem> list;
+    ArrayList<SukiendadangItem> list;
 
-    public SuKienDaDangAdapter(Context context, ArrayList<SuKienDaDangItem> list) {
+    public SuKienDaDangAdapter(Context context, ArrayList<SukiendadangItem> list) {
         this.context = context;
         this.list = list;
     }
@@ -63,7 +63,7 @@ public class SuKienDaDangAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        SuKienDaDangItem item = list.get(i);
+        SukiendadangItem item = list.get(i);
         holder.imgPoster.setImageResource(item.getHinhAnh());
         holder.txtTen.setText(item.getTen());
         holder.txtDaban.setText(item.getDaBan());

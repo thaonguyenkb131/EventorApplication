@@ -42,11 +42,11 @@ public class TimkiemActivity extends BaseActivity<ActivityTimkiemBinding> {
 
         addEvents();
 
-        // Tránh che màn hình
+        // Tránh che màn hình, đồng bộ footer với các trang khác
         View rootView = findViewById(R.id.main); // ConstraintLayout có id="main"
         ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(0, 0, 0, systemBars.bottom); // tránh bị che nút
+            v.setPadding(0, 0, 0, 0); // Không thêm padding cho rootView
 
             // Đẩy LinearLayout tìm kiếm xuống dưới status bar
             View txtTitle = findViewById(R.id.Thanhtimkiem);

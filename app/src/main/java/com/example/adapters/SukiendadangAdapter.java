@@ -16,12 +16,12 @@ import com.example.models.SukiendadangItem;
 
 import java.util.ArrayList;
 
-public class SuKienDaDangAdapter extends BaseAdapter {
+public class SukiendadangAdapter extends BaseAdapter {
 
     Context context;
     ArrayList<SukiendadangItem> list;
 
-    public SuKienDaDangAdapter(Context context, ArrayList<SukiendadangItem> list) {
+    public SukiendadangAdapter(Context context, ArrayList<SukiendadangItem> list) {
         this.context = context;
         this.list = list;
     }

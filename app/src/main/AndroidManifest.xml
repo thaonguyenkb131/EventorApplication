@@ -13,6 +13,9 @@
         android:theme="@style/Theme.EventorApplication"
         tools:targetApi="31">
         <activity
+            android:name=".SukiencuatoiActivity"
+            android:exported="false" />
+        <activity
             android:name=".DangkybtcthanhcongDialog"
             android:exported="false" />
         <activity
@@ -50,6 +53,9 @@
             android:exported="false" />
         <activity
             android:name=".TrangcanhanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TrangchuActivity"
             android:exported="false" />
         <activity
             android:name=".TkdadangnhapActivity"
@@ -110,10 +116,6 @@
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".OnboardingActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
             android:name=".DangkybtcActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
@@ -122,7 +124,7 @@
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".TrangchuActivity"
+            android:name=".OnboardingActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>

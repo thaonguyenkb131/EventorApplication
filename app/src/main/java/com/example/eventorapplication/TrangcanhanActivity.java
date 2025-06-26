@@ -2,6 +2,8 @@ package com.example.eventorapplication;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -11,6 +13,7 @@ import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivityTrangcanhanBinding;
 
 public class TrangcanhanActivity extends BaseActivity<ActivityTrangcanhanBinding> {
+
 
     @Override
     protected ActivityTrangcanhanBinding inflateBinding() {
@@ -41,6 +44,12 @@ public class TrangcanhanActivity extends BaseActivity<ActivityTrangcanhanBinding
 
             return insets;
         });
+
+        TextView txtHeaderTitle = findViewById(R.id.txtTitle);
+        ImageView btnBack = findViewById(R.id.btnBack);
+
+        txtHeaderTitle.setText("Trang cá nhân");
+        btnBack.setOnClickListener(v -> finish());
 
     }
 }

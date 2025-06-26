@@ -28,7 +28,7 @@
         android:layout_margin="15dp"
         android:textColor="@android:color/white"
         android:fontFamily="@font/montserrat_bold"
-        android:gravity="center"
+        android:gravity="left"
         app:layout_constraintStart_toEndOf="@id/btnBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

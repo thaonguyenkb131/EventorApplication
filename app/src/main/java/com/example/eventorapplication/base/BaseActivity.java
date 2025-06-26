@@ -8,12 +8,12 @@ import android.widget.ScrollView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewbinding.ViewBinding;
 
+import com.example.eventorapplication.SukiencuatoiActivity;
 import com.example.eventorapplication.TrangchuActivity;
 import com.example.eventorapplication.TkdadangnhapActivity;
 import com.example.eventorapplication.TaosukienActivity;
 import com.example.eventorapplication.TrangthongbaoActivity;
 import com.example.eventorapplication.R;
-import com.example.eventorapplication.VedamuaActivity;
 
 public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActivity {
 
@@ -63,7 +63,7 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
 
         if (sukiencuatoi != null) {
             sukiencuatoi.setOnClickListener(v -> {
-                startActivity(new Intent(this, VedamuaActivity.class));
+                startActivity(new Intent(this, SukiencuatoiActivity.class));
                 finish();
             });
         }

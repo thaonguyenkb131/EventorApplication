@@ -6,17 +6,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ChatbotActivity"
-    android:background="#FFFFFF"
-    android:padding="16dp">
+    android:background="#FFFFFF">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/layout_headertkcuatoi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:id="@+id/scrollContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:layout_above="@id/chatInputArea"
+        android:fillViewport="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        >
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
                 <!-- Header -->
                 <LinearLayout
@@ -69,6 +84,7 @@
                     android:text="Chào Nguyên, hôm nay tôi có thể giúp gì cho bạn?"
                     android:background="@drawable/bg_admin_bubble"
                     android:padding="16dp"
+                    android:layout_marginEnd="80dp"
                     android:textSize="16sp"
                     android:textColor="#222222"
                     android:lineSpacingExtra="6dp"
@@ -84,6 +100,7 @@
                     android:padding="16dp"
                     android:textSize="16sp"
                     android:textColor="#FFFFFF"
+                    android:layout_marginStart="80dp"
                     android:lineSpacingExtra="6dp"
                     android:lineSpacingMultiplier="1.2"
                     android:layout_gravity="end"
@@ -105,6 +122,7 @@
                 \nTrên đây là một số sự kiện phù hợp với yêu cầu của bạn, mong là hữu ích với bạn!"
                     android:background="@drawable/bg_admin_bubble"
                     android:padding="16dp"
+                    android:layout_marginEnd="80dp"
                     android:textSize="16sp"
                     android:textColor="#222222"
                     android:lineSpacingExtra="6dp"
@@ -117,48 +135,48 @@
             <!-- Khu vực input cố định dưới cùng -->
         <LinearLayout
             android:id="@+id/chatInputArea"
-            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
             android:background="#F2F2F2"
             android:padding="12dp"
-            android:orientation="horizontal"
             android:gravity="center_vertical">
 
-        <ImageView
-            android:src="@drawable/ic_attach"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginEnd="8dp" />
+            <ImageView
+                android:src="@drawable/ic_attach"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="8dp" />
 
-        <EditText
-            android:hint="Nhập tin nhắn..."
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:padding="8dp"
-            android:textSize="16sp" />
+            <EditText
+                android:hint="Nhập tin nhắn..."
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:padding="8dp"
+                android:textSize="16sp" />
 
-        <ImageView
-            android:src="@drawable/ic_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="8dp" />
+            <ImageView
+                android:src="@drawable/ic_icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp" />
 
-        <ImageView
-            android:src="@drawable/ic_send"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="8dp"
-            android:backgroundTint="#006183" />
+            <ImageView
+                android:src="@drawable/ic_send"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="#006183" />
 
-        <ImageView
-            android:src="@drawable/ic_mic"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="4dp"
-            android:backgroundTint="#006183" />
+            <ImageView
+                android:src="@drawable/ic_mic"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="4dp"
+                android:backgroundTint="#006183" />
         </LinearLayout>
 
 </RelativeLayout>

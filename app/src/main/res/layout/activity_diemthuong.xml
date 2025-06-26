@@ -20,20 +20,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header">
 
-
-        <!-- Tiêu đề -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Điểm thưởng"
-            android:textColor="#006183"
-            android:textSize="24sp"
-            android:textStyle="bold" />
         <!-- Box EventPoint + Ưu đãi -->
         <LinearLayout
             android:layout_width="match_parent"

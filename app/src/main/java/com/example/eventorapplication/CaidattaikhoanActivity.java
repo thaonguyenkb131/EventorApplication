@@ -3,6 +3,8 @@ package com.example.eventorapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -43,11 +45,12 @@ public class CaidattaikhoanActivity extends BaseActivity<ActivityCaidattaikhoanB
             return insets;
         });
 
-        binding.btnBack.setOnClickListener(v -> {
-            Intent intent = new Intent(this, TkdadangnhapActivity.class);
-            startActivity(intent);
-        });
+        // Thiết lập tiêu đề và nút quay lại
+        TextView txtHeaderTitle = findViewById(R.id.txtTitle);
+        ImageView btnBack = findViewById(R.id.btnBack);
 
+        txtHeaderTitle.setText("Cài đặt tài khoản");
+        btnBack.setOnClickListener(v -> finish());
 
     }
 }

@@ -219,6 +219,7 @@
 
                 <!-- Mục 4 -->
                 <LinearLayout
+                    android:id="@+id/goitaikhoan"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:orientation="horizontal"

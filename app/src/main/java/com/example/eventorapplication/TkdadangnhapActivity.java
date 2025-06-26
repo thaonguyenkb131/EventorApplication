@@ -92,5 +92,13 @@ public class TkdadangnhapActivity extends BaseActivity<ActivityTkdadangnhapBindi
                 startActivity(intent);
             }
         });
+
+        binding.goitaikhoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TkdadangnhapActivity.this, GoitaikhoanActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

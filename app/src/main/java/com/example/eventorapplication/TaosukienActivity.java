@@ -28,21 +28,22 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //        Tránh che màn hình
-
-        View rootView = findViewById(R.id.main); // ConstraintLayout có id="main"
+        // Đồng nhất tránh che footer
+        View rootView = findViewById(R.id.main); // Layout gốc có id="main"
         ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(0, 0, 0, systemBars.bottom); // tránh bị che nút
+            v.setPadding(0, 0, 0, systemBars.bottom); // tránh bị che footer
 
-            // Đẩy TextView xuống dưới status bar
+            // Đẩy header xuống dưới status bar nếu có
             View txtTitle = findViewById(R.id.Header);
-            txtTitle.setPadding(
-                    txtTitle.getPaddingLeft(),
-                    systemBars.top,
-                    txtTitle.getPaddingRight(),
-                    txtTitle.getPaddingBottom()
-            );
+            if (txtTitle != null) {
+                txtTitle.setPadding(
+                        txtTitle.getPaddingLeft(),
+                        systemBars.top,
+                        txtTitle.getPaddingRight(),
+                        txtTitle.getPaddingBottom()
+                );
+            }
 
             return insets;
         });

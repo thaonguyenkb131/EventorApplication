@@ -15,20 +15,20 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.adapters.TinnhanAdapter;
 import com.example.eventorapplication.base.BaseActivity;
-import com.example.eventorapplication.databinding.ActivityTinnhanBinding;
+import com.example.eventorapplication.databinding.ActivityChitiettinnhanBinding;
 import com.example.models.TinnhanItem;
 
 import java.util.ArrayList;
 
-public class TinnhanActivity extends BaseActivity<ActivityTinnhanBinding> {
+public class TinnhanActivity extends BaseActivity<ActivityChitiettinnhanBinding> {
 
     private ArrayList<TinnhanItem> messages;
     private TinnhanAdapter adapter;
     private static final int PICK_FILE_REQUEST = 1;
 
     @Override
-    protected ActivityTinnhanBinding inflateBinding() {
-        return ActivityTinnhanBinding.inflate(getLayoutInflater());
+    protected ActivityChitiettinnhanBinding inflateBinding() {
+        return ActivityChitiettinnhanBinding.inflate(getLayoutInflater());
     }
 
     @Override

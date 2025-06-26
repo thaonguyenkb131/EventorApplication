@@ -4,9 +4,9 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:padding="24dp"
+    android:padding="10dp"
     android:id="@+id/main"
-    android:layout_margin="12dp"
+    android:layout_margin="15dp"
     android:background="@color/white"
     tools:context=".SoluongveDialog">
 
@@ -62,13 +62,11 @@
             android:id="@+id/txtCount1"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:text="1"
+            android:text="0"
             android:textSize="16sp"
             android:textStyle="bold"
             android:gravity="center"
-            android:background="@color/white"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp" />
+            android:background="@color/white" />
 
         <ImageButton
             android:id="@+id/btnPlus1"
@@ -127,8 +125,8 @@
             android:textStyle="bold"
             android:gravity="center"
             android:background="@color/white"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp" />
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp" />
 
         <ImageButton
             android:id="@+id/btnPlus2"
@@ -187,8 +185,8 @@
             android:textStyle="bold"
             android:gravity="center"
             android:background="@color/white"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp" />
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp" />
 
         <ImageButton
             android:id="@+id/btnPlus3"
@@ -242,13 +240,13 @@
             android:id="@+id/txtCount4"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:text="2"
+            android:text="0"
             android:textSize="16sp"
             android:textStyle="bold"
             android:gravity="center"
             android:background="@color/white"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp" />
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp" />
 
         <ImageButton
             android:id="@+id/btnPlus4"

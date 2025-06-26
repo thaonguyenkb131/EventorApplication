@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">EventorApplication</string>
+    <string name="xem_th_m"><u>Xem thêm</u></string>
+
 </resources>

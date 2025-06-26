@@ -30,7 +30,6 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         binding = inflateBinding();
         setContentView(binding.getRoot());
         setupFooterNavigation();
-        setupAutoHideFooter();
     }
 
     private void setupFooterNavigation() {
@@ -76,28 +75,28 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
     }
 
 
-    private void setupAutoHideFooter() {
-        View root = binding.getRoot();
-
-        // FooterActivity phải có id là R.id.footerLayout trong layout include
-        footerView = root.findViewById(R.id.footerLayout);
-        ScrollView scrollView = root.findViewById(R.id.scrollView);
-
-
-        if (footerView != null && scrollView != null) {
-            scrollView.getViewTreeObserver().addOnScrollChangedListener(() -> {
-                int currentScrollY = scrollView.getScrollY();
-
-                if (currentScrollY > lastScrollY + 10 && isFooterVisible) {
-                    footerView.animate().translationY(footerView.getHeight()).setDuration(200);
-                    isFooterVisible = false;
-                } else if (currentScrollY < lastScrollY - 10 && !isFooterVisible) {
-                    footerView.animate().translationY(0).setDuration(200);
-                    isFooterVisible = true;
-                }
-
-                lastScrollY = currentScrollY;
-            });
-        }
-    }
+//    private void setupAutoHideFooter() {
+//        View root = binding.getRoot();
+//
+//        // FooterActivity phải có id là R.id.footerLayout trong layout include
+//        footerView = root.findViewById(R.id.footerLayout);
+//        ScrollView scrollView = root.findViewById(R.id.scrollView);
+//
+//
+//        if (footerView != null && scrollView != null) {
+//            scrollView.getViewTreeObserver().addOnScrollChangedListener(() -> {
+//                int currentScrollY = scrollView.getScrollY();
+//
+//                if (currentScrollY > lastScrollY + 10 && isFooterVisible) {
+//                    footerView.animate().translationY(footerView.getHeight()).setDuration(200);
+//                    isFooterVisible = false;
+//                } else if (currentScrollY < lastScrollY - 10 && !isFooterVisible) {
+//                    footerView.animate().translationY(0).setDuration(200);
+//                    isFooterVisible = true;
+//                }
+//
+//                lastScrollY = currentScrollY;
+////            });
+//        }
+//    }
 }

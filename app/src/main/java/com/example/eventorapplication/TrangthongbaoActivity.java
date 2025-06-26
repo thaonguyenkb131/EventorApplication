@@ -4,7 +4,13 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.view.WindowInsets;
 import android.widget.TextView;
+
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.example.adapters.TrangthongbaoAdapter;
 import com.example.eventorapplication.base.BaseActivity;
@@ -27,6 +33,28 @@ public class TrangthongbaoActivity extends BaseActivity<ActivityTrangthongbaoBin
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Đồng nhất tránh che footer
+        View rootView = findViewById(R.id.main); // Layout gốc có id="main"
+        if (rootView != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
+                Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(0, 0, 0, systemBars.bottom); // tránh bị che footer
+
+                // Đẩy header xuống dưới status bar nếu có
+                View txtTitle = findViewById(R.id.header);
+                if (txtTitle != null) {
+                    txtTitle.setPadding(
+                            txtTitle.getPaddingLeft(),
+                            systemBars.top,
+                            txtTitle.getPaddingRight(),
+                            txtTitle.getPaddingBottom()
+                    );
+                }
+
+                return insets;
+            });
+        }
 
         binding.imvnhantin.setOnClickListener(v -> {
             startActivity(new Intent(this, TinnhanActivity.class));

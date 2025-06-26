@@ -1,10 +1,14 @@
 package com.example.eventorapplication;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowInsetsController;
 import android.widget.PopupWindow;
 
 import androidx.core.graphics.Insets;
@@ -28,11 +32,21 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Đồng nhất tránh che footer
+        // Đặt màu thanh điều hướng là trắng, icon tối (giống trang chủ, thông báo)
+        Window window = getWindow();
+        window.setNavigationBarColor(Color.WHITE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            final View decor = window.getDecorView();
+            int flags = decor.getSystemUiVisibility();
+            flags |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+            decor.setSystemUiVisibility(flags);
+        }
+
+        // Đồng nhất tránh che footer, footer tách biệt với thanh điều hướng
         View rootView = findViewById(R.id.main); // Layout gốc có id="main"
         ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(0, 0, 0, systemBars.bottom); // tránh bị che footer
+            v.setPadding(0, 0, 0, 0); // Không thêm padding cho rootView
 
             // Đẩy header xuống dưới status bar nếu có
             View txtTitle = findViewById(R.id.Header);
@@ -42,6 +56,17 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
                         systemBars.top,
                         txtTitle.getPaddingRight(),
                         txtTitle.getPaddingBottom()
+                );
+            }
+
+            // Footer tách biệt với thanh điều hướng
+            View footer = findViewById(R.id.footerLayout);
+            if (footer != null) {
+                footer.setPadding(
+                    footer.getPaddingLeft(),
+                    footer.getPaddingTop(),
+                    footer.getPaddingRight(),
+                    systemBars.bottom
                 );
             }
 

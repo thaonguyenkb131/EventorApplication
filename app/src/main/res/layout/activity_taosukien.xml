@@ -5,7 +5,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#006183"
     tools:context=".TaosukienActivity">
 
     <TextView
@@ -13,6 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Tạo sự kiện của bạn"
+        android:background="#006183"
         android:fontFamily="@font/montserrat_semibold"
         android:textSize="20sp"
         android:textColor="@color/white"

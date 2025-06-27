@@ -28,7 +28,7 @@ public class Headerver2Activity extends AppCompatActivity {
 
         // Sự kiện click vào nút chat có id = "iconChat"
         binding.iconChat.setOnClickListener(v -> {
-            Intent intent = new Intent(Headerver2Activity.this, TinnhanActivity.class);
+            Intent intent = new Intent(Headerver2Activity.this, ChitiettinnhanActivity.class);
             startActivity(intent);
         });
 

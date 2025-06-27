@@ -97,7 +97,7 @@
             android:name=".TimkiemActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".TinnhanActivity"
+            android:name=".ChitiettinnhanActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".TimkiemsaulocActivity"

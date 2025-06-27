@@ -149,7 +149,7 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
         });
 
         binding.imvnhantin.setOnClickListener(v -> {
-            startActivity(new Intent(this, TinnhanActivity.class));
+            startActivity(new Intent(this, ChitiettinnhanActivity.class));
         });
 
         binding.txtamnhac.setOnClickListener(v -> {

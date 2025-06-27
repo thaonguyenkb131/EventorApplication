@@ -107,7 +107,7 @@ public class DangkybtcActivity extends BaseActivity<ActivityDangkybtcBinding> {
         popupMaps.showAtLocation(binding.getRoot(), android.view.Gravity.CENTER, 0, 0);
     }
     private void showPopupThanhToan() {
-        View popupView = LayoutInflater.from(this).inflate(R.layout.dialog_thanhtoan, null);
+        View popupView = LayoutInflater.from(this).inflate(R.layout.layout_thanhtoan, null);
 
         Dialog dialog = new Dialog(this);
         dialog.setContentView(popupView);

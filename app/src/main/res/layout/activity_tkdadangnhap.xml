@@ -146,7 +146,6 @@
                         android:src="@drawable/ic_arrow_right" />
                 </LinearLayout>
 
-                <!-- Các mục khác (2 đến 8) tương tự, sửa layout_width="wrap_content" => "0dp" khi dùng layout_weight -->
                 <!-- Mục 2 -->
                 <LinearLayout
                     android:id="@+id/bonuspoint"
@@ -328,8 +327,9 @@
                         android:src="@drawable/ic_arrow_right" />
                 </LinearLayout>
 
-                <!-- Mục 7 -->
+                <!-- Mục 7: Câu hỏi thường gặp-->
                 <LinearLayout
+                    android:id="@+id/cauhoithuonggap"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:orientation="horizontal"
@@ -362,8 +362,9 @@
                         android:src="@drawable/ic_arrow_right" />
                 </LinearLayout>
 
-                <!-- Mục 8 -->
+                <!-- Mục 8: Chính sách -->
                 <LinearLayout
+                    android:id="@+id/chinhsach"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:orientation="horizontal"

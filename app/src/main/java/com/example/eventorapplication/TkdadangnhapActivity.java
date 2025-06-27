@@ -100,5 +100,29 @@ public class TkdadangnhapActivity extends BaseActivity<ActivityTkdadangnhapBindi
                 startActivity(intent);
             }
         });
+
+        binding.cauhoithuonggap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TkdadangnhapActivity.this, CauhoithuonggapActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.chinhsach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TkdadangnhapActivity.this, ChinhsachActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TkdadangnhapActivity.this, DangnhapActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

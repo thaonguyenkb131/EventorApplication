@@ -67,6 +67,7 @@ public class DiemthuongActivity extends BaseActivity<ActivityDiemthuongBinding> 
 
         txtHeaderTitle.setText("Điểm thưởng");
         btnBack.setOnClickListener(v -> finish());
+
     }
 
 

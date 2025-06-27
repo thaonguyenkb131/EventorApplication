@@ -100,7 +100,7 @@
             android:name=".ChitiettinnhanActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".TimkiemsaulocActivity"
+            android:name=".KetquatimkiemActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".SukienxuhuongActivity"

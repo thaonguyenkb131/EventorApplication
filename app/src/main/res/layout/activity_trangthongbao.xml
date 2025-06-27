@@ -17,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:text="Thông báo"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:gravity="center"
         android:padding="10dp"
         android:fontFamily="@font/montserrat_bold"

@@ -26,18 +26,22 @@ public class SukiencuatoiActivity extends BaseActivity<ActivitySukiencuatoiBindi
         super.onCreate(savedInstanceState);
         // Load mặc định fragment đầu tiên
         loadFragment(new SukiendaluuFragment());
+        updateButtonStates(0);
 
         // Xử lý click từng nút
         binding.btnSkdaluu.setOnClickListener(v -> {
             loadFragment(new SukiendaluuFragment());
+            updateButtonStates(0);
         });
 
         binding.btnVedamua.setOnClickListener(v -> {
             loadFragment(new VedamuaFragment());
+            updateButtonStates(1);
         });
 
         binding.btnSkdadang.setOnClickListener(v -> {
             loadFragment(new SukiendadangFragment());
+            updateButtonStates(2);
         });
 
         //        Tránh che màn hình
@@ -67,6 +71,13 @@ public class SukiencuatoiActivity extends BaseActivity<ActivitySukiencuatoiBindi
                 .beginTransaction()
                 .replace(R.id.container, fragment)
                 .commit();
+    }
+
+    private void updateButtonStates(int selected) {
+        // 0: btnSkdaluu, 1: btnVedamua, 2: btnSkdadang
+        binding.btnSkdaluu.setAlpha(selected == 0 ? 1f : 0.5f);
+        binding.btnVedamua.setAlpha(selected == 1 ? 1f : 0.5f);
+        binding.btnSkdadang.setAlpha(selected == 2 ? 1f : 0.5f);
     }
 
 

@@ -320,7 +320,7 @@
                         android:layout_height="40dp"
                         android:layout_margin="4dp"
                         android:padding="10dp"
-                        android:text="👥 Giao lưu cộng đồng"
+                        android:text="👥 Văn hóa"
                         android:textSize="15sp" />
 
                     <TextView
@@ -350,7 +350,7 @@
                         android:layout_height="40dp"
                         android:layout_margin="4dp"
                         android:padding="10dp"
-                        android:text="💡 Kỹ năng sống"
+                        android:text="💡 Tình nguyện"
                         android:textSize="15sp" />
 
                     <TextView

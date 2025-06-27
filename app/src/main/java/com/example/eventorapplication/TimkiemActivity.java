@@ -1,5 +1,6 @@
 package com.example.eventorapplication;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import com.example.models.TimkiemgvItem;
 import com.example.models.TimkiemlvItem;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class TimkiemActivity extends BaseActivity<ActivityTimkiemBinding> {
 
@@ -28,7 +30,8 @@ public class TimkiemActivity extends BaseActivity<ActivityTimkiemBinding> {
     private ArrayList<TimkiemgvItem> phvbList;
     private TimkiemgvAdapter gvAdapter;
 
-
+    private Calendar fromDate = Calendar.getInstance();
+    private Calendar toDate = Calendar.getInstance();
 
     @Override
     protected ActivityTimkiemBinding inflateBinding() {
@@ -41,6 +44,9 @@ public class TimkiemActivity extends BaseActivity<ActivityTimkiemBinding> {
         super.onCreate(savedInstanceState);
 
         addEvents();
+
+        // Sự kiện chọn lịch
+        binding.imgCalendar.setOnClickListener(v -> showDateRangePicker());
 
         // Tránh che màn hình, đồng bộ footer với các trang khác
         View rootView = findViewById(R.id.main); // ConstraintLayout có id="main"
@@ -180,5 +186,36 @@ public class TimkiemActivity extends BaseActivity<ActivityTimkiemBinding> {
         params.height = totalHeight + gridView.getPaddingTop() + gridView.getPaddingBottom();
         gridView.setLayoutParams(params);
         gridView.requestLayout();
+    }
+
+    private void showDateRangePicker() {
+        // Chọn ngày bắt đầu
+        DatePickerDialog fromDialog = new DatePickerDialog(
+                this,
+                R.style.MyDatePickerDialogTheme,
+                (view, year, month, dayOfMonth) -> {
+                    fromDate.set(year, month, dayOfMonth);
+                    // Sau khi chọn ngày bắt đầu, chọn ngày kết thúc
+                    DatePickerDialog toDialog = new DatePickerDialog(
+                            this,
+                            R.style.MyDatePickerDialogTheme,
+                            (view2, year2, month2, dayOfMonth2) -> {
+                                toDate.set(year2, month2, dayOfMonth2);
+                                // TODO: Xử lý ngày đã chọn ở đây (fromDate, toDate)
+                            },
+                            toDate.get(Calendar.YEAR),
+                            toDate.get(Calendar.MONTH),
+                            toDate.get(Calendar.DAY_OF_MONTH)
+                    );
+                    toDialog.setTitle("Chọn ngày kết thúc");
+                    toDialog.getDatePicker().setMinDate(fromDate.getTimeInMillis());
+                    toDialog.show();
+                },
+                fromDate.get(Calendar.YEAR),
+                fromDate.get(Calendar.MONTH),
+                fromDate.get(Calendar.DAY_OF_MONTH)
+        );
+        fromDialog.setTitle("Chọn ngày bắt đầu");
+        fromDialog.show();
     }
 }

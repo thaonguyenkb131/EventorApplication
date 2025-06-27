@@ -57,6 +57,7 @@ public class ThemptttActivity extends AppCompatActivity {
         txtHeaderTitle.setText("Thêm PTTT");
         btnBack.setOnClickListener(v -> finish());
 
+
         GridLayout gvTheqt = findViewById(R.id.gvTheqt);
         GridLayout gvThend = findViewById(R.id.gvThend);
 

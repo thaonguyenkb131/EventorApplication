@@ -57,7 +57,7 @@ public class TrangthongbaoActivity extends BaseActivity<ActivityTrangthongbaoBin
         }
 
 //        binding.imvnhantin.setOnClickListener(v -> {
-//            startActivity(new Intent(this, TinnhanActivity.class));
+//            startActivity(new Intent(this, ChitiettinnhanActivity.class));
 //        });
 
         // Toggle nút bật thông báo

@@ -19,7 +19,7 @@
         android:id="@+id/scrollView_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/header_layout">
+        android:layout_below="@id/header">
 
             <LinearLayout
                 android:layout_width="match_parent"

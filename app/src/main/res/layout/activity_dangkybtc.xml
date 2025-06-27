@@ -9,52 +9,14 @@
     tools:context=".DangkybtcActivity">
 
     <!-- Header -->
-    <LinearLayout
+    <include
         android:id="@+id/header"
-        android:layout_width="0dp"
+        layout="@layout/layout_headertkcuatoi"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:background="#006183"
-            android:paddingTop="20dp"
-            android:paddingBottom="10dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp">
-
-            <TextView
-                android:id="@+id/txtTieudeHeader"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Đăng ký trở thành BTC"
-                android:fontFamily="@font/montserrat_semibold"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/imvtimkiem"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_search_white" />
-
-            <ImageView
-                android:id="@+id/imvnhantin"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_message" />
-        </LinearLayout>
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <!-- ScrollView Content -->
     <ScrollView
@@ -66,7 +28,8 @@
         app:layout_constraintTop_toBottomOf="@+id/header"
         app:layout_constraintBottom_toTopOf="@+id/footerLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="10dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

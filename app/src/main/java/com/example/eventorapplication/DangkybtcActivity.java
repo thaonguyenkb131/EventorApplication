@@ -7,7 +7,9 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -58,6 +60,13 @@ public class DangkybtcActivity extends BaseActivity<ActivityDangkybtcBinding> {
         binding.edtSearch.setOnClickListener(view -> showPopupMap(view));
         binding.btnChon.setOnClickListener(view -> showPopupThanhToan());
         binding.btnDangky.setOnClickListener(view -> showPopupDangkybtcthanhcong());
+
+        // Thiết lập tiêu đề và nút quay lại
+        TextView txtHeaderTitle = findViewById(R.id.txtTitle);
+        ImageView btnBack = findViewById(R.id.btnBack);
+
+        txtHeaderTitle.setText("Đăng ký thành BTC");
+        btnBack.setOnClickListener(v -> finish());
 
     }
 

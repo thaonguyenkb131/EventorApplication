@@ -8,25 +8,17 @@
 
     <!-- HEADER -->
     <include
-        android:id="@+id/header_layout"
-        layout="@layout/activity_headerver2"
+        android:id="@+id/header"
+        layout="@layout/layout_headertkcuatoi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!-- FOOTER -->
-    <include
-        android:id="@+id/footerLayout"
-        layout="@layout/activity_footer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"/>
 
     <!-- CONTENT -->
     <ScrollView
         android:id="@+id/scrollView_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/footerLayout"
         android:layout_below="@id/header_layout">
 
             <LinearLayout
@@ -35,6 +27,7 @@
                 android:orientation="vertical">
 
                 <!-- Banner & Thông tin -->
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="225dp"

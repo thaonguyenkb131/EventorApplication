@@ -1,5 +1,6 @@
 package com.example.eventorapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.example.adapters.SukiendadangAdapter;
@@ -87,6 +89,16 @@ public class SukiendadangFragment extends Fragment {
         // Gắn adapter vào ListView qua binding
         SukiendadangAdapter adapter = new SukiendadangAdapter(requireContext(), new ArrayList<>(dsSuKien));
         binding.lvSkdd.setAdapter(adapter);
+
+        // Chỉ mở Activity chi tiết, chưa cần truyền dữ liệu
+        binding.lvSkdd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), ChitietsukienActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return binding.getRoot();
 
     }

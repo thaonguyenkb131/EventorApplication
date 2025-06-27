@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -27,6 +28,8 @@ public class ChitietsukienActivity extends BaseActivity<ActivityChitietsukienBin
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
         //        Tránh che màn hình
         View rootView = findViewById(R.id.main); // ConstraintLayout có id="main"
@@ -95,4 +98,5 @@ public class ChitietsukienActivity extends BaseActivity<ActivityChitietsukienBin
             }
         });
     }
+
 }

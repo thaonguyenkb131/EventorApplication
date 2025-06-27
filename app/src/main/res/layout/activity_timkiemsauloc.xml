@@ -10,13 +10,12 @@
 
     <!-- Thanh tìm kiếm -->
     <LinearLayout
-        android:id="@+id/Thanhtimkiem"
+        android:id="@+id/header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="#006183"
-        android:paddingTop="30dp"
-        android:paddingBottom="10dp"
+        android:padding="10dp"
         android:layout_marginBottom="15dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +62,6 @@
         android:gravity="start"
         android:baselineAligned="false"
         android:layout_marginBottom="8dp"
-        app:layout_constraintTop_toBottomOf="@id/Thanhtimkiem"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -73,13 +71,13 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:horizontalSpacing="10dp"
-        android:verticalSpacing="10dp"
         android:numColumns="2"
         android:padding="8dp"
-        app:layout_constraintTop_toBottomOf="@id/chipLayout"
+        android:verticalSpacing="10dp"
         app:layout_constraintBottom_toTopOf="@id/footerLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/header" />
 
     <!-- FooterActivity -->
     <include

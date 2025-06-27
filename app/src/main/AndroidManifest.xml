@@ -109,7 +109,7 @@
             android:name=".TaosukienActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".VedamuaActivity"
+            android:name=".ChinhsachActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".FooterActivity"
@@ -120,7 +120,11 @@
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".VecuatoiActivity"
+            android:name=".DangkyActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".DangnhapActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity

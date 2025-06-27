@@ -1,5 +1,6 @@
 package com.example.eventorapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -40,7 +41,7 @@ public class TimkiemsaulocActivity extends BaseActivity<ActivityTimkiemsaulocBin
             v.setPadding(0, 0, 0, systemBars.bottom); // tránh bị che nút
 
             // Đẩy TextView xuống dưới status bar
-            View txtTitle = findViewById(R.id.Thanhtimkiem);
+            View txtTitle = findViewById(R.id.header);
             txtTitle.setPadding(
                     txtTitle.getPaddingLeft(),
                     systemBars.top,
@@ -49,6 +50,14 @@ public class TimkiemsaulocActivity extends BaseActivity<ActivityTimkiemsaulocBin
             );
 
             return insets;
+        });
+
+        binding.imgTimkiem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TimkiemsaulocActivity.this, TimkiemActivity.class);
+                startActivity(intent);
+            }
         });
     }
 

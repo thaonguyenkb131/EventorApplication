@@ -1,126 +1,86 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:layout_width="wrap_content"
+    android:layout_width="160dp"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="@color/white">
+    android:orientation="vertical"
+    android:backgroundTint="@android:color/white"
+    android:elevation="6dp"
+    android:layout_margin="5dp"
+    android:gravity="center">
 
-    <LinearLayout
-        android:id="@+id/EventTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:orientation="vertical">
+    <androidx.cardview.widget.CardView
+        style="@style/RoundedCardStyleGrid"
+        android:layout_gravity="center">
 
-        <!-- Hình ảnh poster -->
         <ImageView
             android:id="@+id/imvThumb"
-            android:layout_width="200dp"
-            android:layout_height="120dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/eventimage" />
+    </androidx.cardview.widget.CardView>
 
-        <!-- Nội dung -->
-        <LinearLayout
-            android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:gravity="left"
+        android:maxLines="2"
+        android:text="Lululola Show: Ngày này Người con gái này - Vũ Cát Tường"
+        android:textColor="@color/black"
+        android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/tvPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Từ 300.000 VND"
+        android:textColor="#1c9cca"
+        android:textSize="10sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:layout_gravity="left" />
+
+    <!-- Thời gian + Địa điểm -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="2dp">
+        <ImageView
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/location_et" />
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="2dp">
+            android:text="Hà Nội"
+            android:textColor="#1C9CCA"
+            android:textSize="7sp"
+            android:fontFamily="@font/montserrat_semibold" />
 
-            <!-- Tiêu đề -->
-            <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="Lululola Show: Ngày này Người con gái này - Vũ Cát Tường"
-                android:textColor="#000000"
-                android:textSize="14sp"
-                android:maxLines="2"
-                android:ellipsize="end"
-                android:textStyle="bold" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
-            <!-- Giá vé -->
-            <TextView
-                android:id="@+id/tvPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/montserrat_semibold"
-                android:text="Từ 300.000 VND"
-                android:textColor="#1C9CCA"
-                android:textSize="10sp"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/tvLine"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="____________"
-                android:textColor="#1C9CCA"
-                android:layout_marginTop="-15dp"
-                android:fontFamily="@font/montserrat_semibold"/>
+        <ImageView
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginEnd="2dp"
+            android:src="@drawable/calender_et" />
 
-            <!-- Địa điểm + Ngày -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <!-- Địa điểm -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="10dp"
-                        android:layout_height="10dp"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginTop="2dp"
-                        android:src="@drawable/location_et" />
-
-                    <TextView
-                        android:id="@+id/tvLocation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="Hà Nội"
-                        android:textColor="#1C9CCA"
-                        android:textSize="10sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <!-- Ngày -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal"
-                    android:gravity="end">
-
-                    <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:layout_marginEnd="4dp"
-                        android:src="@drawable/calender_et" />
-
-                    <TextView
-                        android:id="@+id/tvDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="07/06/2025"
-                        android:textColor="#1C9CCA"
-                        android:textSize="10sp" />
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="07/06/2025"
+            android:textColor="#1C9CCA"
+            android:textSize="7sp"
+            android:fontFamily="@font/montserrat_semibold" />
     </LinearLayout>
 </LinearLayout>

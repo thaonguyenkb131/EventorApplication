@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="#006183"
-        android:paddingTop="30dp"
+        android:paddingTop="20dp"
         android:paddingBottom="10dp"
         android:layout_marginBottom="15dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,14 +26,14 @@
         <ImageView
             android:id="@+id/imgCalendar"
             android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:layout_marginStart="25dp"
             android:src="@drawable/ic_calendar" />
 
         <ImageView
             android:id="@+id/imgFilter"
             android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:layout_marginStart="10dp"
             android:src="@drawable/ic_filter" />
 
@@ -41,6 +41,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="#FFFFFF"
             android:hint="Tìm kiếm"
             android:padding="10dp"
             android:textColorHint="#7FFFFFFF"
@@ -49,8 +50,8 @@
 
         <ImageView
             android:id="@+id/imgTimkiem"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="25dp"
             android:src="@drawable/ic_search_white" />
     </LinearLayout>
@@ -465,8 +466,9 @@
                 android:horizontalSpacing="12dp"
                 android:nestedScrollingEnabled="false"
                 android:numColumns="2"
-                android:scrollbars="none"
+                android:paddingBottom="10dp"
                 android:paddingHorizontal="20dp"
+                android:scrollbars="none"
                 android:verticalSpacing="10dp" />
         </LinearLayout>
     </ScrollView>

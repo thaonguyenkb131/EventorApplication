@@ -1,0 +1,181 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DangkyActivity"
+    android:background="#006183"
+    android:fillViewport="true">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:background="@drawable/backimage"
+            android:layout_margin="16dp"
+            android:gravity="center_horizontal">
+
+            <!-- Logo -->
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:src="@drawable/logoevt_color" />
+
+            <!-- Tiêu đề -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Đăng Ký"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#006183"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat_bold"/>
+
+            <!-- Mô tả -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tạo tài khoản của bạn"
+                android:textSize="14sp"
+                android:textColor="#888888"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/montserrat_regular" />
+
+            <!-- Họ -->
+            <EditText
+                android:id="@+id/edtLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Họ(*)"
+                android:layout_marginTop="16dp"
+                android:textColorHint="#AAAAAA"
+                android:textColor="#000000"
+                android:backgroundTint="#CCCCCC"
+                android:paddingBottom="8dp"/>
+
+            <!-- Tên -->
+            <EditText
+                android:id="@+id/edtFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tên(*)"
+                android:layout_marginTop="8dp"
+                android:textColorHint="#AAAAAA"
+                android:textColor="#000000"
+                android:backgroundTint="#CCCCCC"
+                android:paddingBottom="8dp"/>
+
+            <!-- Email -->
+            <EditText
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email(*)"
+                android:inputType="textEmailAddress"
+                android:layout_marginTop="8dp"
+                android:textColorHint="#AAAAAA"
+                android:textColor="#000000"
+                android:backgroundTint="#CCCCCC"
+                android:paddingBottom="8dp"/>
+
+            <!-- SĐT -->
+            <EditText
+                android:id="@+id/edtPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Số điện thoại"
+                android:inputType="phone"
+                android:layout_marginTop="8dp"
+                android:textColorHint="#AAAAAA"
+                android:textColor="#000000"
+                android:backgroundTint="#CCCCCC"
+                android:paddingBottom="8dp"/>
+
+            <!-- Mật khẩu -->
+            <EditText
+                android:id="@+id/edtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mật khẩu(*)"
+                android:inputType="textPassword"
+                android:layout_marginTop="8dp"
+                android:textColorHint="#AAAAAA"
+                android:textColor="#000000"
+                android:backgroundTint="#CCCCCC"
+                android:paddingBottom="8dp"/>
+
+            <!-- Nhập lại mật khẩu -->
+            <EditText
+                android:id="@+id/edtRePassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập lại mật khẩu(*)"
+                android:inputType="textPassword"
+                android:layout_marginTop="8dp"
+                android:textColorHint="#AAAAAA"
+                android:textColor="#000000"
+                android:backgroundTint="#CCCCCC"
+                android:paddingBottom="8dp"/>
+
+            <!-- Đồng ý điều khoản -->
+            <CheckBox
+                android:id="@+id/checkboxTerms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Khi đăng ký, tôi đồng ý với Điều khoản sử dụng và Chính sách bảo mật."
+                android:textColor="#888888"
+                android:textSize="14sp"/>
+
+            <!-- Nút Đăng ký -->
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Đăng ký"
+                android:layout_marginTop="24dp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#006183"
+                android:padding="12dp"
+                android:textSize="20sp"
+                android:fontFamily="@font/montserrat_bold"/>
+
+            <!-- Đăng nhập -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đã có tài khoản? "
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/montserrat_regular"/>
+
+                <TextView
+                    android:id="@+id/txtLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đăng nhập"
+                    android:textColor="#066D8D"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montserrat_bold"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

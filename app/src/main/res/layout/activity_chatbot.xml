@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChatbotActivity"
+    android:background="#FFFFFF">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/layout_headertkcuatoi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ScrollView
+        android:id="@+id/scrollContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:layout_above="@id/chatInputArea"
+        android:fillViewport="true"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+                <!-- Header -->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="8dp">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_bot_avatar" />
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_marginStart="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:text="Trợ lý Eventor"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="#000000"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:text="Đang hoạt động"
+                            android:textSize="14sp"
+                            android:textColor="#666666"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Thời gian -->
+                <TextView
+                    android:text="Hôm nay, 9:39"
+                    android:textSize="14sp"
+                    android:textColor="#555555"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <!-- Tin nhắn bot -->
+                <TextView
+                    android:text="Chào Nguyên, hôm nay tôi có thể giúp gì cho bạn?"
+                    android:background="@drawable/bg_admin_bubble"
+                    android:padding="16dp"
+                    android:layout_marginEnd="80dp"
+                    android:textSize="16sp"
+                    android:textColor="#222222"
+                    android:lineSpacingExtra="6dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:layout_marginBottom="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <!-- Tin nhắn người dùng -->
+                <TextView
+                    android:text="Tôi muốn tìm các sự kiện liên quan đến tình nguyện có thời gian diễn ra từ ngày 20/06 đến 27/06, bạn giúp tôi với, cảm ơn bạn nhiều nha"
+                    android:background="@drawable/bg_user_bubble"
+                    android:padding="16dp"
+                    android:textSize="16sp"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="80dp"
+                    android:lineSpacingExtra="6dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:layout_gravity="end"
+                    android:layout_marginBottom="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <!-- Gợi ý sự kiện từ bot -->
+                <TextView
+                android:text="Không có gì đâu, giúp bạn là niềm vui của mình mà. \nSau đây là một số tin sự kiện phù hợp với yêu cầu của bạn:
+                \nQuỹ Vì Trẻ Em Vten Tuyển Dụng Tình Nguyện Viên Dạy Toán Online diễn ra ngày 20/06/2025
+                \nDấu Ấn Chiến Dịch: Hè Xanh Màu Áo Tự Hào Quản Trị 2024 diễn ra ngày 21/06/2025
+                \nTổ Chức Phi Lợi Nhuận STEAM For Vietnam Tuyển Tình Nguyện Viên 2024 diễn ra ngày 22/06/2025
+                \nTED Translators Mở Đơn Tuyển Tình Nguyện Viên diễn ra ngày 23/06/2025
+                \nDự Án “Ting” – Lead Your Own Path Thuộc Quỹ SCF Việt Nam Tuyển Tình Nguyện Viên Và Thực Tập Sinh diễn ra ngày 24/06/2025
+                \nQuỹ Vì Trẻ Em Vten Tuyển Tình Nguyện Viên Dạy Tiếng Anh Trẻ Em Nông Thôn diễn ra ngày 25/06/2025
+                \nTổ Chức Từ Thiện Én Charity Tuyển Đại Sứ Truyền Thông diễn ra ngày 26/06/2025
+                \nDự Án Tâm Lý Học Tuổi Trẻ Tuyển Dụng Cộng Tác Viên diễn ra ngày 27/06/2026
+                \nTrên đây là một số sự kiện phù hợp với yêu cầu của bạn, mong là hữu ích với bạn!"
+                    android:background="@drawable/bg_admin_bubble"
+                    android:padding="16dp"
+                    android:layout_marginEnd="80dp"
+                    android:textSize="16sp"
+                    android:textColor="#222222"
+                    android:lineSpacingExtra="6dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </ScrollView>
+
+            <!-- Khu vực input cố định dưới cùng -->
+        <LinearLayout
+            android:id="@+id/chatInputArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:background="#F2F2F2"
+            android:padding="12dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:src="@drawable/ic_attach"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="8dp" />
+
+            <EditText
+                android:hint="Nhập tin nhắn..."
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:padding="8dp"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:src="@drawable/ic_icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp" />
+
+            <ImageView
+                android:src="@drawable/ic_send"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="#006183" />
+
+            <ImageView
+                android:src="@drawable/ic_mic"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="4dp"
+                android:backgroundTint="#006183" />
+        </LinearLayout>
+
+</RelativeLayout>

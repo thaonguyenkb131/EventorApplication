@@ -1,0 +1,114 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CailaimatkhauActivity"
+    android:background="#006183"
+    android:fillViewport="true">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:background="@drawable/backimage"
+            android:layout_margin="16dp"
+            android:gravity="center_horizontal">
+
+            <!-- Logo -->
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo" />
+
+            <!-- Tiêu đề -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quên Mật Khẩu"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#006183"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat_bold" />
+
+            <!-- Mật khẩu mới -->
+            <EditText
+                android:id="@+id/edtNewPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập mật khẩu mới"
+                android:inputType="textPassword"
+                android:layout_marginTop="32dp"
+                android:textColorHint="#AAAAAA"
+                android:textColor="#000000"
+                android:backgroundTint="#CCCCCC"
+                android:fontFamily="@font/montserrat_regular"
+                android:paddingBottom="8dp" />
+
+            <!-- Nhập lại mật khẩu -->
+            <EditText
+                android:id="@+id/edtConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nhập lại mật khẩu mới"
+                android:inputType="textPassword"
+                android:layout_marginTop="12dp"
+                android:textColorHint="#AAAAAA"
+                android:textColor="#000000"
+                android:backgroundTint="#CCCCCC"
+                android:fontFamily="@font/montserrat_regular"
+                android:paddingBottom="8dp" />
+
+            <!-- Nút đổi mật khẩu -->
+            <Button
+                android:id="@+id/btnResetPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Đổi mật khẩu"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="#066183"
+                android:textSize="18sp"
+                android:padding="12dp" />
+
+            <!-- Quay lại đăng nhập -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quay lại trang "
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/montserrat_regular" />
+
+                <TextView
+                    android:id="@+id/txtBackToLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đăng nhập"
+                    android:textColor="#066D8D"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montserrat_bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

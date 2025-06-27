@@ -5,19 +5,19 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#006183"
-    tools:context=".Taosukien">
+    tools:context=".TaosukienActivity">
 
     <TextView
         android:id="@+id/Header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Tạo sự kiện của bạn"
+        android:background="#006183"
         android:fontFamily="@font/montserrat_semibold"
         android:textSize="20sp"
         android:textColor="@color/white"
         android:paddingBottom="10dp"
-        android:paddingTop="30dp"
+        android:paddingTop="10dp"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -209,7 +209,7 @@
                 android:layout_height="35dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/bg_search_box_img"
-                android:drawableEnd="@drawable/ic_search"
+                android:drawableEnd="@drawable/ic_search_blue"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 android:textSize="14sp" />

@@ -13,116 +13,122 @@
         android:theme="@style/Theme.EventorApplication"
         tools:targetApi="31">
         <activity
-            android:name=".PopupSukienMenu"
+            android:name=".SukiencuatoiActivity"
             android:exported="false" />
         <activity
-            android:name=".SukiendadangItem"
+            android:name=".DangkybtcthanhcongDialog"
             android:exported="false" />
         <activity
-            android:name=".PopupOrganizerAccountActivity"
+            android:name=".MenusukienDialog"
             android:exported="false" />
         <activity
-            android:name=".PopupFeeAccount"
+            android:name=".TktochucDialog"
             android:exported="false" />
         <activity
-            android:name=".PopupStandardAccount"
+            android:name=".TktraphiDialog"
             android:exported="false" />
         <activity
-            android:name=".UsuallyFaq"
+            android:name=".TaikhoanthuongDialog"
             android:exported="false" />
         <activity
-            android:name=".AddPayment"
+            android:name=".CauhoithuonggapActivity"
             android:exported="false" />
         <activity
-            android:name=".Payment"
+            android:name=".ThemptttActivity"
             android:exported="false" />
         <activity
-            android:name=".ComboAccount"
+            android:name=".TaikhoanthanhtoanActivity"
             android:exported="false" />
         <activity
-            android:name=".AccountInfor"
+            android:name=".GoitaikhoanActivity"
             android:exported="false" />
         <activity
-            android:name=".ChangePassword"
+            android:name=".CaidattaikhoanActivity"
             android:exported="false" />
         <activity
-            android:name=".BonusPoint"
+            android:name=".DoimatkhauActivity"
             android:exported="false" />
         <activity
-            android:name=".PersonalProfile"
+            android:name=".DiemthuongActivity"
             android:exported="false" />
         <activity
-            android:name=".MyAccountLoggedIn"
+            android:name=".TrangcanhanActivity"
             android:exported="false" />
         <activity
-            android:name=".MyAccountNotLoggedIn"
+            android:name=".TrangchuActivity"
             android:exported="false" />
         <activity
-            android:name=".ChatboxMessage"
+            android:name=".TkdadangnhapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TkchuadangnhapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChatbotActivity"
             android:exported="false" />
         <activity
             android:name=".TrangthongbaoActivity"
             android:exported="false" />
         <activity
-            android:name=".TrangThanhToan"
+            android:name=".ThanhtoanActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".PopupSoLuongVe"
+            android:name=".SoluongveDialog"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".PopupChiaSeSuKien"
+            android:name=".ChiaseskDialog"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".PopupThanhToanThanhCong"
+            android:name=".ThanhtoanthanhcongDialog"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".trang_su_kien_da_dang"
+            android:name=".SukiendadangActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".EventTag"
+            android:name=".ChitietsukienActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".TrangChiTietSuKien"
+            android:name=".TimkiemActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".TinnhanActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".TimkiemsaulocActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".SukienxuhuongActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".TaosukienActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ChinhsachActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".FooterActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Timkiem"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name=".Tinnhan"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name=".Ketquatimkiem"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name=".Sukienxuhuong"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name=".Taosukien"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name=".trang_ve_da_mua"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity
-            android:name=".footer"
+            android:name=".DangkybtcActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".PageOnboarding"
+            android:name=".DangkyActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".TrangVeCuaToi"
+            android:name=".DangnhapActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".MainActivity"
+            android:name=".OnboardingActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>

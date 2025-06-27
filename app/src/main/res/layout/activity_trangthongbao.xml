@@ -8,51 +8,20 @@
     tools:context=".TrangthongbaoActivity">
 
     <!-- Header -->
-    <LinearLayout
+    <TextView
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@android:color/white"
-        android:layout_alignParentTop="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:background="#006183"
-            android:paddingTop="30dp"
-            android:paddingBottom="10dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp">
-
-            <TextView
-                android:id="@+id/txtTieudeHeader"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Thông báo"
-                android:fontFamily="@font/montserrat_semibold"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/imvtimkiem"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/timkiem" />
-
-            <ImageView
-                android:id="@+id/imvnhantin"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/nhantin" />
-        </LinearLayout>
-    </LinearLayout>
+        android:background="#006183"
+        android:paddingHorizontal="25dp"
+        android:layout_alignParentTop="true"
+        android:text="Thông báo"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textStyle="bold"/>
 
     <!-- Bật/tắt thông báo -->
     <LinearLayout
@@ -78,7 +47,6 @@
 
     </LinearLayout>
 
-
     <!-- ListView -->
     <ListView
         android:id="@+id/lvThongbao"
@@ -102,7 +70,7 @@
         android:textSize="14sp"
         android:gravity="center" />
 
-    <!-- Footer -->
+    <!-- FooterActivity -->
     <include
         android:id="@+id/footer"
         layout="@layout/activity_footer"

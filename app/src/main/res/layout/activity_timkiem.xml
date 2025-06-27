@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
-    tools:context=".Timkiem">
+    android:background="#FFFFFF"
+    tools:context=".TimkiemActivity">
 
     <!-- Thanh tìm kiếm -->
     <LinearLayout
@@ -15,7 +16,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="#006183"
-        android:paddingTop="30dp"
+        android:paddingTop="20dp"
         android:paddingBottom="10dp"
         android:layout_marginBottom="15dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,31 +26,34 @@
         <ImageView
             android:id="@+id/imgCalendar"
             android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:layout_marginStart="25dp"
-            android:src="@drawable/iccalendar" />
+            android:src="@drawable/ic_calendar" />
 
         <ImageView
             android:id="@+id/imgFilter"
             android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:layout_marginStart="10dp"
-            android:src="@drawable/icfilter" />
+            android:src="@drawable/ic_filter" />
 
         <EditText
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="#FFFFFF"
             android:hint="Tìm kiếm"
             android:padding="10dp"
+            android:textColorHint="#7FFFFFFF"
+            android:backgroundTint="#78FFFFFF"
             android:minHeight="48dp" />
 
         <ImageView
             android:id="@+id/imgTimkiem"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="25dp"
-            android:src="@drawable/timkiem" />
+            android:src="@drawable/ic_search_white" />
     </LinearLayout>
 
     <!-- Nội dung chính -->
@@ -57,33 +61,32 @@
         android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fillViewport="true"
         android:clipToPadding="false"
-        app:layout_constraintTop_toBottomOf="@id/Thanhtimkiem"
+        android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@id/footerLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/Thanhtimkiem">
 
         <!-- Layout con bên trong ScrollView -->
         <LinearLayout
             android:id="@+id/contentLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="40dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
             <!-- ListView -->
 
             <ListView
                 android:id="@+id/lvTimkiem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:divider="@android:color/transparent"
                 android:dividerHeight="10dp"
                 android:focusable="false"
                 android:nestedScrollingEnabled="false"
-                android:scrollbars="none"
                 android:paddingHorizontal="12dp"
-                android:layout_marginBottom="20dp" />
+                android:scrollbars="none" />
 
             <TextView
                 android:id="@+id/txtTheodanhmuc"
@@ -283,7 +286,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-<!--                    TP HCM-->
+                    <!--                    TP HCM-->
                     <LinearLayout
                         android:id="@+id/DiadiemTPHCM"
                         android:layout_width="wrap_content"
@@ -291,14 +294,15 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:orientation="vertical">
-                        <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDiadiem">
+
+                        <androidx.cardview.widget.CardView style="@style/RoundedCardStyleDiadiem">
+
                             <ImageView
                                 android:id="@+id/imgTPHCM"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/tphcm"
-                                android:scaleType="centerCrop"/>
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/tphcm" />
                         </androidx.cardview.widget.CardView>
 
                         <TextView
@@ -313,7 +317,7 @@
                             android:textSize="14sp" />
                     </LinearLayout>
 
-<!--                    Hà Nội-->
+                    <!--                    Hà Nội-->
                     <LinearLayout
                         android:id="@+id/DiadiemHaNoi"
                         android:layout_width="wrap_content"
@@ -321,14 +325,15 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:orientation="vertical">
-                        <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDiadiem">
+
+                        <androidx.cardview.widget.CardView style="@style/RoundedCardStyleDiadiem">
+
                             <ImageView
                                 android:id="@+id/imgHaNoi"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/hanoi"
-                                android:scaleType="centerCrop"/>
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/hanoi" />
                         </androidx.cardview.widget.CardView>
 
                         <TextView
@@ -343,7 +348,7 @@
                             android:textSize="14sp" />
                     </LinearLayout>
 
-<!--                    Đà Nẵng-->
+                    <!--                    Đà Nẵng-->
                     <LinearLayout
                         android:id="@+id/DiadiemDaNang"
                         android:layout_width="wrap_content"
@@ -351,14 +356,15 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:orientation="vertical">
-                        <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDiadiem">
+
+                        <androidx.cardview.widget.CardView style="@style/RoundedCardStyleDiadiem">
+
                             <ImageView
                                 android:id="@+id/imgDaNang"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/danang"
-                                android:scaleType="centerCrop"/>
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/danang" />
                         </androidx.cardview.widget.CardView>
 
                         <TextView
@@ -373,7 +379,7 @@
                             android:textSize="14sp" />
                     </LinearLayout>
 
-<!--                    Đà Lạt-->
+                    <!--                    Đà Lạt-->
                     <LinearLayout
                         android:id="@+id/DiadiemDaLat"
                         android:layout_width="wrap_content"
@@ -381,14 +387,15 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:orientation="vertical">
-                        <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDiadiem">
+
+                        <androidx.cardview.widget.CardView style="@style/RoundedCardStyleDiadiem">
+
                             <ImageView
                                 android:id="@+id/imgDaLat"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/dalat"
-                                android:scaleType="centerCrop"/>
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/dalat" />
                         </androidx.cardview.widget.CardView>
 
                         <TextView
@@ -403,7 +410,7 @@
                             android:textSize="14sp" />
                     </LinearLayout>
 
-<!--                    Khác-->
+                    <!--                    Khác-->
                     <LinearLayout
                         android:id="@+id/DiadiemKhac"
                         android:layout_width="wrap_content"
@@ -411,14 +418,15 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:orientation="vertical">
-                        <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleDiadiem">
+
+                        <androidx.cardview.widget.CardView style="@style/RoundedCardStyleDiadiem">
+
                             <ImageView
                                 android:id="@+id/imgKhac"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/tpkhac"
-                                android:scaleType="centerCrop"/>
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/tpkhac" />
                         </androidx.cardview.widget.CardView>
 
                         <TextView
@@ -454,17 +462,17 @@
                 android:id="@+id/gvPhuhopvoiban"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:horizontalSpacing="12dp"
-                android:verticalSpacing="16dp"
-                android:numColumns="2"
                 android:focusable="false"
+                android:horizontalSpacing="12dp"
                 android:nestedScrollingEnabled="false"
+                android:numColumns="2"
+                android:paddingBottom="10dp"
+                android:paddingHorizontal="20dp"
                 android:scrollbars="none"
-                android:paddingHorizontal="8dp"
-                android:layout_marginBottom="20dp"
-                android:paddingBottom="30dp"/>
+                android:verticalSpacing="10dp" />
         </LinearLayout>
     </ScrollView>
+
     <include
         android:id="@+id/footerLayout"
         layout="@layout/activity_footer"
@@ -473,4 +481,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

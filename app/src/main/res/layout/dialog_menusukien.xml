@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@drawable/bg_popup_menusk"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    tools:context=".MenusukienDialog">
+
+    <TextView
+        android:id="@+id/btnEditsk"
+        style="@style/PopupItemStyle"
+        android:text="Chỉnh sửa"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/btnDeletesk"
+        style="@style/PopupItemStyle"
+        android:text="Xóa"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/btnViewAtt"
+        style="@style/PopupItemStyle"
+        android:text="Xem danh sách người tham gia"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/btnViewRep"
+        style="@style/PopupItemStyle"
+        android:text="Xem phân tích báo cáo"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="18sp"/>
+
+</LinearLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    tools:context=".DangkybtcthanhcongDialog"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/white">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="20dp">
+
+        <!-- Icon thành công -->
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_success"
+            android:layout_marginEnd="12dp" />
+
+        <!-- Text -->
+        <TextView
+            android:id="@+id/txtSuccess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đăng ký BTC thành công"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:fontFamily="@font/montserrat_bold"/>
+    </LinearLayout>
+    <!-- Nút đến trang chủ -->
+    <Button
+        android:id="@+id/btnTaosukien"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tạo sự kiện"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#066183"
+        android:paddingHorizontal="24dp"
+        android:textSize="14sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textAllCaps="false"
+        android:layout_gravity="end"/>
+
+
+</LinearLayout>

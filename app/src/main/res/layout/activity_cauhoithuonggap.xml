@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main"
+    android:background="@drawable/bg_gradient_faq"
+    tools:context=".CauhoithuonggapActivity">
+
+    <!-- ✅ Header cố định -->
+    <include
+        android:id="@+id/header"
+        layout="@layout/layout_headertkcuatoi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- ✅ ScrollView bên dưới header -->
+    <ScrollView
+        android:id="@+id/scrollContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp">
+
+            <TextView
+                android:text="Xin chào, chúng tôi có thể giúp gì cho bạn?"
+                android:textColor="#FFFFFF"
+                android:layout_marginBottom="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        <!-- Ô tìm kiếm -->
+            <EditText
+                android:hint="Nhập từ khóa hoặc nội dung cần tìm"
+                android:background="@drawable/bg_search_box_img"
+                android:padding="12dp"
+                android:textSize="15sp"
+                android:textColorHint="#999999"
+                android:textColor="#000000"
+                android:drawableStart="@drawable/ic_search_blue"
+                android:layout_width="match_parent"
+                android:gravity="left"
+                android:layout_height="48dp"
+                android:layout_marginBottom="10dp"/>
+
+            <!-- Câu hỏi gợi ý -->
+            <TextView
+                android:text="Làm thế nào để mua vé trên App?"
+                android:background="#D2EBF5"
+                android:textColor="#000000"
+                android:padding="12dp"
+                android:layout_marginBottom="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"/>
+
+            <!-- Tabs -->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:background="#F5F5F5"
+                android:layout_marginBottom="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp">
+
+                <TextView
+                    android:text="Mua vé &amp; Thanh toán"
+                    android:textStyle="bold"
+                    android:textColor="#006183"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_bold"/>
+
+                <TextView
+                    android:text="Khuyến mãi &amp; Ưu đãi"
+                    android:textStyle="bold"
+                    android:textColor="#A0A0A0"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_bold"/>
+            </LinearLayout>
+
+            <!-- Danh sách câu hỏi -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp">
+
+                <TextView
+                    android:text="Vé sẽ được gửi đến tôi bằng cách nào sau khi thanh toán thành công?"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="8dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EEEEEE" />
+
+                <TextView
+                    android:text="Tôi không nhận được email/tin nhắn xác nhận vé sau khi thanh toán, tôi phải làm gì?"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="8dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EEEEEE" />
+
+                <TextView
+                    android:text="Thông tin trên vé của tôi có cần trùng khớp với giấy tờ tùy thân không?"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="8dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EEEEEE" />
+
+                <TextView
+                    android:text="Thông tin cá nhân của tôi có được bảo mật không?"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="8dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EEEEEE" />
+
+                <TextView
+                    android:text="Vé điện tử là gì? Tôi có cần in vé ra không?"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="8dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EEEEEE" />
+
+                <TextView
+                    android:text="Tôi có thể đổi tên người tham gia/người đi trên vé không?"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="8dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EEEEEE" />
+
+                <TextView
+                    android:text="Tôi có thể lưu vé vào ví điện tử trên điện thoại (Apple Wallet/Google Wallet) không?"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="8dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EEEEEE" />
+
+                <TextView
+                    android:text="Tôi có thể nhận thông báo về các sự kiện mới/khuyến mãi hot trên ứng dụng không?"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="8dp" />
+
+                <TextView
+                    android:text="Xem thêm..."
+                    android:textColor="#006183"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <!-- Thêm thông tin -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:layout_marginTop="16dp"
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Bạn muốn tìm thêm thông tin gì không?"
+                    android:textStyle="bold"
+                    android:textColor="#000000"
+                    android:layout_marginBottom="12dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_bold"/>
+
+                <!-- Trợ lý -->
+                <LinearLayout android:orientation="horizontal"
+                    android:id="@+id/chatbot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="8dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_chat" />
+
+                    <TextView
+                        android:layout_marginStart="8dp"
+                        android:text="Trợ lý Eventor"
+                        android:textColor="#006183"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#DDDDDD" />
+
+                <!-- Gọi tổng đài -->
+                <LinearLayout android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="8dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_call" />
+
+                    <TextView
+                        android:layout_marginStart="8dp"
+                        android:text="Gọi tổng đài Eventor"
+                        android:textColor="#006183"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

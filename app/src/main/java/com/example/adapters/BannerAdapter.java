@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.eventorapplication.R;
-import com.example.eventorapplication.TrangChiTietSuKien;
+import com.example.eventorapplication.ChitietsukienActivity;
 
 public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerViewHolder> {
     private Context context;
@@ -33,7 +33,7 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
         holder.imgBanner.setImageResource(images[position]);
 
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, TrangChiTietSuKien.class);
+            Intent intent = new Intent(context, ChitietsukienActivity.class);
             intent.putExtra("banner_index", position); // Nếu cần truyền dữ liệu
             context.startActivity(intent);
         });

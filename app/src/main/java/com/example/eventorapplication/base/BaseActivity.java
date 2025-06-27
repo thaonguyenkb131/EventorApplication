@@ -3,18 +3,17 @@ package com.example.eventorapplication.base;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.ScrollView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewbinding.ViewBinding;
 
-import com.example.eventorapplication.MainActivity;
-import com.example.eventorapplication.MyAccountLoggedIn;
-import com.example.eventorapplication.Taosukien;
+import com.example.eventorapplication.SukiencuatoiActivity;
+import com.example.eventorapplication.TrangchuActivity;
+import com.example.eventorapplication.TkdadangnhapActivity;
+import com.example.eventorapplication.TaosukienActivity;
 import com.example.eventorapplication.TrangthongbaoActivity;
 import com.example.eventorapplication.R;
-import com.example.eventorapplication.trang_ve_da_mua;
 
 public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActivity {
 
@@ -31,7 +30,6 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         binding = inflateBinding();
         setContentView(binding.getRoot());
         setupFooterNavigation();
-        setupAutoHideFooter();
     }
 
     private void setupFooterNavigation() {
@@ -43,14 +41,14 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
 
         if (homepage != null) {
             homepage.setOnClickListener(v -> {
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, TrangchuActivity.class));
                 finish();
             });
         }
 
         if (taosukien != null) {
             taosukien.setOnClickListener(v -> {
-                startActivity(new Intent(this, Taosukien.class));
+                startActivity(new Intent(this, TaosukienActivity.class));
                 finish();
             });
         }
@@ -64,41 +62,41 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
 
         if (sukiencuatoi != null) {
             sukiencuatoi.setOnClickListener(v -> {
-                startActivity(new Intent(this, trang_ve_da_mua.class));
+                startActivity(new Intent(this, SukiencuatoiActivity.class));
                 finish();
             });
         }
         if(taikhoan != null) {
             taikhoan.setOnClickListener(v -> {
-                startActivity(new Intent(this, MyAccountLoggedIn.class));
+                startActivity(new Intent(this, TkdadangnhapActivity.class));
                 finish();
             });
         }
     }
 
 
-    private void setupAutoHideFooter() {
-        View root = binding.getRoot();
-
-        // Footer phải có id là R.id.footerLayout trong layout include
-        footerView = root.findViewById(R.id.footerLayout);
-        ScrollView scrollView = root.findViewById(R.id.scrollView);
-
-
-        if (footerView != null && scrollView != null) {
-            scrollView.getViewTreeObserver().addOnScrollChangedListener(() -> {
-                int currentScrollY = scrollView.getScrollY();
-
-                if (currentScrollY > lastScrollY + 10 && isFooterVisible) {
-                    footerView.animate().translationY(footerView.getHeight()).setDuration(200);
-                    isFooterVisible = false;
-                } else if (currentScrollY < lastScrollY - 10 && !isFooterVisible) {
-                    footerView.animate().translationY(0).setDuration(200);
-                    isFooterVisible = true;
-                }
-
-                lastScrollY = currentScrollY;
-            });
-        }
-    }
+//    private void setupAutoHideFooter() {
+//        View root = binding.getRoot();
+//
+//        // FooterActivity phải có id là R.id.footerLayout trong layout include
+//        footerView = root.findViewById(R.id.footerLayout);
+//        ScrollView scrollView = root.findViewById(R.id.scrollView);
+//
+//
+//        if (footerView != null && scrollView != null) {
+//            scrollView.getViewTreeObserver().addOnScrollChangedListener(() -> {
+//                int currentScrollY = scrollView.getScrollY();
+//
+//                if (currentScrollY > lastScrollY + 10 && isFooterVisible) {
+//                    footerView.animate().translationY(footerView.getHeight()).setDuration(200);
+//                    isFooterVisible = false;
+//                } else if (currentScrollY < lastScrollY - 10 && !isFooterVisible) {
+//                    footerView.animate().translationY(0).setDuration(200);
+//                    isFooterVisible = true;
+//                }
+//
+//                lastScrollY = currentScrollY;
+////            });
+//        }
+//    }
 }

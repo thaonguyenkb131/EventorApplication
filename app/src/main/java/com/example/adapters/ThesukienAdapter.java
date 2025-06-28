@@ -10,10 +10,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.bumptech.glide.Glide;
 import com.example.eventorapplication.R;
 import com.example.models.Thesukien;
 
 import java.util.List;
+import java.util.Locale;
 
 public class ThesukienAdapter extends ArrayAdapter<Thesukien> {
     private final LayoutInflater inflater;
@@ -42,10 +44,10 @@ public class ThesukienAdapter extends ArrayAdapter<Thesukien> {
             tvTitle.setText(item.getTitle());
             tvLocation.setText(item.getLocation());
             tvDate.setText(item.getDate());
-            tvPrice.setText(String.format("%,.0f VND", item.getPrice()));
+            tvPrice.setText(String.format(Locale.getDefault(), "%,.0f VND", item.getPrice()));
 
             if (item.getThumbnail() != null && item.getThumbnail().startsWith("http")) {
-                // Glide.with(imvThumb.getContext()).load(item.getThumbnail()).into(imvThumb);
+                Glide.with(imvThumb.getContext()).load(item.getThumbnail()).into(imvThumb);
             } else if (item.getThumbnail() != null) {
                 int resId = getContext().getResources().getIdentifier(item.getThumbnail(), "drawable", getContext().getPackageName());
                 if (resId != 0) imvThumb.setImageResource(resId);

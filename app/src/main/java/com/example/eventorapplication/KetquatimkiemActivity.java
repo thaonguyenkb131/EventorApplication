@@ -1,5 +1,6 @@
 package com.example.eventorapplication;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,17 +9,30 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.adapters.KetquatimkiemAdapter;
+import com.example.adapters.ThesukienAdapter;
 import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivityKetquatimkiemBinding;
-import com.example.models.KetquatimkiemItem;
+import com.example.models.Thesukien;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import androidx.annotation.NonNull;
+import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class KetquatimkiemActivity extends BaseActivity<ActivityKetquatimkiemBinding> {
 
-    private KetquatimkiemAdapter adapter;
-    private ArrayList<KetquatimkiemItem> dataList;
+    private ThesukienAdapter adapter;
+    private ArrayList<Thesukien> dataList;
+
+    private Calendar fromDate = Calendar.getInstance();
+    private Calendar toDate = Calendar.getInstance();
+    private String category;
+    private String searchQuery;
 
     @Override
     protected ActivityKetquatimkiemBinding inflateBinding() {
@@ -28,12 +42,15 @@ public class KetquatimkiemActivity extends BaseActivity<ActivityKetquatimkiemBin
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         addControls();
-        loadData();
+        // Hiển thị progress khi bắt đầu load
+        binding.progressBar.setVisibility(View.VISIBLE);
+        category = getIntent().getStringExtra("category");
+        searchQuery = getIntent().getStringExtra("search_query");
+        loadDataFromRealtimeDatabase();
         addFilterEvent();
 
-        // Hiển thị kết quả tìm kiếm n���u có dữ liệu được truyền sang
+        // Hiển thị kết quả tìm kiếm nếu có dữ liệu được truyền sang
         // Lấy tên danh mục nếu có từ Intent và hiển thị lên kqtimkiem
         String category = getIntent().getStringExtra("category");
         if (category != null && !category.isEmpty()) {
@@ -73,33 +90,64 @@ public class KetquatimkiemActivity extends BaseActivity<ActivityKetquatimkiemBin
                 startActivity(intent);
             }
         });
+        binding.nhapTimkiem.setOnTouchListener((v, event) -> {
+            Intent intent = new Intent(KetquatimkiemActivity.this, TimkiemActivity.class);
+            startActivity(intent);
+            return true;
+        });
+
+        binding.imgCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDateRangePicker();
+            }
+        });
     }
 
     private void addControls() {
         dataList = new ArrayList<>();
-        adapter = new KetquatimkiemAdapter(this, dataList);
+        adapter = new ThesukienAdapter(this, dataList);
         binding.gvKetquatimkiem.setAdapter(adapter);
     }
 
-    private void loadData() {
-        dataList.add(new KetquatimkiemItem(R.drawable.kqtk1, "The East - Live Concert Hạ Thành Phố Huế", "Từ 800.000 VND", "Ninh Bình", "15/06/2025"));
-        dataList.add(new KetquatimkiemItem(R.drawable.kqtk2, "Lễ hội ẩm thực Ấn Độ - Benaras Heritage Royal Indian Food", "Từ 800.000 VND", "Ninh Bình", "15/06/2025"));
-        dataList.add(new KetquatimkiemItem(R.drawable.kqtk3, "Madame Show - Những đ��ờng chim bay", "Từ 700.000 VND", "Lâm Đồng", "10/07/2025"));
-        dataList.add(new KetquatimkiemItem(R.drawable.kqtk4, "Lễ hội âm nhạc - Sáng tạo Tràng An, Ninh Bình - FORESTIVAL Show", "Từ 270.000 VND", "TP. Hồ Chí Minh", "15/06/2025"));
-        dataList.add(new KetquatimkiemItem(R.drawable.kqtk5, "Đêm nhạc xương rồng - Một Nhà. Thung lũng hoa Hồ Tây", "Từ 300.000 VND", "Ninh Bình", "15/06/2025"));
-        dataList.add(new KetquatimkiemItem(R.drawable.kqtk6, "Lễ hội âm nhạc - Sáng tạo Tràng An, Ninh Bình - FORESTIVAL Show", "Từ 270.000 VND", "TP. Hồ Chí Minh", "15/06/2025"));
-        dataList.add(new KetquatimkiemItem(R.drawable.kqtk7, "Lễ hội Thể thao giải trí hàng đầu tại Việt Nam - GAMA ESPORT GAME", "Từ 700.000 VND", "Lâm Đồng", "15/06/2025"));
-        dataList.add(new KetquatimkiemItem(R.drawable.kqtk8, "Nhạc kịch Sấm Vang Dòng Như Nguyệt", "Từ 270.000 VND", "Tp. Hồ Chí Minh", "15/06/2025"));
-        dataList.add(new KetquatimkiemItem(R.drawable.kqtk9, "Đêm nhạc xương rồng - Một Nh��. Thung lũng hoa Hồ Tây", "Từ 300.000 VND", "Ninh Bình", "15/06/2025"));
-        dataList.add(new KetquatimkiemItem(R.drawable.kqtk10, "Lễ hội âm nhạc - Sáng tạo Tràng An, Ninh Bình - FORESTIVAL Show", "Từ 800.000 VND", "TP. Hồ Chí Minh", "15/06/2025"));
-        dataList.add(new KetquatimkiemItem(R.drawable.kqtk11, "Lễ hội Thể thao giải trí hàng đầu tại Việt Nam - GAMA ESPORT GAME", "Từ 700.000 VND", "Lâm Đồng", "15/06/2025"));
-        dataList.add(new KetquatimkiemItem(R.drawable.kqtk12, "Nhà hát kịch IDECAP", "Từ 270.000 VND", "Tp. Hồ Chí Minh", "15/06/2025"));
-        dataList.add(new KetquatimkiemItem(R.drawable.kqtk13, "Đêm nhạc xương rồng - Một Nhà. Thung lũng hoa Hồ Tây", "Từ 300.000 VND", "Ninh Bình", "15/06/2025"));
-        dataList.add(new KetquatimkiemItem(R.drawable.kqtk14, "Lễ hội âm nhạc - Sáng tạo Tràng An, Ninh Bình - FORESTIVAL Show", "Từ 800.000 VND", "TP. Hồ Chí Minh", "15/06/2025"));
-        dataList.add(new KetquatimkiemItem(R.drawable.kqtk15, "Lễ hội Thể thao giải trí hàng đầu tại Việt Nam - GAMA ESPORT GAME", "Từ 700.000 VND", "Lâm Đồng", "15/06/2025"));
-        dataList.add(new KetquatimkiemItem(R.drawable.kqtk16, "Nhà hát kịch IDECAF: Tấm Cám đại chiến", "Từ 270.000 VND", "Tp. Hồ Chí Minh", "15/06/2025"));
+    private void loadDataFromRealtimeDatabase() {
+        dataList.clear();
+        binding.progressBar.setVisibility(View.VISIBLE);
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("events");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                dataList.clear();
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    Thesukien item = child.getValue(Thesukien.class);
+                    if (item != null) {
+                        boolean matchCategory = (category == null || category.isEmpty() || (item.getCategory() != null && item.getCategory().equalsIgnoreCase(category)));
+                        boolean matchSearch = true;
+                        if (searchQuery != null && !searchQuery.isEmpty()) {
+                            String q = searchQuery.toLowerCase();
+                            matchSearch = (item.getTitle() != null && item.getTitle().toLowerCase().contains(q))
+                                    || (item.getCategory() != null && item.getCategory().toLowerCase().contains(q))
+                                    || (item.getOrganizer() != null && item.getOrganizer().toLowerCase().contains(q));
+                        }
+                        if (matchCategory && matchSearch) {
+                            dataList.add(item);
+                        }
+                    }
+                }
+                adapter.notifyDataSetChanged();
+                binding.progressBar.setVisibility(View.GONE);
+                if (dataList.isEmpty()) {
+                    String query = (searchQuery != null && !searchQuery.isEmpty()) ? searchQuery : "";
+                    binding.kqtimkiem.setText("Không tìm thấy kết quả cho \"" + query + "\"");
+                }
+            }
 
-        adapter.notifyDataSetChanged();
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                binding.progressBar.setVisibility(View.GONE);
+                Log.e("Ketquatimkiem", "Error getting data: ", error.toException());
+            }
+        });
     }
 
     private void addFilterEvent() {
@@ -108,5 +156,34 @@ public class KetquatimkiemActivity extends BaseActivity<ActivityKetquatimkiemBin
             dialog.show(getSupportFragmentManager(), "BolocDialog");
         });
 
+    }
+
+    private void showDateRangePicker() {
+        DatePickerDialog fromDialog = new DatePickerDialog(
+                this,
+                R.style.MyDatePickerDialogTheme,
+                (view, year, month, dayOfMonth) -> {
+                    fromDate.set(year, month, dayOfMonth);
+                    DatePickerDialog toDialog = new DatePickerDialog(
+                            this,
+                            R.style.MyDatePickerDialogTheme,
+                            (view2, year2, month2, dayOfMonth2) -> {
+                                toDate.set(year2, month2, dayOfMonth2);
+                                // TODO: Xử lý ngày đã chọn ở đây (fromDate, toDate)
+                            },
+                            toDate.get(Calendar.YEAR),
+                            toDate.get(Calendar.MONTH),
+                            toDate.get(Calendar.DAY_OF_MONTH)
+                    );
+                    toDialog.setTitle("Chọn ngày kết thúc");
+                    toDialog.getDatePicker().setMinDate(fromDate.getTimeInMillis());
+                    toDialog.show();
+                },
+                fromDate.get(Calendar.YEAR),
+                fromDate.get(Calendar.MONTH),
+                fromDate.get(Calendar.DAY_OF_MONTH)
+        );
+        fromDialog.setTitle("Chọn ngày bắt đầu");
+        fromDialog.show();
     }
 }

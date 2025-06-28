@@ -13,7 +13,6 @@
         android:layout_height="0dp"
         android:horizontalSpacing="5dp"
         android:numColumns="2"
-        android:paddingTop="20dp"
         android:paddingHorizontal="5dp"
         android:verticalSpacing="12dp"
         android:paddingStart="20dp"

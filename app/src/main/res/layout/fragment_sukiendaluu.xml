@@ -11,7 +11,6 @@
         android:id="@+id/gvSkdl"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:paddingTop="20dp"
         android:horizontalSpacing="5dp"
         android:numColumns="2"
         android:paddingHorizontal="5dp"

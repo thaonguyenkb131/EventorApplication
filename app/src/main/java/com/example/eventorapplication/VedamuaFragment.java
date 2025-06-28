@@ -82,7 +82,7 @@ public class VedamuaFragment extends Fragment {
         binding.gvVdm.setAdapter(adapter);
 
         // Đọc dữ liệu từ Realtime Database
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("events");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("mytickets");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

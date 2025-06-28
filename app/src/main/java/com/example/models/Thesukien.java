@@ -18,6 +18,7 @@ public class Thesukien {
     private String mapUrl;
     private String thumbnail;
     private java.util.List<TicketCategory> ticketCategories;
+    private String category;
 
     public Thesukien() {}
 
@@ -56,6 +57,8 @@ public class Thesukien {
     public void setThumbnail(String thumbnail) { this.thumbnail = thumbnail; }
     public java.util.List<TicketCategory> getTicketCategories() { return ticketCategories; }
     public void setTicketCategories(java.util.List<TicketCategory> ticketCategories) { this.ticketCategories = ticketCategories; }
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
 
     public static class TicketCategory {
         private String name;

@@ -12,14 +12,24 @@ import android.widget.TextView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.adapters.TicketCategoriesAdapter;
 import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivityChitietsukienBinding;
+import com.example.models.Thesukien;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ChitietsukienActivity extends BaseActivity<ActivityChitietsukienBinding> {
 
 
     private boolean isSaved = false;
+    private TicketCategoriesAdapter ticketAdapter;
 
     @Override
     protected ActivityChitietsukienBinding inflateBinding() {
@@ -105,6 +115,55 @@ public class ChitietsukienActivity extends BaseActivity<ActivityChitietsukienBin
 
         txtHeaderTitle.setText("Chi tiết sự kiện");
         btnBack.setOnClickListener(v -> finish());
+
+        // Khởi tạo RecyclerView cho các hạng mục vé
+        RecyclerView rcvTicketCategories = findViewById(R.id.rcvTicketCategories);
+        rcvTicketCategories.setLayoutManager(new LinearLayoutManager(this));
+        ticketAdapter = new TicketCategoriesAdapter(null); // Khởi tạo rỗng, sẽ cập nhật sau
+        rcvTicketCategories.setAdapter(ticketAdapter);
+
+        int eventId = getIntent().getIntExtra("event_id", -1);
+        if (eventId != -1) {
+            loadEventDetail(eventId);
+        }
+    }
+
+    private void loadEventDetail(int eventId) {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("events");
+        ref.orderByChild("id").equalTo(eventId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Thesukien event = snapshot.getValue(Thesukien.class);
+                    if (event != null) {
+                        showEventDetail(event);
+                        break;
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // handle error
+            }
+        });
+    }
+
+    private void showEventDetail(Thesukien event) {
+        // Hiển thị các trường dữ liệu từ Thesukien lên UI
+        binding.txtName.setText(event.getTitle());
+        binding.txtLocation.setText(event.getLocation());
+        binding.txtDate.setText(event.getDate());
+        binding.txtDescription.setText(event.getDescription());
+        binding.txtOrganizer.setText(event.getOrganizer());
+        if (event.getThumbnail() != null && event.getThumbnail().startsWith("http")) {
+            com.bumptech.glide.Glide.with(this).load(event.getThumbnail()).into(binding.imvThumb);
+        }
+        // Hiển thị các hạng mục vé
+        if (event.getTicketCategories() != null) {
+            ticketAdapter = new TicketCategoriesAdapter(event.getTicketCategories());
+            RecyclerView rcvTicketCategories = findViewById(R.id.rcvTicketCategories);
+            rcvTicketCategories.setAdapter(ticketAdapter);
+        }
     }
 
 }

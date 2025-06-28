@@ -307,7 +307,7 @@
         android:layout_gravity="bottom"
         android:orientation="horizontal"
         android:gravity="end"
-        android:background="#EDEDED"
+        android:background="@drawable/white_card_bg"
         android:elevation="8dp"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"

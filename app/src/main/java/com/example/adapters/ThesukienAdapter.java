@@ -52,6 +52,12 @@ public class ThesukienAdapter extends ArrayAdapter<Thesukien> {
                 int resId = getContext().getResources().getIdentifier(item.getThumbnail(), "drawable", getContext().getPackageName());
                 if (resId != 0) imvThumb.setImageResource(resId);
             }
+
+            view.setOnClickListener(v -> {
+                android.content.Intent intent = new android.content.Intent(getContext(), com.example.eventorapplication.ChitietsukienActivity.class);
+                intent.putExtra("event_id", item.getId());
+                getContext().startActivity(intent);
+            });
         }
         return view;
     }

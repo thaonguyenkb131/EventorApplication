@@ -106,12 +106,12 @@ public class TimkiemActivity extends BaseActivity<ActivityTimkiemBinding> {
     // Xử lý sự kiện listview kết quả tìm kiếm
     private void setupListView() {
         data = new ArrayList<>();
-        data.add(new TimkiemlvItem("jun phạm", R.drawable.icclock, R.drawable.ictrash));
+        data.add(new TimkiemlvItem("lập trình", R.drawable.icclock, R.drawable.ictrash));
         data.add(new TimkiemlvItem("workshop", R.drawable.icclock, R.drawable.ictrash));
-        data.add(new TimkiemlvItem("làm gốm", R.drawable.icclock, R.drawable.ictrash));
+        data.add(new TimkiemlvItem("văn hóa", R.drawable.icclock, R.drawable.ictrash));
         data.add(new TimkiemlvItem("vẽ", R.drawable.icgrowth, null));
         data.add(new TimkiemlvItem("nhạc kịch", R.drawable.icgrowth, null));
-        data.add(new TimkiemlvItem("múa rối", R.drawable.icgrowth, null));
+        data.add(new TimkiemlvItem("hội nghị", R.drawable.icgrowth, null));
 
         adapter = new TimkiemlvAdapter(this, data);
         binding.lvTimkiem.setAdapter(adapter);
@@ -119,6 +119,15 @@ public class TimkiemActivity extends BaseActivity<ActivityTimkiemBinding> {
         binding.lvTimkiem.post(() ->
                 setListViewHeightBasedOnItems(binding.lvTimkiem)
         );
+
+        binding.lvTimkiem.setOnItemClickListener((parent, view, position, id) -> {
+            TimkiemlvItem item = adapter.getItem(position);
+            if (item != null) {
+                Intent intent = new Intent(this, KetquatimkiemActivity.class);
+                intent.putExtra("search_query", item.getTitle());
+                startActivity(intent);
+            }
+        });
     }
 
     // Xử lý sự kiện gridview

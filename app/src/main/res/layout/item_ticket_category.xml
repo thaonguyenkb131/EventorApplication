@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="8dp"
+    android:background="#E9E9E9">
+
+    <TextView
+        android:id="@+id/txtTicketName"
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
+        android:layout_height="wrap_content"
+        android:text="Tên vé"
+        android:textStyle="bold"
+        android:paddingStart="20dp"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:fontFamily="@font/montserrat_semibold"/>
+
+    <TextView
+        android:id="@+id/txtTicketPrice"
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
+        android:layout_height="wrap_content"
+        android:text="Giá vé"
+        android:gravity="end"
+        android:paddingEnd="20dp"
+        android:textColor="#006183"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:fontFamily="@font/montserrat_semibold"/>
+</LinearLayout>
+

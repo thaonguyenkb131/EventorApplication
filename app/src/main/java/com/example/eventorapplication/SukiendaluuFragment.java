@@ -80,6 +80,7 @@ public class SukiendaluuFragment extends Fragment {
         ThesukienAdapter adapter = new ThesukienAdapter(requireContext(), items);
         binding.gvSkdl.setAdapter(adapter);
 
+        binding.progressBar.setVisibility(View.VISIBLE);
         // Đọc dữ liệu từ Realtime Database
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("events");
         ref.addValueEventListener(new ValueEventListener() {
@@ -92,11 +93,13 @@ public class SukiendaluuFragment extends Fragment {
                     android.util.Log.d("FIREBASE_EVENT", "Loaded: " + item.getTitle());
                 }
                 adapter.notifyDataSetChanged();
+                binding.progressBar.setVisibility(View.GONE);
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
                 android.util.Log.e("FIREBASE_EVENT", "Error: ", error.toException());
+                binding.progressBar.setVisibility(View.GONE);
             }
         });
 

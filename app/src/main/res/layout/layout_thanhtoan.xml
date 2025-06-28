@@ -37,6 +37,7 @@
 
 
         <GridLayout
+            android:id="@+id/gvTheqt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="3"
@@ -104,6 +105,7 @@
         </LinearLayout>
 
         <GridLayout
+            android:id="@+id/gvThend"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="3"

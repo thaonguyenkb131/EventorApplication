@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -38,7 +39,7 @@ public class ChitietsukienActivity extends BaseActivity<ActivityChitietsukienBin
             v.setPadding(0, 0, 0, systemBars.bottom); // tránh bị che nút
 
             // Đẩy TextView xuống dưới status bar
-            View txtTitle = findViewById(R.id.header_layout);
+            View txtTitle = findViewById(R.id.header);
             txtTitle.setPadding(
                     txtTitle.getPaddingLeft(),
                     systemBars.top,
@@ -52,7 +53,7 @@ public class ChitietsukienActivity extends BaseActivity<ActivityChitietsukienBin
         binding.btnContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ChitietsukienActivity.this, TinnhanActivity.class);
+                Intent intent = new Intent(ChitietsukienActivity.this, ChitiettinnhanActivity.class);
                 startActivity(intent);
             }
         });
@@ -97,6 +98,13 @@ public class ChitietsukienActivity extends BaseActivity<ActivityChitietsukienBin
                 isSaved = false;
             }
         });
+
+        // Thiết lập tiêu đề và nút quay lại
+        TextView txtHeaderTitle = findViewById(R.id.txtTitle);
+        ImageView btnBack = findViewById(R.id.btnBack);
+
+        txtHeaderTitle.setText("Chi tiết sự kiện");
+        btnBack.setOnClickListener(v -> finish());
     }
 
 }

@@ -6,7 +6,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.core.graphics.Insets;
@@ -20,7 +22,7 @@ import com.example.models.TinnhanItem;
 
 import java.util.ArrayList;
 
-public class TinnhanActivity extends BaseActivity<ActivityChitiettinnhanBinding> {
+public class ChitiettinnhanActivity extends BaseActivity<ActivityChitiettinnhanBinding> {
 
     private ArrayList<TinnhanItem> messages;
     private TinnhanAdapter adapter;
@@ -127,6 +129,13 @@ public class TinnhanActivity extends BaseActivity<ActivityChitiettinnhanBinding>
             });
             popup.show();
         });
+
+        // Thiết lập tiêu đề và nút quay lại
+        TextView txtHeaderTitle = findViewById(R.id.txtTitle);
+        ImageView btnBack = findViewById(R.id.btnBack);
+
+        txtHeaderTitle.setText("Tin nhắn");
+        btnBack.setOnClickListener(v -> finish());
     }
 
     @Override

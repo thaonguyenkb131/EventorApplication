@@ -98,7 +98,7 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
                         View child = parentLayout.getChildAt(i);
                         if (child instanceof TextView) {
                             String category = ((TextView) child).getText().toString();
-                            Intent intent = new Intent(this, TimkiemsaulocActivity.class);
+                            Intent intent = new Intent(this, KetquatimkiemActivity.class);
                             intent.putExtra("category", category);
                             startActivity(intent);
                             break;
@@ -107,6 +107,15 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
                 }
             });
         }
+
+        // Danh mục trên thanh ngang (danhmuc)
+        binding.txtamnhac.setOnClickListener(v -> openKetquatimkiemWithCategory(binding.txtamnhac.getText().toString()));
+        binding.txtvanhoa.setOnClickListener(v -> openKetquatimkiemWithCategory(binding.txtvanhoa.getText().toString()));
+        binding.txthocthuat.setOnClickListener(v -> openKetquatimkiemWithCategory(binding.txthocthuat.getText().toString()));
+        binding.txtthethao.setOnClickListener(v -> openKetquatimkiemWithCategory(binding.txtthethao.getText().toString()));
+        binding.txttinhnguyen.setOnClickListener(v -> openKetquatimkiemWithCategory(binding.txttinhnguyen.getText().toString()));
+        binding.txtmoitruong.setOnClickListener(v -> openKetquatimkiemWithCategory(binding.txtmoitruong.getText().toString()));
+        binding.txtdulich.setOnClickListener(v -> openKetquatimkiemWithCategory(binding.txtdulich.getText().toString()));
     }
 
     private void addCardClickEvents(int layoutContainerId) {
@@ -149,35 +158,7 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
         });
 
         binding.imvnhantin.setOnClickListener(v -> {
-            startActivity(new Intent(this, TinnhanActivity.class));
-        });
-
-        binding.txtamnhac.setOnClickListener(v -> {
-            startActivity(new Intent(this, TimkiemsaulocActivity.class));
-        });
-
-        binding.txtvanhoa.setOnClickListener(v -> {
-            startActivity(new Intent(this, TimkiemsaulocActivity.class));
-        });
-
-        binding.txthocthuat.setOnClickListener(v -> {
-            startActivity(new Intent(this, TimkiemsaulocActivity.class));
-        });
-
-        binding.txtthethao.setOnClickListener(v -> {
-            startActivity(new Intent(this, TimkiemsaulocActivity.class));
-        });
-
-        binding.txttinhnguyen.setOnClickListener(v -> {
-            startActivity(new Intent(this, TimkiemsaulocActivity.class));
-        });
-
-        binding.txtmoitruong.setOnClickListener(v -> {
-            startActivity(new Intent(this, TimkiemsaulocActivity.class));
-        });
-
-        binding.txtdulich.setOnClickListener(v -> {
-            startActivity(new Intent(this, TimkiemsaulocActivity.class));
+            startActivity(new Intent(this, ChitiettinnhanActivity.class));
         });
 
         binding.txtXemthem.setOnClickListener(v -> {
@@ -260,6 +241,12 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
                 return true;
             });
         }
+    }
+
+    private void openKetquatimkiemWithCategory(String category) {
+        Intent intent = new Intent(this, KetquatimkiemActivity.class);
+        intent.putExtra("category", category);
+        startActivity(intent);
     }
 
     @Override

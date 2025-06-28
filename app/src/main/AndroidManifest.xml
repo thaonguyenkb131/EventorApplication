@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -122,10 +123,10 @@
             android:name=".TimkiemActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".TinnhanActivity"
+            android:name=".ChitiettinnhanActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".TimkiemsaulocActivity"
+            android:name=".KetquatimkiemActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".SukienxuhuongActivity"

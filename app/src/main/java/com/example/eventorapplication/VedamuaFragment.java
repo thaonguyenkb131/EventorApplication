@@ -9,14 +9,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 
 import com.example.adapters.ThesukienAdapter;
 import com.example.eventorapplication.databinding.FragmentVedamuaBinding;
-import com.example.models.ThesukienItem;
+import com.example.models.Thesukien;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -74,32 +77,40 @@ public class VedamuaFragment extends Fragment {
 
         binding = FragmentVedamuaBinding.inflate(inflater, container, false);
 
-        List<ThesukienItem> items = new ArrayList<>();
-        items.add(new ThesukienItem(R.drawable.vdmhappy, "Noo’s Chill Night’s Concert", "Từ 750.000 VND", "Hà Nội", "15/06/2025"));
-        items.add(new ThesukienItem(R.drawable.vdmquan, "Lễ hội Thể thao Giải trí hàng đầu tại Việt Nam - GAMA", "Từ 600.000 VND", "Vũng Tàu", "30/06/2025"));
-        items.add(new ThesukienItem(R.drawable.vdmforest, "Nhạc kịch “Sấm Vang Dòng Như Nguyệt”", "Từ 500.000 VND", "Hà Tĩnh", "21/06/2025"));
-        items.add(new ThesukienItem(R.drawable.vdmhtnau, "HBAshow: Lê Hiếu - Bạch Công Khanh \"Bài Tình Ca Cho Em\"", "Từ 300.000 VND", "TP HCM", "27/06/2025"));
-        items.add(new ThesukienItem(R.drawable.vdmamthuc, "Lễ hội ẩm thực Ấn Độ - Benaras Heritage Royal Indi", "Từ 750.000 VND", "Bình Dương", "10/07/2025"));
-        items.add(new ThesukienItem(R.drawable.vdmmotnha, "The East - Live Concert “Hạ” Thành Phố Huế", "Từ 1.000.000 VND", "Hải Phòng", "2/07/2025"));
-        items.add(new ThesukienItem(R.drawable.vdmthanhxuan, "Piano : Tiên nữ, giấc mơ và điệu vũ - David Greilsammer", "Từ 350.000 VND", "Bến Tre", "06/07/2025"));
-        items.add(new ThesukienItem(R.drawable.vdmtiama, "Madame Show - Những Đường Chim Bay", "Từ 250.000 VND", "Hà Tĩnh", "30/06/2025"));
-        items.add(new ThesukienItem(R.drawable.vdmbcn, "Lễ hội âm nhạc, sáng tạo Tràng An - Ninh Bình \"FORESTIVAL\"", "Từ 900.000 VND", "Ninh Bình", "28/06/2025"));
-        items.add(new ThesukienItem(R.drawable.vdmvmh, "Future With AI - AI và tương lai doanh nghiệp", "Từ 350.000 VND", "Hà Nội", "24/06/2025"));
-
+        List<Thesukien> items = new ArrayList<>();
         ThesukienAdapter adapter = new ThesukienAdapter(requireContext(), items);
         binding.gvVdm.setAdapter(adapter);
 
-        // Chỉ mở Activity chi tiết, chưa cần truyền dữ liệu
+        // Đọc dữ liệu từ Realtime Database
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("events");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                items.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Thesukien item = snapshot.getValue(Thesukien.class);
+                    items.add(item);
+                    android.util.Log.d("FIREBASE_EVENT", "Loaded: " + item.getTitle());
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                android.util.Log.e("FIREBASE_EVENT", "Error: ", error.toException());
+            }
+        });
+
         binding.gvVdm.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), ChitietsukienActivity.class);
+                // Có thể truyền dữ liệu sự kiện nếu cần
                 startActivity(intent);
             }
         });
 
         return binding.getRoot();
-
     }
 
     @Override

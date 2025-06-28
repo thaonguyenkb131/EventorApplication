@@ -10,19 +10,19 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.adapters.KetquatimkiemAdapter;
 import com.example.eventorapplication.base.BaseActivity;
-import com.example.eventorapplication.databinding.ActivityTimkiemsaulocBinding;
+import com.example.eventorapplication.databinding.ActivityKetquatimkiemBinding;
 import com.example.models.KetquatimkiemItem;
 
 import java.util.ArrayList;
 
-public class TimkiemsaulocActivity extends BaseActivity<ActivityTimkiemsaulocBinding> {
+public class KetquatimkiemActivity extends BaseActivity<ActivityKetquatimkiemBinding> {
 
     private KetquatimkiemAdapter adapter;
     private ArrayList<KetquatimkiemItem> dataList;
 
     @Override
-    protected ActivityTimkiemsaulocBinding inflateBinding() {
-        return ActivityTimkiemsaulocBinding.inflate(getLayoutInflater());
+    protected ActivityKetquatimkiemBinding inflateBinding() {
+        return ActivityKetquatimkiemBinding.inflate(getLayoutInflater());
     }
 
     @Override
@@ -32,6 +32,20 @@ public class TimkiemsaulocActivity extends BaseActivity<ActivityTimkiemsaulocBin
         addControls();
         loadData();
         addFilterEvent();
+
+        // Hiển thị kết quả tìm kiếm n���u có dữ liệu được truyền sang
+        // Lấy tên danh mục nếu có từ Intent và hiển thị lên kqtimkiem
+        String category = getIntent().getStringExtra("category");
+        if (category != null && !category.isEmpty()) {
+            binding.kqtimkiem.setText("Danh mục: \"" + category + "\"");
+        } else {
+            String searchQuery = getIntent().getStringExtra("search_query");
+            if (searchQuery != null && !searchQuery.isEmpty()) {
+                binding.kqtimkiem.setText("Kết quả tìm kiếm cho \"" + searchQuery + "\"");
+            } else {
+                binding.kqtimkiem.setText("Tất cả sự kiện");
+            }
+        }
 
         //        Tránh che màn hình
 
@@ -55,7 +69,7 @@ public class TimkiemsaulocActivity extends BaseActivity<ActivityTimkiemsaulocBin
         binding.imgTimkiem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TimkiemsaulocActivity.this, TimkiemActivity.class);
+                Intent intent = new Intent(KetquatimkiemActivity.this, TimkiemActivity.class);
                 startActivity(intent);
             }
         });
@@ -70,13 +84,13 @@ public class TimkiemsaulocActivity extends BaseActivity<ActivityTimkiemsaulocBin
     private void loadData() {
         dataList.add(new KetquatimkiemItem(R.drawable.kqtk1, "The East - Live Concert Hạ Thành Phố Huế", "Từ 800.000 VND", "Ninh Bình", "15/06/2025"));
         dataList.add(new KetquatimkiemItem(R.drawable.kqtk2, "Lễ hội ẩm thực Ấn Độ - Benaras Heritage Royal Indian Food", "Từ 800.000 VND", "Ninh Bình", "15/06/2025"));
-        dataList.add(new KetquatimkiemItem(R.drawable.kqtk3, "Madame Show - Những đường chim bay", "Từ 700.000 VND", "Lâm Đồng", "10/07/2025"));
+        dataList.add(new KetquatimkiemItem(R.drawable.kqtk3, "Madame Show - Những đ��ờng chim bay", "Từ 700.000 VND", "Lâm Đồng", "10/07/2025"));
         dataList.add(new KetquatimkiemItem(R.drawable.kqtk4, "Lễ hội âm nhạc - Sáng tạo Tràng An, Ninh Bình - FORESTIVAL Show", "Từ 270.000 VND", "TP. Hồ Chí Minh", "15/06/2025"));
         dataList.add(new KetquatimkiemItem(R.drawable.kqtk5, "Đêm nhạc xương rồng - Một Nhà. Thung lũng hoa Hồ Tây", "Từ 300.000 VND", "Ninh Bình", "15/06/2025"));
         dataList.add(new KetquatimkiemItem(R.drawable.kqtk6, "Lễ hội âm nhạc - Sáng tạo Tràng An, Ninh Bình - FORESTIVAL Show", "Từ 270.000 VND", "TP. Hồ Chí Minh", "15/06/2025"));
         dataList.add(new KetquatimkiemItem(R.drawable.kqtk7, "Lễ hội Thể thao giải trí hàng đầu tại Việt Nam - GAMA ESPORT GAME", "Từ 700.000 VND", "Lâm Đồng", "15/06/2025"));
         dataList.add(new KetquatimkiemItem(R.drawable.kqtk8, "Nhạc kịch Sấm Vang Dòng Như Nguyệt", "Từ 270.000 VND", "Tp. Hồ Chí Minh", "15/06/2025"));
-        dataList.add(new KetquatimkiemItem(R.drawable.kqtk9, "Đêm nhạc xương rồng - Một Nhà. Thung lũng hoa Hồ Tây", "Từ 300.000 VND", "Ninh Bình", "15/06/2025"));
+        dataList.add(new KetquatimkiemItem(R.drawable.kqtk9, "Đêm nhạc xương rồng - Một Nh��. Thung lũng hoa Hồ Tây", "Từ 300.000 VND", "Ninh Bình", "15/06/2025"));
         dataList.add(new KetquatimkiemItem(R.drawable.kqtk10, "Lễ hội âm nhạc - Sáng tạo Tràng An, Ninh Bình - FORESTIVAL Show", "Từ 800.000 VND", "TP. Hồ Chí Minh", "15/06/2025"));
         dataList.add(new KetquatimkiemItem(R.drawable.kqtk11, "Lễ hội Thể thao giải trí hàng đầu tại Việt Nam - GAMA ESPORT GAME", "Từ 700.000 VND", "Lâm Đồng", "15/06/2025"));
         dataList.add(new KetquatimkiemItem(R.drawable.kqtk12, "Nhà hát kịch IDECAP", "Từ 270.000 VND", "Tp. Hồ Chí Minh", "15/06/2025"));

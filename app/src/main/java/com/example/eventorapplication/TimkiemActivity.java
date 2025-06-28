@@ -1,6 +1,7 @@
 package com.example.eventorapplication;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,14 +46,11 @@ public class TimkiemActivity extends BaseActivity<ActivityTimkiemBinding> {
 
         addEvents();
 
-        // Sự kiện chọn lịch
-        binding.imgCalendar.setOnClickListener(v -> showDateRangePicker());
-
-        // Tránh che màn hình, đồng bộ footer với các trang khác
+        // Tránh che footer, đồng bộ hiệu ứng với các trang khác
         View rootView = findViewById(R.id.main); // ConstraintLayout có id="main"
         ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(0, 0, 0, 0); // Không thêm padding cho rootView
+            v.setPadding(0, 0, 0, 0); // Không set padding bottom cho rootView
 
             // Đẩy LinearLayout tìm kiếm xuống dưới status bar
             View txtTitle = findViewById(R.id.Thanhtimkiem);
@@ -65,6 +63,17 @@ public class TimkiemActivity extends BaseActivity<ActivityTimkiemBinding> {
                 );
             }
 
+            // Đảm bảo footer không bị che bởi thanh điều hướng
+            View footer = findViewById(R.id.footerLayout);
+            if (footer != null) {
+                footer.setPadding(
+                        footer.getPaddingLeft(),
+                        footer.getPaddingTop(),
+                        footer.getPaddingRight(),
+                        systemBars.bottom
+                );
+            }
+
             return insets;
         });
     }
@@ -73,6 +82,25 @@ public class TimkiemActivity extends BaseActivity<ActivityTimkiemBinding> {
         setupListView();
         setupGridView();
         addFilterEvent();
+
+        binding.imgCalendar.setOnClickListener(v -> showDateRangePicker());
+        // Sự kiện click vào icon tìm kiếm
+        binding.imgTimkiem.setOnClickListener(v -> navigateToKetquatimkiem());
+        // Sự kiện nhấn Enter trong EditText
+        binding.edtTimkiem.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH) {
+                navigateToKetquatimkiem();
+                return true;
+            }
+            return false;
+        });
+    }
+
+    private void navigateToKetquatimkiem() {
+        Intent intent = new Intent(this, KetquatimkiemActivity.class);
+        String searchText = binding.edtTimkiem.getText().toString();
+        intent.putExtra("search_query", searchText);
+        startActivity(intent);
     }
 
     // Xử lý sự kiện listview kết quả tìm kiếm

@@ -220,19 +220,20 @@
 
                             <FrameLayout
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:paddingStart="5dp">
 
                                 <!-- 1. Nền hình tròn -->
                                 <ImageView
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
                                     android:src="@drawable/bg_circle_gray" />
 
                                 <!-- 2. Icon chat nền xám -->
                                 <ImageView
                                     android:id="@+id/chatIcon"
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
                                     android:layout_gravity="center"
                                     android:scaleType="centerCrop"
                                     android:src="@drawable/ic_chat" />
@@ -312,91 +313,33 @@
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="5dp"
                 android:scrollbars="none"
                 android:contentDescription="Sự kiện nổi bật">
 
                 <LinearLayout
                     android:id="@+id/linearLayoutSknb"
+                    android:paddingStart="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-                    <!--SK1-->
-                    <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSknb">
-                        <ImageView
-                            android:id="@+id/imgSknb1"
-                            style="@style/RoundedImageStyle"
-                            android:src="@drawable/sknb1" />
-                    </androidx.cardview.widget.CardView>
-                    <!--SK2-->
-                    <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSknb">
-                        <ImageView
-                            android:id="@+id/imgSknb2"
-                            style="@style/RoundedImageStyle"
-                            android:src="@drawable/sknb2" />
-                    </androidx.cardview.widget.CardView>
-
-                    <!--            SK3-->
-                    <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSknb">
-                        <ImageView
-                            android:id="@+id/imgSknb3"
-                            style="@style/RoundedImageStyle"
-                            android:src="@drawable/sknb3" />
-                    </androidx.cardview.widget.CardView>
-                    <!--SK4-->
-                    <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSknb">
-                        <ImageView
-                            android:id="@+id/imgSknb4"
-                            style="@style/RoundedImageStyle"
-                            android:src="@drawable/sknb4" />
-                    </androidx.cardview.widget.CardView>
-
-                    <!--            SK5-->
-                    <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSknb">
-                        <ImageView
-                            android:id="@+id/imgSknb5"
-                            style="@style/RoundedImageStyle"
-                            android:src="@drawable/sknb5" />
-                    </androidx.cardview.widget.CardView>
-
-                    <!--            SK6-->
-                    <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSknb">
-                        <ImageView
-                            android:id="@+id/imgSknb6"
-                            style="@style/RoundedImageStyle"
-                            android:src="@drawable/sknb6" />
-                    </androidx.cardview.widget.CardView>
-
-                    <!--            SK7-->
-                    <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSknb">
-                        <ImageView
-                            android:id="@+id/imgSukiennoibat7"
-                            style="@style/RoundedImageStyle"
-                            android:src="@drawable/sknb7" />
-                    </androidx.cardview.widget.CardView>
-
-                    <!--            SK8-->
-                    <androidx.cardview.widget.CardView
-                        style="@style/RoundedCardStyleSknb">
-                        <ImageView
-                            android:id="@+id/imgSknb8"
-                            style="@style/RoundedImageStyle"
-                            android:src="@drawable/sknb8" />
-                    </androidx.cardview.widget.CardView>
-
+                    <!-- Sẽ add động các CardView/ImageView ở code -->
                 </LinearLayout>
             </HorizontalScrollView>
 
+            <!-- Progress bar loading -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                style="?android:attr/progressBarStyleLarge"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
             <LinearLayout
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -429,7 +372,7 @@
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:scrollbars="none">
 
                 <LinearLayout
@@ -847,7 +790,7 @@
                 android:id="@+id/txtDanhchoban"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Dành cho bạn"
                 android:textColor="#006183"
@@ -859,7 +802,6 @@
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:scrollbars="none">
@@ -867,129 +809,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:id="@+id/linearLayoutDcb">
-                    <LinearLayout
-                        android:id="@+id/Dcb1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginEnd="5dp">
-
-                        <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleSkxh">
-
-                            <ImageView
-                                android:id="@+id/imgDcb1"
-                                style="@style/RoundedImageStyle"
-                                android:src="@drawable/dcb1" />
-                        </androidx.cardview.widget.CardView>
-
-                        <TextView
-                            android:id="@+id/txtDcb1t"
-                            android:text="1900 Future Hits #70: Jun Phạm | Friday 30.5.2025"
-                            style="@style/EventTitle"
-                            android:maxLines="2"/>
-
-                        <TextView
-                            android:id="@+id/txtDcb1p"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Từ 300.000 VND"
-                            android:layout_gravity="left"
-                            style="@style/EventPrice" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/Dcb2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleSkxh">
-                            <ImageView
-                                android:id="@+id/imgDcb2"
-                                style="@style/RoundedImageStyle"
-                                android:src="@drawable/dcb2"/>
-                        </androidx.cardview.widget.CardView>
-                        <TextView
-                            android:id="@+id/txtDcb2t"
-                            android:text="[BẾN THÀNH] Đêm nhạc Bạch Công Khanh - Chu Thúy Quỳnh"
-                            style="@style/EventTitle"
-                            android:maxLines="2"/>
-                        <TextView
-                            android:id="@+id/txtDcb2p"
-                            android:text="Từ 200.000 VND"
-                            style="@style/EventPrice"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/Dcb3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleSkxh">
-                            <ImageView
-                                android:id="@+id/imgDcb3"
-                                style="@style/RoundedImageStyle"
-                                android:src="@drawable/dcb3"/>
-                        </androidx.cardview.widget.CardView>
-                        <TextView
-                            android:id="@+id/txtDcb3t"
-                            android:text="Hành tinh nâu - Sân khấu Quốc Thảo"
-                            style="@style/EventTitle"
-                            android:maxLines="2"/>
-                        <TextView
-                            android:id="@+id/txtDcb3p"
-                            android:text="Từ 100.000 VND"
-                            style="@style/EventPrice"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/Dcb4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleSkxh">
-                            <ImageView
-                                android:id="@+id/imgDcb4"
-                                style="@style/RoundedImageStyle"
-                                android:src="@drawable/dcb4"/>
-                        </androidx.cardview.widget.CardView>
-                        <TextView
-                            android:id="@+id/txtDcb4t"
-                            android:text="Lululola Show - Lắng nghe và cảm nhận"
-                            style="@style/EventTitle"
-                            android:maxLines="2"/>
-                        <TextView
-                            android:id="@+id/txtDcb4p"
-                            android:text="Từ 100.000 VND"
-                            style="@style/EventPrice"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/Dcb5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <androidx.cardview.widget.CardView
-                            style="@style/RoundedCardStyleSkxh">
-                            <ImageView
-                                android:id="@+id/imgDcb5"
-                                style="@style/RoundedImageStyle"
-                                android:src="@drawable/dcb5"/>
-                        </androidx.cardview.widget.CardView>
-                        <TextView
-                            android:id="@+id/txtDcb5t"
-                            android:text="Lễ hội ẩm thực Ấn Độ - INDIAN FOOD FESTIVAL"
-                            style="@style/EventTitle"
-                            android:maxLines="2"/>
-                        <TextView
-                            android:id="@+id/txtDcb5p"
-                            android:text="Từ 350.000 VND"
-                            style="@style/EventPrice"/>
-                    </LinearLayout>
+                    android:id="@+id/linearLayoutDcb"
+                    android:paddingBottom="8dp">
+                    <!-- Sẽ add động các sự kiện Dành cho bạn ở code, xoá các item cứng bên trong -->
                 </LinearLayout>
             </HorizontalScrollView>
         </LinearLayout>

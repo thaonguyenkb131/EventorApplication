@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sknb_card_width">120dp</dimen>
+    <dimen name="sknb_card_height">150dp</dimen>
+    <dimen name="sknb_card_radius">10dp</dimen>
+    <dimen name="dcb_card_width">160dp</dimen>
+    <dimen name="dcb_card_height">100dp</dimen>
+    <dimen name="dcb_card_radius">12dp</dimen>
+    <dimen name="dcb_text_padding_left">10dp</dimen>
+    <dimen name="dcb_line_height">1dp</dimen>
+</resources>

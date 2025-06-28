@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 public class ChitietsukienActivity extends BaseActivity<ActivityChitietsukienBinding> {
 
@@ -122,8 +123,14 @@ public class ChitietsukienActivity extends BaseActivity<ActivityChitietsukienBin
         ticketAdapter = new TicketCategoriesAdapter(null); // Khởi tạo rỗng, sẽ cập nhật sau
         rcvTicketCategories.setAdapter(ticketAdapter);
 
+        Thesukien event = null;
+        String eventJson = getIntent().getStringExtra("event_json");
+        if (eventJson != null) {
+            event = new Gson().fromJson(eventJson, Thesukien.class);
+            showEventDetail(event);
+        }
         int eventId = getIntent().getIntExtra("event_id", -1);
-        if (eventId != -1) {
+        if (event == null && eventId != -1) {
             loadEventDetail(eventId);
         }
     }

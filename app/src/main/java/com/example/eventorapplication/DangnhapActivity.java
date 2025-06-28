@@ -24,6 +24,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
+import android.content.SharedPreferences;
+
 
 public class DangnhapActivity extends AppCompatActivity {
 
@@ -99,6 +101,18 @@ public class DangnhapActivity extends AppCompatActivity {
                                         String passInDB = userSnap.child("Password").getValue(String.class);
                                         if (passInDB != null && passInDB.equals(password)) {
                                             matched = true;
+
+                                            String name = userSnap.child("Name").getValue(String.class);
+                                            String lastname = userSnap.child("Lastname").getValue(String.class);
+                                            String emailFromDB = userSnap.child("Email").getValue(String.class);
+
+                                            SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                                            editor.putString("userName", name);         // lưu tên
+                                            editor.putString("userLastname", lastname); // lưu họ
+                                            editor.putString("userEmail", emailFromDB); // lưu email
+                                            editor.apply();
+
                                             Toast.makeText(DangnhapActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                                             startActivity(new Intent(DangnhapActivity.this, TrangchuActivity.class));
                                             finish();

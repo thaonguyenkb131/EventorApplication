@@ -393,11 +393,11 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <GridView
-                        android:id="@+id/gridView"
+                    <ListView
+                        android:id="@+id/lvSkdtc"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
+                        android:padding="10dp"
                         android:gravity="center"
                         android:horizontalSpacing="8dp"
                         android:numColumns="2"

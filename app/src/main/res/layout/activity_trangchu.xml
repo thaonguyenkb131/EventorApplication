@@ -5,7 +5,8 @@
     android:id="@+id/main"
     tools:context=".TrangchuActivity"
     android:layout_height="wrap_content"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:background="#FFFFFF">
 
     <!-- Thanh công cụ -->
     <LinearLayout

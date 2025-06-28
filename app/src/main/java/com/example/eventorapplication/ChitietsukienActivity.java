@@ -96,6 +96,14 @@ public class ChitietsukienActivity extends BaseActivity<ActivityChitietsukienBin
             }
         });
 
+        binding.Organizer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ChitietsukienActivity.this, TrangcanhanActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // Sự kiện đổi hình nền khi nhấn "Lưu sự kiện"
         LinearLayout btnSave = findViewById(R.id.btnSave);
         LinearLayout saveIcon = (LinearLayout) btnSave.getChildAt(0); // layout nền chứa icon

@@ -10,17 +10,20 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivityTkchuadangnhapBinding;
 
-public class TkchuadangnhapActivity extends AppCompatActivity {
+public class TkchuadangnhapActivity extends BaseActivity<ActivityTkchuadangnhapBinding> {
 
-    ActivityTkchuadangnhapBinding binding;
+
+    @Override
+    protected ActivityTkchuadangnhapBinding inflateBinding() {
+        return binding.inflate(getLayoutInflater());
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityTkchuadangnhapBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
 
         binding.cauhoithuonggap.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,12 +1,14 @@
 package com.example.eventorapplication;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -79,6 +81,18 @@ public class DangkybtcActivity extends BaseActivity<ActivityDangkybtcBinding> {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setGravity(Gravity.CENTER);
+
+        // Bắt sự kiện click nút Tạo sự kiện
+        Button btnTaosukien = popupView.findViewById(R.id.btnTaosukien);
+        btnTaosukien.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Chuyển sang TaosukienActivity
+                Intent intent = new Intent(DangkybtcActivity.this, TaosukienActivity.class);
+                startActivity(intent);
+                dialog.dismiss(); // đóng dialog
+            }
+        });
 
         dialog.show();
 

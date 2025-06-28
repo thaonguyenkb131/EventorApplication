@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:backgroundTint="#FFFFFF"
     android:padding="24dp"
-    tools:context=".ChontaikhoanDialog">
+    android:background="#FFFFFF">
 
     <!-- Tiêu đề -->
     <TextView

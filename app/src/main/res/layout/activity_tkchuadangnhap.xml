@@ -27,17 +27,42 @@
         android:scaleType="centerCrop" />
 
     <!-- Tiêu đề Đăng nhập / Đăng ký -->
-    <TextView
+    <LinearLayout
+        android:id="@+id/txtTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtTitle"
+        android:orientation="horizontal"
         android:layout_below="@id/imgAvatar"
-        android:layout_marginTop="12dp"
         android:layout_centerHorizontal="true"
-        android:text="Đăng nhập / Đăng ký"
-        android:textColor="#066183"
-        android:textSize="25sp"
-        android:fontFamily="@font/montserrat_bold" />
+        android:layout_marginTop="12dp">
+
+        <TextView
+            android:id="@+id/txtDangNhap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đăng nhập"
+            android:textColor="#066183"
+            android:textSize="25sp"
+            android:fontFamily="@font/montserrat_bold"/>
+
+        <TextView
+            android:id="@+id/txtSlash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" / "
+            android:textColor="#066183"
+            android:textSize="25sp"
+            android:fontFamily="@font/montserrat_bold"/>
+
+        <TextView
+            android:id="@+id/txtDangKy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đăng ký"
+            android:textColor="#066183"
+            android:textSize="25sp"
+            android:fontFamily="@font/montserrat_bold"/>
+    </LinearLayout>
 
     <!-- Subtitle -->
     <TextView
@@ -64,6 +89,7 @@
 
         <!-- Mục 1 -->
         <LinearLayout
+            android:id="@+id/cauhoithuonggap"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:orientation="horizontal"
@@ -94,6 +120,7 @@
 
         <!-- Mục 2 -->
         <LinearLayout
+            android:id="@+id/chinhsach"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:orientation="horizontal"

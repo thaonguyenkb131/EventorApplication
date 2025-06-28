@@ -16,7 +16,7 @@
             android:name=".SukiencuatoiActivity"
             android:exported="false" />
         <activity
-            android:name=".DangkybtcthanhcongDialog"
+            android:name=".QuenmatkhauActivity"
             android:exported="false" />
         <activity
             android:name=".MenusukienDialog"
@@ -86,7 +86,7 @@
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".SukiendadangActivity"
+            android:name=".CailaimatkhauActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity

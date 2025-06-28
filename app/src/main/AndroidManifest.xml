@@ -14,7 +14,7 @@
         android:theme="@style/Theme.EventorApplication"
         tools:targetApi="31">
         <activity
-            android:name=".OnboardingActivity"
+            android:name=".ListtinnhanActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
@@ -133,7 +133,7 @@
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ListtinnhanActivity"
+            android:name=".OnboardingActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>

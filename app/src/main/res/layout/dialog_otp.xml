@@ -4,10 +4,9 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:padding="10dp"
-    android:background="@drawable/bg_success_popup"
-    android:gravity="center_horizontal"
-    tools:context=".OtpDialog">
+    android:padding="15dp"
+    android:background="#FFFFFF"
+    android:gravity="center_horizontal">
 
     <!-- Tiêu đề -->
     <TextView
@@ -137,7 +136,7 @@
     <!-- Nút xác nhận -->
     <Button
         android:id="@+id/btnConfirmOtp"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:text="Xác nhận"
         android:textColor="#FFFFFF"

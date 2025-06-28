@@ -1,7 +1,10 @@
 package com.example.eventorapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -39,7 +42,7 @@ public class SukienxuhuongActivity extends BaseActivity<ActivitySukienxuhuongBin
             v.setPadding(0, 0, 0, systemBars.bottom); // tránh bị che nút
 
             // Đẩy TextView xuống dưới status bar
-            View txtTitle = findViewById(R.id.header_layout);
+            View txtTitle = findViewById(R.id.header);
             txtTitle.setPadding(
                     txtTitle.getPaddingLeft(),
                     systemBars.top,
@@ -48,6 +51,23 @@ public class SukienxuhuongActivity extends BaseActivity<ActivitySukienxuhuongBin
             );
 
             return insets;
+        });
+
+        // Thiết lập tiêu đề và nút quay lại
+        TextView txtHeaderTitle = findViewById(R.id.txtTitle);
+        ImageView btnBack = findViewById(R.id.btnBack);
+
+        txtHeaderTitle.setText("Sự kiện xu hướng");
+        btnBack.setOnClickListener(v -> finish());
+
+        binding.lvSukien.setOnItemClickListener((parent, view, position, id) -> {
+            // Lấy sự kiện được click
+            SukienxuhuongItem selectedItem = dsSuKien.get(position);
+
+            // Tạo Intent sang trang Chi tiết sự kiện
+            Intent intent = new Intent(SukienxuhuongActivity.this, ChitietsukienActivity.class);
+
+            startActivity(intent);
         });
     }
 

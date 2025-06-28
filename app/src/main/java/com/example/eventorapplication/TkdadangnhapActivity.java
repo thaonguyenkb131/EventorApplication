@@ -120,7 +120,7 @@ public class TkdadangnhapActivity extends BaseActivity<ActivityTkdadangnhapBindi
         binding.btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TkdadangnhapActivity.this, DangnhapActivity.class);
+                Intent intent = new Intent(TkdadangnhapActivity.this, TkchuadangnhapActivity.class);
                 startActivity(intent);
             }
         });

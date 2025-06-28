@@ -1,6 +1,7 @@
 package com.example.eventorapplication;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -24,7 +25,18 @@ public class TaosukienthanhcongDialog extends DialogFragment {
                              @Nullable Bundle savedInstanceState) {
         binding = DialogTaosukienthanhcongBinding.inflate(inflater, container, false);
 
+        binding.btnXemSukien.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ChitietsukienActivity.class);
+                startActivity(intent);
+                dismiss(); // Đóng dialog sau khi mở activity
+            }
+        });
+
         return binding.getRoot();
+
+
     }
 
     @Override

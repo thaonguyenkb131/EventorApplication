@@ -86,21 +86,13 @@
         android:padding="8dp"
         android:elevation="6dp" />
 
-    <!-- Footer dưới cùng -->
-    <include
-        android:id="@+id/footerLayout"
-        layout="@layout/activity_footer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:elevation="4dp" />
 
     <!-- Thanh nhắn tin nằm ngay trên Footer -->
     <LinearLayout
         android:id="@+id/layoutBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/footerLayout"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:padding="8dp"
         android:background="@android:color/white"

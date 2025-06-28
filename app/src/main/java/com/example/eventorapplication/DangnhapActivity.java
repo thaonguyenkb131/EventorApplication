@@ -13,22 +13,31 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.eventorapplication.databinding.ActivityDangnhapBinding;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 public class DangnhapActivity extends AppCompatActivity {
 
     ActivityDangnhapBinding binding;
+    private DatabaseReference accountRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityDangnhapBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        accountRef = com.google.firebase.database.FirebaseDatabase.getInstance().getReference("accounts");
+
 
         binding.txtRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,8 +80,45 @@ public class DangnhapActivity extends AppCompatActivity {
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DangnhapActivity.this, TrangchuActivity.class);
-                startActivity(intent);
+                String email = binding.edtEmail.getText().toString().trim();
+                String password = binding.edtPassword.getText().toString().trim();
+
+                if (email.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(DangnhapActivity.this, "Vui lòng nhập email và mật khẩu", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                accountRef.orderByChild("Email").equalTo(email)
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if (snapshot.exists()) {
+                                    boolean matched = false;
+
+                                    for (DataSnapshot userSnap : snapshot.getChildren()) {
+                                        String passInDB = userSnap.child("Password").getValue(String.class);
+                                        if (passInDB != null && passInDB.equals(password)) {
+                                            matched = true;
+                                            Toast.makeText(DangnhapActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(DangnhapActivity.this, TrangchuActivity.class));
+                                            finish();
+                                            break;
+                                        }
+                                    }
+
+                                    if (!matched) {
+                                        Toast.makeText(DangnhapActivity.this, "Mật khẩu không đúng", Toast.LENGTH_SHORT).show();
+                                    }
+                                } else {
+                                    Toast.makeText(DangnhapActivity.this, "Email chưa đăng ký", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                                Toast.makeText(DangnhapActivity.this, "Lỗi kết nối", Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
 

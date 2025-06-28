@@ -1,8 +1,10 @@
 package com.example.eventorapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -52,6 +54,25 @@ public class TkdadangnhapActivity extends BaseActivity<ActivityTkdadangnhapBindi
 
             return insets;
         });
+
+        // Lấy dữ liệu đã lưu trong SharedPreferences
+        SharedPreferences preferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        String userEmail = preferences.getString("userEmail", null);
+        String userName = preferences.getString("userName", null);
+        String userLastname = preferences.getString("userLastname", null);
+
+        // Nếu chưa đăng nhập (không có email hoặc tên), chuyển về màn hình chưa đăng nhập
+        if (userEmail == null || userName == null) {
+            Intent intent = new Intent(TkdadangnhapActivity.this, TkchuadangnhapActivity.class);
+            startActivity(intent);
+            finish(); // đóng activity hiện tại
+            return;
+        }
+
+        // Hiển thị dữ liệu bằng View Binding
+        String fullName = userLastname + " " + userName;
+        binding.txtEmail.setText(userEmail);
+        binding.txtName.setText(fullName);
 
         binding.caidattk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,8 +141,17 @@ public class TkdadangnhapActivity extends BaseActivity<ActivityTkdadangnhapBindi
         binding.btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TkdadangnhapActivity.this, TkchuadangnhapActivity.class);
+                // Xóa thông tin đăng nhập đã lưu
+                SharedPreferences preferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear(); // hoặc chỉ xóa từng key: remove("userEmail"), remove("userName"), ...
+                editor.apply();
+
+                // Chuyển về trang chưa đăng nhập hoặc trang chủ
+                Intent intent = new Intent(TkdadangnhapActivity.this, TrangchuActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Xóa stack để không quay lại bằng nút back
                 startActivity(intent);
+                finish();
             }
         });
     }

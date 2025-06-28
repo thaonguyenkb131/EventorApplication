@@ -1,5 +1,6 @@
 package com.example.eventorapplication;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,22 +12,27 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.adapters.ListtinnhanAdapter;
+import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivityListtinnhanBinding;
 import com.example.models.ListtinnhanItem;
 
 import java.util.ArrayList;
 
-public class ListtinnhanActivity extends AppCompatActivity {
-    ActivityListtinnhanBinding binding;
+public class ListtinnhanActivity extends BaseActivity<ActivityListtinnhanBinding> {
+
     ListtinnhanAdapter adapter;
     ArrayList<ListtinnhanItem> messages;
     private boolean isNotificationOn = false;
 
     @Override
+    protected ActivityListtinnhanBinding inflateBinding() {
+        return binding.inflate(getLayoutInflater());
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityListtinnhanBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+
 
         //Nút bật tắt thông báo
         binding.btnTatThongBao.setOnClickListener(v -> {
@@ -44,6 +50,14 @@ public class ListtinnhanActivity extends AppCompatActivity {
         });
 
         loadData();
+
+        binding.lvMessages.setOnItemClickListener((parent, view, position, id) -> {
+            // Mở trang chi tiết tin nhắn
+            Intent intent = new Intent(ListtinnhanActivity.this, ChitiettinnhanActivity.class);
+
+            startActivity(intent);
+        });
+
     }
 
     private void loadData() {

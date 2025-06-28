@@ -1,6 +1,8 @@
 package com.example.eventorapplication;
 
 import static android.widget.Toast.makeText;
+
+import android.content.SharedPreferences;
 import android.util.Patterns;
 
 import android.content.Intent;
@@ -66,10 +68,11 @@ public class DangkyActivity extends AppCompatActivity {
 
                 if (lastname.isEmpty() || name.isEmpty() || email.isEmpty() || password.isEmpty() || rePassword.isEmpty()) {
                     Toast.makeText(DangkyActivity.this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-
                 if (!password.equals(rePassword)) {
                     Toast.makeText(DangkyActivity.this, "Mật khẩu không khớp", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
                 if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
@@ -93,7 +96,18 @@ public class DangkyActivity extends AppCompatActivity {
                             UserModel user = new UserModel(lastname, name, email, phone, password);
                             accountRef.child(Id).setValue(user).addOnCompleteListener(task -> {
                                 if(task.isSuccessful()) {
+                                    SharedPreferences preferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.putString("userLastname", lastname);
+                                    editor.putString("userName", name);
+                                    editor.putString("userEmail", email);
+                                    editor.apply();
+
                                     Toast.makeText(DangkyActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+
+                                    Intent intent = new Intent(DangkyActivity.this, TrangchuActivity.class);
+                                    startActivity(intent);
+                                    finish();
                                 } else {
                                     Toast.makeText(DangkyActivity.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
                                 }
@@ -106,9 +120,7 @@ public class DangkyActivity extends AppCompatActivity {
 
                     }
                 });
-                
-                Intent intent = new Intent(DangkyActivity.this, TrangchuActivity.class);
-                startActivity(intent);
+
             }
         });
 

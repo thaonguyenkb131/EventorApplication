@@ -1,14 +1,18 @@
 package com.example.eventorapplication;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowInsetsController;
+import android.widget.Button;
 import android.widget.PopupWindow;
 
 import androidx.core.graphics.Insets;
@@ -89,10 +93,39 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
 
         binding.btnDoiAnh.setOnClickListener(view -> showPopupTaianh(view));
 
-        binding.btnDangSukien.setOnClickListener(view -> {
-            TaosukienthanhcongDialog dialog = new TaosukienthanhcongDialog();
-            dialog.show(getSupportFragmentManager(), "popup_taosk");
+        binding.btnDangSukien.setOnClickListener(view -> showPopupTaoskthanhcong());
+    }
+
+    private void showPopupTaoskthanhcong() {
+        View popupView = LayoutInflater.from(this).inflate(R.layout.dialog_taosukienthanhcong, null);
+
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(popupView);
+        dialog.setCancelable(true);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        Window window = dialog.getWindow();
+        if (window != null) {
+            window.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT); // full width
+            int padding = (int) getResources().getDisplayMetrics().density * 24; // ~24dp
+            window.getDecorView().setPadding(padding, padding, padding, padding); // cách lề đều
+            window.setGravity(Gravity.CENTER);
+        }
+        dialog.getWindow().setGravity(Gravity.CENTER);
+
+        // Bắt sự kiện click nút Tạo sự kiện
+        Button btnXemsukien = popupView.findViewById(R.id.btnXemsukien);
+        btnXemsukien.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Chuyển sang TaosukienActivity
+                Intent intent = new Intent(TaosukienActivity.this, ChitietsukienActivity.class);
+                startActivity(intent);
+                dialog.dismiss(); // đóng dialog
+            }
         });
+
+        dialog.show();
     }
 
     private void showPopupMap(View anchorView) {
@@ -110,8 +143,6 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
 
         popupMaps.showAtLocation(binding.getRoot(), android.view.Gravity.CENTER, 0, 0);
     }
-
-
 
     private void showPopupTaianh(View anchorView) {
         View popupView = LayoutInflater.from(this).inflate(R.layout.dialog_taianhlen, null);

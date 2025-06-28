@@ -9,10 +9,10 @@
         android:id="@+id/txtMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_recv"
+        android:background="@drawable/bg_send"
         android:padding="10dp"
         android:layout_marginEnd="50dp"
         android:text="Xin chào!"
-        android:textColor="@android:color/white"
+        android:textColor="@android:color/black"
         android:textSize="14sp" />
 </LinearLayout>

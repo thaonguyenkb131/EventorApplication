@@ -1,51 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="180dp"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:background="@color/white">
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:layout_margin="15dp">
+
+    <!-- Nội dung chính -->
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center_vertical"
-        android:layout_marginBottom="20dp">
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/bg_border_blue"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="12dp">
 
-        <!-- Icon thành công -->
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_success"
-            android:layout_marginEnd="12dp" />
-
-        <!-- Text -->
-        <TextView
-            android:id="@+id/txtSuccess"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Yêu cầu đăng ký BTC được gửi thành công"
-            android:textColor="#000000"
-            android:textStyle="bold"
-            android:textSize="25sp"
-            android:fontFamily="@font/montserrat_bold"/>
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_success" />
+
+            <TextView
+                android:id="@+id/txtSuccess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Yêu cầu đăng ký BTC được gửi thành công"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnTaosukien"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:backgroundTint="#066183"
+            android:fontFamily="@font/montserrat_bold"
+            android:paddingHorizontal="24dp"
+            android:text="Tạo sự kiện"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
     </LinearLayout>
-    <!-- Nút đến trang chủ -->
-    <Button
-        android:id="@+id/btnTaosukien"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tạo sự kiện"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#066183"
-        android:paddingHorizontal="24dp"
-        android:textSize="14sp"
-        android:fontFamily="@font/montserrat_bold"
-        android:textAllCaps="false"
-        android:layout_gravity="end"/>
-
-
-</LinearLayout>
+</FrameLayout>

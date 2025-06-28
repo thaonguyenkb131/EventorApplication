@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:text="Tiêu đề trang"
         android:textSize="20sp"
-        android:layout_margin="15dp"
+        android:padding="10dp"
         android:textColor="@android:color/white"
         android:fontFamily="@font/montserrat_bold"
         android:gravity="left"

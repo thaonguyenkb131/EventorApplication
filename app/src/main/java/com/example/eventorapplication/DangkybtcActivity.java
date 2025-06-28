@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
@@ -79,7 +80,14 @@ public class DangkybtcActivity extends BaseActivity<ActivityDangkybtcBinding> {
         dialog.setContentView(popupView);
         dialog.setCancelable(true);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        Window window = dialog.getWindow();
+        if (window != null) {
+            window.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT); // full width
+            int padding = (int) getResources().getDisplayMetrics().density * 24; // ~24dp
+            window.getDecorView().setPadding(padding, padding, padding, padding); // cách lề đều
+            window.setGravity(Gravity.CENTER);
+        }
         dialog.getWindow().setGravity(Gravity.CENTER);
 
         // Bắt sự kiện click nút Tạo sự kiện

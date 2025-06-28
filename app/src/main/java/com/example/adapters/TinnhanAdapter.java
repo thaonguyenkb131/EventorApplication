@@ -64,6 +64,38 @@ public class TinnhanAdapter extends BaseAdapter {
             return true;
         });
 
+        // Xử lý click vào nút ba chấm
+        View btnOpt = convertView.findViewById(R.id.btnOptmessage);
+        if (btnOpt != null) {
+            btnOpt.setOnClickListener(v -> {
+                android.widget.PopupMenu popup = new android.widget.PopupMenu(context, btnOpt);
+                popup.getMenu().add("Thu hồi");
+                popup.getMenu().add("Xóa");
+                popup.getMenu().add("Ghim");
+
+                popup.setOnMenuItemClickListener(itemMenu -> {
+                    String title = itemMenu.getTitle().toString();
+                    switch (title) {
+                        case "Thu hồi":
+                            messages.set(i, new TinnhanItem("Tin nhắn đã được thu hồi", true)); // hoặc xóa
+                            notifyDataSetChanged();
+                            break;
+                        case "Xóa":
+                            messages.remove(i);
+                            notifyDataSetChanged();
+                            break;
+                        case "Ghim":
+                            // Có thể thay đổi màu hoặc vị trí tin nhắn nếu muốn
+                            android.widget.Toast.makeText(context, "Đã ghim tin nhắn", android.widget.Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                    return true;
+                });
+
+                popup.show();
+            });
+        }
+
         return convertView;
     }
 

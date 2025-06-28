@@ -31,48 +31,62 @@
         app:layout_constraintTop_toBottomOf="@+id/Header"
         app:layout_constraintBottom_toTopOf="@+id/footerLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="10dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:orientation="vertical">
-            <EditText
-                android:id="@+id/edtTenSukien"
+            <LinearLayout
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_regular"
-                android:hint="Tên sự kiện của bạn"
-                android:padding="15dp"
-                android:textSize="14sp" />
-            <EditText
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tên sự kiện của bạn"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:fontFamily="@font/montserrat_medium"/>
+
+                <EditText
+                    android:id="@+id/edtTenSukien"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:padding="15dp"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <TextView
                 android:id="@+id/edtThoigianmodon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_regular"
-                android:hint="Thời gian mở đơn đăng ký"
-                android:padding="15dp"
-                android:textSize="14sp" />
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Thời gian mở đơn đăng ký"
+                android:textColor="#000000"
+                android:textSize="16sp" />
             <EditText
                 android:id="@+id/edtThoigianmodonbox"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/bg_search_box_img"
                 android:drawableEnd="@drawable/iccalendar_scaled"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:textSize="16sp" />
-            <EditText
+            <TextView
                 android:id="@+id/edtThoigiandienra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat_regular"
-                android:hint="Thời gian diễn ra sự kiện"
-                android:padding="15dp"
-                android:textSize="14sp" />
-            <!--                Bắt đầu lúc-->
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Thời gian diễn ra sự kiện"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -157,14 +171,14 @@
                     android:drawableEnd="@drawable/iccalendar_scaled"/>
             </LinearLayout>
 <!--            Hình thức-->
-            <EditText
+            <TextView
                 android:id="@+id/edtHinhthuc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Hình thức"
-                android:fontFamily="@font/montserrat_regular"
-                android:padding="15dp"
-                android:textSize="14sp" />
+                android:text="Hình thức"
+                android:fontFamily="@font/montserrat_medium"
+
+                android:textSize="16sp" />
             <RadioGroup
                 android:id="@+id/rgHinhthuc"
                 android:layout_width="match_parent"
@@ -174,39 +188,48 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center">
-                    <RadioButton
-                        android:id="@+id/rbOnline"
+                    <RadioGroup
+                        android:id="@+id/rgMode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Online"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:padding="15dp"
-                        android:textSize="14sp" />
-                    <RadioButton
-                        android:id="@+id/rbOffline"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Offline"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:padding="15dp"
-                        android:textSize="14sp" />
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rbOnline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Online"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:padding="15dp"
+                            android:textSize="14sp" />
+
+                        <RadioButton
+                            android:id="@+id/rbOffline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Offline"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:padding="15dp"
+                            android:textSize="14sp" />
+                    </RadioGroup>
+
                 </LinearLayout>
             </RadioGroup>
 
 <!--            Địa điểm tổ chức-->
-            <EditText
+            <TextView
                 android:id="@+id/edtDiadiem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Địa điểm tổ chức"
-                android:fontFamily="@font/montserrat_regular"
-                android:padding="15dp"
-                android:textSize="14sp" />
+                android:text="Địa điểm tổ chức"
+                android:fontFamily="@font/montserrat_medium"
+
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/edtSearch"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/bg_search_box_img"
                 android:drawableEnd="@drawable/ic_search_blue"
@@ -231,11 +254,22 @@
                 app:backgroundTint="@android:color/transparent" />
 
             <!--            Mô tả sự kiện-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mô tả sự kiện"
+                android:fontFamily="@font/montserrat_medium"
+                android:textSize="16sp"
+                android:gravity="top|start"
+                android:inputType="textMultiLine"
+                android:maxLines="10"
+                android:scrollbars="vertical"
+                android:overScrollMode="always" />
+
             <EditText
                 android:id="@+id/edtMoTa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Mô tả sự kiện"
                 android:fontFamily="@font/montserrat_regular"
                 android:padding="15dp"
                 android:textSize="14sp"
@@ -256,10 +290,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Tải ảnh thumbnail"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:padding="15dp"
+                    android:fontFamily="@font/montserrat_medium"
                     android:textColor="@color/black"
-                    android:textSize="14sp"/>
+                    android:textSize="16sp"
+                    android:layout_gravity="center_vertical"/>
                 <FrameLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

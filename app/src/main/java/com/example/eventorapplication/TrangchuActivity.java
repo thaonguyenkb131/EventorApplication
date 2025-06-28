@@ -158,7 +158,7 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
         });
 
         binding.imvnhantin.setOnClickListener(v -> {
-            startActivity(new Intent(this, ChitiettinnhanActivity.class));
+            startActivity(new Intent(this, ListtinnhanActivity.class));
         });
 
         binding.txtXemthem.setOnClickListener(v -> {

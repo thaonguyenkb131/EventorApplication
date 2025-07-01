@@ -25,6 +25,27 @@ public class TkchuadangnhapActivity extends BaseActivity<ActivityTkchuadangnhapB
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Tránh che màn hình
+
+        View rootView = findViewById(R.id.main); // ConstraintLayout có id="main"
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(0, 0, 0, systemBars.bottom); // tránh bị che nút
+
+            // Đẩy TextView xuống dưới status bar
+            View txtTitle = findViewById(R.id.imgCover);
+            if (txtTitle != null) {
+                txtTitle.setPadding(
+                        txtTitle.getPaddingLeft(),
+                        txtTitle.getPaddingTop(),
+                        txtTitle.getPaddingRight(),
+                        txtTitle.getPaddingBottom()
+                );
+            }
+
+            return insets;
+        });
+
         binding.cauhoithuonggap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

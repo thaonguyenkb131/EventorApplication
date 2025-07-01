@@ -4,10 +4,14 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -15,9 +19,11 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.adapters.BinhluanAdapter;
 import com.example.adapters.TicketCategoriesAdapter;
 import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivityChitietsukienBinding;
+import com.example.models.BinhluanItem;
 import com.example.models.Thesukien;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,11 +32,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ChitietsukienActivity extends BaseActivity<ActivityChitietsukienBinding> {
 
 
     private boolean isSaved = false;
     private TicketCategoriesAdapter ticketAdapter;
+    private List<BinhluanItem> binhluanList;
+    private BinhluanAdapter adapter;
+    private int visibleItemCount = 3;
 
     @Override
     protected ActivityChitietsukienBinding inflateBinding() {
@@ -141,6 +153,39 @@ public class ChitietsukienActivity extends BaseActivity<ActivityChitietsukienBin
         if (event == null && eventId != -1) {
             loadEventDetail(eventId);
         }
+
+        // Dữ liệu mẫu
+        binhluanList = new ArrayList<>();
+        binhluanList.add(new BinhluanItem("Trần Ân Tú", "Sự kiện rất hay!", 2, R.drawable.avatar_ex));
+        binhluanList.add(new BinhluanItem("Minh Anh", "Tổ chức chuyên nghiệp!", 4, R.drawable.avatar_ex));
+        binhluanList.add(new BinhluanItem("Ngọc Lan", "Trải nghiệm thú vị!", 5, R.drawable.avatar_ex));
+        binhluanList.add(new BinhluanItem("Trần Ân Tú", "Sự kiện rất hay!", 2, R.drawable.avatar_ex));
+        binhluanList.add(new BinhluanItem("Minh Anh", "Tổ chức chuyên nghiệp!", 4, R.drawable.avatar_ex));
+        binhluanList.add(new BinhluanItem("Ngọc Lan", "Trải nghiệm thú vị!", 5, R.drawable.avatar_ex));
+
+
+// Khởi tạo RecyclerView
+        binding.listBinhluan.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new BinhluanAdapter(this, new ArrayList<>());
+        binding.listBinhluan.setAdapter(adapter);
+        updateCommentList(); // Hiển thị lần đầu
+
+// Ẩn nếu không còn "Xem thêm"
+        if (binhluanList.size() <= visibleItemCount) {
+            binding.txtMore.setVisibility(View.GONE);
+        }
+
+        binding.txtMore.setOnClickListener(v -> {
+            if (visibleItemCount < binhluanList.size()) {
+                visibleItemCount = Math.min(visibleItemCount + 3, binhluanList.size());
+                updateCommentList();
+            }
+
+            if (visibleItemCount >= binhluanList.size()) {
+                binding.txtMore.setVisibility(View.GONE);
+            }
+        });
+
     }
 
     private void loadEventDetail(int eventId) {
@@ -179,6 +224,11 @@ public class ChitietsukienActivity extends BaseActivity<ActivityChitietsukienBin
             RecyclerView rcvTicketCategories = findViewById(R.id.rcvTicketCategories);
             rcvTicketCategories.setAdapter(ticketAdapter);
         }
+    }
+
+    private void updateCommentList() {
+        List<BinhluanItem> sublist = new ArrayList<>(binhluanList.subList(0, visibleItemCount));
+        adapter.updateData(sublist);
     }
 
 }

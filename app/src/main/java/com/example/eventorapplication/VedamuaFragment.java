@@ -107,7 +107,7 @@ public class VedamuaFragment extends Fragment {
         binding.gvVdm.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), ChitietsukienActivity.class);
+                Intent intent = new Intent(getActivity(), ChitietvedamuaActivity.class);
                 // Có thể truyền dữ liệu sự kiện nếu cần
                 startActivity(intent);
             }

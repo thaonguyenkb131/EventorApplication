@@ -106,8 +106,9 @@ public class SukiendaluuFragment extends Fragment {
         binding.gvSkdl.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Thesukien item = (Thesukien) parent.getItemAtPosition(position);
                 Intent intent = new Intent(getActivity(), ChitietsukienActivity.class);
-                // Có thể truyền dữ liệu sự kiện nếu cần
+                intent.putExtra("event_id", item.getId());
                 startActivity(intent);
             }
         });

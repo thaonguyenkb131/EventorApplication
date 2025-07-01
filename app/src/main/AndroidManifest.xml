@@ -15,6 +15,9 @@
         android:theme="@style/Theme.EventorApplication"
         tools:targetApi="31">
         <activity
+            android:name=".ChitietvedamuaActivity"
+            android:exported="false" />
+        <activity
             android:name=".PhantichbaocaoActivity"
             android:exported="false" />
         <activity

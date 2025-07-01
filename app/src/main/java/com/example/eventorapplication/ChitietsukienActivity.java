@@ -157,11 +157,11 @@ public class ChitietsukienActivity extends BaseActivity<ActivityChitietsukienBin
         // Dữ liệu mẫu
         binhluanList = new ArrayList<>();
         binhluanList.add(new BinhluanItem("Trần Ân Tú", "Sự kiện rất hay!", 2, R.drawable.avatar_ex));
-        binhluanList.add(new BinhluanItem("Minh Anh", "Tổ chức chuyên nghiệp!", 4, R.drawable.avatar_ex));
-        binhluanList.add(new BinhluanItem("Ngọc Lan", "Trải nghiệm thú vị!", 5, R.drawable.avatar_ex));
-        binhluanList.add(new BinhluanItem("Trần Ân Tú", "Sự kiện rất hay!", 2, R.drawable.avatar_ex));
-        binhluanList.add(new BinhluanItem("Minh Anh", "Tổ chức chuyên nghiệp!", 4, R.drawable.avatar_ex));
-        binhluanList.add(new BinhluanItem("Ngọc Lan", "Trải nghiệm thú vị!", 5, R.drawable.avatar_ex));
+        binhluanList.add(new BinhluanItem("Minh Anh", "Tổ chức chuyên nghiệp!", 4, R.drawable.avatar1));
+        binhluanList.add(new BinhluanItem("Ngọc Lan", "Trải nghiệm thú vị!", 5, R.drawable.avatar2));
+        binhluanList.add(new BinhluanItem("Trần Ân Tú", "Sự kiện rất hay!", 2, R.drawable.avatar3));
+        binhluanList.add(new BinhluanItem("Minh Anh", "Tổ chức chuyên nghiệp!", 4, R.drawable.avatar4));
+        binhluanList.add(new BinhluanItem("Ngọc Lan", "Trải nghiệm thú vị!", 5, R.drawable.avatar5));
 
 
 // Khởi tạo RecyclerView

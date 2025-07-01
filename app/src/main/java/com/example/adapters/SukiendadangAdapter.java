@@ -1,6 +1,7 @@
 package com.example.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +9,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
+import com.example.eventorapplication.PhantichbaocaoActivity;
 import com.example.eventorapplication.R;
 import com.example.models.SukiendadangItem;
 
@@ -91,16 +94,27 @@ public class SukiendadangAdapter extends BaseAdapter {
             });
 
             popupView.findViewById(R.id.btnDeletesk).setOnClickListener(v -> {
+                list.remove(i); // Xóa sự kiện khỏi danh sách
+                notifyDataSetChanged(); // Cập nhật giao diện
+                // Hiển thị thông báo xóa thành công
+                Toast.makeText(context, "Đã xóa sự kiện", Toast.LENGTH_SHORT).show();
                 popupWindow.dismiss();
                 // TODO: Xử lý xóa
             });
 
             popupView.findViewById(R.id.btnViewAtt).setOnClickListener(v -> {
+                // TODO: Hiện popup đã tải danh sách ảnh người tham gia
+                Toast.makeText(context, "Đã tải danh sách ảnh người tham gia", Toast.LENGTH_SHORT).show();
+
                 popupWindow.dismiss();
-                // TODO: Xem danh sách người tham gia
+
+
+
             });
 
             popupView.findViewById(R.id.btnViewRep).setOnClickListener(v -> {
+                Intent intent = new Intent(context, PhantichbaocaoActivity.class);
+                context.startActivity(intent);
                 popupWindow.dismiss();
                 // TODO: Xem phân tích báo cáo
             });

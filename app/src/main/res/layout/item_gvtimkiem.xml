@@ -71,7 +71,7 @@
             android:layout_width="8dp"
             android:layout_height="8dp"
             android:layout_marginEnd="2dp"
-            android:src="@drawable/iccalendarblue" />
+            android:src="@drawable/ic_calendar_blue" />
 
         <TextView
             android:id="@+id/txtPhvbDate"

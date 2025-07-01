@@ -303,7 +303,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/tphcm" />
+                                android:src="@drawable/location_tphcm" />
                         </androidx.cardview.widget.CardView>
 
                         <TextView
@@ -334,7 +334,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/hanoi" />
+                                android:src="@drawable/location_hanoi" />
                         </androidx.cardview.widget.CardView>
 
                         <TextView
@@ -365,7 +365,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/danang" />
+                                android:src="@drawable/location_danang" />
                         </androidx.cardview.widget.CardView>
 
                         <TextView
@@ -396,7 +396,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/dalat" />
+                                android:src="@drawable/location_dalat" />
                         </androidx.cardview.widget.CardView>
 
                         <TextView
@@ -427,7 +427,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/tpkhac" />
+                                android:src="@drawable/location_khac" />
                         </androidx.cardview.widget.CardView>
 
                         <TextView

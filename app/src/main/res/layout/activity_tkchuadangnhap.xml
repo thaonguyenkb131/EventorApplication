@@ -23,7 +23,7 @@
         android:layout_below="@id/imgCover"
         android:layout_marginTop="-100dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/avt1_login"
+        android:src="@drawable/avatar6"
         android:scaleType="centerCrop" />
 
     <!-- Tiêu đề Đăng nhập / Đăng ký -->

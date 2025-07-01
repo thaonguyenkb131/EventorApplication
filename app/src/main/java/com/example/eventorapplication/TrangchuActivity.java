@@ -203,10 +203,10 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
                     if (event.getThumbnail() != null && event.getThumbnail().startsWith("http")) {
                         com.bumptech.glide.Glide.with(TrangchuActivity.this)
                                 .load(event.getThumbnail())
-                                .placeholder(R.drawable.dcb1)
+                                .placeholder(R.drawable.default_dcb)
                                 .into(imageView);
                     } else {
-                        imageView.setImageResource(R.drawable.dcb1);
+                        imageView.setImageResource(R.drawable.default_dcb);
                     }
                     cardView.addView(imageView);
                     eventLayout.addView(cardView);

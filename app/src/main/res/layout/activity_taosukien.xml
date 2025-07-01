@@ -69,18 +69,29 @@
                 android:text="Thời gian mở đơn đăng ký"
                 android:textColor="#000000"
                 android:textSize="16sp" />
-            <EditText
-                android:id="@+id/edtThoigianmodonbox"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_margin="10dp"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
                 android:background="@drawable/bg_search_box_img"
-                android:drawableEnd="@drawable/iccalendar_scaled"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textSize="16sp" />
+                android:gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/edtOpen"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="8dp"
+                    android:background="@null"/>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_calendar_black"/>
+            </LinearLayout>
             <TextView
-                android:id="@+id/edtThoigiandienra"
+                android:id="@+id/txtThoigiandienra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
@@ -119,14 +130,27 @@
                     android:paddingEnd="5dp"
                     android:textSize="14sp"
                     android:textColor="@color/black"/>
-                <EditText
-                    android:id="@+id/edtNgaybatdau"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:layout_weight="1"
+                    android:orientation="horizontal"
                     android:background="@drawable/bg_search_box_img"
-                    android:paddingEnd="10dp"
-                    android:drawableEnd="@drawable/iccalendar_scaled"/>
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/edtStart"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="8dp"
+                        android:background="@null"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/ic_calendar_black"/>
+                </LinearLayout>
             </LinearLayout>
 
 <!--            Kết thúc lúc-->
@@ -161,14 +185,28 @@
                     android:paddingEnd="5dp"
                     android:textSize="14sp"
                     android:textColor="@color/black"/>
-                <EditText
-                    android:id="@+id/edtNgayketthuc"
-                    android:layout_width="0dp"
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:layout_weight="1"
+                    android:orientation="horizontal"
                     android:background="@drawable/bg_search_box_img"
-                    android:paddingEnd="10dp"
-                    android:drawableEnd="@drawable/iccalendar_scaled"/>
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:id="@+id/edtEnd"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="8dp"
+                        android:background="@null"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/ic_calendar_black"/>
+                </LinearLayout>
             </LinearLayout>
 <!--            Hình thức-->
             <TextView

@@ -8,8 +8,7 @@
     card_view:cardCornerRadius="16dp"
     card_view:cardElevation="8dp"
     android:background="@android:color/white"
-    android:padding="50dp"
-    tools:context=".SukiendadangItem">
+    android:padding="50dp">
 
     <LinearLayout
         android:layout_width="match_parent"

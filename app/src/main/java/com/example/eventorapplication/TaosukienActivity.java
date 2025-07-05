@@ -160,4 +160,9 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
 
         popupTaianh.showAsDropDown(anchorView, 0, 16);
     }
+
+    @Override
+    protected String getActiveFooterId() {
+        return "taosukien";
+    }
 }

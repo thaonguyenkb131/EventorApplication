@@ -14,16 +14,14 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivityChinhsachBinding;
 
-public class ChinhsachActivity extends BaseActivity<ActivityChinhsachBinding> {
-
-    @Override
-    protected ActivityChinhsachBinding inflateBinding() {
-        return ActivityChinhsachBinding.inflate(getLayoutInflater());
-    }
+public class ChinhsachActivity extends AppCompatActivity {
+    private ActivityChinhsachBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityChinhsachBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         //        Tránh che màn hình
 

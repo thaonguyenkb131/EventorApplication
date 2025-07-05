@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -19,20 +20,19 @@ import com.example.models.TinnhanItem;
 
 import java.util.ArrayList;
 
-public class ChatbotActivity extends BaseActivity<ActivityChatbotBinding> {
+public class ChatbotActivity extends AppCompatActivity {
 
     private ArrayList<TinnhanItem> messages;
     private TinnhanAdapter adapter;
     private static final int PICK_FILE_REQUEST = 1;
 
-    @Override
-    protected ActivityChatbotBinding inflateBinding() {
-        return ActivityChatbotBinding.inflate(getLayoutInflater());
-    }
+    private ActivityChatbotBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityChatbotBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         //        Tránh che màn hình
 

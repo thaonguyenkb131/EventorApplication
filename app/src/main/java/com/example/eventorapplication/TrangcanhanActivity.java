@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -18,17 +19,16 @@ import com.example.models.SukiendadangItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TrangcanhanActivity extends BaseActivity<ActivityTrangcanhanBinding> {
+public class TrangcanhanActivity extends AppCompatActivity {
 
+    private ActivityTrangcanhanBinding binding;
 
-    @Override
-    protected ActivityTrangcanhanBinding inflateBinding() {
-        return ActivityTrangcanhanBinding.inflate(getLayoutInflater());
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityTrangcanhanBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         //        Tránh che màn hình
 

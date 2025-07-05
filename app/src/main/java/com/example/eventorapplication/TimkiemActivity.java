@@ -255,4 +255,9 @@ public class TimkiemActivity extends BaseActivity<ActivityTimkiemBinding> {
         fromDialog.setTitle("Chọn ngày bắt đầu");
         fromDialog.show();
     }
+
+    @Override
+    protected String getActiveFooterId() {
+        return "Homepage"; // Footer này sẽ được highlight
+    }
 }

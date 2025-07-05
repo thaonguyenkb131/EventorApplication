@@ -528,4 +528,9 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
         super.onResume();
         sliderHandler.postDelayed(slideRunnable, 3000);
     }
+
+    @Override
+    protected String getActiveFooterId() {
+        return "Homepage";
+    }
 }

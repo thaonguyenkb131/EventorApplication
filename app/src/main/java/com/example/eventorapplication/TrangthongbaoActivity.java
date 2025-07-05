@@ -113,4 +113,9 @@ public class TrangthongbaoActivity extends BaseActivity<ActivityTrangthongbaoBin
         adapter = new TrangthongbaoAdapter(this, tbao);
         binding.lvThongbao.setAdapter(adapter);
     }
+
+    @Override
+    protected String getActiveFooterId() {
+        return "thongbao"; 
+    }
 }

@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -21,19 +22,18 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivityDangkybtcBinding;
 
-public class DangkybtcActivity extends BaseActivity<ActivityDangkybtcBinding> {
+public class DangkybtcActivity extends AppCompatActivity {
+
+    private ActivityDangkybtcBinding binding;
 
     private PopupWindow popupTaianh;
     private PopupWindow popupMaps;
 
     @Override
-    protected ActivityDangkybtcBinding inflateBinding() {
-        return ActivityDangkybtcBinding.inflate(getLayoutInflater());
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityDangkybtcBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         // Tránh che màn hình
         View rootView = findViewById(R.id.main);

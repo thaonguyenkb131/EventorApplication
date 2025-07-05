@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -18,17 +19,16 @@ import com.example.models.DiemthuongItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DiemthuongActivity extends BaseActivity<ActivityDiemthuongBinding> {
+public class DiemthuongActivity extends AppCompatActivity {
 
-    @Override
-    protected ActivityDiemthuongBinding inflateBinding() {
-        return ActivityDiemthuongBinding.inflate(getLayoutInflater());
-    }
+    ActivityDiemthuongBinding binding;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityDiemthuongBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         //        Tránh che màn hình
 

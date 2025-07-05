@@ -80,6 +80,9 @@ public class SukiencuatoiActivity extends BaseActivity<ActivitySukiencuatoiBindi
         binding.btnSkdadang.setAlpha(selected == 2 ? 1f : 0.5f);
     }
 
-
+    @Override
+    protected String getActiveFooterId() {
+        return "Sukiencuatoi";
+    }
 
 }

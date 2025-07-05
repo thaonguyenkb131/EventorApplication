@@ -155,4 +155,9 @@ public class TkdadangnhapActivity extends BaseActivity<ActivityTkdadangnhapBindi
             }
         });
     }
+
+    @Override
+    protected String getActiveFooterId() {
+        return "taikhoan"; // Footer này sẽ được highlight
+    }
 }

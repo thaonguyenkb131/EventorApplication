@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -35,8 +36,9 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChitietsukienActivity extends BaseActivity<ActivityChitietsukienBinding> {
+public class ChitietsukienActivity extends AppCompatActivity {
 
+    private ActivityChitietsukienBinding binding;
 
     private boolean isSaved = false;
     private TicketCategoriesAdapter ticketAdapter;
@@ -45,14 +47,10 @@ public class ChitietsukienActivity extends BaseActivity<ActivityChitietsukienBin
     private int visibleItemCount = 3;
 
     @Override
-    protected ActivityChitietsukienBinding inflateBinding() {
-        return ActivityChitietsukienBinding.inflate(getLayoutInflater());
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        binding = ActivityChitietsukienBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
 
         //        Tránh che màn hình

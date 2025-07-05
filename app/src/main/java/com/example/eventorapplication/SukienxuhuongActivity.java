@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -24,19 +25,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SukienxuhuongActivity extends BaseActivity<ActivitySukienxuhuongBinding> {
+public class SukienxuhuongActivity extends AppCompatActivity {
+
+    private ActivitySukienxuhuongBinding binding;
 
     private ArrayList<Thesukien> dsSuKien;
     private SukienxuhuongAdapter adapter;
 
-    @Override
-    protected ActivitySukienxuhuongBinding inflateBinding() {
-        return ActivitySukienxuhuongBinding.inflate(getLayoutInflater());
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivitySukienxuhuongBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         loadTrendingEventsFromDb();
 
         //        Tránh che màn hình

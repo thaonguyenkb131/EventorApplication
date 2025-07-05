@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -17,16 +18,15 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivityTaikhoanthanhtoanBinding;
 
-public class TaikhoanthanhtoanActivity extends BaseActivity<ActivityTaikhoanthanhtoanBinding> {
+public class TaikhoanthanhtoanActivity extends AppCompatActivity {
 
-    @Override
-    protected ActivityTaikhoanthanhtoanBinding inflateBinding() {
-        return ActivityTaikhoanthanhtoanBinding.inflate(getLayoutInflater());
-    }
+    private ActivityTaikhoanthanhtoanBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityTaikhoanthanhtoanBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         //        Tránh che màn hình
 

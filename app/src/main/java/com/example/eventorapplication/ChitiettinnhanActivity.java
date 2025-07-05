@@ -11,6 +11,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -22,20 +23,18 @@ import com.example.models.TinnhanItem;
 
 import java.util.ArrayList;
 
-public class ChitiettinnhanActivity extends BaseActivity<ActivityChitiettinnhanBinding> {
+public class ChitiettinnhanActivity extends AppCompatActivity {
 
+    private ActivityChitiettinnhanBinding binding;
     private ArrayList<TinnhanItem> messages;
     private TinnhanAdapter adapter;
     private static final int PICK_FILE_REQUEST = 1;
 
     @Override
-    protected ActivityChitiettinnhanBinding inflateBinding() {
-        return ActivityChitiettinnhanBinding.inflate(getLayoutInflater());
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityChitiettinnhanBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         //        Tránh che màn hình
 

@@ -18,20 +18,19 @@ import com.example.models.ListtinnhanItem;
 
 import java.util.ArrayList;
 
-public class ListtinnhanActivity extends BaseActivity<ActivityListtinnhanBinding> {
+public class ListtinnhanActivity extends AppCompatActivity {
+
+    private ActivityListtinnhanBinding binding;
 
     ListtinnhanAdapter adapter;
     ArrayList<ListtinnhanItem> messages;
     private boolean isNotificationOn = false;
 
     @Override
-    protected ActivityListtinnhanBinding inflateBinding() {
-        return binding.inflate(getLayoutInflater());
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityListtinnhanBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
 
         //Nút bật tắt thông báo

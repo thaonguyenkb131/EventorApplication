@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -13,16 +14,15 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivityCaidattaikhoanBinding;
 
-public class CaidattaikhoanActivity extends BaseActivity<ActivityCaidattaikhoanBinding> {
+public class CaidattaikhoanActivity extends AppCompatActivity {
 
-    @Override
-    protected ActivityCaidattaikhoanBinding inflateBinding() {
-        return ActivityCaidattaikhoanBinding.inflate(getLayoutInflater());
-    }
+    ActivityCaidattaikhoanBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityCaidattaikhoanBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         //        Tránh che màn hình
 

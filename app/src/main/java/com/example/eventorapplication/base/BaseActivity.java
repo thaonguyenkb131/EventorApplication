@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,7 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
     private boolean isFooterVisible = true;
 
     protected abstract VB inflateBinding();
+    protected abstract String getActiveFooterId();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         binding = inflateBinding();
         setContentView(binding.getRoot());
         setupFooterNavigation();
+        highlightActiveFooter(getActiveFooterId());
     }
 
     private void setupFooterNavigation() {
@@ -41,105 +44,77 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         View taikhoan = binding.getRoot().findViewById(R.id.taikhoan);
 
         if (homepage != null) {
-            addClickEffect(homepage);
             homepage.setOnClickListener(v -> {
+                // Highlight the active footer item
+                highlightActiveFooter("Homepage");
                 startActivity(new Intent(this, TrangchuActivity.class));
                 finish();
             });
         }
 
         if (taosukien != null) {
-            addClickEffect(taosukien);
             taosukien.setOnClickListener(v -> {
+                // Highlight the active footer item
+                highlightActiveFooter("taosukien");
                 startActivity(new Intent(this, TaosukienActivity.class));
                 finish();
             });
         }
 
         if (thongbao != null) {
-            addClickEffect(thongbao);
             thongbao.setOnClickListener(v -> {
+                // Highlight the active footer item
+                highlightActiveFooter("thongbao");
                 startActivity(new Intent(this, TrangthongbaoActivity.class));
                 finish();
             });
         }
 
         if (sukiencuatoi != null) {
-            addClickEffect(sukiencuatoi);
             sukiencuatoi.setOnClickListener(v -> {
+                // Highlight the active footer item
+                highlightActiveFooter("sukiencuatoi");
                 startActivity(new Intent(this, SukiencuatoiActivity.class));
                 finish();
             });
         }
         if(taikhoan != null) {
-            addClickEffect(taikhoan);
             taikhoan.setOnClickListener(v -> {
+                // Highlight the active footer item
+                highlightActiveFooter("taikhoan");
                 startActivity(new Intent(this, TkdadangnhapActivity.class));
                 finish();
             });
         }
     }
 
-    protected void addClickEffect(View view) {
-        view.setOnTouchListener((v, event) -> {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-                    v.animate().scaleX(0.95f).scaleY(0.95f).setDuration(100).start();
-                    break;
-                case MotionEvent.ACTION_UP:
-                case MotionEvent.ACTION_CANCEL:
-                    v.animate().scaleX(1f).scaleY(1f).setDuration(100).start();
-                    break;
-            }
-            return false; // vẫn truyền sự kiện cho OnClickListener
-        });
-    }
-
+    // BaseActivity.java
     protected void highlightActiveFooter(String activePageId) {
         int[] footerIds = {
-                R.id.Homepage,
-                R.id.taosukien,
-                R.id.thongbao,
-                R.id.Sukiencuatoi,
-                R.id.taikhoan
+                R.id.Homepage, R.id.taosukien, R.id.thongbao, R.id.Sukiencuatoi, R.id.taikhoan
+        };
+        int[] iconIds = {
+                R.id.icon_home, R.id.icon_taosukien, R.id.icon_thongbao, R.id.icon_sukiencuatoi, R.id.icon_taikhoan
+        };
+        int[] iconNormal = {
+                R.drawable.ic_homepage, R.drawable.ftadd, R.drawable.ic_bell, R.drawable.ic_ticket, R.drawable.ic_account
+        };
+        int[] iconBlue = {
+                R.drawable.ic_homepage_blue, R.drawable.ic_add_blue, R.drawable.ic_bell_blue, R.drawable.ic_ticket_blue, R.drawable.ic_account_blue
         };
 
-        for (int id : footerIds) {
-            View item = binding.getRoot().findViewById(id);
-            if (item != null) {
-                if (getResources().getResourceEntryName(id).equals(activePageId)) {
-                    item.setBackgroundResource(R.drawable.footer_item_selected); // đã chọn
+        for (int i = 0; i < footerIds.length; i++) {
+            View footer = binding.getRoot().findViewById(footerIds[i]);
+            ImageView icon = binding.getRoot().findViewById(iconIds[i]);
+            if (footer != null && icon != null) {
+                if (getResources().getResourceEntryName(footerIds[i]).equals(activePageId)) {
+                    footer.setBackgroundResource(R.drawable.bg_footeritemselected);
+                    icon.setImageResource(iconBlue[i]);
                 } else {
-                    item.setBackgroundResource(R.drawable.footer_item_background); // mặc định
+                    footer.setBackgroundResource(0);
+                    icon.setImageResource(iconNormal[i]);
                 }
             }
         }
     }
-
-
-
-//    private void setupAutoHideFooter() {
-//        View root = binding.getRoot();
-//
-//        // FooterActivity phải có id là R.id.footerLayout trong layout include
-//        footerView = root.findViewById(R.id.footerLayout);
-//        ScrollView scrollView = root.findViewById(R.id.scrollView);
-//
-//
-//        if (footerView != null && scrollView != null) {
-//            scrollView.getViewTreeObserver().addOnScrollChangedListener(() -> {
-//                int currentScrollY = scrollView.getScrollY();
-//
-//                if (currentScrollY > lastScrollY + 10 && isFooterVisible) {
-//                    footerView.animate().translationY(footerView.getHeight()).setDuration(200);
-//                    isFooterVisible = false;
-//                } else if (currentScrollY < lastScrollY - 10 && !isFooterVisible) {
-//                    footerView.animate().translationY(0).setDuration(200);
-//                    isFooterVisible = true;
-//                }
-//
-//                lastScrollY = currentScrollY;
-////            });
-//        }
-//    }
 }

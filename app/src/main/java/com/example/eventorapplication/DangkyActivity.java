@@ -2,20 +2,27 @@ package com.example.eventorapplication;
 
 import static android.widget.Toast.makeText;
 
+import android.app.Dialog;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Patterns;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.models.UserModel;
+import com.google.android.flexbox.FlexboxLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +31,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.example.eventorapplication.databinding.ActivityDangkyBinding;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DangkyActivity extends AppCompatActivity {
 
@@ -101,13 +111,12 @@ public class DangkyActivity extends AppCompatActivity {
                                     editor.putString("userLastname", lastname);
                                     editor.putString("userName", name);
                                     editor.putString("userEmail", email);
+                                    editor.putString("userId", Id);
                                     editor.apply();
 
                                     Toast.makeText(DangkyActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                                    showDialogLinhVucQuanTam(Id);
 
-                                    Intent intent = new Intent(DangkyActivity.this, TrangchuActivity.class);
-                                    startActivity(intent);
-                                    finish();
                                 } else {
                                     Toast.makeText(DangkyActivity.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
                                 }
@@ -124,5 +133,64 @@ public class DangkyActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void showDialogLinhVucQuanTam(String id) {
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_linhvucquantam, null);
+        Dialog dialog = new Dialog(this);
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setContentView(dialogView);
+        dialog.setCancelable(false);
+
+        dialog.getWindow().setLayout(
+                (int) (getResources().getDisplayMetrics().widthPixels * 0.9),
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+
+        List<String> selectedTags = new ArrayList<>();
+
+        FlexboxLayout tagContainer = dialogView.findViewById(R.id.tagContainer);
+
+        // Lặp qua các tag (TextView)
+        for (int i = 0; i < tagContainer.getChildCount(); i++) {
+            View tag = tagContainer.getChildAt(i);
+            if (tag instanceof TextView) {
+                TextView tagView = (TextView) tag;
+                tagView.setOnClickListener(v -> {
+                    String tagId = (String) tagView.getTag(); // Lấy id
+                    if (selectedTags.contains(tagId)) {
+                        selectedTags.remove(tagId);
+                        tagView.setBackgroundResource(R.drawable.bg_tag);
+                        tagView.setTextColor(Color.BLACK);
+                    } else {
+                        selectedTags.add(tagId);
+                        tagView.setBackgroundResource(R.drawable.bg_tagselected);
+                        tagView.setTextColor(Color.WHITE);
+                    }
+                });
+            }
+        }
+
+        Button btnSave = dialogView.findViewById(R.id.btnSave);
+        btnSave.setOnClickListener(v -> {
+            if (selectedTags.isEmpty()) {
+                Toast.makeText(this, "Vui lòng chọn ít nhất một lĩnh vực", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Lưu vào Firebase: accounts/{userId}/Interests = selectedTags
+            accountRef.child(id).child("Interests").setValue(selectedTags)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(this, "Đã lưu lĩnh vực quan tâm", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                            startActivity(new Intent(this, TrangchuActivity.class));
+                            finish();
+                        }
+                    });
+        });
+
+        dialog.show();
     }
 }

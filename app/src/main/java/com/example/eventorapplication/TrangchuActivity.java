@@ -1,7 +1,10 @@
 package com.example.eventorapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -14,9 +17,11 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivityTrangchuBinding;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -39,6 +44,8 @@ import java.util.List;
 
 import androidx.cardview.widget.CardView;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.Toast;
+
 import androidx.core.content.res.ResourcesCompat;
 
 public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
@@ -221,129 +228,172 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
 
     private void loadForYouEvents() {
         binding.progressBar.setVisibility(View.VISIBLE);
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("foryouevents");
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+
+        // Lấy userId từ SharedPreferences
+        SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        String userId = prefs.getString("userId", null);
+        if (userId == null) {
+            Toast.makeText(this, "Không tìm thấy người dùng", Toast.LENGTH_SHORT).show();
+            binding.progressBar.setVisibility(View.GONE);
+            return;
+        }
+
+        // Lấy danh sách lĩnh vực quan tâm (Interests)
+        DatabaseReference accountRef = FirebaseDatabase.getInstance().getReference("accounts").child(userId).child("Interests");
+        accountRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                LinearLayout linearLayoutDcb = findViewById(R.id.linearLayoutDcb);
-                if (linearLayoutDcb == null) return;
-                linearLayoutDcb.removeAllViews();
-                java.text.NumberFormat nf = java.text.NumberFormat.getInstance(new java.util.Locale("vi", "VN"));
-                int cardWidth = (int) getResources().getDimension(R.dimen.dcb_card_width);
-                int cardHeight = (int) getResources().getDimension(R.dimen.dcb_card_height);
-                float cardRadius = getResources().getDimension(R.dimen.dcb_card_radius);
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Thesukien event = snapshot.getValue(Thesukien.class);
-                    if (event == null) continue;
-                    // Tạo layout cho từng sự kiện
-                    LinearLayout eventLayout = new LinearLayout(TrangchuActivity.this);
-                    eventLayout.setOrientation(LinearLayout.VERTICAL);
-                    LinearLayout.LayoutParams eventParams = new LinearLayout.LayoutParams(
-                        cardWidth,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                    );
-                    eventParams.setMargins(0, 0, 20, 0);
-                    eventLayout.setLayoutParams(eventParams);
-                    eventLayout.setGravity(android.view.Gravity.CENTER_HORIZONTAL);
-
-                    // CardView chứa ảnh
-                    CardView cardView = new CardView(TrangchuActivity.this);
-                    cardView.setRadius(cardRadius);
-                    cardView.setCardElevation(8f);
-                    cardView.setUseCompatPadding(true);
-                    LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
-                        cardWidth,
-                        cardHeight
-                    );
-                    cardView.setLayoutParams(cardParams);
-
-                    ImageView imageView = new ImageView(TrangchuActivity.this);
-                    imageView.setLayoutParams(new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.MATCH_PARENT
-                    ));
-                    imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    if (event.getThumbnail() != null && event.getThumbnail().startsWith("http")) {
-                        com.bumptech.glide.Glide.with(TrangchuActivity.this)
-                                .load(event.getThumbnail())
-                                .placeholder(R.drawable.default_dcb)
-                                .into(imageView);
-                    } else {
-                        imageView.setImageResource(R.drawable.default_dcb);
-                    }
-                    cardView.addView(imageView);
-                    eventLayout.addView(cardView);
-
-                    // Tên sự kiện
-                    TextView titleView = new TextView(TrangchuActivity.this);
-                    titleView.setText(event.getTitle());
-                    titleView.setMaxLines(2);
-                    titleView.setEllipsize(android.text.TextUtils.TruncateAt.END);
-                    titleView.setTextColor(android.graphics.Color.BLACK);
-                    titleView.setTextSize(14);
-                    titleView.setGravity(android.view.Gravity.START);
-                    android.graphics.Typeface montserrat = ResourcesCompat.getFont(TrangchuActivity.this, R.font.montserrat_semibold);
-                    if (montserrat != null) titleView.setTypeface(montserrat, android.graphics.Typeface.BOLD);
-                    titleView.setPadding((int) getResources().getDimension(R.dimen.dcb_text_padding_left), 0, 0, 0);
-                    eventLayout.addView(titleView);
-
-                    // Giá sự kiện
-                    TextView priceView = new TextView(TrangchuActivity.this);
-                    double price = event.getPrice();
-                    final String priceColor;
-                    if (price > 0) {
-                        priceView.setText("Từ " + nf.format(price) + " VND");
-                        priceColor = "#1C9CCA"; // blue
-                        priceView.setTextColor(android.graphics.Color.parseColor(priceColor));
-                    } else {
-                        priceView.setText("Miễn phí");
-                        priceColor = "#43A047"; // green
-                        priceView.setTextColor(android.graphics.Color.parseColor(priceColor));
-                    }
-                    priceView.setTextSize(14);
-                    priceView.setGravity(android.view.Gravity.START);
-                    if (montserrat != null) priceView.setTypeface(montserrat, android.graphics.Typeface.BOLD);
-                    priceView.setPadding((int) getResources().getDimension(R.dimen.dcb_text_padding_left), 0, 0, 0);
-                    eventLayout.addView(priceView);
-
-                    // Line dưới giá (màu trùng màu giá, chỉ phủ đúng nội dung giá)
-                    priceView.post(() -> {
-                        Paint paint = new Paint();
-                        paint.setTextSize(priceView.getTextSize());
-                        paint.setTypeface(priceView.getTypeface());
-                        float priceTextWidth = paint.measureText(priceView.getText().toString());
-                        int priceLineWidth = (int) priceTextWidth;
-                        View line = new View(TrangchuActivity.this);
-                        LinearLayout.LayoutParams lineParams = new LinearLayout.LayoutParams(
-                            priceLineWidth,
-                            (int) getResources().getDimension(R.dimen.dcb_line_height)
-                        );
-                        // Đặt left margin giống với giá để line nằm ngay dưới text
-                        lineParams.setMargins((int) getResources().getDimension(R.dimen.dcb_text_padding_left), 0, 0, 1);
-                        lineParams.gravity = android.view.Gravity.START;
-                        line.setLayoutParams(lineParams);
-                        line.setBackgroundColor(android.graphics.Color.parseColor(priceColor));
-                        eventLayout.addView(line, eventLayout.indexOfChild(priceView) + 1);
-                    });
-
-                    // Xử lý click: truyền object Thesukien dạng JSON
-                    Gson gson = new Gson();
-                    cardView.setOnClickListener(v -> {
-                        Intent intent = new Intent(TrangchuActivity.this, ChitietsukienActivity.class);
-                        intent.putExtra("event_json", gson.toJson(event));
-                        startActivity(intent);
-                    });
-
-                    linearLayoutDcb.addView(eventLayout);
+            public void onDataChange(@NonNull DataSnapshot interestSnapshot) {
+                List<String> interests = new ArrayList<>();
+                for (DataSnapshot tag : interestSnapshot.getChildren()) {
+                    String interest = tag.getValue(String.class);
+                    if (interest != null) interests.add(interest);
                 }
-                binding.progressBar.setVisibility(View.GONE);
+
+                if (interests.isEmpty()) {
+                    Toast.makeText(TrangchuActivity.this, "Bạn chưa chọn lĩnh vực quan tâm", Toast.LENGTH_SHORT).show();
+                    binding.progressBar.setVisibility(View.GONE);
+                    return;
+                }
+
+                // Lấy danh sách sự kiện
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("foryouevents");
+                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        LinearLayout linearLayoutDcb = findViewById(R.id.linearLayoutDcb);
+                        if (linearLayoutDcb == null) return;
+                        linearLayoutDcb.removeAllViews();
+
+                        java.text.NumberFormat nf = java.text.NumberFormat.getInstance(new java.util.Locale("vi", "VN"));
+                        int cardWidth = (int) getResources().getDimension(R.dimen.dcb_card_width);
+                        int cardHeight = (int) getResources().getDimension(R.dimen.dcb_card_height);
+                        float cardRadius = getResources().getDimension(R.dimen.dcb_card_radius);
+                        Gson gson = new Gson();
+
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            Thesukien event = snapshot.getValue(Thesukien.class);
+                            if (event == null || event.getCategory() == null) continue;
+
+                            // Lọc theo Interests
+                            if (!interests.contains(event.getCategory())) continue;
+
+                            // Tạo layout cho sự kiện
+                            LinearLayout eventLayout = new LinearLayout(TrangchuActivity.this);
+                            eventLayout.setOrientation(LinearLayout.VERTICAL);
+                            LinearLayout.LayoutParams eventParams = new LinearLayout.LayoutParams(
+                                    cardWidth,
+                                    LinearLayout.LayoutParams.WRAP_CONTENT
+                            );
+                            eventParams.setMargins(0, 0, 20, 0);
+                            eventLayout.setLayoutParams(eventParams);
+                            eventLayout.setGravity(android.view.Gravity.CENTER_HORIZONTAL);
+
+                            // CardView chứa ảnh
+                            CardView cardView = new CardView(TrangchuActivity.this);
+                            cardView.setRadius(cardRadius);
+                            cardView.setCardElevation(8f);
+                            cardView.setUseCompatPadding(true);
+                            LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
+                                    cardWidth,
+                                    cardHeight
+                            );
+                            cardView.setLayoutParams(cardParams);
+
+                            ImageView imageView = new ImageView(TrangchuActivity.this);
+                            imageView.setLayoutParams(new LinearLayout.LayoutParams(
+                                    LinearLayout.LayoutParams.MATCH_PARENT,
+                                    LinearLayout.LayoutParams.MATCH_PARENT
+                            ));
+                            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                            if (event.getThumbnail() != null && event.getThumbnail().startsWith("http")) {
+                                Glide.with(TrangchuActivity.this)
+                                        .load(event.getThumbnail())
+                                        .placeholder(R.drawable.default_dcb)
+                                        .into(imageView);
+                            } else {
+                                imageView.setImageResource(R.drawable.default_dcb);
+                            }
+                            cardView.addView(imageView);
+                            eventLayout.addView(cardView);
+
+                            // Tên sự kiện
+                            TextView titleView = new TextView(TrangchuActivity.this);
+                            titleView.setText(event.getTitle());
+                            titleView.setMaxLines(2);
+                            titleView.setEllipsize(android.text.TextUtils.TruncateAt.END);
+                            titleView.setTextColor(android.graphics.Color.BLACK);
+                            titleView.setTextSize(14);
+                            titleView.setGravity(android.view.Gravity.START);
+                            Typeface montserrat = ResourcesCompat.getFont(TrangchuActivity.this, R.font.montserrat_semibold);
+                            if (montserrat != null)
+                                titleView.setTypeface(montserrat, Typeface.BOLD);
+                            titleView.setPadding((int) getResources().getDimension(R.dimen.dcb_text_padding_left), 0, 0, 0);
+                            eventLayout.addView(titleView);
+
+                            // Giá sự kiện
+                            TextView priceView = new TextView(TrangchuActivity.this);
+                            double price = event.getPrice();
+                            final String priceColor;
+                            if (price > 0) {
+                                priceView.setText("Từ " + nf.format(price) + " VND");
+                                priceColor = "#1C9CCA";
+                                priceView.setTextColor(Color.parseColor(priceColor));
+                            } else {
+                                priceView.setText("Miễn phí");
+                                priceColor = "#43A047";
+                                priceView.setTextColor(Color.parseColor(priceColor));
+                            }
+                            priceView.setTextSize(14);
+                            priceView.setGravity(android.view.Gravity.START);
+                            if (montserrat != null)
+                                priceView.setTypeface(montserrat, Typeface.BOLD);
+                            priceView.setPadding((int) getResources().getDimension(R.dimen.dcb_text_padding_left), 0, 0, 0);
+                            eventLayout.addView(priceView);
+
+                            // Line dưới giá
+                            priceView.post(() -> {
+                                Paint paint = new Paint();
+                                paint.setTextSize(priceView.getTextSize());
+                                paint.setTypeface(priceView.getTypeface());
+                                float textWidth = paint.measureText(priceView.getText().toString());
+                                View line = new View(TrangchuActivity.this);
+                                LinearLayout.LayoutParams lineParams = new LinearLayout.LayoutParams(
+                                        (int) textWidth,
+                                        (int) getResources().getDimension(R.dimen.dcb_line_height)
+                                );
+                                lineParams.setMargins((int) getResources().getDimension(R.dimen.dcb_text_padding_left), 0, 0, 1);
+                                line.setLayoutParams(lineParams);
+                                line.setBackgroundColor(Color.parseColor(priceColor));
+                                eventLayout.addView(line, eventLayout.indexOfChild(priceView) + 1);
+                            });
+
+                            // Click mở chi tiết
+                            cardView.setOnClickListener(v -> {
+                                Intent intent = new Intent(TrangchuActivity.this, ChitietsukienActivity.class);
+                                intent.putExtra("event_json", gson.toJson(event));
+                                startActivity(intent);
+                            });
+
+                            linearLayoutDcb.addView(eventLayout);
+                        }
+
+                        binding.progressBar.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        binding.progressBar.setVisibility(View.GONE);
+                    }
+                });
             }
+
             @Override
-            public void onCancelled(DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
                 binding.progressBar.setVisibility(View.GONE);
             }
         });
     }
+
 
     private void setupDanhmucClick() {
         List<View> danhMucCardViews = Arrays.asList(

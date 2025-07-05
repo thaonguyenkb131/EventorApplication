@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="65dp"
         android:background="#006183"
         android:orientation="horizontal"
         android:weightSum="5">

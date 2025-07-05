@@ -102,12 +102,14 @@ public class DangnhapActivity extends AppCompatActivity {
                                         if (passInDB != null && passInDB.equals(password)) {
                                             matched = true;
 
+                                            String userId = userSnap.getKey();
                                             String name = userSnap.child("Name").getValue(String.class);
                                             String lastname = userSnap.child("Lastname").getValue(String.class);
                                             String emailFromDB = userSnap.child("Email").getValue(String.class);
 
                                             SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
                                             SharedPreferences.Editor editor = sharedPreferences.edit();
+                                            editor.putString("userId", userId); // lưu ID người dùng
                                             editor.putString("userName", name);         // lưu tên
                                             editor.putString("userLastname", lastname); // lưu họ
                                             editor.putString("userEmail", emailFromDB); // lưu email

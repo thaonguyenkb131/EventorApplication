@@ -3,12 +3,10 @@
     xmlns:flexbox="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:background="@drawable/bg_success_popup"
-    tools:context=".LinhvucquantamDialog"
-    android:gravity="center_horizontal">
+    android:padding="16dp"
+    android:layout_margin="15dp"
+    android:background="@android:color/white"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,120 +15,115 @@
 
         <!-- Tiêu đề -->
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Những lĩnh vực có thể\nbạn quan tâm"
-            android:textSize="25sp"
+            android:textSize="22sp"
             android:textColor="#000000"
             android:textStyle="bold"
-            android:gravity="center"
+            android:textAlignment="center"
             android:fontFamily="@font/montserrat_bold"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="24dp"/>
+            android:layout_marginBottom="20dp" />
 
-        <!-- Dòng 1 -->
-        <LinearLayout
+        <!-- Flexbox chứa các tag -->
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/tagContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="12dp">
+            flexbox:flexWrap="wrap"
+            flexbox:justifyContent="flex_start">
 
             <TextView
                 style="@style/InterestTag"
-                android:id="@+id/tag1"
-                android:text="🤝 Tình nguyện &amp; Xã hội"
-                android:layout_weight="1"
-                android:textSize="15sp"
-                android:layout_gravity="start"/>
-
+                android:id="@+id/tinhnguyen"
+                android:tag="Tình nguyện"
+                android:text="🤝 Tình nguyện và Xã hội"
+                android:padding="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"/>
             <TextView
                 style="@style/InterestTag"
-                android:id="@+id/tag2"
-                android:text="🧘‍♂️ Sức khỏe"
-                android:layout_marginStart="20dp"
-                android:textSize="15sp"
-                android:layout_weight="1"
-                android:layout_gravity="end"/>
-        </LinearLayout>
-        <!-- Dòng 2 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="12dp">
-
+                android:id="@+id/thethao"
+                android:tag="Thể thao"
+                android:text="🧘‍♂️ Sức khỏe và Thể thao"
+                android:padding="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"/>
             <TextView
                 style="@style/InterestTag"
-                android:id="@+id/tag3"
+                android:id="@+id/moitruong"
+                android:tag="Môi trường"
                 android:text="🐱 Động vật"
-                android:layout_weight="1"
-                android:textSize="15sp"
-                android:layout_gravity="start"/>
-
+                android:padding="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"/>
             <TextView
                 style="@style/InterestTag"
-                android:id="@+id/tag4"
-                android:text="✈️ Du lịch &amp; Trải nghiệm"
-                android:layout_marginStart="12dp"
-                android:layout_weight="1"
-                android:textSize="15sp"
-                android:layout_gravity="end"/>
-        </LinearLayout>
-
-        <!-- Dòng 3 -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="12dp">
-
+                android:id="@+id/dulich"
+                android:tag="Du lịch"
+                android:text="✈️ Du lịch và Trải nghiệm"
+                android:padding="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"/>
             <TextView
                 style="@style/InterestTag"
-                android:id="@+id/tag5"
-                android:text="💼 Khởi nghiệp &amp; Sáng tạo"
-                android:layout_weight="1"
-                android:textSize="15sp"
-                android:layout_gravity="start"/>
-
+                android:id="@+id/hocthuat"
+                android:tag="Học thuật"
+                android:text="💼 Khởi nghiệp"
+                android:padding="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"/>
             <TextView
                 style="@style/InterestTag"
-                android:id="@+id/tag6"
+                android:id="@+id/moitruong_2"
+                android:tag="Môi trường"
                 android:text="♻️ Môi trường"
-                android:layout_marginStart="12dp"
-                android:layout_weight="1"
-                android:textSize="15sp"
-                android:layout_gravity="end"/>
-        </LinearLayout>
-
-        <!-- Dòng 4 -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal">
-
+                android:padding="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"/>
             <TextView
                 style="@style/InterestTag"
-                android:id="@+id/tag7"
-                android:text="🤖 Công nghệ &amp; Kỹ thuật số"
-                android:layout_weight="1"
-                android:textSize="15sp"/>
-        </LinearLayout>
+                android:id="@+id/hocthuat_2"
+                android:tag="Học thuật"
+                android:text="🤖 Công nghệ"
+                android:padding="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                style="@style/InterestTag"
+                android:id="@+id/vanhoa"
+                android:tag="Văn hóa"
+                android:text="🎭 Văn hóa"
+                android:padding="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                style="@style/InterestTag"
+                android:id="@+id/amnhac"
+                android:tag="Âm nhạc"
+                android:text="🎵 Âm nhạc"
+                android:padding="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"/>
+            <TextView style="@style/InterestTag"
+                android:id="@+id/hocthuat_3"
+                android:tag="Học thuật"
+                android:text="📚 Học thuật"
+                android:padding="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"/>
+        </com.google.android.flexbox.FlexboxLayout>
 
-        <!-- Nút Lưu -->
+        <!-- Nút lưu -->
         <Button
             android:id="@+id/btnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lưu"
-            android:textColor="#FFFFFF"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="#066183"
-            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@android:color/holo_blue_dark"
+            android:layout_gravity="center"
             android:textAllCaps="false"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_marginTop="24dp" />
     </LinearLayout>
-
-
-
 </ScrollView>

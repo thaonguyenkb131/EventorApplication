@@ -51,7 +51,21 @@ public class TimkiemgvAdapter extends BaseAdapter {
 
         binding.imgPhvb.setImageResource(item.getImageResId());
         binding.txtPhvbTitle.setText(item.getTitle());
-        binding.txtPhvbPrice.setText(item.getPrice());
+        // Giá
+        try {
+            double price = Double.parseDouble(item.getPrice().replaceAll("[^0-9.]", ""));
+            if (price == 0) {
+                binding.txtPhvbPrice.setText("Miễn phí");
+                binding.txtPhvbPrice.setTextColor(android.graphics.Color.parseColor("#43A047"));
+            } else {
+                java.text.NumberFormat nf = java.text.NumberFormat.getInstance(new java.util.Locale("vi", "VN"));
+                binding.txtPhvbPrice.setText("Từ " + nf.format(price) + " VND");
+                binding.txtPhvbPrice.setTextColor(android.graphics.Color.parseColor("#1C9CCA"));
+            }
+        } catch (Exception e) {
+            binding.txtPhvbPrice.setText(item.getPrice());
+            binding.txtPhvbPrice.setTextColor(android.graphics.Color.BLACK);
+        }
         binding.txtPhvbLocation.setText(item.getLocation());
         binding.txtPhvbDate.setText(item.getDate());
 

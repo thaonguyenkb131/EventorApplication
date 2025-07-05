@@ -19,6 +19,11 @@ public class Thesukien {
     private String thumbnail;
     private java.util.List<TicketCategory> ticketCategories;
     private String category;
+    private String detailTime;
+    private String city;
+    private String detailAddress;
+    private int soldTicket;
+    private int remainingTicket;
 
     public Thesukien() {}
 
@@ -59,6 +64,16 @@ public class Thesukien {
     public void setTicketCategories(java.util.List<TicketCategory> ticketCategories) { this.ticketCategories = ticketCategories; }
     public String getCategory() { return category; }
     public void setCategory(String category) { this.category = category; }
+    public String getDetailTime() { return detailTime; }
+    public void setDetailTime(String detailTime) { this.detailTime = detailTime; }
+    public String getCity() { return city; }
+    public void setCity(String city) { this.city = city; }
+    public String getDetailAddress() { return detailAddress; }
+    public void setDetailAddress(String detailAddress) { this.detailAddress = detailAddress; }
+    public int getSoldTicket() { return soldTicket; }
+    public void setSoldTicket(int soldTicket) { this.soldTicket = soldTicket; }
+    public int getRemainingTicket() { return remainingTicket; }
+    public void setRemainingTicket(int remainingTicket) { this.remainingTicket = remainingTicket; }
 
     public static class TicketCategory {
         private String name;

@@ -82,7 +82,7 @@ public class SukiendaluuFragment extends Fragment {
 
         binding.progressBar.setVisibility(View.VISIBLE);
         // Đọc dữ liệu từ Realtime Database
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("events");
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("savedevents");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

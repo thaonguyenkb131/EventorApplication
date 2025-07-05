@@ -1,6 +1,7 @@
 package com.example.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,7 +45,16 @@ public class ThesukienAdapter extends ArrayAdapter<Thesukien> {
             tvTitle.setText(item.getTitle());
             tvLocation.setText(item.getLocation());
             tvDate.setText(item.getDate());
-            tvPrice.setText(String.format(Locale.getDefault(), "%,.0f VND", item.getPrice()));
+
+            // Giá
+            double price = item.getPrice();
+            if (price == 0) {
+                tvPrice.setText("Miễn phí");
+                tvPrice.setTextColor(Color.parseColor("#43A047"));
+            } else {
+                tvPrice.setText(String.format(Locale.getDefault(), "%,.0f VND", price));
+                tvPrice.setTextColor(Color.parseColor("#1C9CCA"));
+            }
 
             if (item.getThumbnail() != null && item.getThumbnail().startsWith("http")) {
                 Glide.with(imvThumb.getContext()).load(item.getThumbnail()).into(imvThumb);

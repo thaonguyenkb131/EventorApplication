@@ -211,8 +211,11 @@ public class ChitietsukienActivity extends BaseActivity<ActivityChitietsukienBin
     private void showEventDetail(Thesukien event) {
         // Hiển thị các trường dữ liệu từ Thesukien lên UI
         binding.txtName.setText(event.getTitle());
-        binding.txtLocation.setText(event.getLocation());
-        binding.txtDate.setText(event.getDate());
+        if (event.getLocation().equalsIgnoreCase("Online")) {
+            binding.txtLocation.setText("Online");
+        } else {
+            binding.txtLocation.setText(event.getLocation() + ", " + event.getDetailAddress());
+        }        binding.txtDate.setText(event.getDetailTime());
         binding.txtDescription.setText(event.getDescription());
         binding.txtOrganizer.setText(event.getOrganizer());
         if (event.getThumbnail() != null && event.getThumbnail().startsWith("http")) {

@@ -114,7 +114,7 @@
                     android:id="@+id/imvBookmark"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_bookmark" />
+                    android:src="@drawable/save" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

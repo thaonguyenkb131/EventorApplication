@@ -31,7 +31,14 @@ public class TicketCategoriesAdapter extends RecyclerView.Adapter<TicketCategori
     public void onBindViewHolder(@NonNull TicketViewHolder holder, int position) {
         Thesukien.TicketCategory ticket = ticketCategories.get(position);
         holder.txtTicketName.setText(ticket.getName());
-        holder.txtTicketPrice.setText(String.format("%,.0f VND", ticket.getPrice()));
+        double price = ticket.getPrice();
+        if (price == 0) {
+            holder.txtTicketPrice.setText("Miễn phí");
+            holder.txtTicketPrice.setTextColor(android.graphics.Color.parseColor("#43A047"));
+        } else {
+            holder.txtTicketPrice.setText(String.format("%,.0f VND", price));
+            holder.txtTicketPrice.setTextColor(android.graphics.Color.parseColor("#1C9CCA"));
+        }
         // Đan xen màu nền xám trắng cho từng item
         if (position % 2 == 0) {
             holder.itemView.setBackgroundColor(0xFFFFFFFF); // Trắng

@@ -133,10 +133,7 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
                     if (event.getThumbnail() != null && event.getThumbnail().startsWith("http")) {
                         com.bumptech.glide.Glide.with(TrangchuActivity.this)
                                 .load(event.getThumbnail())
-                                .placeholder(R.drawable.sknb1)
                                 .into(imageView);
-                    } else {
-                        imageView.setImageResource(R.drawable.sknb1);
                     }
                     cardView.addView(imageView);
                     // Xử lý click: truyền object Thesukien dạng JSON
@@ -227,13 +224,17 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
                     // Giá sự kiện
                     TextView priceView = new TextView(TrangchuActivity.this);
                     double price = event.getPrice();
+                    final String priceColor;
                     if (price > 0) {
                         priceView.setText("Từ " + nf.format(price) + " VND");
+                        priceColor = "#1C9CCA"; // blue
+                        priceView.setTextColor(android.graphics.Color.parseColor(priceColor));
                     } else {
-                        priceView.setText("Từ 0 VND");
+                        priceView.setText("Miễn phí");
+                        priceColor = "#43A047"; // green
+                        priceView.setTextColor(android.graphics.Color.parseColor(priceColor));
                     }
                     priceView.setTextSize(14);
-                    priceView.setTextColor(android.graphics.Color.parseColor("#1C9CCA"));
                     priceView.setGravity(android.view.Gravity.START);
                     if (montserrat != null) priceView.setTypeface(montserrat, android.graphics.Typeface.BOLD);
                     priceView.setPadding((int) getResources().getDimension(R.dimen.dcb_text_padding_left), 0, 0, 0);
@@ -255,7 +256,7 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
                         lineParams.setMargins((int) getResources().getDimension(R.dimen.dcb_text_padding_left), 0, 0, 1);
                         lineParams.gravity = android.view.Gravity.START;
                         line.setLayoutParams(lineParams);
-                        line.setBackgroundColor(android.graphics.Color.parseColor("#1C9CCA"));
+                        line.setBackgroundColor(android.graphics.Color.parseColor(priceColor));
                         eventLayout.addView(line, eventLayout.indexOfChild(priceView) + 1);
                     });
 

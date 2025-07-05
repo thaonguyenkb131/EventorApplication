@@ -20,7 +20,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -161,7 +160,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/white">
             <!-- Banner -->
             <LinearLayout
                 android:id="@+id/banner"
@@ -390,11 +390,13 @@
                             <ImageView
                                 android:id="@+id/imgSkxh1"
                                 style="@style/RoundedImageStyle"
-                                android:src="@drawable/skxhpage1" />
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/anhthaythe" />
                             <ImageView
                                 android:id="@+id/imgnb1"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
+                                android:layout_width="@dimen/skxh_icon_size"
+                                android:layout_height="@dimen/skxh_icon_size"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/nb1"
                                 android:layout_gravity="bottom|start"
@@ -413,11 +415,13 @@
                             <ImageView
                                 android:id="@+id/imgSkxh2"
                                 style="@style/RoundedImageStyle"
-                                android:src="@drawable/skxhpage2" />
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/anhthaythe" />
                             <ImageView
                                 android:id="@+id/imgnb2"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
+                                android:layout_width="@dimen/skxh_icon_size"
+                                android:layout_height="@dimen/skxh_icon_size"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/nb2"
                                 android:layout_gravity="bottom|start"
@@ -436,11 +440,13 @@
                             <ImageView
                                 android:id="@+id/imgSkxh3"
                                 style="@style/RoundedImageStyle"
-                                android:src="@drawable/skxhpage3" />
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/anhthaythe" />
                             <ImageView
                                 android:id="@+id/imgnb3"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
+                                android:layout_width="@dimen/skxh_icon_size"
+                                android:layout_height="@dimen/skxh_icon_size"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/nb3"
                                 android:layout_gravity="bottom|start"
@@ -459,11 +465,13 @@
                             <ImageView
                                 android:id="@+id/imgSkxh4"
                                 style="@style/RoundedImageStyle"
-                                android:src="@drawable/skxhpage4" />
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/anhthaythe" />
                             <ImageView
                                 android:id="@+id/imgnb4"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
+                                android:layout_width="@dimen/skxh_icon_size"
+                                android:layout_height="@dimen/skxh_icon_size"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/nb4"
                                 android:layout_gravity="bottom|start"
@@ -482,11 +490,13 @@
                             <ImageView
                                 android:id="@+id/imgSkxh5"
                                 style="@style/RoundedImageStyle"
-                                android:src="@drawable/skxhpage5" />
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/anhthaythe" />
                             <ImageView
                                 android:id="@+id/imgnb5"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
+                                android:layout_width="@dimen/skxh_icon_size"
+                                android:layout_height="@dimen/skxh_icon_size"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/nb5"
                                 android:layout_gravity="bottom|start"
@@ -505,11 +515,13 @@
                             <ImageView
                                 android:id="@+id/imgSkxh6"
                                 style="@style/RoundedImageStyle"
-                                android:src="@drawable/skxhpage6" />
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/anhthaythe" />
                             <ImageView
                                 android:id="@+id/imgnb6"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
+                                android:layout_width="@dimen/skxh_icon_size"
+                                android:layout_height="@dimen/skxh_icon_size"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/nb6"
                                 android:layout_gravity="bottom|start"
@@ -528,11 +540,13 @@
                             <ImageView
                                 android:id="@+id/imgSkxh7"
                                 style="@style/RoundedImageStyle"
-                                android:src="@drawable/skxhpage7" />
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/anhthaythe" />
                             <ImageView
                                 android:id="@+id/imgnb7"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
+                                android:layout_width="@dimen/skxh_icon_size"
+                                android:layout_height="@dimen/skxh_icon_size"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/nb7"
                                 android:layout_gravity="bottom|start"
@@ -551,11 +565,13 @@
                             <ImageView
                                 android:id="@+id/imgSkxh8"
                                 style="@style/RoundedImageStyle"
-                                android:src="@drawable/skxhpage8" />
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/anhthaythe" />
                             <ImageView
                                 android:id="@+id/imgnb8"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
+                                android:layout_width="@dimen/skxh_icon_size"
+                                android:layout_height="@dimen/skxh_icon_size"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/nb8"
                                 android:layout_gravity="bottom|start"
@@ -574,11 +590,13 @@
                             <ImageView
                                 android:id="@+id/imgSkxh9"
                                 style="@style/RoundedImageStyle"
-                                android:src="@drawable/skxhpage9" />
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/anhthaythe" />
                             <ImageView
                                 android:id="@+id/imgnb9"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
+                                android:layout_width="@dimen/skxh_icon_size"
+                                android:layout_height="@dimen/skxh_icon_size"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/nb9"
                                 android:layout_gravity="bottom|start"
@@ -597,11 +615,13 @@
                             <ImageView
                                 android:id="@+id/imgSkxh10"
                                 style="@style/RoundedImageStyle"
-                                android:src="@drawable/skxhpage10" />
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/anhthaythe" />
                             <ImageView
                                 android:id="@+id/imgnb10"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
+                                android:layout_width="@dimen/skxh_icon_size"
+                                android:layout_height="@dimen/skxh_icon_size"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/nb10"
                                 android:layout_gravity="bottom|start"/>
@@ -610,12 +630,21 @@
                 </LinearLayout>
             </HorizontalScrollView>
 
+            <!-- Progress bar loading for SKXH -->
+            <ProgressBar
+                android:id="@+id/progressBarSkxh"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                style="?android:attr/progressBarStyleLarge"/>
+
             <!--Danh mục sự kiện - Title-->
             <TextView
                 android:id="@+id/txtDanhmucsukien"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Danh mục sự kiện"
                 android:textColor="#006183"

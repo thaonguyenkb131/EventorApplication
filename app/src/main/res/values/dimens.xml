@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="sknb_card_width">120dp</dimen>
-    <dimen name="sknb_card_height">150dp</dimen>
-    <dimen name="sknb_card_radius">10dp</dimen>
+    <!-- Sự kiện nổi bật -->
+    <dimen name="sknb_card_width">130dp</dimen>
+    <dimen name="sknb_card_height">160dp</dimen>
+    <dimen name="sknb_card_radius">12dp</dimen>
+    <dimen name="sknb_card_margin">0dp</dimen>
+    <!-- Sự kiện xu hướng -->
+    <dimen name="skxh_card_width">160dp</dimen>
+    <dimen name="skxh_card_height">100dp</dimen>
+    <dimen name="skxh_card_radius">12dp</dimen>
+    <dimen name="skxh_card_margin">5dp</dimen>
+    <dimen name="skxh_icon_size">40dp</dimen>
+    <!--    Dành cho bạn -->
     <dimen name="dcb_card_width">160dp</dimen>
     <dimen name="dcb_card_height">100dp</dimen>
     <dimen name="dcb_card_radius">12dp</dimen>

@@ -2,6 +2,7 @@ package com.example.eventorapplication.base;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ScrollView;
 
@@ -40,6 +41,7 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         View taikhoan = binding.getRoot().findViewById(R.id.taikhoan);
 
         if (homepage != null) {
+            addClickEffect(homepage);
             homepage.setOnClickListener(v -> {
                 startActivity(new Intent(this, TrangchuActivity.class));
                 finish();
@@ -47,6 +49,7 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         }
 
         if (taosukien != null) {
+            addClickEffect(taosukien);
             taosukien.setOnClickListener(v -> {
                 startActivity(new Intent(this, TaosukienActivity.class));
                 finish();
@@ -54,6 +57,7 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         }
 
         if (thongbao != null) {
+            addClickEffect(thongbao);
             thongbao.setOnClickListener(v -> {
                 startActivity(new Intent(this, TrangthongbaoActivity.class));
                 finish();
@@ -61,18 +65,57 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         }
 
         if (sukiencuatoi != null) {
+            addClickEffect(sukiencuatoi);
             sukiencuatoi.setOnClickListener(v -> {
                 startActivity(new Intent(this, SukiencuatoiActivity.class));
                 finish();
             });
         }
         if(taikhoan != null) {
+            addClickEffect(taikhoan);
             taikhoan.setOnClickListener(v -> {
                 startActivity(new Intent(this, TkdadangnhapActivity.class));
                 finish();
             });
         }
     }
+
+    protected void addClickEffect(View view) {
+        view.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    v.animate().scaleX(0.95f).scaleY(0.95f).setDuration(100).start();
+                    break;
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    v.animate().scaleX(1f).scaleY(1f).setDuration(100).start();
+                    break;
+            }
+            return false; // vẫn truyền sự kiện cho OnClickListener
+        });
+    }
+
+    protected void highlightActiveFooter(String activePageId) {
+        int[] footerIds = {
+                R.id.Homepage,
+                R.id.taosukien,
+                R.id.thongbao,
+                R.id.Sukiencuatoi,
+                R.id.taikhoan
+        };
+
+        for (int id : footerIds) {
+            View item = binding.getRoot().findViewById(id);
+            if (item != null) {
+                if (getResources().getResourceEntryName(id).equals(activePageId)) {
+                    item.setBackgroundResource(R.drawable.footer_item_selected); // đã chọn
+                } else {
+                    item.setBackgroundResource(R.drawable.footer_item_background); // mặc định
+                }
+            }
+        }
+    }
+
 
 
 //    private void setupAutoHideFooter() {

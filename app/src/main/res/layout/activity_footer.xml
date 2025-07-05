@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="bottom"
-    android:id="@+id/main"
-    tools:context=".FooterActivity">
+    android:orientation="vertical"
+    android:gravity="bottom">
+
     <LinearLayout
         android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
         android:background="#006183"
         android:orientation="horizontal"
         android:weightSum="5">
@@ -24,13 +22,23 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:paddingTop="6dp">
+            android:paddingTop="4dp">
 
             <ImageView
+                android:id="@+id/icon_home"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_gravity="center"
                 android:src="@drawable/ic_homepage" />
+
+            <TextView
+                android:id="@+id/text_trangchu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trang chủ"
+                android:textSize="13sp"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/montserrat_medium"
+                android:visibility="gone"/>
         </LinearLayout>
 
         <!-- Sự kiện của tôi -->
@@ -41,14 +49,23 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:paddingTop="6dp">
+            android:paddingTop="4dp">
 
             <ImageView
+                android:id="@+id/icon_sukiencuatoi"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_gravity="center"
                 android:src="@drawable/ic_ticket" />
 
+            <TextView
+                android:id="@+id/text_sukiencuatoi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sư kiện"
+                android:textSize="13sp"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/montserrat_medium"
+                android:visibility="gone"/>
         </LinearLayout>
 
         <!-- Tạo sự kiện -->
@@ -59,13 +76,23 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:paddingTop="6dp">
+            android:paddingTop="4dp">
 
             <ImageView
+                android:id="@+id/icon_taosukien"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_gravity="center"
                 android:src="@drawable/ftadd" />
+
+            <TextView
+                android:id="@+id/text_taosukien"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tạo sự kiện"
+                android:textSize="13sp"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/montserrat_medium"
+                android:visibility="gone"/>
         </LinearLayout>
 
         <!-- Thông báo -->
@@ -76,13 +103,23 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:paddingTop="6dp">
+            android:paddingTop="4dp">
 
             <ImageView
+                android:id="@+id/icon_thongbao"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_gravity="center"
                 android:src="@drawable/ic_bell" />
+
+            <TextView
+                android:id="@+id/text_thongbao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thông báo"
+                android:textSize="13sp"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/montserrat_medium"
+                android:visibility="gone"/>
         </LinearLayout>
 
         <!-- Tài khoản -->
@@ -93,13 +130,23 @@
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center"
-            android:paddingTop="6dp">
+            android:paddingTop="4dp">
 
             <ImageView
+                android:id="@+id/icon_taikhoan"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_gravity="center"
                 android:src="@drawable/ic_account" />
+
+            <TextView
+                android:id="@+id/text_taikhoan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tài khoản"
+                android:textSize="13sp"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/montserrat_medium"
+                android:visibility="gone"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

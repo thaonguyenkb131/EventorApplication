@@ -1,5 +1,8 @@
 package com.example.eventorapplication;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 
@@ -24,25 +27,6 @@ public class SukiencuatoiActivity extends BaseActivity<ActivitySukiencuatoiBindi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Load mặc định fragment đầu tiên
-        loadFragment(new SukiendaluuFragment());
-        updateButtonStates(0);
-
-        // Xử lý click từng nút
-        binding.btnSkdaluu.setOnClickListener(v -> {
-            loadFragment(new SukiendaluuFragment());
-            updateButtonStates(0);
-        });
-
-        binding.btnVedamua.setOnClickListener(v -> {
-            loadFragment(new VedamuaFragment());
-            updateButtonStates(1);
-        });
-
-        binding.btnSkdadang.setOnClickListener(v -> {
-            loadFragment(new SukiendadangFragment());
-            updateButtonStates(2);
-        });
 
         //        Tránh che màn hình
 
@@ -64,6 +48,45 @@ public class SukiencuatoiActivity extends BaseActivity<ActivitySukiencuatoiBindi
 
             return insets;
         });
+
+        // Kiểm tra đăng nhập
+        SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        String userId = prefs.getString("userId", null);
+
+        if (userId == null) {
+            binding.txtDangNhap.setVisibility(View.VISIBLE);
+            binding.groupLoggedInContent.setVisibility(View.GONE); // Ẩn toàn bộ nội dung chính
+            binding.txtDangNhap.setPaintFlags(binding.txtDangNhap.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            binding.txtDangNhap.setOnClickListener(v -> {
+                Intent intent = new Intent(this, DangnhapActivity.class);
+                startActivity(intent);
+            });
+            return;
+        } else {
+            binding.txtDangNhap.setVisibility(View.GONE);
+            binding.groupLoggedInContent.setVisibility(View.VISIBLE); // Hiện nội dung chính nếu đã đăng nhập
+        }
+
+        // Load mặc định fragment đầu tiên
+        loadFragment(new SukiendaluuFragment());
+        updateButtonStates(0);
+
+        // Xử lý click từng nút
+        binding.btnSkdaluu.setOnClickListener(v -> {
+            loadFragment(new SukiendaluuFragment());
+            updateButtonStates(0);
+        });
+
+        binding.btnVedamua.setOnClickListener(v -> {
+            loadFragment(new VedamuaFragment());
+            updateButtonStates(1);
+        });
+
+        binding.btnSkdadang.setOnClickListener(v -> {
+            loadFragment(new SukiendadangFragment());
+            updateButtonStates(2);
+        });
+
     }
 
     private void loadFragment(Fragment fragment) {

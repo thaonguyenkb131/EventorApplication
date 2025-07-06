@@ -255,25 +255,53 @@
             </RadioGroup>
 
 <!--            Địa điểm tổ chức-->
-            <TextView
-                android:id="@+id/edtDiadiem"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/edtOffline"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Địa điểm tổ chức"
-                android:fontFamily="@font/montserrat_medium"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Địa điểm tổ chức"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textSize="16sp" />
 
-                android:textSize="16sp" />
+                <EditText
+                    android:id="@+id/edtSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/bg_search_box_img"
+                    android:drawableEnd="@drawable/ic_search_blue"
+                    android:paddingStart="15dp"
+                    android:paddingEnd="15dp"
+                    android:textSize="14sp"/>
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/edtSearch"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/bg_search_box_img"
-                android:drawableEnd="@drawable/ic_search_blue"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp"
-                android:textSize="14sp" />
+            <!--            Địa điểm tổ chức online -->
+            <LinearLayout
+                android:id="@+id/edtOnline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Liên kết tham gia sự kiện"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:textSize="16sp" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:backgroundTint="#F2F2F2"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
 
 <!--            Đăng ký BTC-->
             <com.google.android.material.button.MaterialButton
@@ -540,5 +568,24 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/txtDangNhap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bạn chưa đăng nhập. Nhấn vào đây để đăng nhập."
+        android:textColor="#066183"
+        android:textStyle="italic"
+        android:textSize="14sp"
+        android:visibility="gone"
+        android:padding="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:layout_constraintTop_toBottomOf="@id/Header"
+        app:layout_constraintBottom_toTopOf="@id/footerLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

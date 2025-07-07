@@ -103,8 +103,8 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
         });
 
         loadOutstandingEvents();
-        loadTrendingEvents(); // Load top 10 trending events for xu hướng
-        loadForYouEvents(); // Load danh sách sự kiện dành cho bạn
+        loadTrendingEvents();
+        loadForYouEvents();
 
         // Lấy FCM token và log ra Logcat
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {

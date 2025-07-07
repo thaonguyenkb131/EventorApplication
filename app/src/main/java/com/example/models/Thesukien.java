@@ -22,10 +22,39 @@ public class Thesukien {
     private String detailTime;
     private String city;
     private String detailAddress;
+    private String mode;
     private int soldTicket;
     private int remainingTicket;
 
+
     public Thesukien() {}
+
+    public Thesukien(int id, String title, double price, String location, String date, String description, String organizer, String contact, String timeStart, String dateStart, String timeEnd, String dateEnd, String registrationOpen, String form, String mapUrl, String thumbnail, java.util.List<TicketCategory> ticketCategories, String category, String detailTime, String city, String detailAddress, String mode, int soldTicket, int remainingTicket) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.location = location;
+        this.date = date;
+        this.description = description;
+        this.organizer = organizer;
+        this.contact = contact;
+        this.timeStart = timeStart;
+        this.dateStart = dateStart;
+        this.timeEnd = timeEnd;
+        this.dateEnd = dateEnd;
+        this.registrationOpen = registrationOpen;
+        this.form = form;
+        this.mapUrl = mapUrl;
+        this.thumbnail = thumbnail;
+        this.ticketCategories = ticketCategories;
+        this.category = category;
+        this.detailTime = detailTime;
+        this.city = city;
+        this.detailAddress = detailAddress;
+        this.mode = mode;
+        this.soldTicket = soldTicket;
+        this.remainingTicket = remainingTicket;
+    }
 
     // Getters and setters
     public int getId() { return id; }
@@ -74,6 +103,8 @@ public class Thesukien {
     public void setSoldTicket(int soldTicket) { this.soldTicket = soldTicket; }
     public int getRemainingTicket() { return remainingTicket; }
     public void setRemainingTicket(int remainingTicket) { this.remainingTicket = remainingTicket; }
+    public String getMode() {return mode;}
+    public void setMode(String mode) {this.mode = mode;}
 
     public static class TicketCategory {
         private String name;

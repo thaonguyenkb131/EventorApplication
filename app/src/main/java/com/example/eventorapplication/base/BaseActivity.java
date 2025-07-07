@@ -45,45 +45,58 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
 
         if (homepage != null) {
             homepage.setOnClickListener(v -> {
-                // Highlight the active footer item
-                highlightActiveFooter("Homepage");
-                startActivity(new Intent(this, TrangchuActivity.class));
-                finish();
+                // Nếu đang ở trang chủ thì reload, nếu không thì chuyển trang
+                if (this instanceof TrangchuActivity) {
+                    // Reload trang chủ
+                    Intent intent = new Intent(this, TrangchuActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    // Chuyển đến trang chủ
+                    startActivity(new Intent(this, TrangchuActivity.class));
+                    finish();
+                }
             });
         }
 
         if (taosukien != null) {
             taosukien.setOnClickListener(v -> {
-                // Highlight the active footer item
-                highlightActiveFooter("taosukien");
-                startActivity(new Intent(this, TaosukienActivity.class));
-                finish();
+                // Nếu đang ở trang tạo sự kiện thì không làm gì, nếu không thì chuyển trang
+                if (!(this instanceof TaosukienActivity)) {
+                    startActivity(new Intent(this, TaosukienActivity.class));
+                    finish();
+                }
             });
         }
 
         if (thongbao != null) {
             thongbao.setOnClickListener(v -> {
-                // Highlight the active footer item
-                highlightActiveFooter("thongbao");
-                startActivity(new Intent(this, TrangthongbaoActivity.class));
-                finish();
+                // Nếu đang ở trang thông báo thì không làm gì, nếu không thì chuyển trang
+                if (!(this instanceof TrangthongbaoActivity)) {
+                    startActivity(new Intent(this, TrangthongbaoActivity.class));
+                    finish();
+                }
             });
         }
 
         if (sukiencuatoi != null) {
             sukiencuatoi.setOnClickListener(v -> {
-                // Highlight the active footer item
-                highlightActiveFooter("sukiencuatoi");
-                startActivity(new Intent(this, SukiencuatoiActivity.class));
-                finish();
+                // Nếu đang ở trang sự kiện của tôi thì không làm gì, nếu không thì chuyển trang
+                if (!(this instanceof SukiencuatoiActivity)) {
+                    startActivity(new Intent(this, SukiencuatoiActivity.class));
+                    finish();
+                }
             });
         }
+        
         if(taikhoan != null) {
             taikhoan.setOnClickListener(v -> {
-                // Highlight the active footer item
-                highlightActiveFooter("taikhoan");
-                startActivity(new Intent(this, TkdadangnhapActivity.class));
-                finish();
+                // Nếu đang ở trang tài khoản thì không làm gì, nếu không thì chuyển trang
+                if (!(this instanceof TkdadangnhapActivity)) {
+                    startActivity(new Intent(this, TkdadangnhapActivity.class));
+                    finish();
+                }
             });
         }
     }
@@ -107,7 +120,8 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
             View footer = binding.getRoot().findViewById(footerIds[i]);
             ImageView icon = binding.getRoot().findViewById(iconIds[i]);
             if (footer != null && icon != null) {
-                if (getResources().getResourceEntryName(footerIds[i]).equals(activePageId)) {
+                String currentFooterId = getResources().getResourceEntryName(footerIds[i]);
+                if (currentFooterId.equals(activePageId)) {
                     footer.setBackgroundResource(R.drawable.bg_footeritemselected);
                     icon.setImageResource(iconBlue[i]);
                 } else {

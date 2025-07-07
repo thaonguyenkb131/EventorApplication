@@ -94,6 +94,15 @@
                 android:backgroundTint="#CCCCCC"
                 android:paddingBottom="8dp"/>
 
+            <TextView
+                android:id="@+id/txtErrorEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0000"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:paddingTop="2dp"/>
+
             <!-- SĐT -->
             <EditText
                 android:id="@+id/edtPhone"
@@ -106,6 +115,15 @@
                 android:textColor="#000000"
                 android:backgroundTint="#CCCCCC"
                 android:paddingBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/txtErrorPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0000"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:paddingTop="2dp"/>
 
             <!-- Mật khẩu -->
             <EditText
@@ -132,6 +150,15 @@
                 android:textColor="#000000"
                 android:backgroundTint="#CCCCCC"
                 android:paddingBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/txtErrorPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0000"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:paddingTop="2dp"/>
 
             <!-- Đồng ý điều khoản -->
             <CheckBox

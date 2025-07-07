@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -37,6 +39,27 @@ public class DangnhapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityDangnhapBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //        Tránh che màn hình
+
+        View rootView = findViewById(R.id.main); // ConstraintLayout có id="main"
+        ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(0, 0, 0, systemBars.bottom); // tránh bị che nút
+
+            // Đẩy TextView xuống dưới status bar
+            View txtTitle = findViewById(R.id.header);
+            if(txtTitle != null) {
+                txtTitle.setPadding(
+                        txtTitle.getPaddingLeft(),
+                        systemBars.top,
+                        txtTitle.getPaddingRight(),
+                        txtTitle.getPaddingBottom()
+                );
+            }
+
+            return insets;
+        });
 
         accountRef = com.google.firebase.database.FirebaseDatabase.getInstance().getReference("accounts");
 
@@ -145,5 +168,12 @@ public class DangnhapActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // Thiết lập tiêu đề và nút quay lại
+        TextView txtHeaderTitle = findViewById(R.id.txtTitle);
+        ImageView btnBack = findViewById(R.id.btnBack);
+
+        txtHeaderTitle.setText("Đăng nhập");
+        btnBack.setOnClickListener(v -> finish());
     }
 }

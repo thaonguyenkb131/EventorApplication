@@ -8,10 +8,17 @@
     android:background="#006183"
     android:fillViewport="true">
 
+    <include
+        android:id="@+id/header"
+        layout="@layout/layout_headertkcuatoi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:layout_below="@id/header">
 
         <LinearLayout
             android:layout_width="match_parent"

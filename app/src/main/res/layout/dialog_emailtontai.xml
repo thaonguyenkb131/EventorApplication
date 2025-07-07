@@ -1,52 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center_horizontal"
-    tools:context=".EmailtontaiDialog">
+    android:background="#FFFFFF"
+    android:layout_margin="15dp">
 
-    <!-- Dòng icon + text -->
+    <!-- Nội dung chính -->
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/bg_border_blue"
         android:gravity="center_vertical"
-        android:layout_marginBottom="20dp">
+        android:orientation="vertical"
+        android:padding="12dp">
 
-        <!-- Icon đỏ -->
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/icon_exists_email"
-            android:layout_marginEnd="12dp" />
-
-        <!-- Thông báo lỗi -->
-        <TextView
-            android:id="@+id/txtError"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email đã tồn tại, bạn vui lòng\nnhập email khác"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/montserrat_bold" />
-    </LinearLayout>
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
 
-    <!-- Nút quay lại -->
-    <Button
-        android:id="@+id/btnGoHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Quay lại"
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#066183"
-        android:paddingHorizontal="24dp"
-        android:paddingVertical="10dp"
-        android:textSize="14sp"
-        android:fontFamily="@font/montserrat_bold"
-        android:textAllCaps="false"
-        android:layout_gravity="end"/>
-</LinearLayout>
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/icon_exists_email" />
+
+            <TextView
+                android:id="@+id/txtSuccess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Email đã tồn tại, bạn vui lòng nhập email khác"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:backgroundTint="#066183"
+            android:fontFamily="@font/montserrat_bold"
+            android:paddingHorizontal="24dp"
+            android:text="Quay lại"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+    </LinearLayout>
+</FrameLayout>

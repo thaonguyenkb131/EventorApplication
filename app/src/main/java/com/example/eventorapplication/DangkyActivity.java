@@ -109,36 +109,57 @@ public class DangkyActivity extends AppCompatActivity {
                 String password = binding.edtPassword.getText().toString().trim();
                 String rePassword = binding.edtRePassword.getText().toString().trim();
 
+                // Ẩn lỗi cũ trước khi kiểm tra
+                binding.txtErrorEmail.setVisibility(View.GONE);
+                binding.txtErrorPhone.setVisibility(View.GONE);
+                binding.txtErrorPassword.setVisibility(View.GONE);
+
+// Kiểm tra rỗng
                 if (lastname.isEmpty() || name.isEmpty() || email.isEmpty() || password.isEmpty() || rePassword.isEmpty()) {
                     Toast.makeText(DangkyActivity.this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (!password.equals(rePassword)) {
-                    Toast.makeText(DangkyActivity.this, "Mật khẩu không khớp", Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
+// Kiểm tra email
                 if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                    Toast.makeText(DangkyActivity.this, "Email không hợp lệ", Toast.LENGTH_SHORT).show();
+                    binding.txtErrorEmail.setText("Email không hợp lệ");
+                    binding.txtErrorEmail.setVisibility(View.VISIBLE);
                     return;
                 }
 
+// Kiểm tra số điện thoại
+                if (!phone.isEmpty() && !phone.matches("0[0-9]{9}")) {
+                    binding.txtErrorPhone.setText("Số điện thoại không hợp lệ");
+                    binding.txtErrorPhone.setVisibility(View.VISIBLE);
+                    return;
+                }
+
+    // Kiểm tra mật khẩu
+                if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")) {
+                    binding.txtErrorPassword.setText("Mật khẩu phải từ 8 ký tự, có chữ và số, không ký tự đặc biệt");
+                    binding.txtErrorPassword.setVisibility(View.VISIBLE);
+                    return;
+                }
+
+    // Kiểm tra nhập lại mật khẩu
                 if (!password.equals(rePassword)) {
-                    Toast.makeText(DangkyActivity.this, "Mật khẩu không khớp", Toast.LENGTH_SHORT).show();
+                    binding.txtErrorPassword.setText("Mật khẩu không khớp");
+                    binding.txtErrorPassword.setVisibility(View.VISIBLE);
                     return;
                 }
 
-//                Kiểm tra email
+                // Kiểm tra trùng email trong Firebase
                 accountRef.orderByChild("Email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if(snapshot.exists()) {
-                            Toast.makeText(DangkyActivity.this, "Email đã được sử dụng", Toast.LENGTH_SHORT).show();
-                        }else {
+                        if (snapshot.exists()) {
+                            showEmailExistsDialog();
+                            return;
+                        } else {
                             String Id = accountRef.push().getKey();
                             UserModel user = new UserModel(lastname, name, email, phone, password);
                             accountRef.child(Id).setValue(user).addOnCompleteListener(task -> {
-                                if(task.isSuccessful()) {
+                                if (task.isSuccessful()) {
                                     SharedPreferences preferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
                                     SharedPreferences.Editor editor = preferences.edit();
                                     editor.putString("userLastname", lastname);
@@ -149,7 +170,6 @@ public class DangkyActivity extends AppCompatActivity {
 
                                     Toast.makeText(DangkyActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
                                     showDialogLinhVucQuanTam(Id);
-
                                 } else {
                                     Toast.makeText(DangkyActivity.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
                                 }
@@ -158,14 +178,57 @@ public class DangkyActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
+                    public void onCancelled(@NonNull DatabaseError error) { }
                 });
-
             }
         });
 
+        binding.edtEmail.addTextChangedListener(new SimpleTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                binding.txtErrorEmail.setVisibility(View.GONE);
+            }
+        });
+
+        binding.edtPhone.addTextChangedListener(new SimpleTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                binding.txtErrorPhone.setVisibility(View.GONE);
+            }
+        });
+
+        binding.edtPassword.addTextChangedListener(new SimpleTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                binding.txtErrorPassword.setVisibility(View.GONE);
+            }
+        });
+
+        binding.edtRePassword.addTextChangedListener(new SimpleTextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                binding.txtErrorPassword.setVisibility(View.GONE);
+            }
+        });
+
+    }
+
+    private void showEmailExistsDialog() {
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_emailtontai, null);
+        Dialog dialog = new Dialog(this);
+
+        dialog.setContentView(dialogView);
+        dialog.setCancelable(false); // Không tắt khi bấm ngoài
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().setLayout(
+                (int) (getResources().getDisplayMetrics().widthPixels * 0.9),
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+
+        Button btnBack = dialogView.findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> dialog.dismiss());
+
+        dialog.show();
     }
 
     private void showDialogLinhVucQuanTam(String id) {
@@ -225,5 +288,10 @@ public class DangkyActivity extends AppCompatActivity {
                         }
                     });
         });
+    }
+
+    public abstract class SimpleTextWatcher implements android.text.TextWatcher {
+        @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        @Override public void afterTextChanged(android.text.Editable s) {}
     }
 }

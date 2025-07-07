@@ -33,7 +33,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DangkyActivity extends AppCompatActivity {
 
@@ -147,26 +149,29 @@ public class DangkyActivity extends AppCompatActivity {
                 (int) (getResources().getDisplayMetrics().widthPixels * 0.9),
                 ViewGroup.LayoutParams.WRAP_CONTENT
         );
+        dialog.show();
 
-        List<String> selectedTags = new ArrayList<>();
+        Map<String, String> selectedInterestMap = new HashMap<>();
 
         FlexboxLayout tagContainer = dialogView.findViewById(R.id.tagContainer);
 
-        // Lặp qua các tag (TextView)
         for (int i = 0; i < tagContainer.getChildCount(); i++) {
-            View tag = tagContainer.getChildAt(i);
-            if (tag instanceof TextView) {
-                TextView tagView = (TextView) tag;
-                tagView.setOnClickListener(v -> {
-                    String tagId = (String) tagView.getTag(); // Lấy id
-                    if (selectedTags.contains(tagId)) {
-                        selectedTags.remove(tagId);
-                        tagView.setBackgroundResource(R.drawable.bg_tag);
-                        tagView.setTextColor(Color.BLACK);
+            View tagView = tagContainer.getChildAt(i);
+            if (tagView instanceof TextView) {
+                TextView textView = (TextView) tagView;
+
+                textView.setOnClickListener(v -> {
+                    String tagKey = textView.getTag().toString();      // ví dụ: "Môi trường"
+                    String tagValue = textView.getText().toString();   // ví dụ: "♻️ Môi trường"
+
+                    if (selectedInterestMap.containsKey(tagKey)) {
+                        selectedInterestMap.remove(tagKey);
+                        textView.setBackgroundResource(R.drawable.bg_tag);
+                        textView.setTextColor(Color.BLACK);
                     } else {
-                        selectedTags.add(tagId);
-                        tagView.setBackgroundResource(R.drawable.bg_tagselected);
-                        tagView.setTextColor(Color.WHITE);
+                        selectedInterestMap.put(tagKey, tagValue);
+                        textView.setBackgroundResource(R.drawable.bg_tagselected);
+                        textView.setTextColor(Color.WHITE);
                     }
                 });
             }
@@ -174,13 +179,12 @@ public class DangkyActivity extends AppCompatActivity {
 
         Button btnSave = dialogView.findViewById(R.id.btnSave);
         btnSave.setOnClickListener(v -> {
-            if (selectedTags.isEmpty()) {
+            if (selectedInterestMap.isEmpty()) {
                 Toast.makeText(this, "Vui lòng chọn ít nhất một lĩnh vực", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // Lưu vào Firebase: accounts/{userId}/Interests = selectedTags
-            accountRef.child(id).child("Interests").setValue(selectedTags)
+            accountRef.child(id).child("Interests").setValue(selectedInterestMap)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(this, "Đã lưu lĩnh vực quan tâm", Toast.LENGTH_SHORT).show();
@@ -190,7 +194,5 @@ public class DangkyActivity extends AppCompatActivity {
                         }
                     });
         });
-
-        dialog.show();
     }
 }

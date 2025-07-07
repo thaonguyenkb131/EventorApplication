@@ -264,7 +264,7 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
                 }
 
                 // Lấy danh sách sự kiện
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("foryouevents");
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("events");
                 ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

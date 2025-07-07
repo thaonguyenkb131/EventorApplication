@@ -131,7 +131,18 @@
             android:background="@drawable/bg_otp_input"
             android:fontFamily="@font/montserrat_bold"
             android:cursorVisible="false" />
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtErrorOtp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FF0000"
+        android:text="Mã OTP nhập sai. Bạn vui lòng nhập lại."
+        android:textSize="12sp"
+        android:visibility="gone"
+        android:paddingTop="2dp"/>
 
     <!-- Nút xác nhận -->
     <Button

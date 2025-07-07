@@ -18,7 +18,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:fontFamily="@font/montserrat_bold"
-        android:layout_marginBottom="24dp" />
+        android:layout_marginBottom="15dp" />
 
     <!-- Container chứa 6 ô nhập mã -->
     <LinearLayout
@@ -26,109 +26,90 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginBottom="24dp">
+        android:gravity="center">
 
         <!-- 6 ô nhập mã OTP -->
         <EditText
             android:id="@+id/otp1"
             style="@style/OtpBoxStyle"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="8dp"
-            android:gravity="center"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:inputType="number"
             android:maxLength="1"
             android:textColor="#000000"
             android:textColorHint="#DDDDDD"
             android:hint="0"
-            android:textSize="30sp"
-            android:background="@drawable/bg_otp_input"
+            android:textSize="25sp"
             android:fontFamily="@font/montserrat_bold"
             android:cursorVisible="false" />
 
         <EditText
             android:id="@+id/otp2"
             style="@style/OtpBoxStyle"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="8dp"
-            android:gravity="center"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:inputType="number"
             android:maxLength="1"
             android:textColor="#000000"
             android:textColorHint="#DDDDDD"
             android:hint="0"
-            android:textSize="30sp"
-            android:background="@drawable/bg_otp_input"
+            android:textSize="25sp"
             android:fontFamily="@font/montserrat_bold"
             android:cursorVisible="false" />
 
         <EditText
             android:id="@+id/otp3"
             style="@style/OtpBoxStyle"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="8dp"
-            android:gravity="center"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:inputType="number"
             android:maxLength="1"
             android:textColor="#000000"
             android:textColorHint="#DDDDDD"
             android:hint="0"
-            android:textSize="30sp"
-            android:background="@drawable/bg_otp_input"
+            android:textSize="25sp"
             android:fontFamily="@font/montserrat_bold"
             android:cursorVisible="false" />
 
         <EditText
             android:id="@+id/otp4"
             style="@style/OtpBoxStyle"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="8dp"
-            android:gravity="center"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:inputType="number"
             android:maxLength="1"
             android:textColor="#000000"
             android:textColorHint="#DDDDDD"
             android:hint="0"
-            android:textSize="30sp"
-            android:background="@drawable/bg_otp_input"
+            android:textSize="25sp"
             android:fontFamily="@font/montserrat_bold"
             android:cursorVisible="false" />
 
         <EditText
             android:id="@+id/otp5"
             style="@style/OtpBoxStyle"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="8dp"
-            android:gravity="center"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:inputType="number"
             android:maxLength="1"
             android:textColor="#000000"
             android:textColorHint="#DDDDDD"
             android:hint="0"
-            android:textSize="30sp"
-            android:background="@drawable/bg_otp_input"
+            android:textSize="25sp"
             android:fontFamily="@font/montserrat_bold"
             android:cursorVisible="false" />
 
         <EditText
             android:id="@+id/otp6"
             style="@style/OtpBoxStyle"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="8dp"
-            android:gravity="center"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:inputType="number"
             android:maxLength="1"
             android:textColor="#000000"
             android:textColorHint="#DDDDDD"
             android:hint="0"
-            android:textSize="30sp"
-            android:background="@drawable/bg_otp_input"
+            android:textSize="25sp"
             android:fontFamily="@font/montserrat_bold"
             android:cursorVisible="false" />
 

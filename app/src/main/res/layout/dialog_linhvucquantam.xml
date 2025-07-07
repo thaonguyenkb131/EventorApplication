@@ -51,14 +51,6 @@
                 android:layout_marginTop="10dp"/>
             <TextView
                 style="@style/InterestTag"
-                android:id="@+id/moitruong"
-                android:tag="Môi trường"
-                android:text="🐱 Động vật"
-                android:padding="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"/>
-            <TextView
-                style="@style/InterestTag"
                 android:id="@+id/dulich"
                 android:tag="Du lịch"
                 android:text="✈️ Du lịch và Trải nghiệm"
@@ -67,25 +59,9 @@
                 android:layout_marginTop="10dp"/>
             <TextView
                 style="@style/InterestTag"
-                android:id="@+id/hocthuat"
-                android:tag="Học thuật"
-                android:text="💼 Khởi nghiệp"
-                android:padding="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"/>
-            <TextView
-                style="@style/InterestTag"
                 android:id="@+id/moitruong_2"
                 android:tag="Môi trường"
                 android:text="♻️ Môi trường"
-                android:padding="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"/>
-            <TextView
-                style="@style/InterestTag"
-                android:id="@+id/hocthuat_2"
-                android:tag="Học thuật"
-                android:text="🤖 Công nghệ"
                 android:padding="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"/>

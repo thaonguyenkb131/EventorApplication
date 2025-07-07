@@ -252,8 +252,8 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
             public void onDataChange(@NonNull DataSnapshot interestSnapshot) {
                 List<String> interests = new ArrayList<>();
                 for (DataSnapshot tag : interestSnapshot.getChildren()) {
-                    String interest = tag.getValue(String.class);
-                    if (interest != null) interests.add(interest);
+                    String interestKey = tag.getKey(); // "Âm nhạc", "Tình nguyện", ...
+                    if (interestKey != null) interests.add(interestKey);
                 }
 
                 if (interests.isEmpty()) {
@@ -286,10 +286,62 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
                             matchedCount++;
 
                             // Tạo layout cho sự kiện...
-                            // (giữ nguyên đoạn code tạo giao diện sự kiện như bạn đã viết)
+                            LinearLayout eventLayout = new LinearLayout(TrangchuActivity.this);
+                            eventLayout.setOrientation(LinearLayout.VERTICAL);
+                            LinearLayout.LayoutParams eventParams = new LinearLayout.LayoutParams(
+                                    cardWidth,
+                                    LinearLayout.LayoutParams.WRAP_CONTENT
+                            );
+                            eventParams.setMargins(0, 0, 20, 0);
+                            eventLayout.setLayoutParams(eventParams);
+                            eventLayout.setGravity(android.view.Gravity.CENTER_HORIZONTAL);
+
+                            // CardView chứa ảnh
+                            CardView cardView = new CardView(TrangchuActivity.this);
+                            cardView.setRadius(cardRadius);
+                            cardView.setCardElevation(8f);
+                            cardView.setUseCompatPadding(true);
+                            LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
+                                    cardWidth,
+                                    cardHeight
+                            );
+                            cardView.setLayoutParams(cardParams);
+
+                            ImageView imageView = new ImageView(TrangchuActivity.this);
+                            imageView.setLayoutParams(new LinearLayout.LayoutParams(
+                                    LinearLayout.LayoutParams.MATCH_PARENT,
+                                    LinearLayout.LayoutParams.MATCH_PARENT
+                            ));
+                            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                            if (event.getThumbnail() != null && event.getThumbnail().startsWith("http")) {
+                                Glide.with(TrangchuActivity.this)
+                                        .load(event.getThumbnail())
+                                        .placeholder(R.drawable.default_dcb)
+                                        .into(imageView);
+                            } else {
+                                imageView.setImageResource(R.drawable.default_dcb);
+                            }
+                            cardView.addView(imageView);
+                            eventLayout.addView(cardView);
+
+                            // Tên sự kiện
+                            TextView titleView = new TextView(TrangchuActivity.this);
+                            titleView.setText(event.getTitle());
+                            titleView.setMaxLines(2);
+                            titleView.setEllipsize(android.text.TextUtils.TruncateAt.END);
+                            titleView.setTextColor(android.graphics.Color.BLACK);
+                            titleView.setTextSize(14);
+                            titleView.setGravity(android.view.Gravity.START);
+                            if (montserrat != null)
+                                titleView.setTypeface(montserrat, Typeface.BOLD);
+                            titleView.setPadding((int) getResources().getDimension(R.dimen.dcb_text_padding_left), 0, 0, 0);
+                            eventLayout.addView(titleView);
+
                             // Sau mỗi sự kiện hợp lệ, thêm vào linearLayoutDcb
-                            // ...
+
+                            linearLayoutDcb.addView(eventLayout);
                         }
+
 
                         // Nếu không có sự kiện nào phù hợp
                         if (matchedCount == 0) {

@@ -1,7 +1,16 @@
     package com.example.eventorapplication;
 
+    import android.app.Dialog;
+    import android.content.Context;
+    import android.content.Intent;
+    import android.graphics.Color;
+    import android.graphics.drawable.ColorDrawable;
     import android.os.Bundle;
+    import android.text.TextUtils;
+    import android.view.LayoutInflater;
     import android.view.View;
+    import android.view.ViewGroup;
+    import android.widget.Button;
     import android.widget.ImageView;
     import android.widget.ListView;
     import android.widget.TextView;
@@ -18,6 +27,7 @@
     import com.example.eventorapplication.base.BaseActivity;
     import com.example.eventorapplication.databinding.ActivityTrangcanhanBinding;
     import com.example.models.SukiendadangItem;
+    import com.google.android.flexbox.FlexboxLayout;
     import com.google.firebase.database.DataSnapshot;
     import com.google.firebase.database.DatabaseError;
     import com.google.firebase.database.DatabaseReference;
@@ -25,7 +35,9 @@
     import com.google.firebase.database.ValueEventListener;
 
     import java.util.ArrayList;
+    import java.util.HashMap;
     import java.util.List;
+    import java.util.Map;
 
     public class TrangcanhanActivity extends AppCompatActivity {
 
@@ -108,6 +120,58 @@
                                 Glide.with(TrangcanhanActivity.this).load(coverUrl).into(binding.imgCover);
                             }
                         }
+
+                        // Hiển thị Interests dưới dạng emoji tag
+                        DataSnapshot interestsSnapshot = snapshot.child("Interests");
+                        FlexboxLayout flexboxLayout = findViewById(R.id.flexboxLayout);
+
+// Xóa tag cũ (tránh trùng lặp khi refresh)
+                        flexboxLayout.removeAllViews();
+
+                        if (interestsSnapshot.exists()) {
+                            for (DataSnapshot entry : interestsSnapshot.getChildren()) {
+                                String interest = entry.getValue(String.class);
+                                if (interest != null && !interest.isEmpty()) {
+                                    TextView tagView = new TextView(TrangcanhanActivity.this);
+                                    tagView.setText(interest);
+                                    tagView.setTextSize(15);
+                                    tagView.setTextColor(Color.BLACK);
+                                    tagView.setBackgroundResource(R.drawable.bg_tag); // tạo file bg_tag.xml nếu chưa có
+                                    tagView.setPadding(30, 15, 30, 15);
+
+                                    // set margin
+                                    FlexboxLayout.LayoutParams params = new FlexboxLayout.LayoutParams(
+                                            FlexboxLayout.LayoutParams.WRAP_CONTENT,
+                                            FlexboxLayout.LayoutParams.WRAP_CONTENT);
+                                    params.setMargins(10, 10, 10, 10);
+                                    tagView.setLayoutParams(params);
+
+                                    flexboxLayout.addView(tagView);
+                                }
+                            }
+                        } else {
+                            // Nếu chưa có lĩnh vực, có thể thêm một TextView thông báo
+                            TextView emptyView = new TextView(TrangcanhanActivity.this);
+                            emptyView.setText("Chưa có lĩnh vực quan tâm");
+                            emptyView.setTextColor(Color.GRAY);
+                            emptyView.setPadding(30, 15, 30, 15);
+                            flexboxLayout.addView(emptyView);
+                        }
+
+                        TextView plusTag = new TextView(TrangcanhanActivity.this);
+                        plusTag.setId(R.id.tagAdd);
+                        plusTag.setBackgroundResource(R.drawable.baseline_add_24);
+                        plusTag.setTextColor(Color.parseColor("#006183"));
+                        plusTag.setTextSize(24);
+                        plusTag.setGravity(View.TEXT_ALIGNMENT_CENTER);
+                        FlexboxLayout.LayoutParams addParams = new FlexboxLayout.LayoutParams(50, 50);
+                        addParams.setMargins(10, 10, 10, 10);
+                        plusTag.setLayoutParams(addParams);
+                        flexboxLayout.addView(plusTag);
+
+                        plusTag.setOnClickListener(v -> {
+                            showDialogLinhVucQuanTam(userId); // Gọi lại hàm hiển thị dialog
+                        });
                     }
 
                     @Override
@@ -116,6 +180,106 @@
                     }
                 });
             }
+
+
+        }
+        private void showDialogLinhVucQuanTam(String id) {
+            View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_linhvucquantam, null);
+            Dialog dialog = new Dialog(this);
+
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.setContentView(dialogView);
+            dialog.setCancelable(false);
+
+            dialog.getWindow().setLayout(
+                    (int) (getResources().getDisplayMetrics().widthPixels * 0.9),
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+            );
+            dialog.show();
+
+            FlexboxLayout tagContainer = dialogView.findViewById(R.id.tagContainer);
+            Map<String, String> selectedInterestMap = new HashMap<>();
+
+            // BƯỚC 1: Lấy dữ liệu đã chọn từ Firebase
+            DatabaseReference ref = FirebaseDatabase.getInstance()
+                    .getReference("accounts")
+                    .child(id)
+                    .child("Interests");
+
+            ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Map<String, String> savedMap = new HashMap<>();
+
+                    for (DataSnapshot tagSnap : snapshot.getChildren()) {
+                        String key = tagSnap.getKey(); // ví dụ: "Âm nhạc"
+                        String value = tagSnap.getValue(String.class); // ví dụ: "🎼 Âm nhạc"
+                        if (key != null && value != null) {
+                            savedMap.put(key, value);
+                        }
+                    }
+
+                    // BƯỚC 2: Gắn tag listener + đánh dấu tag đã chọn
+                    for (int i = 0; i < tagContainer.getChildCount(); i++) {
+                        View tagView = tagContainer.getChildAt(i);
+                        if (tagView instanceof TextView) {
+                            TextView textView = (TextView) tagView;
+
+                            // Lấy key là từ text sau emoji
+                            String tagValue = textView.getText().toString();      // 🎼 Âm nhạc
+                            String tagKey = String.valueOf(textView.getTag());  // bỏ emoji => "Âm nhạc"
+
+                            // Nếu đã lưu trước đó → đánh dấu selected
+                            if (savedMap.containsKey(tagKey)) {
+                                selectedInterestMap.put(tagKey, tagValue);
+                                textView.setBackgroundResource(R.drawable.bg_tagselected);
+                                textView.setTextColor(Color.WHITE);
+                            } else {
+                                textView.setBackgroundResource(R.drawable.bg_tag);
+                                textView.setTextColor(Color.BLACK);
+                            }
+
+                            // Lắng nghe sự kiện click để chọn/bỏ chọn
+                            textView.setOnClickListener(v -> {
+                                if (selectedInterestMap.containsKey(tagKey)) {
+                                    selectedInterestMap.remove(tagKey);
+                                    textView.setBackgroundResource(R.drawable.bg_tag);
+                                    textView.setTextColor(Color.BLACK);
+                                } else {
+                                    selectedInterestMap.put(tagKey, tagValue);
+                                    textView.setBackgroundResource(R.drawable.bg_tagselected);
+                                    textView.setTextColor(Color.WHITE);
+                                }
+                            });
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(TrangcanhanActivity.this, "Không thể tải lĩnh vực", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            // BƯỚC 3: Lưu khi nhấn nút "Lưu"
+            Button btnSave = dialogView.findViewById(R.id.btnSave);
+            btnSave.setOnClickListener(v -> {
+                if (selectedInterestMap.isEmpty()) {
+                    Toast.makeText(this, "Vui lòng chọn ít nhất một lĩnh vực", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Lưu vào Firebase
+                DatabaseReference accountRef = FirebaseDatabase.getInstance().getReference("accounts");
+                accountRef.child(id).child("Interests").setValue(selectedInterestMap)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(this, "Đã lưu lĩnh vực quan tâm", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                                recreate();
+                            }
+                        });
+            });
         }
 
     }

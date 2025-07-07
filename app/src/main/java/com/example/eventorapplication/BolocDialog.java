@@ -17,8 +17,45 @@ import com.example.eventorapplication.databinding.DialogBolocBinding;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BolocDialog extends DialogFragment {
     private DialogBolocBinding binding;
+    
+    // Interface để callback về Activity
+    public interface FilterCallback {
+        void onFilterApplied(FilterData filterData);
+    }
+    
+    // Class để chứa dữ liệu lọc
+    public static class FilterData {
+        public List<String> selectedCategories = new ArrayList<>();
+        public List<String> selectedLocations = new ArrayList<>();
+        public boolean isFreeOnly = false;
+        public String fromDate = null;
+        public String toDate = null;
+        
+        public FilterData() {}
+        
+        public FilterData(List<String> categories, List<String> locations, boolean freeOnly, String fromDate, String toDate) {
+            this.selectedCategories = categories;
+            this.selectedLocations = locations;
+            this.isFreeOnly = freeOnly;
+            this.fromDate = fromDate;
+            this.toDate = toDate;
+        }
+    }
+    
+    private FilterCallback callback;
+    private FilterData currentFilter = null;
+    
+    public void setFilterCallback(FilterCallback callback) {
+        this.callback = callback;
+    }
+    public void setCurrentFilter(FilterData filter) {
+        this.currentFilter = filter;
+    }
 
     @Nullable
     @Override
@@ -27,6 +64,25 @@ public class BolocDialog extends DialogFragment {
                              @Nullable Bundle savedInstanceState) {
         binding = DialogBolocBinding.inflate(inflater, container, false);
         setCancelable(true);
+
+        // Nếu có filter cũ, set lại trạng thái
+        if (currentFilter != null) {
+            // Set lại chip danh mục
+            for (int i = 0; i < binding.grpDanhmuc.getChildCount(); i++) {
+                View child = binding.grpDanhmuc.getChildAt(i);
+                if (child instanceof Chip) {
+                    Chip chip = (Chip) child;
+                    chip.setChecked(currentFilter.selectedCategories.contains(chip.getText().toString()));
+                }
+            }
+            // Set lại checkbox địa điểm
+            binding.checkboxTPHCM.setChecked(currentFilter.selectedLocations.contains("TP.Hồ Chí Minh"));
+            binding.checkboxHaNoi.setChecked(currentFilter.selectedLocations.contains("Hà Nội"));
+            binding.checkboxDaLat.setChecked(currentFilter.selectedLocations.contains("Đà Nẵng"));
+            binding.checkboxKhac.setChecked(currentFilter.selectedLocations.contains("Khác"));
+            // Set lại switch miễn phí
+            binding.swMienphi.setChecked(currentFilter.isFreeOnly);
+        }
 
         // Cho phép chọn nhiều chip cùng lúc cho danh mục
         binding.grpDanhmuc.setSingleSelection(false);
@@ -134,7 +190,50 @@ public class BolocDialog extends DialogFragment {
             binding.swMienphi.setChecked(false);
         });
 
+        // Xử lý nút Áp dụng
+        binding.btnApdung.setOnClickListener(v -> {
+            FilterData filterData = collectFilterData();
+            if (callback != null) {
+                callback.onFilterApplied(filterData);
+            }
+            dismiss();
+        });
+
         return binding.getRoot();
+    }
+
+    private FilterData collectFilterData() {
+        FilterData filterData = new FilterData();
+        
+        // Thu thập danh mục được chọn
+        for (int i = 0; i < binding.grpDanhmuc.getChildCount(); i++) {
+            View child = binding.grpDanhmuc.getChildAt(i);
+            if (child instanceof Chip) {
+                Chip chip = (Chip) child;
+                if (chip.isChecked()) {
+                    filterData.selectedCategories.add(chip.getText().toString());
+                }
+            }
+        }
+        
+        // Thu thập địa điểm được chọn
+        if (binding.checkboxTPHCM.isChecked()) {
+            filterData.selectedLocations.add("TP.Hồ Chí Minh");
+        }
+        if (binding.checkboxHaNoi.isChecked()) {
+            filterData.selectedLocations.add("Hà Nội");
+        }
+        if (binding.checkboxDaLat.isChecked()) {
+            filterData.selectedLocations.add("Đà Nẵng");
+        }
+        if (binding.checkboxKhac.isChecked()) {
+            filterData.selectedLocations.add("Khác");
+        }
+        
+        // Thu thập thông tin miễn phí
+        filterData.isFreeOnly = binding.swMienphi.isChecked();
+        
+        return filterData;
     }
 
     @Override

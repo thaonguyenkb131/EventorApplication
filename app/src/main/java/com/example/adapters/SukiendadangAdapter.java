@@ -15,16 +15,17 @@ import androidx.core.content.ContextCompat;
 
 import com.example.eventorapplication.PhantichbaocaoActivity;
 import com.example.eventorapplication.R;
-import com.example.models.SukiendadangItem;
+import com.example.models.Thesukien;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
 public class SukiendadangAdapter extends BaseAdapter {
 
     Context context;
-    ArrayList<SukiendadangItem> list;
+    public ArrayList<Thesukien> list;
 
-    public SukiendadangAdapter(Context context, ArrayList<SukiendadangItem> list) {
+    public SukiendadangAdapter(Context context, ArrayList<Thesukien> list) {
         this.context = context;
         this.list = list;
     }
@@ -66,12 +67,21 @@ public class SukiendadangAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        SukiendadangItem item = list.get(i);
-        holder.imgPoster.setImageResource(item.getHinhAnh());
-        holder.txtTen.setText(item.getTen());
-        holder.txtDaban.setText(item.getDaBan());
-        holder.txtGia.setText(item.getGia());
-        holder.txtDiaDiem.setText(item.getDiaDiem());
+        Thesukien item = list.get(i);
+        // Load ảnh
+        if (item.getThumbnail() != null && item.getThumbnail().startsWith("http")) {
+            Glide.with(holder.imgPoster.getContext()).load(item.getThumbnail()).into(holder.imgPoster);
+        } else if (item.getThumbnail() != null) {
+            int resId = context.getResources().getIdentifier(item.getThumbnail(), "drawable", context.getPackageName());
+            if (resId != 0) holder.imgPoster.setImageResource(resId);
+            else holder.imgPoster.setImageResource(R.drawable.anhthaythe);
+        } else {
+            holder.imgPoster.setImageResource(R.drawable.anhthaythe);
+        }
+        holder.txtTen.setText(item.getTitle());
+        holder.txtDaban.setText("Đã bán: " + item.getSoldTicket() + " vé");
+        holder.txtGia.setText(item.getPrice() == 0 ? "Miễn phí" : String.format("Từ %,.0f VND", item.getPrice()));
+        holder.txtDiaDiem.setText(item.getLocation());
 
         // Thêm sự kiện nhấn vào biểu tượng bookmark để hiển thị popup
         holder.imvBookmark.setOnClickListener(view -> {
@@ -107,9 +117,6 @@ public class SukiendadangAdapter extends BaseAdapter {
                 Toast.makeText(context, "Đã tải danh sách ảnh người tham gia", Toast.LENGTH_SHORT).show();
 
                 popupWindow.dismiss();
-
-
-
             });
 
             popupView.findViewById(R.id.btnViewRep).setOnClickListener(v -> {

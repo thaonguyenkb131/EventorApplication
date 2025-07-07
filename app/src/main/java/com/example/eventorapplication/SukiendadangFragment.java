@@ -13,11 +13,19 @@ import android.widget.ArrayAdapter;
 
 import com.example.adapters.SukiendadangAdapter;
 import com.example.eventorapplication.databinding.FragmentSukiendadangBinding;
-import com.example.models.SukiendadangItem;
+import com.example.models.Thesukien;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import com.bumptech.glide.Glide;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,6 +44,8 @@ public class SukiendadangFragment extends Fragment {
     private String mParam2;
 
     private FragmentSukiendadangBinding binding;
+    private SukiendadangAdapter adapter;
+    private ArrayList<Thesukien> eventList = new ArrayList<>();
 
     public SukiendadangFragment() {
         // Required empty public constructor
@@ -73,34 +83,39 @@ public class SukiendadangFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentSukiendadangBinding.inflate(inflater, container, false);
 
-        // Khởi tạo danh sách dữ liệu
-        List<SukiendadangItem> dsSuKien = new ArrayList<>();
-        dsSuKien.add(new SukiendadangItem(R.drawable.skxh1, "SuperFest - Concert Mùa Hè Rực Sáng", "Số vé đã bán: 10,982 vé", "", "Quảng Ninh"));
-        dsSuKien.add(new SukiendadangItem(R.drawable.skxh2, "[River Flows In You] Đêm Nhạc Xương Rồng", "Số vé đã bán: 8,422 vé", "", "Hà Nội"));
-        dsSuKien.add(new SukiendadangItem(R.drawable.skxh3, "Lễ Hội Ẩm Thực Việt - Vị Quê Hương", "Đã bán: 15,000 vé", "", "Hà Nội"));
-        dsSuKien.add(new SukiendadangItem(R.drawable.skxh4, "The “Traditional Water Puppet Show” - Múa rối nước", "Đã bán: 14,500 vé", "", "TP.HCM"));
-        dsSuKien.add(new SukiendadangItem(R.drawable.skxh5, "Hội Chợ Sách & Văn Hóa Đọc", "Đã bán: 14,500 vé", "", "TP.HCM"));
-        dsSuKien.add(new SukiendadangItem(R.drawable.skxh6, "Đại Nhạc Hội Mùa Đông - Winter Beat", "Số vé đã bán: 12,314 vé", "Từ 750.000 VND", "Hà Nội"));
-        dsSuKien.add(new SukiendadangItem(R.drawable.skxh7, "Hội Thảo Công Nghệ - TechNext 2025", "Số vé đã bán: 6,832 vé", "Từ 300.000 VND", "TP. Hồ Chí Minh"));
-        dsSuKien.add(new SukiendadangItem(R.drawable.skxh8, "Festival Ánh Sáng Hội An", "Số vé đã bán: 9,105 vé", "Từ 500.000 VND", "Quảng Nam"));
-        dsSuKien.add(new SukiendadangItem(R.drawable.skxh9, "Hội Chợ Sách & Văn Hóa Đọc", "Số vé đã bán: 5,247 vé", "Miễn phí vào cửa", "Đà Nẵng"));
-        dsSuKien.add(new SukiendadangItem(R.drawable.skxh10, "Lễ Hội Ẩm Thực Việt - Vị Quê Hương", "Số vé đã bán: 7,980 vé", "Từ 100.000 VND", "Cần Thơ"));
-
-        // Gắn adapter vào ListView qua binding
-        SukiendadangAdapter adapter = new SukiendadangAdapter(requireContext(), new ArrayList<>(dsSuKien));
+        adapter = new SukiendadangAdapter(requireContext(), eventList);
         binding.lvSkdd.setAdapter(adapter);
 
-        // Chỉ mở Activity chi tiết, chưa cần truyền dữ liệu
-        binding.lvSkdd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("postedevents");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                eventList.clear();
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    Thesukien event = child.getValue(Thesukien.class);
+                    if (event != null) {
+                        eventList.add(event);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Xử lý lỗi nếu cần
+            }
+        });
+
+        binding.lvSkdd.setOnItemClickListener((parent, view, position, id) -> {
+            if (position < eventList.size()) {
+                Thesukien selectedEvent = eventList.get(position);
                 Intent intent = new Intent(getActivity(), ChitietsukienActivity.class);
+                com.google.gson.Gson gson = new com.google.gson.Gson();
+                intent.putExtra("event_json", gson.toJson(selectedEvent));
                 startActivity(intent);
             }
         });
 
         return binding.getRoot();
-
     }
 
     @Override

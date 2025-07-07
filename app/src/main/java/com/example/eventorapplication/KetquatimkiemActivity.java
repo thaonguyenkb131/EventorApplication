@@ -24,15 +24,17 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class KetquatimkiemActivity extends BaseActivity<ActivityKetquatimkiemBinding> {
+public class KetquatimkiemActivity extends BaseActivity<ActivityKetquatimkiemBinding> implements BolocDialog.FilterCallback {
 
     private ThesukienAdapter adapter;
     private ArrayList<Thesukien> dataList;
+    private ArrayList<Thesukien> originalDataList; // Lưu dữ liệu gốc để lọc
 
     private Calendar fromDate = Calendar.getInstance();
     private Calendar toDate = Calendar.getInstance();
     private String category;
     private String searchQuery;
+    private BolocDialog.FilterData currentFilter = new BolocDialog.FilterData();
 
     @Override
     protected ActivityKetquatimkiemBinding inflateBinding() {
@@ -47,6 +49,28 @@ public class KetquatimkiemActivity extends BaseActivity<ActivityKetquatimkiemBin
         binding.progressBar.setVisibility(View.VISIBLE);
         category = getIntent().getStringExtra("category");
         searchQuery = getIntent().getStringExtra("search_query");
+        
+        // Nhận bộ lọc từ Intent nếu có
+        String[] filterCategories = getIntent().getStringArrayExtra("filter_categories");
+        String[] filterLocations = getIntent().getStringArrayExtra("filter_locations");
+        boolean filterFreeOnly = getIntent().getBooleanExtra("filter_free_only", false);
+        String filterFromDate = getIntent().getStringExtra("filter_from_date");
+        String filterToDate = getIntent().getStringExtra("filter_to_date");
+        
+        if (filterCategories != null) {
+            for (String cat : filterCategories) {
+                currentFilter.selectedCategories.add(cat);
+            }
+        }
+        if (filterLocations != null) {
+            for (String loc : filterLocations) {
+                currentFilter.selectedLocations.add(loc);
+            }
+        }
+        currentFilter.isFreeOnly = filterFreeOnly;
+        currentFilter.fromDate = filterFromDate;
+        currentFilter.toDate = filterToDate;
+        
         loadDataFromRealtimeDatabase();
         addFilterEvent();
 
@@ -96,28 +120,36 @@ public class KetquatimkiemActivity extends BaseActivity<ActivityKetquatimkiemBin
             return true;
         });
 
-        binding.imgCalendar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDateRangePicker();
-            }
-        });
+        binding.imgCalendar.setOnClickListener(v -> showDateRangePicker());
     }
 
     private void addControls() {
         dataList = new ArrayList<>();
+        originalDataList = new ArrayList<>();
         adapter = new ThesukienAdapter(this, dataList);
         binding.gvKetquatimkiem.setAdapter(adapter);
+        
+        // Thêm click listener cho GridView
+        binding.gvKetquatimkiem.setOnItemClickListener((parent, view, position, id) -> {
+            if (position < dataList.size()) {
+                Thesukien selectedEvent = dataList.get(position);
+                Intent intent = new Intent(KetquatimkiemActivity.this, ChitietsukienActivity.class);
+                com.google.gson.Gson gson = new com.google.gson.Gson();
+                intent.putExtra("event_json", gson.toJson(selectedEvent));
+                startActivity(intent);
+            }
+        });
     }
 
     private void loadDataFromRealtimeDatabase() {
         dataList.clear();
+        originalDataList.clear();
         binding.progressBar.setVisibility(View.VISIBLE);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("events");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                dataList.clear();
+                originalDataList.clear();
                 for (DataSnapshot child : snapshot.getChildren()) {
                     Thesukien item = child.getValue(Thesukien.class);
                     if (item != null) {
@@ -130,11 +162,11 @@ public class KetquatimkiemActivity extends BaseActivity<ActivityKetquatimkiemBin
                                     || (item.getOrganizer() != null && item.getOrganizer().toLowerCase().contains(q));
                         }
                         if (matchCategory && matchSearch) {
-                            dataList.add(item);
+                            originalDataList.add(item);
                         }
                     }
                 }
-                adapter.notifyDataSetChanged();
+                applyFilter();
                 binding.progressBar.setVisibility(View.GONE);
                 if (dataList.isEmpty()) {
                     String query = (searchQuery != null && !searchQuery.isEmpty()) ? searchQuery : "";
@@ -153,9 +185,110 @@ public class KetquatimkiemActivity extends BaseActivity<ActivityKetquatimkiemBin
     private void addFilterEvent() {
         binding.imgFilter.setOnClickListener(v -> {
             BolocDialog dialog = new BolocDialog();
+            dialog.setFilterCallback(this);
+            dialog.setCurrentFilter(currentFilter);
             dialog.show(getSupportFragmentManager(), "BolocDialog");
         });
+    }
 
+    @Override
+    public void onFilterApplied(BolocDialog.FilterData filterData) {
+        currentFilter = filterData;
+        applyFilter();
+    }
+
+    private void applyFilter() {
+        dataList.clear();
+        
+        for (Thesukien event : originalDataList) {
+            if (matchesFilter(event, currentFilter)) {
+                dataList.add(event);
+            }
+        }
+        
+        adapter.notifyDataSetChanged();
+        
+        // Cập nhật tiêu đề
+        updateTitle();
+    }
+
+    private boolean matchesFilter(Thesukien event, BolocDialog.FilterData filter) {
+        // Kiểm tra danh mục
+        if (!filter.selectedCategories.isEmpty()) {
+            boolean categoryMatch = false;
+            for (String category : filter.selectedCategories) {
+                if (event.getCategory() != null && event.getCategory().equalsIgnoreCase(category)) {
+                    categoryMatch = true;
+                    break;
+                }
+            }
+            if (!categoryMatch) return false;
+        }
+        
+        // Kiểm tra địa điểm
+        if (!filter.selectedLocations.isEmpty()) {
+            boolean locationMatch = false;
+            for (String location : filter.selectedLocations) {
+                if (event.getCity() != null && event.getCity().equalsIgnoreCase(location)) {
+                    locationMatch = true;
+                    break;
+                }
+                // Xử lý trường hợp "Khác"
+                if (location.equals("Khác")) {
+                    if (event.getCity() != null && 
+                        !event.getCity().equalsIgnoreCase("TP.Hồ Chí Minh") &&
+                        !event.getCity().equalsIgnoreCase("Hà Nội") &&
+                        !event.getCity().equalsIgnoreCase("Đà Nẵng")) {
+                        locationMatch = true;
+                        break;
+                    }
+                }
+            }
+            if (!locationMatch) return false;
+        }
+        
+        // Kiểm tra miễn phí
+        if (filter.isFreeOnly && event.getPrice() > 0) {
+            return false;
+        }
+        
+        // Kiểm tra thời gian
+        if (filter.fromDate != null && filter.toDate != null && event.getDateStart() != null) {
+            try {
+                java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+                java.util.Date from = sdf.parse(filter.fromDate);
+                java.util.Date to = sdf.parse(filter.toDate);
+                java.util.Date eventDate = sdf.parse(event.getDateStart());
+                if (eventDate.before(from) || eventDate.after(to)) {
+                    return false;
+                }
+            } catch (Exception e) {
+                // Nếu lỗi parse thì bỏ qua lọc thời gian
+            }
+        }
+        
+        return true;
+    }
+
+    private void updateTitle() {
+        StringBuilder title = new StringBuilder();
+        
+        if (category != null && !category.isEmpty()) {
+            title.append("Danh mục: \"").append(category).append("\"");
+        } else if (searchQuery != null && !searchQuery.isEmpty()) {
+            title.append("Kết quả tìm kiếm cho \"").append(searchQuery).append("\"");
+        } else {
+            title.append("Tất cả sự kiện");
+        }
+        
+        // Thêm thông tin bộ lọc nếu có
+        if (!currentFilter.selectedCategories.isEmpty() || 
+            !currentFilter.selectedLocations.isEmpty() || 
+            currentFilter.isFreeOnly) {
+            title.append(" (Đã lọc)");
+        }
+        
+        binding.kqtimkiem.setText(title.toString());
     }
 
     private void showDateRangePicker() {
@@ -163,25 +296,31 @@ public class KetquatimkiemActivity extends BaseActivity<ActivityKetquatimkiemBin
                 this,
                 R.style.MyDatePickerDialogTheme,
                 (view, year, month, dayOfMonth) -> {
-                    fromDate.set(year, month, dayOfMonth);
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+                    java.util.Calendar cal = java.util.Calendar.getInstance();
+                    cal.set(year, month, dayOfMonth);
+                    currentFilter.fromDate = sdf.format(cal.getTime());
+                    // Sau khi chọn ngày bắt đầu, chọn ngày kết thúc
                     DatePickerDialog toDialog = new DatePickerDialog(
                             this,
                             R.style.MyDatePickerDialogTheme,
                             (view2, year2, month2, dayOfMonth2) -> {
-                                toDate.set(year2, month2, dayOfMonth2);
-                                // TODO: Xử lý ngày đã chọn ở đây (fromDate, toDate)
+                                java.util.Calendar cal2 = java.util.Calendar.getInstance();
+                                cal2.set(year2, month2, dayOfMonth2);
+                                currentFilter.toDate = sdf.format(cal2.getTime());
+                                applyFilter(); // Lọc lại ngay sau khi chọn xong
                             },
-                            toDate.get(Calendar.YEAR),
-                            toDate.get(Calendar.MONTH),
-                            toDate.get(Calendar.DAY_OF_MONTH)
+                            cal.get(java.util.Calendar.YEAR),
+                            cal.get(java.util.Calendar.MONTH),
+                            cal.get(java.util.Calendar.DAY_OF_MONTH)
                     );
                     toDialog.setTitle("Chọn ngày kết thúc");
-                    toDialog.getDatePicker().setMinDate(fromDate.getTimeInMillis());
+                    toDialog.getDatePicker().setMinDate(cal.getTimeInMillis());
                     toDialog.show();
                 },
-                fromDate.get(Calendar.YEAR),
-                fromDate.get(Calendar.MONTH),
-                fromDate.get(Calendar.DAY_OF_MONTH)
+                java.util.Calendar.getInstance().get(java.util.Calendar.YEAR),
+                java.util.Calendar.getInstance().get(java.util.Calendar.MONTH),
+                java.util.Calendar.getInstance().get(java.util.Calendar.DAY_OF_MONTH)
         );
         fromDialog.setTitle("Chọn ngày bắt đầu");
         fromDialog.show();

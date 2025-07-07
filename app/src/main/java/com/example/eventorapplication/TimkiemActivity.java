@@ -8,31 +8,45 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.adapters.TimkiemgvAdapter;
+import com.example.adapters.ThesukienAdapter;
 import com.example.adapters.TimkiemlvAdapter;
 import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivityTimkiemBinding;
-import com.example.models.TimkiemgvItem;
 import com.example.models.TimkiemlvItem;
+import com.example.models.Thesukien;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.List;
 
 public class TimkiemActivity extends BaseActivity<ActivityTimkiemBinding> {
 
     private ArrayList<TimkiemlvItem> data;
     private TimkiemlvAdapter adapter;
 
-    private ArrayList<TimkiemgvItem> phvbList;
-    private TimkiemgvAdapter gvAdapter;
+    private ArrayList<Thesukien> phvbList;
+    private ThesukienAdapter gvAdapter;
 
     private Calendar fromDate = Calendar.getInstance();
     private Calendar toDate = Calendar.getInstance();
+
+    private BolocDialog.FilterData currentFilter = new BolocDialog.FilterData();
 
     @Override
     protected ActivityTimkiemBinding inflateBinding() {
@@ -82,6 +96,7 @@ public class TimkiemActivity extends BaseActivity<ActivityTimkiemBinding> {
         setupListView();
         setupGridView();
         addFilterEvent();
+        setupDanhmucClick();
 
         binding.imgCalendar.setOnClickListener(v -> showDateRangePicker());
         // Sự kiện click vào icon tìm kiếm
@@ -100,6 +115,11 @@ public class TimkiemActivity extends BaseActivity<ActivityTimkiemBinding> {
         Intent intent = new Intent(this, KetquatimkiemActivity.class);
         String searchText = binding.edtTimkiem.getText().toString();
         intent.putExtra("search_query", searchText);
+        intent.putExtra("filter_categories", currentFilter.selectedCategories.toArray(new String[0]));
+        intent.putExtra("filter_locations", currentFilter.selectedLocations.toArray(new String[0]));
+        intent.putExtra("filter_free_only", currentFilter.isFreeOnly);
+        intent.putExtra("filter_from_date", currentFilter.fromDate);
+        intent.putExtra("filter_to_date", currentFilter.toDate);
         startActivity(intent);
     }
 
@@ -110,7 +130,7 @@ public class TimkiemActivity extends BaseActivity<ActivityTimkiemBinding> {
         data.add(new TimkiemlvItem("workshop", R.drawable.icclock, R.drawable.ictrash));
         data.add(new TimkiemlvItem("văn hóa", R.drawable.icclock, R.drawable.ictrash));
         data.add(new TimkiemlvItem("vẽ", R.drawable.icgrowth, null));
-        data.add(new TimkiemlvItem("nhạc kịch", R.drawable.icgrowth, null));
+        data.add(new TimkiemlvItem("việc làm", R.drawable.icgrowth, null));
         data.add(new TimkiemlvItem("hội nghị", R.drawable.icgrowth, null));
 
         adapter = new TimkiemlvAdapter(this, data);
@@ -132,30 +152,112 @@ public class TimkiemActivity extends BaseActivity<ActivityTimkiemBinding> {
 
     // Xử lý sự kiện gridview
     private void setupGridView() {
+        loadAdvertisedEvents();
+    }
+
+    private void loadAdvertisedEvents() {
         phvbList = new ArrayList<>();
-        phvbList.add(new TimkiemgvItem(R.drawable.phvb1, "Sân khấu Thiên Đăng -  Cái gì vui vẻ thì mình ưu tiên", "Từ 300.000 VND", "TP.Hồ Chí Minh", "06/06/2025"));
-        phvbList.add(new TimkiemgvItem(R.drawable.phvb2, "Lễ hội âm nhạc, sáng tạo Tràng An, Ninh Bình - FORESTIVAL 2025", "Từ 700.000 VND", "Ninh Bình", "07/07/2025"));
-        phvbList.add(new TimkiemgvItem(R.drawable.phvb3, "Madame Show - Những đường chim bay", "Từ 700.000 VND", "Đà Nẵng", "10/07/2025"));
-        phvbList.add(new TimkiemgvItem(R.drawable.phvb4, "Sân khấu nhạc kịch - Cái gì vui vẻ thì mình ưu tiên", "Từ 300.000 VND", "TP.Hồ Chí Minh", "15/06/2025"));
-        phvbList.add(new TimkiemgvItem(R.drawable.phvb5, "BOYF DEBUT SHOWCASE -  Cái gì vui vẻ thì mình ưu tiên", "Từ 300.000 VND", "TP.Hồ Chí Minh", "15/06/2025"));
-        phvbList.add(new TimkiemgvItem(R.drawable.phvb6, "Lễ hội âm nhạc SPERFEST - Lễ hội ánh sáng", "Từ 800.000 VND", "TP.Hồ Chí Minh", "01/07/2025"));
-        phvbList.add(new TimkiemgvItem(R.drawable.phvb7, "Sân khấu nhạc kịch - Hành tinh nâu", "Từ 150.000 VND", "Tp. Hồ Chí Minh", "07/07/2025"));
-        phvbList.add(new TimkiemgvItem(R.drawable.phvb8, "Lululola Show - Hương Tràm - Cái gì vui vẻ thì mình ưu tiên\"", "Từ 250.000 VND", "Đà Lạt", "16/07/2025"));
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("events");
+        ref.orderByChild("mode").equalTo("advertised").limitToFirst(8).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Thesukien event = snapshot.getValue(Thesukien.class);
+                    if (event != null) {
+                        phvbList.add(event);
+                    }
+                }
+                
+                // Xáo trộn danh sách để hiển thị ngẫu nhiên
+                Collections.shuffle(phvbList);
 
-        gvAdapter = new TimkiemgvAdapter(this, phvbList);
-        binding.gvPhuhopvoiban.setAdapter(gvAdapter);
+                gvAdapter = new ThesukienAdapter(TimkiemActivity.this, phvbList);
+                binding.gvPhuhopvoiban.setAdapter(gvAdapter);
 
-        binding.gvPhuhopvoiban.post(() ->
-                setGridViewHeightBasedOnChildren(binding.gvPhuhopvoiban, 2)
-        );
+                // Thêm click listener cho GridView
+                binding.gvPhuhopvoiban.setOnItemClickListener((parent, view, position, id) -> {
+                    if (position < phvbList.size()) {
+                        Thesukien selectedEvent = phvbList.get(position);
+                        Intent intent = new Intent(TimkiemActivity.this, ChitietsukienActivity.class);
+                        Gson gson = new Gson();
+                        intent.putExtra("event_json", gson.toJson(selectedEvent));
+                        startActivity(intent);
+                    }
+                });
+
+                binding.gvPhuhopvoiban.post(() ->
+                        setGridViewHeightBasedOnChildren(binding.gvPhuhopvoiban, 2)
+                );
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Nếu lỗi, tạo dữ liệu mẫu với Thesukien
+                Thesukien event1 = new Thesukien();
+                event1.setTitle("Sân khấu Thiên Đăng - Cái gì vui vẻ thì mình ưu tiên");
+                event1.setPrice(300000);
+                event1.setLocation("TP.Hồ Chí Minh");
+                event1.setDate("06/06/2025");
+                phvbList.add(event1);
+
+                Thesukien event2 = new Thesukien();
+                event2.setTitle("Lễ hội âm nhạc, sáng tạo Tràng An, Ninh Bình - FORESTIVAL 2025");
+                event2.setPrice(700000);
+                event2.setLocation("Ninh Bình");
+                event2.setDate("07/07/2025");
+                phvbList.add(event2);
+
+                gvAdapter = new ThesukienAdapter(TimkiemActivity.this, phvbList);
+                binding.gvPhuhopvoiban.setAdapter(gvAdapter);
+
+                binding.gvPhuhopvoiban.post(() ->
+                        setGridViewHeightBasedOnChildren(binding.gvPhuhopvoiban, 2)
+                );
+            }
+        });
     }
 
     // Sự kiện filter
     private void addFilterEvent() {
         binding.imgFilter.setOnClickListener(v -> {
             BolocDialog dialog = new BolocDialog();
+            dialog.setFilterCallback(new BolocDialog.FilterCallback() {
+                @Override
+                public void onFilterApplied(BolocDialog.FilterData filterData) {
+                    currentFilter = filterData;
+                }
+            });
+            dialog.setCurrentFilter(currentFilter);
             dialog.show(getSupportFragmentManager(), "BolocDialog");
         });
+    }
+
+    // Xử lý click vào danh mục
+    private void setupDanhmucClick() {
+        // Lấy LinearLayout chứa tất cả danh mục
+        LinearLayout dmTheloai = findViewById(R.id.DmTheloai);
+        if (dmTheloai != null) {
+            // Duyệt qua tất cả các LinearLayout con (mỗi danh mục)
+            for (int i = 0; i < dmTheloai.getChildCount(); i++) {
+                View child = dmTheloai.getChildAt(i);
+                if (child instanceof LinearLayout) {
+                    LinearLayout danhMucLayout = (LinearLayout) child;
+                    danhMucLayout.setOnClickListener(v -> {
+                        // Tìm TextView chứa tên danh mục
+                        for (int j = 0; j < danhMucLayout.getChildCount(); j++) {
+                            View danhMucChild = danhMucLayout.getChildAt(j);
+                            if (danhMucChild instanceof TextView) {
+                                String category = ((TextView) danhMucChild).getText().toString();
+                                Intent intent = new Intent(TimkiemActivity.this, KetquatimkiemActivity.class);
+                                intent.putExtra("category", category);
+                                startActivity(intent);
+                                break;
+                            }
+                        }
+                    });
+                }
+            }
+        }
     }
 
     // Tính chiều cao ListView để hiển thị toàn bộ nội dung trong ScrollView
@@ -231,21 +333,25 @@ public class TimkiemActivity extends BaseActivity<ActivityTimkiemBinding> {
                 this,
                 R.style.MyDatePickerDialogTheme,
                 (view, year, month, dayOfMonth) -> {
-                    fromDate.set(year, month, dayOfMonth);
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+                    java.util.Calendar cal = java.util.Calendar.getInstance();
+                    cal.set(year, month, dayOfMonth);
+                    currentFilter.fromDate = sdf.format(cal.getTime());
                     // Sau khi chọn ngày bắt đầu, chọn ngày kết thúc
                     DatePickerDialog toDialog = new DatePickerDialog(
                             this,
                             R.style.MyDatePickerDialogTheme,
                             (view2, year2, month2, dayOfMonth2) -> {
-                                toDate.set(year2, month2, dayOfMonth2);
-                                // TODO: Xử lý ngày đã chọn ở đây (fromDate, toDate)
+                                java.util.Calendar cal2 = java.util.Calendar.getInstance();
+                                cal2.set(year2, month2, dayOfMonth2);
+                                currentFilter.toDate = sdf.format(cal2.getTime());
                             },
                             toDate.get(Calendar.YEAR),
                             toDate.get(Calendar.MONTH),
                             toDate.get(Calendar.DAY_OF_MONTH)
                     );
                     toDialog.setTitle("Chọn ngày kết thúc");
-                    toDialog.getDatePicker().setMinDate(fromDate.getTimeInMillis());
+                    toDialog.getDatePicker().setMinDate(cal.getTimeInMillis());
                     toDialog.show();
                 },
                 fromDate.get(Calendar.YEAR),

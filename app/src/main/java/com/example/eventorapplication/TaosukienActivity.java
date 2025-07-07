@@ -25,6 +25,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivityTaosukienBinding;
+import com.example.models.Thesukien;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
@@ -118,7 +121,53 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
 
         binding.btnDoiAnh.setOnClickListener(view -> showPopupTaianh(view));
 
-        binding.btnDangSukien.setOnClickListener(view -> showPopupTaoskthanhcong());
+        binding.btnDangSukien.setOnClickListener(view -> {
+            // Lấy dữ liệu từ các trường nhập
+            String title = binding.edtTenSukien.getText().toString().trim();
+            String registrationOpen = binding.edtOpen.getText().toString().trim();
+            String timeStart = binding.edtGiobatdau.getText().toString().trim();
+            String dateStart = binding.edtStart.getText().toString().trim();
+            String timeEnd = binding.edtGioketthuc.getText().toString().trim();
+            String dateEnd = binding.edtEnd.getText().toString().trim();
+            String description = binding.edtMoTa.getText().toString().trim();
+            String thumbnail = ""; // TODO: Lấy link ảnh thực tế nếu có upload
+            String location = "";
+            String mapUrl = "";
+            String mode = "";
+            if (binding.rbOnline.isChecked()) {
+                mode = "Online";
+                location = binding.edtlinksukien.getText().toString().trim();
+            } else if (binding.rbOffline.isChecked()) {
+                mode = "Offline";
+                location = binding.edtSearch.getText().toString().trim();
+            }
+            // Tạo đối tượng Thesukien
+            Thesukien event = new Thesukien();
+            event.setTitle(title);
+            event.setRegistrationOpen(registrationOpen);
+            event.setTimeStart(timeStart);
+            event.setDateStart(dateStart);
+            event.setTimeEnd(timeEnd);
+            event.setDateEnd(dateEnd);
+            event.setDescription(description);
+            event.setThumbnail(thumbnail);
+            event.setLocation(location);
+            event.setMapUrl(mapUrl);
+            event.setMode(mode);
+            event.setSoldTicket(0);
+            event.setRemainingTicket(0);
+            // TODO: set thêm các trường khác nếu cần
+
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("postedevents");
+            String eventId = ref.push().getKey();
+            ref.child(eventId).setValue(event).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    showPopupTaoskthanhcong();
+                } else {
+                    Toast.makeText(this, "Đăng sự kiện thất bại", Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
 
         binding.rbOnline.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {

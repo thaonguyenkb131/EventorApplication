@@ -17,7 +17,8 @@
     import com.example.adapters.SukiendadangAdapter;
     import com.example.eventorapplication.base.BaseActivity;
     import com.example.eventorapplication.databinding.ActivityTrangcanhanBinding;
-    import com.example.models.SukiendadangItem;
+
+    import com.example.models.Thesukien;
     import com.google.firebase.database.DataSnapshot;
     import com.google.firebase.database.DatabaseError;
     import com.google.firebase.database.DatabaseReference;
@@ -61,9 +62,22 @@
 
             ListView lvSkdtc = findViewById(R.id.lvSkdtc);
 
-            ArrayList<SukiendadangItem> Skdtc = new ArrayList<>();
-            Skdtc.add(new SukiendadangItem(R.drawable.skxh1, "SuperFest - Concert Mùa Hè Rực Sáng", "Số vé đã bán: 10,982 vé", "", "Quảng Ninh"));
-            Skdtc.add(new SukiendadangItem(R.drawable.skxh2, "[River Flows In You] Đêm Nhạc Xương Rồng", "Số vé đã bán: 8,422 vé", "", "Hà Nội"));
+            ArrayList<Thesukien> Skdtc = new ArrayList<>();
+            // Ví dụ dữ liệu mẫu, bạn có thể load từ Firebase tương tự như ở Fragment
+            Thesukien event1 = new Thesukien();
+            event1.setTitle("SuperFest - Concert Mùa Hè Rực Sáng");
+            event1.setSoldTicket(10982);
+            event1.setPrice(0);
+            event1.setLocation("Quảng Ninh");
+            event1.setThumbnail("https://your-image-link.com/image1.jpg");
+            Skdtc.add(event1);
+            Thesukien event2 = new Thesukien();
+            event2.setTitle("[River Flows In You] Đêm Nhạc Xương Rồng");
+            event2.setSoldTicket(8422);
+            event2.setPrice(0);
+            event2.setLocation("Hà Nội");
+            event2.setThumbnail("https://your-image-link.com/image2.jpg");
+            Skdtc.add(event2);
 
             SukiendadangAdapter adapter = new SukiendadangAdapter(this, Skdtc);
             lvSkdtc.setAdapter(adapter);

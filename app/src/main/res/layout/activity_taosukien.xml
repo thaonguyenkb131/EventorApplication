@@ -57,7 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_regular"
-                    android:padding="15dp"
+                    android:padding="10dp"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -71,7 +71,7 @@
                 android:textSize="16sp" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="35dp"
                 android:orientation="horizontal"
                 android:background="@drawable/bg_search_box_img"
                 android:gravity="center_vertical">
@@ -82,7 +82,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:padding="8dp"
-                    android:background="@null"/>
+                    android:background="@null"
+                    android:textSize="14sp"/>
 
                 <ImageView
                     android:layout_width="20dp"
@@ -108,7 +109,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bắt đầu lúc"
+                    android:text="Bắt đầu lúc "
                     android:fontFamily="@font/montserrat_regular"
                     android:paddingStart="15dp"
                     android:paddingEnd="5dp"
@@ -143,6 +144,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:padding="8dp"
+                        android:textSize="14sp"
                         android:background="@null"/>
 
                     <ImageView
@@ -199,6 +201,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:padding="8dp"
+                        android:textSize="14sp"
                         android:background="@null"/>
 
                     <ImageView
@@ -283,7 +286,7 @@
             <!--            Địa điểm tổ chức online -->
             <LinearLayout
                 android:id="@+id/edtOnline"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:visibility="gone">
@@ -294,12 +297,12 @@
                     android:fontFamily="@font/montserrat_medium"
                     android:textSize="16sp" />
                 <EditText
+                    android:id="@+id/edtlinksukien"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:backgroundTint="#F2F2F2"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:textSize="14sp"/>
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:padding="15dp"
+                    android:textSize="14sp" />
             </LinearLayout>
 
 

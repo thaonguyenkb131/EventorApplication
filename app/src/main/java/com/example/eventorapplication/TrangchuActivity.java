@@ -337,7 +337,57 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
                             titleView.setPadding((int) getResources().getDimension(R.dimen.dcb_text_padding_left), 0, 0, 0);
                             eventLayout.addView(titleView);
 
-                            // Sau mỗi sự kiện hợp lệ, thêm vào linearLayoutDcb
+                            // Giá sự kiện
+                            TextView priceView = new TextView(TrangchuActivity.this);
+                            double price = event.getPrice();
+                            final String priceColor;
+                            if (price > 0) {
+                                priceView.setText("Từ " + nf.format(price) + " VND");
+                                priceColor = "#1C9CCA";
+                                priceView.setTextColor(Color.parseColor(priceColor));
+                            } else {
+                                priceView.setText("Miễn phí");
+                                priceColor = "#43A047";
+                                priceView.setTextColor(Color.parseColor(priceColor));
+                            }
+                            priceView.setTextSize(14);
+                            priceView.setGravity(android.view.Gravity.START);
+                            if (montserrat != null)
+                                priceView.setTypeface(montserrat, Typeface.BOLD);
+                            priceView.setPadding((int) getResources().getDimension(R.dimen.dcb_text_padding_left), 0, 0, 0);
+                            eventLayout.addView(priceView);
+
+                            // Line dưới giá
+
+                            priceView.post(() -> {
+                                Paint paint = new Paint();
+                                paint.setTextSize(priceView.getTextSize());
+                                paint.setTypeface(priceView.getTypeface());
+                                float textWidth = paint.measureText(priceView.getText().toString());
+
+                                View line = new View(TrangchuActivity.this);
+                                LinearLayout.LayoutParams lineParams = new LinearLayout.LayoutParams(
+                                        (int) textWidth,
+                                        (int) getResources().getDimension(R.dimen.dcb_line_height)
+                                );
+                                lineParams.gravity = Gravity.START;
+                                lineParams.setMargins(
+                                        (int) getResources().getDimension(R.dimen.dcb_text_padding_left), // left margin
+                                        0,  // top
+                                        0,  // right
+                                        1   // bottom
+                                );                                line.setLayoutParams(lineParams);
+                                line.setBackgroundColor(Color.parseColor(priceColor));
+
+                                eventLayout.addView(line, eventLayout.indexOfChild(priceView) + 1);
+                            });
+
+                            // Click mở chi tiết
+                            cardView.setOnClickListener(v -> {
+                                Intent intent = new Intent(TrangchuActivity.this, ChitietsukienActivity.class);
+                                intent.putExtra("event_json", gson.toJson(event));
+                                startActivity(intent);
+                            });
 
                             linearLayoutDcb.addView(eventLayout);
                         }

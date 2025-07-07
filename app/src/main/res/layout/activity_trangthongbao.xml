@@ -31,7 +31,8 @@
         android:layout_below="@id/header"
         android:orientation="horizontal"
         android:gravity="center"
-        android:padding="5dp">
+        android:padding="5dp"
+        android:visibility="visible">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnTatThongBao"
@@ -77,4 +78,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:id="@+id/txtDangNhap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bạn chưa đăng nhập. Nhấn vào đây để đăng nhập."
+        android:textColor="#066183"
+        android:textStyle="italic"
+        android:textSize="14sp"
+        android:visibility="gone"
+        android:padding="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_below="@id/header"
+        android:layout_above="@id/footer"
+        android:gravity="center_vertical"/>
 </RelativeLayout>

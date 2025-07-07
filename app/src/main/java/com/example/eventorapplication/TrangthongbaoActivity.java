@@ -1,8 +1,10 @@
 package com.example.eventorapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowInsets;
@@ -56,11 +58,24 @@ public class TrangthongbaoActivity extends BaseActivity<ActivityTrangthongbaoBin
             });
         }
 
-//        binding.imvnhantin.setOnClickListener(v -> {
-//            startActivity(new Intent(this, ChitiettinnhanActivity.class));
-//        });
+        // Kiểm tra trạng thái đăng nhập
+        // Kiểm tra đăng nhập
+        SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+        String userId = prefs.getString("userId", null);
 
-        // Toggle nút bật thông báo
+        if (userId == null) {
+            binding.txtDangNhap.setVisibility(View.VISIBLE);
+            binding.layoutThongBao.setVisibility(View.GONE); // Ẩn toàn bộ nội dung chính
+            binding.txtDangNhap.setPaintFlags(binding.txtDangNhap.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            binding.txtDangNhap.setOnClickListener(v -> {
+                Intent intent = new Intent(this, DangnhapActivity.class);
+                startActivity(intent);
+            });
+            return;
+        } else {
+            binding.txtDangNhap.setVisibility(View.GONE);
+            binding.layoutThongBao.setVisibility(View.VISIBLE); // Hiện nội dung chính nếu đã đăng nhập
+        }
 
         binding.btnTatThongBao.setOnClickListener(v -> {
             isNotificationOn = !isNotificationOn;

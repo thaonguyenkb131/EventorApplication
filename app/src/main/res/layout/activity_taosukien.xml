@@ -118,7 +118,7 @@
                 <EditText
                     android:id="@+id/edtGiobatdau"
                     android:layout_width="80dp"
-                    android:layout_height="30dp"
+                    android:layout_height="35dp"
                     android:background="@drawable/bg_search_box_img"
                     android:paddingEnd="5dp"
                     android:textSize="14sp" />
@@ -133,7 +133,7 @@
                     android:textColor="@color/black"/>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="35dp"
                     android:orientation="horizontal"
                     android:background="@drawable/bg_search_box_img"
                     android:gravity="center_vertical">
@@ -174,7 +174,7 @@
                 <EditText
                     android:id="@+id/edtGioketthuc"
                     android:layout_width="80dp"
-                    android:layout_height="30dp"
+                    android:layout_height="35dp"
                     android:background="@drawable/bg_search_box_img"
                     android:paddingEnd="5dp"
                     android:textSize="14sp" />
@@ -190,7 +190,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="35dp"
                     android:orientation="horizontal"
                     android:background="@drawable/bg_search_box_img"
                     android:gravity="center_vertical">

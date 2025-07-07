@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -85,8 +86,21 @@ public class TkdadangnhapActivity extends BaseActivity<ActivityTkdadangnhapBindi
         binding.trangcanhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TkdadangnhapActivity.this, TrangcanhanActivity.class);
-                startActivity(intent);
+                String userId = getIntent().getStringExtra("userId");
+                if (userId == null) {
+                    // Nếu không có userId, lấy từ SharedPreferences
+                    SharedPreferences prefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+                    userId = prefs.getString("userId", null);
+                }
+
+                if (userId != null) {
+                    Intent intent = new Intent(TkdadangnhapActivity.this, TrangcanhanActivity.class);
+                    intent.putExtra("userId", userId);
+                    startActivity(intent);
+                } else {
+                    // Trường hợp hiếm gặp nếu không có userId
+                    Toast.makeText(TkdadangnhapActivity.this, "Không tìm thấy thông tin người dùng", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

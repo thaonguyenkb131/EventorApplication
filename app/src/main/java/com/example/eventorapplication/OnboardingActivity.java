@@ -1,6 +1,7 @@
 package com.example.eventorapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.adapters.OnboardingAdapter;
+import com.example.eventorapplication.databinding.ActivityOnboardingBinding;
 import com.example.models.OnboardingItem;
 
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ import androidx.core.view.WindowInsetsCompat.Type;
 import androidx.core.graphics.Insets;
 
 public class OnboardingActivity extends AppCompatActivity {
+
+    ActivityOnboardingBinding binding;
     private ViewPager2 viewPager;
     private OnboardingAdapter adapter;
     private Handler handler;
@@ -32,7 +36,14 @@ public class OnboardingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_onboarding);
+        binding = ActivityOnboardingBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        SharedPreferences preferences = getSharedPreferences("onboarding", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("isFirstTime", false);
+        editor.apply();
+
 
         viewPager = findViewById(R.id.viewPager);
 

@@ -143,6 +143,10 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".OnboardingActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".base.LauncherActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>

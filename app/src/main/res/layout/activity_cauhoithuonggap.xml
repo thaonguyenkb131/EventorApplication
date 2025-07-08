@@ -107,6 +107,7 @@
                     android:text="Vé sẽ được gửi đến tôi bằng cách nào sau khi thanh toán thành công?"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="#000000"
                     android:paddingVertical="8dp" />
                 <View
                     android:layout_width="match_parent"
@@ -116,6 +117,7 @@
                 <TextView
                     android:text="Tôi không nhận được email/tin nhắn xác nhận vé sau khi thanh toán, tôi phải làm gì?"
                     android:layout_width="match_parent"
+                    android:textColor="#000000"
                     android:layout_height="wrap_content"
                     android:paddingVertical="8dp" />
                 <View
@@ -126,6 +128,7 @@
                 <TextView
                     android:text="Thông tin trên vé của tôi có cần trùng khớp với giấy tờ tùy thân không?"
                     android:layout_width="match_parent"
+                    android:textColor="#000000"
                     android:layout_height="wrap_content"
                     android:paddingVertical="8dp" />
                 <View
@@ -136,6 +139,7 @@
                 <TextView
                     android:text="Thông tin cá nhân của tôi có được bảo mật không?"
                     android:layout_width="match_parent"
+                    android:textColor="#000000"
                     android:layout_height="wrap_content"
                     android:paddingVertical="8dp" />
                 <View
@@ -147,6 +151,7 @@
                     android:text="Vé điện tử là gì? Tôi có cần in vé ra không?"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="#000000"
                     android:paddingVertical="8dp" />
                 <View
                     android:layout_width="match_parent"
@@ -156,6 +161,7 @@
                 <TextView
                     android:text="Tôi có thể đổi tên người tham gia/người đi trên vé không?"
                     android:layout_width="match_parent"
+                    android:textColor="#000000"
                     android:layout_height="wrap_content"
                     android:paddingVertical="8dp" />
                 <View
@@ -166,6 +172,7 @@
                 <TextView
                     android:text="Tôi có thể lưu vé vào ví điện tử trên điện thoại (Apple Wallet/Google Wallet) không?"
                     android:layout_width="match_parent"
+                    android:textColor="#000000"
                     android:layout_height="wrap_content"
                     android:paddingVertical="8dp" />
                 <View
@@ -176,6 +183,7 @@
                 <TextView
                     android:text="Tôi có thể nhận thông báo về các sự kiện mới/khuyến mãi hot trên ứng dụng không?"
                     android:layout_width="match_parent"
+                    android:textColor="#000000"
                     android:layout_height="wrap_content"
                     android:paddingVertical="8dp" />
 

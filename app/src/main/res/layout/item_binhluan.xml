@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:text="Trần Ân Tú"
             android:textSize="22sp"
+            android:textColor="@color/black"
             android:fontFamily="@font/montserrat_bold"/>
 
         <LinearLayout
@@ -69,6 +70,7 @@
             android:id="@+id/txtComment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="Sự kiện rất hay và ý nghĩa, cảm ơn BTC đã cho mình một trải nghiệm rất thú vị!!!!"
             android:layout_marginTop="10dp"/>
 

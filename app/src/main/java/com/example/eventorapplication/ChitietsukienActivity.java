@@ -56,6 +56,13 @@ public class ChitietsukienActivity extends AppCompatActivity {
         binding = ActivityChitietsukienBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Ẩn toàn bộ nội dung chính, chỉ show khi đã có dữ liệu
+        binding.getRoot().findViewById(R.id.scrollView_content).setVisibility(View.GONE);
+        View layoutReviewAndComment = findViewById(R.id.layoutReviewAndComment);
+        if (layoutReviewAndComment != null) layoutReviewAndComment.setVisibility(View.GONE);
+        Button btnBuyTicket = findViewById(R.id.btnBuyTicket);
+        if (btnBuyTicket != null) btnBuyTicket.setVisibility(View.GONE);
+
 
         //        Tránh che màn hình
         View rootView = findViewById(R.id.main); // ConstraintLayout có id="main"
@@ -211,6 +218,8 @@ public class ChitietsukienActivity extends AppCompatActivity {
     }
 
     private void showEventDetail(Thesukien event) {
+        // Khi đã có dữ liệu, show nội dung
+        binding.getRoot().findViewById(R.id.scrollView_content).setVisibility(View.VISIBLE);
         // Hiển thị các trường dữ liệu từ Thesukien lên UI
         binding.txtName.setText(event.getTitle());
         if (event.getLocation().equalsIgnoreCase("Online")) {

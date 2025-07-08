@@ -74,6 +74,7 @@
                 android:id="@+id/edtThoigianmodon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#000000"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Thời gian mở đơn đăng ký"
                 android:textSize="16sp" />
@@ -271,6 +272,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Hình thức"
+                android:textColor="#000000"
                 android:fontFamily="@font/montserrat_medium"
 
                 android:textSize="16sp" />
@@ -294,6 +296,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Online"
+                            android:textColor="#000000"
                             android:fontFamily="@font/montserrat_regular"
                             android:padding="15dp"
                             android:textSize="14sp" />
@@ -303,6 +306,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Offline"
+                            android:textColor="#000000"
                             android:fontFamily="@font/montserrat_regular"
                             android:padding="15dp"
                             android:textSize="14sp" />
@@ -400,6 +404,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 android:textSize="16sp"
                 android:gravity="top|start"
+                android:textColor="#000000"
                 android:inputType="textMultiLine"
                 android:maxLines="10"
                 android:scrollbars="vertical"
@@ -488,6 +493,7 @@
                     android:layout_height="wrap_content"
                     android:text="Danh mục sự kiện"
                     android:textSize="16sp"
+                    android:textColor="#000000"
                     android:fontFamily="@font/montserrat_medium"/>
                 <Spinner
                     android:id="@+id/spinnerCategory"
@@ -540,6 +546,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="HOÀNG HÔN"
+                        android:textColor="#000000"
                         android:fontFamily="@font/montserrat_semibold"
                         android:textSize="14sp" />
 
@@ -564,6 +571,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="CHIỀU TÀ"
+                        android:textColor="#000000"
                         android:fontFamily="@font/montserrat_semibold"
                         android:textSize="15sp" />
 
@@ -588,6 +596,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="CHẠNG VẠNG"
+                        android:textColor="#000000"
                         android:fontFamily="@font/montserrat_semibold"
                         android:textSize="14sp" />
 

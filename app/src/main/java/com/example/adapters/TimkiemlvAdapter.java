@@ -67,6 +67,11 @@ public class TimkiemlvAdapter extends BaseAdapter {
             holder.imgRight.setVisibility(View.GONE);
         }
 
+        holder.imgRight.setOnClickListener(v -> {
+            items.remove(position);
+            notifyDataSetChanged();
+        });
+
         return convertView;
     }
 

@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/white"
     tools:context=".ChitietsukienActivity">
 
     <!-- HEADER -->
@@ -83,6 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="30dp"
                     android:orientation="horizontal"
                     android:gravity="center_vertical">
 
@@ -279,6 +281,7 @@
                             android:layout_height="100dp"
                             android:gravity="center"
                             android:text="4.7"
+                            android:textColor="@color/black"
                             android:textSize="80sp"
                             android:fontFamily="@font/montserrat_bold"/>
 
@@ -320,6 +323,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="500 lượt đánh giá"
+                            android:textColor="@color/black"
                             android:gravity="center"
                             android:layout_marginTop="10dp"/>
 
@@ -344,7 +348,7 @@
                                     android:textSize="18sp"
                                     android:gravity="center_vertical"
                                     android:fontFamily="@font/montserrat_regular"
-                                    android:textColor="#AAAAAA"/>
+                                    android:textColor="@color/black"/>
 
                                 <ProgressBar
                                     android:id="@+id/progress1"
@@ -372,7 +376,7 @@
                                     android:textSize="18sp"
                                     android:gravity="center_vertical"
                                     android:fontFamily="@font/montserrat_regular"
-                                    android:textColor="#AAAAAA"/>
+                                    android:textColor="@color/black"/>
 
                                 <ProgressBar
                                     android:id="@+id/progress2"
@@ -400,7 +404,7 @@
                                     android:textSize="18sp"
                                     android:gravity="center_vertical"
                                     android:fontFamily="@font/montserrat_regular"
-                                    android:textColor="#AAAAAA"/>
+                                    android:textColor="@color/black"/>
 
                                 <ProgressBar
                                     android:id="@+id/progress3"
@@ -428,7 +432,7 @@
                                     android:textSize="18sp"
                                     android:gravity="center_vertical"
                                     android:fontFamily="@font/montserrat_regular"
-                                    android:textColor="#AAAAAA"/>
+                                    android:textColor="@color/black"/>
 
                                 <ProgressBar
                                     android:id="@+id/progress4"
@@ -456,7 +460,7 @@
                                     android:textSize="18sp"
                                     android:gravity="center_vertical"
                                     android:fontFamily="@font/montserrat_regular"
-                                    android:textColor="#AAAAAA"/>
+                                    android:textColor="@color/black"/>
 
                                 <ProgressBar
                                     android:id="@+id/progress5"
@@ -486,6 +490,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="XEM THÊM"
+                        android:textColor="@color/black"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="8dp"/>
                 </LinearLayout>

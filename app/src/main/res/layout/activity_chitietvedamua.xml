@@ -143,6 +143,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginBottom="15dp"
+                    android:textColor="#000000"
                     android:fontFamily="@font/montserrat_regular"
                     android:gravity="center"
                     android:text="Quốc lộ 1A, Trung tâm Gamuda, phường Yên Sở, quận Hoàng Mai, Hà Nội" />
@@ -182,7 +183,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
+                android:layout_marginLeft="15dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Thông tin vé đã mua"
                 android:textColor="#006183"
@@ -201,7 +202,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp">
+                    android:padding="16dp"
+                    android:background="@color/white">
 
                     <!-- Tên người dùng -->
                     <TextView

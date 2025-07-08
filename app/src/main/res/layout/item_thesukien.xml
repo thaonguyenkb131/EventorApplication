@@ -48,7 +48,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="2dp">
+        android:layout_marginBottom="2dp"
+        android:gravity="center_vertical">
+
         <ImageView
             android:layout_width="8dp"
             android:layout_height="8dp"
@@ -57,17 +59,15 @@
 
         <TextView
             android:id="@+id/tvLocation"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Hà Nội"
             android:textColor="#1C9CCA"
             android:textSize="7sp"
-            android:fontFamily="@font/montserrat_semibold" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:fontFamily="@font/montserrat_semibold"
+            android:maxLines="1"
+            android:ellipsize="end" />
 
         <ImageView
             android:layout_width="8dp"
@@ -83,5 +83,6 @@
             android:textColor="#1C9CCA"
             android:textSize="7sp"
             android:fontFamily="@font/montserrat_semibold" />
+
     </LinearLayout>
 </LinearLayout>

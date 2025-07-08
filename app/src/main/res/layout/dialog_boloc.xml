@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="600dp"
     android:paddingTop="10dp"
-    tools:context=".BolocDialog">
+    tools:context=".BolocDialog"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,6 +22,7 @@
             android:gravity="center"
             android:layout_marginTop="5dp"
             android:text="Bộ lọc"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:fontFamily="@font/montserrat_semibold"
             android:textSize="22sp" />
@@ -44,6 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/montserrat_semibold"
                     android:text="Theo địa điểm"
                     android:textSize="18sp" />
@@ -96,6 +99,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/montserrat_semibold"
                     android:text="Theo danh mục"
                     android:textSize="18sp" />
@@ -116,7 +120,7 @@
                         android:text="Văn hóa"
                         android:textColor="@color/black"
                         android:textSize="14sp"
-                        app:chipBackgroundColor="@android:color/transparent"
+                        app:chipBackgroundColor="@android:color/white"
                         app:chipIcon="@drawable/ic_boloc1"
                         app:chipIconSize="14dp"
                         app:chipIconTint="@null"
@@ -138,7 +142,7 @@
                         android:layout_marginTop="0dp"
                         android:textColor="@color/black"
                         android:textSize="14sp"
-                        app:chipBackgroundColor="@android:color/transparent"
+                        app:chipBackgroundColor="@android:color/white"
                         app:chipIcon="@drawable/ic_boloc2"
                         app:chipIconSize="14dp"
                         app:chipIconTint="@null"
@@ -159,7 +163,7 @@
                         android:text="Học thuật"
                         android:textColor="@color/black"
                         android:textSize="14sp"
-                        app:chipBackgroundColor="@android:color/transparent"
+                        app:chipBackgroundColor="@android:color/white"
                         app:chipIcon="@drawable/ic_boloc3"
                         app:chipIconSize="14dp"
                         app:chipIconTint="@null"
@@ -180,7 +184,7 @@
                         android:text="Thể thao"
                         android:textColor="@color/black"
                         android:textSize="14sp"
-                        app:chipBackgroundColor="@android:color/transparent"
+                        app:chipBackgroundColor="@android:color/white"
                         app:chipIcon="@drawable/ic_boloc4"
                         app:chipIconSize="14dp"
                         app:chipIconTint="@null"
@@ -201,7 +205,7 @@
                         android:text="Tình nguyện"
                         android:textColor="@color/black"
                         android:textSize="14sp"
-                        app:chipBackgroundColor="@android:color/transparent"
+                        app:chipBackgroundColor="@android:color/white"
                         app:chipIcon="@drawable/ic_boloc5"
                         app:chipIconSize="14dp"
                         app:chipIconTint="@null"
@@ -222,7 +226,7 @@
                         android:text="Môi trường"
                         android:textColor="@color/black"
                         android:textSize="14sp"
-                        app:chipBackgroundColor="@android:color/transparent"
+                        app:chipBackgroundColor="@android:color/white"
                         app:chipIcon="@drawable/ic_boloc6"
                         app:chipIconSize="14dp"
                         app:chipIconTint="@null"
@@ -243,7 +247,7 @@
                         android:text="Du lịch"
                         android:textColor="@color/black"
                         android:textSize="14sp"
-                        app:chipBackgroundColor="@android:color/transparent"
+                        app:chipBackgroundColor="@android:color/white"
                         app:chipIcon="@drawable/ic_boloc7"
                         app:chipIconSize="14dp"
                         app:chipIconTint="@null"
@@ -265,6 +269,7 @@
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/montserrat_semibold"
                     android:text="Giá vé"
+                    android:textColor="@color/black"
                     android:textSize="18sp" />
 
                 <LinearLayout
@@ -282,6 +287,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/montserrat_regular"
                         android:text="Miễn phí"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
 

@@ -152,10 +152,12 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
                     ));
                     imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     if (event.getThumbnail() != null && event.getThumbnail().startsWith("http")) {
-                        com.bumptech.glide.Glide.with(TrangchuActivity.this)
-                                .load(event.getThumbnail())
-                                .placeholder(R.drawable.anhthaythe)
-                                .into(imageView);
+                        if (!TrangchuActivity.this.isFinishing() && !TrangchuActivity.this.isDestroyed()) {
+                            com.bumptech.glide.Glide.with(TrangchuActivity.this)
+                                    .load(event.getThumbnail())
+                                    .placeholder(R.drawable.anhthaythe)
+                                    .into(imageView);
+                        }
                     }
                     cardView.addView(imageView);
                     // Xử lý click: truyền object Thesukien dạng JSON
@@ -194,10 +196,12 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
                     ImageView imgView = findViewById(imgId);
                     if (imgView != null) {
                         if (event.getThumbnail() != null && event.getThumbnail().startsWith("http")) {
-                            com.bumptech.glide.Glide.with(TrangchuActivity.this)
-                                    .load(event.getThumbnail())
-                                    .placeholder(R.drawable.anhthaythe)
-                                    .into(imgView);
+                            if (!TrangchuActivity.this.isFinishing() && !TrangchuActivity.this.isDestroyed()) {
+                                com.bumptech.glide.Glide.with(TrangchuActivity.this)
+                                        .load(event.getThumbnail())
+                                        .placeholder(R.drawable.anhthaythe)
+                                        .into(imgView);
+                            }
                         } else {
                             imgView.setImageResource(R.drawable.anhthaythe);
                         }
@@ -314,10 +318,12 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
                             ));
                             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
                             if (event.getThumbnail() != null && event.getThumbnail().startsWith("http")) {
-                                Glide.with(TrangchuActivity.this)
-                                        .load(event.getThumbnail())
-                                        .placeholder(R.drawable.default_dcb)
-                                        .into(imageView);
+                                if (!TrangchuActivity.this.isFinishing() && !TrangchuActivity.this.isDestroyed()) {
+                                    Glide.with(TrangchuActivity.this)
+                                            .load(event.getThumbnail())
+                                            .placeholder(R.drawable.default_dcb)
+                                            .into(imageView);
+                                }
                             } else {
                                 imageView.setImageResource(R.drawable.default_dcb);
                             }

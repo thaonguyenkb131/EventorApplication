@@ -58,8 +58,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_regular"
-                    android:padding="10dp"
+                    android:paddingLeft="10dp"
                     android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/errorTenSukien"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FF0000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    android:layout_marginTop="4dp"/>
             </LinearLayout>
 
             <TextView
@@ -68,7 +76,6 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Thời gian mở đơn đăng ký"
-                android:textColor="#000000"
                 android:textSize="16sp" />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -87,11 +94,21 @@
                     android:textSize="14sp"/>
 
                 <ImageView
+                    android:id="@+id/imgCalendarmodon"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginEnd="10dp"
                     android:src="@drawable/ic_calendar_black"/>
             </LinearLayout>
+            <TextView
+                android:id="@+id/errorOpen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0000"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:layout_marginTop="4dp"/>
+
             <TextView
                 android:id="@+id/txtThoigiandienra"
                 android:layout_width="match_parent"
@@ -101,6 +118,7 @@
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
+            <!-- Bắt đầu lúc group -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -121,7 +139,7 @@
                     android:layout_width="80dp"
                     android:layout_height="35dp"
                     android:background="@drawable/bg_search_box_img"
-                    android:paddingEnd="5dp"
+                    android:padding="8dp"
                     android:textSize="14sp" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -149,14 +167,31 @@
                         android:background="@null"/>
 
                     <ImageView
+                        android:id="@+id/imgCalendarStart"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginEnd="10dp"
                         android:src="@drawable/ic_calendar_black"/>
                 </LinearLayout>
             </LinearLayout>
+            <TextView
+                android:id="@+id/errorGiobatdau"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0000"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:layout_marginTop="4dp"/>
+            <TextView
+                android:id="@+id/errorStart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0000"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:layout_marginTop="4dp"/>
 
-<!--            Kết thúc lúc-->
+            <!-- Kết thúc lúc group -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -177,7 +212,7 @@
                     android:layout_width="80dp"
                     android:layout_height="35dp"
                     android:background="@drawable/bg_search_box_img"
-                    android:paddingEnd="5dp"
+                    android:padding="8dp"
                     android:textSize="14sp" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -206,13 +241,31 @@
                         android:background="@null"/>
 
                     <ImageView
+                        android:id="@+id/imgCalendarEnd"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_marginEnd="10dp"
                         android:src="@drawable/ic_calendar_black"/>
                 </LinearLayout>
             </LinearLayout>
-<!--            Hình thức-->
+            <TextView
+                android:id="@+id/errorGioketthuc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0000"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:layout_marginTop="4dp"/>
+            <TextView
+                android:id="@+id/errorEnd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0000"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:layout_marginTop="4dp"/>
+
+            <!-- Hình thức-->
             <TextView
                 android:id="@+id/edtHinhthuc"
                 android:layout_width="match_parent"
@@ -258,7 +311,7 @@
                 </LinearLayout>
             </RadioGroup>
 
-<!--            Địa điểm tổ chức-->
+            <!--            Địa điểm tổ chức-->
             <LinearLayout
                 android:id="@+id/edtOffline"
                 android:layout_width="wrap_content"
@@ -282,6 +335,14 @@
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
                     android:textSize="14sp"/>
+                <TextView
+                    android:id="@+id/errorLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FF0000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    android:layout_marginTop="4dp"/>
             </LinearLayout>
 
             <!--            Địa điểm tổ chức online -->
@@ -302,12 +363,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_regular"
-                    android:padding="15dp"
+                    android:paddingLeft="15dp"
                     android:textSize="14sp" />
+                <TextView
+                    android:id="@+id/errorLinkSukien"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FF0000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    android:layout_marginTop="4dp"/>
             </LinearLayout>
 
 
-<!--            Đăng ký BTC-->
+            <!--            Đăng ký BTC-->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnDangkyBTC"
                 android:layout_width="wrap_content"
@@ -348,8 +417,16 @@
                 android:maxLines="10"
                 android:scrollbars="vertical"
                 android:overScrollMode="always" />
+            <TextView
+                android:id="@+id/errorMoTa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0000"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:layout_marginTop="4dp"/>
 
-<!--            Tải ảnh thumbnail-->
+            <!--            Tải ảnh thumbnail-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -377,7 +454,7 @@
                         android:layout_width="150dp"
                         android:layout_height="80dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/banner1"
+                        android:src="@drawable/anhthaythe"
                         style="@style/RoundedImageStyle"
                         android:contentDescription="Ảnh thumbnail"
                         android:layout_gravity="end"/>
@@ -399,11 +476,37 @@
                         android:elevation="4dp" />
 
                 </FrameLayout>
-
-
+            </LinearLayout>
+            <!-- Event Category Dropdown -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Danh mục sự kiện"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/montserrat_medium"/>
+                <Spinner
+                    android:id="@+id/spinnerCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown"
+                    android:background="@drawable/bg_search_box_img"
+                    android:padding="8dp"/>
+                <TextView
+                    android:id="@+id/errorCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FF0000"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    android:layout_marginTop="4dp"/>
             </LinearLayout>
 
-<!--            Cách hạng mục vé-->
+            <!--            Cách hạng mục vé-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -514,7 +617,7 @@
                     app:backgroundTint="#006183" />
 
             </LinearLayout>
-<!--Định vị vị trí-->
+            <!--Định vị vị trí-->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -527,19 +630,11 @@
 
             <!-- Bản đồ -->
             <FrameLayout
+                android:id="@+id/mapevent"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/white_card_bg">
-
-<!--                Chỗ này BE xử lý thả link google map vô dùm t nha-->
-<!--                <androidx.fragment.app.FragmentContainerView-->
-<!--                    android:id="@+id/mapFragment"-->
-<!--                    android:name="com.google.android.gms.maps.SupportMapFragment"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="200dp"-->
-<!--                    android:layout_margin="16dp"-->
-<!--                    tools:ignore="MissingClass"/>-->
+                android:background="@drawable/anhggmap">
             </FrameLayout>
 
             <!-- Nút đăng -->
@@ -561,7 +656,7 @@
                 android:paddingBottom="10dp"
                 android:layout_marginBottom="30dp"/>
 
-    </LinearLayout>
+        </LinearLayout>
 
     </ScrollView>
     <include

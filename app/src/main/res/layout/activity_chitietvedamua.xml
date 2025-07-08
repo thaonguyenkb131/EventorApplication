@@ -32,17 +32,25 @@
             android:padding="10dp">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thời gian diễn ra sự kiện:"
+                android:textSize="14sp"
+                android:textColor="#006183"
+                android:fontFamily="@font/montserrat_regular"
+                android:textStyle=""
+                android:gravity="center"
+                android:layout_marginTop="10dp" />
+            <TextView
                 android:id="@+id/txtTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Thời gian diễn ra sự kiện: 16:00 - 22:30, 01/07/2025"
-                android:layout_margin="20dp"
+                android:text="16:00 - 22:30, 01/07/2025"
                 android:textSize="16sp"
                 android:textColor="#006183"
                 android:fontFamily="@font/montserrat_regular"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp" />
 
             <LinearLayout
@@ -50,15 +58,15 @@
                 android:layout_height="88dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="8dp"
-                android:weightSum="3">
+                android:paddingHorizontal="10dp"
+                android:weightSum="5">
 
                 <ImageView
                     android:id="@+id/imgPoster"
                     android:layout_width="0dp"
-                    android:layout_height="65dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
+                    android:layout_height="85dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="2"
                     android:background="@drawable/bg_popup_thanhcong"
                     android:clipToOutline="true"
                     android:scaleType="fitCenter"
@@ -67,14 +75,16 @@
                 <TextView
                     android:id="@+id/txtEventTitle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:gravity="center_vertical"
-                    android:text="[TP Hồ Chí Minh] Những Thành Phố Mơ Màng\nSummer 2025"
+                    android:ellipsize="end"
+                    android:text="Những Thành Phố Mơ Màng Summer Summer Summer 2025"
                     android:textColor="#000000"
                     android:textSize="16sp"
                     android:textStyle="bold" />
+
             </LinearLayout>
 
             <ImageView
@@ -119,13 +129,14 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="205dp"
+                android:layout_height="180dp"
                 android:layout_margin="15dp"
                 android:background="@drawable/bg_card_whiteshadow"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/location"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="30dp"
@@ -134,7 +145,7 @@
                     android:layout_marginBottom="15dp"
                     android:fontFamily="@font/montserrat_regular"
                     android:gravity="center"
-                    android:text="Quốc lộ 1A, Trung tâm Gamuda, phường Yên Sở, quận Hoàng Mai, thành phố Hà Nội" />
+                    android:text="Quốc lộ 1A, Trung tâm Gamuda, phường Yên Sở, quận Hoàng Mai, Hà Nội" />
 
 <!--                Button xem chi tiết sk-->
 

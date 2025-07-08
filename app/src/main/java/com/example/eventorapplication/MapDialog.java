@@ -1,6 +1,9 @@
 package com.example.eventorapplication;
 
 import android.os.Bundle;
+import android.content.Intent;
+import android.app.Activity;
+import android.widget.AdapterView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,6 +28,21 @@ public class MapDialog extends AppCompatActivity {
 
         adapter = new MapAdapter(this, items);
         binding.listRecentPlaces.setAdapter(adapter);
+
+        // Handle item click to return address
+        binding.listRecentPlaces.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, android.view.View view, int position, long id) {
+                MapItem selected = items.get(position);
+                Intent result = new Intent();
+                result.putExtra("selected_address", selected.getTxtDiachi());
+                setResult(Activity.RESULT_OK, result);
+                finish();
+            }
+        });
+
+        // Handle back button click to return
+        binding.ivBack.setOnClickListener(v -> finish());
     }
 
     private void loadData() {

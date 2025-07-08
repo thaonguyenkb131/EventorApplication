@@ -11,7 +11,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
 import com.example.eventorapplication.databinding.ActivityChitietvedamuaBinding;
+import com.example.models.Thesukien;
 
 public class ChitietvedamuaActivity extends AppCompatActivity {
 
@@ -48,7 +50,16 @@ public class ChitietvedamuaActivity extends AppCompatActivity {
         TextView txtHeaderTitle = findViewById(R.id.txtTitle);
         ImageView btnBack = findViewById(R.id.btnBack);
 
-        txtHeaderTitle.setText("Vé đã mua");
+        txtHeaderTitle.setText("Vé đã mua"); // Luôn giữ tiêu đề này, không đổi theo sự kiện
+
+        Thesukien thesukien = (Thesukien) getIntent().getSerializableExtra("thesukien");
+        if (thesukien != null) {
+            // Không set lại txtHeaderTitle ở đây nữa
+            binding.txtEventTitle.setText(thesukien.getTitle());
+            binding.txtTime.setText(thesukien.getDetailTime());
+            binding.location.setText(thesukien.getDetailAddress());
+            Glide.with(this).load(thesukien.getThumbnail()).into(binding.imgPoster);
+        }
         btnBack.setOnClickListener(v -> finish());
     }
 }

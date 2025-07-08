@@ -74,24 +74,38 @@
             ListView lvSkdtc = findViewById(R.id.lvSkdtc);
 
             ArrayList<Thesukien> Skdtc = new ArrayList<>();
-            // Ví dụ dữ liệu mẫu, bạn có thể load từ Firebase tương tự như ở Fragment
-            Thesukien event1 = new Thesukien();
-            event1.setTitle("SuperFest - Concert Mùa Hè Rực Sáng");
-            event1.setSoldTicket(10982);
-            event1.setPrice(0);
-            event1.setLocation("Quảng Ninh");
-            event1.setThumbnail("https://your-image-link.com/image1.jpg");
-            Skdtc.add(event1);
-            Thesukien event2 = new Thesukien();
-            event2.setTitle("[River Flows In You] Đêm Nhạc Xương Rồng");
-            event2.setSoldTicket(8422);
-            event2.setPrice(0);
-            event2.setLocation("Hà Nội");
-            event2.setThumbnail("https://your-image-link.com/image2.jpg");
-            Skdtc.add(event2);
-
             SukiendadangAdapter adapter = new SukiendadangAdapter(this, Skdtc);
             lvSkdtc.setAdapter(adapter);
+
+            // Load data from Firebase 'postedevents'
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("postedevents");
+            ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Skdtc.clear();
+                    for (DataSnapshot child : snapshot.getChildren()) {
+                        Thesukien event = child.getValue(Thesukien.class);
+                        if (event != null) {
+                            Skdtc.add(event);
+                        }
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(TrangcanhanActivity.this, "Không thể tải dữ liệu sự kiện đã đăng", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            lvSkdtc.setOnItemClickListener((parent, view, position, id) -> {
+                if (position < Skdtc.size()) {
+                    Thesukien selectedEvent = Skdtc.get(position);
+                    Intent intent = new Intent(TrangcanhanActivity.this, ChitietsukienActivity.class);
+                    com.google.gson.Gson gson = new com.google.gson.Gson();
+                    intent.putExtra("event_json", gson.toJson(selectedEvent));
+                    startActivity(intent);
+                }
+            });
 
             TextView txtHeaderTitle = findViewById(R.id.txtTitle);
             ImageView btnBack = findViewById(R.id.btnBack);

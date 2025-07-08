@@ -1,5 +1,6 @@
 package com.example.eventorapplication;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -15,8 +17,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowInsetsController;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.PopupWindow;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.core.graphics.Insets;
@@ -28,6 +32,8 @@ import com.example.eventorapplication.databinding.ActivityTaosukienBinding;
 import com.example.models.Thesukien;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.Calendar;
 
@@ -35,6 +41,10 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
 
     private PopupWindow popupTaianh;
     private PopupWindow popupMaps;
+    private static final int REQUEST_CODE_PICK_LOCATION = 1001;
+    private static final int REQUEST_CODE_PICK_IMAGE = 2001;
+    private Uri selectedImageUri = null;
+    private String uploadedImageUrl = "";
 
     @Override
     protected ActivityTaosukienBinding inflateBinding() {
@@ -119,9 +129,33 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
             }
         });
 
-        binding.btnDoiAnh.setOnClickListener(view -> showPopupTaianh(view));
+        binding.btnDoiAnh.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE);
+        });
+
+        // Khởi tạo Spinner cho danh mục sự kiện
+        Spinner spinnerCategory = findViewById(R.id.spinnerCategory);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.event_categories, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategory.setAdapter(adapter);
 
         binding.btnDangSukien.setOnClickListener(view -> {
+            boolean isValid = true;
+            // Reset all error messages
+            binding.errorTenSukien.setVisibility(View.GONE);
+            binding.errorOpen.setVisibility(View.GONE);
+            binding.errorGiobatdau.setVisibility(View.GONE);
+            binding.errorStart.setVisibility(View.GONE);
+            binding.errorGioketthuc.setVisibility(View.GONE);
+            binding.errorEnd.setVisibility(View.GONE);
+            binding.errorCategory.setVisibility(View.GONE);
+            binding.errorLocation.setVisibility(View.GONE);
+            binding.errorLinkSukien.setVisibility(View.GONE);
+            binding.errorMoTa.setVisibility(View.GONE);
+
             // Lấy dữ liệu từ các trường nhập
             String title = binding.edtTenSukien.getText().toString().trim();
             String registrationOpen = binding.edtOpen.getText().toString().trim();
@@ -130,17 +164,92 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
             String timeEnd = binding.edtGioketthuc.getText().toString().trim();
             String dateEnd = binding.edtEnd.getText().toString().trim();
             String description = binding.edtMoTa.getText().toString().trim();
-            String thumbnail = ""; // TODO: Lấy link ảnh thực tế nếu có upload
+            String thumbnail = uploadedImageUrl;
             String location = "";
             String mapUrl = "";
             String mode = "";
-            if (binding.rbOnline.isChecked()) {
+            String category = ((Spinner) findViewById(R.id.spinnerCategory)).getSelectedItem().toString();
+            boolean isOnline = binding.rbOnline.isChecked();
+            boolean isOffline = binding.rbOffline.isChecked();
+            String linkMap = binding.edtlinksukien.getText().toString().trim();
+            if (isOnline) {
                 mode = "Online";
-                location = binding.edtlinksukien.getText().toString().trim();
-            } else if (binding.rbOffline.isChecked()) {
+                location = "Online";
+            } else if (isOffline) {
                 mode = "Offline";
                 location = binding.edtSearch.getText().toString().trim();
             }
+
+            // Validate fields
+            if (title.isEmpty()) {
+                binding.errorTenSukien.setText("Vui lòng nhập tên sự kiện");
+                binding.errorTenSukien.setVisibility(View.VISIBLE);
+                isValid = false;
+            }
+            if (registrationOpen.isEmpty()) {
+                binding.errorOpen.setText("Vui lòng nhập thời gian mở đơn");
+                binding.errorOpen.setVisibility(View.VISIBLE);
+                isValid = false;
+            }
+            if (timeStart.isEmpty()) {
+                binding.errorGiobatdau.setText("Vui lòng nhập giờ bắt đầu");
+                binding.errorGiobatdau.setVisibility(View.VISIBLE);
+                isValid = false;
+            } else if (!timeStart.matches("^([01]?\\d|2[0-3]):[0-5]\\d$")) {
+                binding.errorGiobatdau.setText("Định dạng giờ bắt đầu không hợp lệ (hh:mm)");
+                binding.errorGiobatdau.setVisibility(View.VISIBLE);
+                isValid = false;
+            }
+            if (dateStart.isEmpty()) {
+                binding.errorStart.setText("Vui lòng nhập ngày bắt đầu");
+                binding.errorStart.setVisibility(View.VISIBLE);
+                isValid = false;
+            } else if (!dateStart.matches("^\\d{1,2}/\\d{1,2}/\\d{4}$")) {
+                binding.errorStart.setText("Định dạng ngày bắt đầu không hợp lệ (dd/MM/yyyy)");
+                binding.errorStart.setVisibility(View.VISIBLE);
+                isValid = false;
+            }
+            if (timeEnd.isEmpty()) {
+                binding.errorGioketthuc.setText("Vui lòng nhập giờ kết thúc");
+                binding.errorGioketthuc.setVisibility(View.VISIBLE);
+                isValid = false;
+            } else if (!timeEnd.matches("^([01]?\\d|2[0-3]):[0-5]\\d$")) {
+                binding.errorGioketthuc.setText("Định dạng giờ kết thúc không hợp lệ (hh:mm)");
+                binding.errorGioketthuc.setVisibility(View.VISIBLE);
+                isValid = false;
+            }
+            if (dateEnd.isEmpty()) {
+                binding.errorEnd.setText("Vui lòng nhập ngày kết thúc");
+                binding.errorEnd.setVisibility(View.VISIBLE);
+                isValid = false;
+            } else if (!dateEnd.matches("^\\d{1,2}/\\d{1,2}/\\d{4}$")) {
+                binding.errorEnd.setText("Định dạng ngày kết thúc không hợp lệ (dd/MM/yyyy)");
+                binding.errorEnd.setVisibility(View.VISIBLE);
+                isValid = false;
+            }
+            if (category.isEmpty() || category.equals("Chọn danh mục")) {
+                binding.errorCategory.setText("Vui lòng chọn danh mục sự kiện");
+                binding.errorCategory.setVisibility(View.VISIBLE);
+                isValid = false;
+            }
+            if (isOffline && location.isEmpty()) {
+                binding.errorLocation.setText("Vui lòng chọn địa điểm tổ chức");
+                binding.errorLocation.setVisibility(View.VISIBLE);
+                isValid = false;
+            }
+            if (isOnline && location.isEmpty()) {
+                binding.errorLinkSukien.setText("Vui lòng nhập liên kết tham gia sự kiện");
+                binding.errorLinkSukien.setVisibility(View.VISIBLE);
+                isValid = false;
+            }
+            if (description.isEmpty()) {
+                binding.errorMoTa.setText("Vui lòng nhập mô tả sự kiện");
+                binding.errorMoTa.setVisibility(View.VISIBLE);
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
             // Tạo đối tượng Thesukien
             Thesukien event = new Thesukien();
             event.setTitle(title);
@@ -154,8 +263,25 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
             event.setLocation(location);
             event.setMapUrl(mapUrl);
             event.setMode(mode);
+            event.setCategory(category);
             event.setSoldTicket(0);
             event.setRemainingTicket(0);
+            // Tạo detailtime
+            String detailtime;
+            if (dateStart.equals(dateEnd)) {
+                detailtime = timeStart + "-" + timeEnd + ", " + dateEnd;
+            } else {
+                detailtime = timeStart + ", " + dateStart + " - " + timeEnd + ", " + dateEnd;
+            }
+            event.setDetailTime(detailtime);
+            // Lưu thuộc tính format (Online/Offline)
+            event.setForm(mode);
+            event.setLinkMap(linkMap);
+            if (mode.equals("Online")) {
+                event.setCity("Online");
+                event.setDetailAddress("Online");
+                event.setLocation("Online");
+            }
             // TODO: set thêm các trường khác nếu cần
 
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("postedevents");
@@ -193,6 +319,80 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
                     calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
             datePickerDialog.show();
         });
+
+        // Click on map area to pick location
+        View mapEvent = findViewById(R.id.mapevent);
+        mapEvent.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MapDialog.class);
+            startActivityForResult(intent, REQUEST_CODE_PICK_LOCATION);
+        });
+
+        // Calendar icon for thời gian mở đơn
+        binding.imgCalendarmodon.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                    R.style.MyDatePickerDialogTheme,
+                    (view1, year, month, dayOfMonth) -> {
+                        String selectedDate = String.format("%02d/%02d/%04d", dayOfMonth, month + 1, year);
+                        binding.edtOpen.setText(selectedDate);
+                    },
+                    calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+            datePickerDialog.show();
+        });
+
+        // Calendar icon for ngày bắt đầu
+        binding.imgCalendarStart.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                    R.style.MyDatePickerDialogTheme,
+                    (view1, year, month, dayOfMonth) -> {
+                        String selectedDate = String.format("%02d/%02d/%04d", dayOfMonth, month + 1, year);
+                        binding.edtStart.setText(selectedDate);
+                    },
+                    calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+            datePickerDialog.show();
+        });
+
+        // Calendar icon for ngày kết thúc
+        binding.imgCalendarEnd.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                    R.style.MyDatePickerDialogTheme,
+                    (view1, year, month, dayOfMonth) -> {
+                        String selectedDate = String.format("%02d/%02d/%04d", dayOfMonth, month + 1, year);
+                        binding.edtEnd.setText(selectedDate);
+                    },
+                    calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+            datePickerDialog.show();
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_PICK_IMAGE && resultCode == RESULT_OK && data != null) {
+            selectedImageUri = data.getData();
+            if (selectedImageUri != null) {
+                binding.imgThumbnail.setImageURI(selectedImageUri);
+                StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+                StorageReference imageRef = storageRef.child("thumbnails/" + System.currentTimeMillis() + ".jpg");
+                imageRef.putFile(selectedImageUri)
+                    .addOnSuccessListener(taskSnapshot -> imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                        uploadedImageUrl = uri.toString();
+                        Toast.makeText(this, "Tải ảnh thành công", Toast.LENGTH_SHORT).show();
+                    }))
+                    .addOnFailureListener(e -> Toast.makeText(this, "Tải ảnh thất bại", Toast.LENGTH_SHORT).show());
+            }
+        }
+        if (requestCode == REQUEST_CODE_PICK_LOCATION && resultCode == Activity.RESULT_OK && data != null) {
+            String address = data.getStringExtra("selected_address");
+            if (address != null) {
+                binding.edtSearch.setText(address);
+                // Change background of mapevent to anhggmap2
+                View mapEvent = findViewById(R.id.mapevent);
+                mapEvent.setBackgroundResource(R.drawable.anhggmap2);
+            }
+        }
     }
 
     private void showPopupTaoskthanhcong() {

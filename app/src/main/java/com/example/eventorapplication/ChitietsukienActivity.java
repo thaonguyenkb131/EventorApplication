@@ -33,8 +33,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ChitietsukienActivity extends AppCompatActivity {
 
@@ -213,7 +217,8 @@ public class ChitietsukienActivity extends AppCompatActivity {
             binding.txtLocation.setText("Online");
         } else {
             binding.txtLocation.setText(event.getLocation() + ", " + event.getDetailAddress());
-        }        binding.txtDate.setText(event.getDetailTime());
+        }
+        binding.txtDate.setText(event.getDetailTime());
         binding.txtDescription.setText(event.getDescription());
         binding.txtOrganizer.setText(event.getOrganizer());
         if (event.getThumbnail() != null && event.getThumbnail().startsWith("http")) {
@@ -225,6 +230,31 @@ public class ChitietsukienActivity extends AppCompatActivity {
             RecyclerView rcvTicketCategories = findViewById(R.id.rcvTicketCategories);
             rcvTicketCategories.setAdapter(ticketAdapter);
         }
+
+        // Ẩn/hiện phần đánh giá và bình luận dựa vào endDate
+        boolean isPastEvent = false;
+        String endDateStr = event.getDateEnd();
+        if (endDateStr != null && !endDateStr.isEmpty()) {
+            try {
+                // Giả sử định dạng dd/MM/yyyy
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                Date endDate = sdf.parse(endDateStr);
+                Date today = new Date();
+                if (endDate != null && endDate.before(today)) {
+                    isPastEvent = true;
+                }
+            } catch (ParseException e) {
+                // Nếu lỗi parse thì coi như chưa kết thúc
+                isPastEvent = false;
+            }
+        }
+        // Ẩn/hiện toàn bộ khối đánh giá + bình luận
+        View layoutReviewAndComment = findViewById(R.id.layoutReviewAndComment);
+        if (layoutReviewAndComment != null) layoutReviewAndComment.setVisibility(isPastEvent ? View.VISIBLE : View.GONE);
+
+        // Ẩn nút Đặt vé nếu sự kiện đã kết thúc
+        Button btnBuyTicket = findViewById(R.id.btnBuyTicket);
+        if (btnBuyTicket != null) btnBuyTicket.setVisibility(isPastEvent ? View.GONE : View.VISIBLE);
     }
 
     private void updateCommentList() {

@@ -1,6 +1,6 @@
 package com.example.models;
 
-public class Thesukien {
+public class Thesukien implements java.io.Serializable {
     private int id;
     private String title;
     private double price;
@@ -25,6 +25,7 @@ public class Thesukien {
     private String mode;
     private int soldTicket;
     private int remainingTicket;
+    private String linkMap;
 
 
     public Thesukien() {}
@@ -105,8 +106,10 @@ public class Thesukien {
     public void setRemainingTicket(int remainingTicket) { this.remainingTicket = remainingTicket; }
     public String getMode() {return mode;}
     public void setMode(String mode) {this.mode = mode;}
+    public String getLinkMap() { return linkMap; }
+    public void setLinkMap(String linkMap) { this.linkMap = linkMap; }
 
-    public static class TicketCategory {
+    public static class TicketCategory implements java.io.Serializable {
         private String name;
         private double price;
 

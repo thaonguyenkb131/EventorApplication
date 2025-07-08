@@ -86,6 +86,7 @@ public class SukiendadangFragment extends Fragment {
         adapter = new SukiendadangAdapter(requireContext(), eventList);
         binding.lvSkdd.setAdapter(adapter);
 
+        binding.progressBar.setVisibility(View.VISIBLE);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("postedevents");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -98,10 +99,12 @@ public class SukiendadangFragment extends Fragment {
                     }
                 }
                 adapter.notifyDataSetChanged();
+                binding.progressBar.setVisibility(View.GONE);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Xử lý lỗi nếu cần
+                binding.progressBar.setVisibility(View.GONE);
             }
         });
 

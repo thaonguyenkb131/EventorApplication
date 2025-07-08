@@ -34,7 +34,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:background="#ffffff">
 
         <LinearLayout
             android:orientation="vertical"
@@ -121,8 +122,8 @@
                 android:background="@color/white">
 
                 <TextView
-                    android:layout_width="300dp"
-                    android:layout_height="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="Giảm giá từ Eventor"
                     android:textColor="#006183"
                     android:textSize="16sp"
@@ -130,13 +131,18 @@
                     android:paddingLeft="12dp"/>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
                     android:text="-50.000đ"
                     android:textColor="#FF3D3D"
                     android:textStyle="bold" />
-
-
             </LinearLayout>
 
             <LinearLayout
@@ -168,24 +174,31 @@
                     android:paddingLeft="12dp"
                     android:fontFamily="@font/montserrat_bold"/>
 
+                <!-- Dòng Tổng thanh toán -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="280dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="Tổng thanh toán"
                         android:fontFamily="@font/montserrat_regular"
                         android:paddingLeft="20dp"/>
+
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="2.900.000 VND"
+                        android:gravity="end"
+                        android:paddingRight="20dp"
                         android:fontFamily="@font/montserrat_regular"/>
                 </LinearLayout>
 
+                <!-- Dòng Voucher -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -194,28 +207,32 @@
                     android:paddingTop="5dp">
 
                     <TextView
-                        android:layout_width="280dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="Voucher"
                         android:fontFamily="@font/montserrat_regular"
                         android:paddingLeft="20dp"/>
 
                     <TextView
-                        android:layout_width="107dp"
-                        android:layout_height="match_parent"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:text="50.000 VND"
-                        android:gravity="end"/>
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="-50.000 VND"
+                        android:gravity="end"
+                        android:paddingRight="20dp"
+                        android:fontFamily="@font/montserrat_regular"/>
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="15dp"
+                    android:gravity="center"
                     android:textSize="10sp"
                     android:textColor="#4F4F4F"
-                    android:text="__________________________________________________________________________________"/>
+                    android:text="_______________________________________________________________________"/>
 
+                <!-- Dòng TỔNG -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -224,17 +241,22 @@
                     android:layout_marginBottom="10dp">
 
                     <TextView
-                        android:layout_width="280dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="TỔNG"
                         android:textStyle="bold"
                         android:fontFamily="@font/montserrat_bold"
                         android:paddingLeft="15dp"
                         android:paddingTop="10dp"/>
+
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="2.850.000 VND"
+                        android:gravity="end"
+                        android:paddingRight="20dp"
                         android:fontFamily="@font/montserrat_bold"/>
                 </LinearLayout>
 
@@ -250,6 +272,7 @@
 
                 </LinearLayout>
             </LinearLayout>
+
 
             <!-- 4. Phương thức thanh toán -->
             <TextView

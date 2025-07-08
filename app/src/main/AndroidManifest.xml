@@ -155,6 +155,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MapDialog"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">

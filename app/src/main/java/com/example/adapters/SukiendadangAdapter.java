@@ -94,9 +94,23 @@ public class SukiendadangAdapter extends BaseAdapter {
             popupWindow.setElevation(20);
             popupWindow.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.bg_popup_menusk));
 
-            // Hiển thị popup tại vị trí của nút
-            popupWindow.showAsDropDown(holder.imvBookmark, -250, 0); // chỉnh vị trí nếu cần
+            // Lấy vị trí của imvBookmark trên màn hình
+            int[] location = new int[2];
+            holder.imvBookmark.getLocationOnScreen(location);
+            int bookmarkY = location[1];
+            int screenHeight = holder.imvBookmark.getResources().getDisplayMetrics().heightPixels;
+            popupView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+            int popupHeight = popupView.getMeasuredHeight();
 
+            // Nếu bookmark gần đáy màn hình, show lên trên
+            if (bookmarkY + holder.imvBookmark.getHeight() + popupHeight > screenHeight) {
+                // Hiển thị phía trên icon
+                popupWindow.showAtLocation(holder.imvBookmark, android.view.Gravity.NO_GRAVITY,
+                        location[0] - 250, bookmarkY - popupHeight);
+            } else {
+                // Hiển thị phía dưới icon như bình thường
+                popupWindow.showAsDropDown(holder.imvBookmark, -250, 0);
+            }
             // Gán sự kiện cho các nút trong popup
             popupView.findViewById(R.id.btnEditsk).setOnClickListener(v -> {
                 popupWindow.dismiss();

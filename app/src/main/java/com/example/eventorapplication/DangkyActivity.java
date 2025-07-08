@@ -158,22 +158,7 @@ public class DangkyActivity extends AppCompatActivity {
                         } else {
                             String Id = accountRef.push().getKey();
                             UserModel user = new UserModel(lastname, name, email, phone, password);
-                            accountRef.child(Id).setValue(user).addOnCompleteListener(task -> {
-                                if (task.isSuccessful()) {
-                                    SharedPreferences preferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
-                                    SharedPreferences.Editor editor = preferences.edit();
-                                    editor.putString("userLastname", lastname);
-                                    editor.putString("userName", name);
-                                    editor.putString("userEmail", email);
-                                    editor.putString("userId", Id);
-                                    editor.apply();
-
-                                    Toast.makeText(DangkyActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                                    showDialogLinhVucQuanTam(Id);
-                                } else {
-                                    Toast.makeText(DangkyActivity.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                            showDialogOtp(user, Id);
                         }
                     }
 
@@ -234,15 +219,17 @@ public class DangkyActivity extends AppCompatActivity {
     private void showDialogLinhVucQuanTam(String id) {
         View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_linhvucquantam, null);
         Dialog dialog = new Dialog(this);
-
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setContentView(dialogView);
+        dialog.setContentView(dialogView); // đặt contentView trước
         dialog.setCancelable(false);
 
-        dialog.getWindow().setLayout(
-                (int) (getResources().getDisplayMetrics().widthPixels * 0.9),
-                ViewGroup.LayoutParams.WRAP_CONTENT
-        );
+// Sau đó mới thao tác với getWindow
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.getWindow().setLayout(
+                    (int) (getResources().getDisplayMetrics().widthPixels * 0.9),
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+            );
+        }
         dialog.show();
 
         Map<String, String> selectedInterestMap = new HashMap<>();
@@ -294,4 +281,101 @@ public class DangkyActivity extends AppCompatActivity {
         @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
         @Override public void afterTextChanged(android.text.Editable s) {}
     }
+
+    private void showDialogOtp(UserModel user, String userId) {
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_otp, null);
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(dialogView);
+        dialog.setCancelable(false);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().setLayout(
+                (int) (getResources().getDisplayMetrics().widthPixels * 0.9),
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+
+        EditText[] otpInputs = new EditText[6];
+        otpInputs[0] = dialogView.findViewById(R.id.otp1);
+        otpInputs[1] = dialogView.findViewById(R.id.otp2);
+        otpInputs[2] = dialogView.findViewById(R.id.otp3);
+        otpInputs[3] = dialogView.findViewById(R.id.otp4);
+        otpInputs[4] = dialogView.findViewById(R.id.otp5);
+        otpInputs[5] = dialogView.findViewById(R.id.otp6);
+
+        TextView txtErrorOtp = dialogView.findViewById(R.id.txtErrorOtp);
+        Button btnConfirm = dialogView.findViewById(R.id.btnConfirmOtp);
+
+        // Tự động chuyển focus
+        for (int i = 0; i < otpInputs.length - 1; i++) {
+            final int index = i;
+            otpInputs[i].addTextChangedListener(new SimpleTextWatcher() {
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (s.length() == 1) {
+                        otpInputs[index + 1].requestFocus();
+                    }
+                }
+            });
+        }
+
+        // Nút xác nhận OTP
+        btnConfirm.setOnClickListener(v -> {
+            StringBuilder otpBuilder = new StringBuilder();
+            for (EditText editText : otpInputs) {
+                String digit = editText.getText().toString().trim();
+                if (digit.isEmpty()) {
+                    txtErrorOtp.setVisibility(View.VISIBLE);
+                    return;
+                }
+                otpBuilder.append(digit);
+            }
+
+            // Giả lập xác nhận OTP đúng (chỉ cần nhập đủ 6 số)
+            if (otpBuilder.length() == 6) {
+                txtErrorOtp.setVisibility(View.GONE);
+                dialog.dismiss();
+
+                // Sau khi xác nhận OTP → lưu user vào Firebase
+                accountRef.child(userId).setValue(user).addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        SharedPreferences preferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("userLastname", user.getLastname());
+                        editor.putString("userName", user.getName());
+                        editor.putString("userEmail", user.getEmail());
+                        editor.putString("userId", userId);
+                        editor.apply();
+
+                        Toast.makeText(this, "Xác nhận OTP thành công", Toast.LENGTH_SHORT).show();
+                        showDialogDangKyThanhCong(userId);
+                    } else {
+                        Toast.makeText(this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void showDialogDangKyThanhCong(String userId) {
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_dangkythanhcong, null);
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(dialogView);
+        dialog.setCancelable(false);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().setLayout(
+                (int) (getResources().getDisplayMetrics().widthPixels * 0.9),
+                ViewGroup.LayoutParams.WRAP_CONTENT
+        );
+
+        Button btnNext = dialogView.findViewById(R.id.btnNext);
+        btnNext.setOnClickListener(v -> {
+            dialog.dismiss();
+            showDialogLinhVucQuanTam(userId); // chuyển qua dialog lĩnh vực
+        });
+
+        dialog.show();
+    }
+
+
 }

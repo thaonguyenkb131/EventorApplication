@@ -5,13 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".QuenmatkhauActivity"
-    android:background="#006183"
-    android:fillViewport="true">
+    android:background="#006183">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/layout_headertkcuatoi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:layout_below="@id/header">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,6 +60,16 @@
                 android:backgroundTint="#CCCCCC"
                 android:fontFamily="@font/montserrat_regular"
                 android:paddingBottom="8dp" />
+
+            <TextView
+                android:id="@+id/txtErrorEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="14sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:visibility="gone"
+                android:layout_marginTop="4dp" />
 
             <!-- Nút Lấy mã -->
             <Button

@@ -123,11 +123,11 @@
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
-                            String firstname = snapshot.child("Name").getValue(String.class);
-                            String lastname = snapshot.child("Lastname").getValue(String.class);
+                            String firstname = snapshot.child("name").getValue(String.class);
+                            String lastname = snapshot.child("lastname").getValue(String.class);
+                            String email = snapshot.child("email").getValue(String.class);
                             String fullName = (lastname != null ? lastname : "") + " " + (firstname != null ? firstname : "");
                             ((TextView) findViewById(R.id.txtName)).setText(fullName.trim());
-                            String email = snapshot.child("Email").getValue(String.class);
                             String city = snapshot.child("City").getValue(String.class);
                             if (city == null || city.isEmpty()) {
                                 city = "Not found";
@@ -157,7 +157,7 @@
 
                         if (interestsSnapshot.exists()) {
                             for (DataSnapshot entry : interestsSnapshot.getChildren()) {
-                                String interest = entry.getValue(String.class);
+                                String interest = entry.getValue(String.class); // "🎼 Âm nhạc"
                                 if (interest != null && !interest.isEmpty()) {
                                     TextView tagView = new TextView(TrangcanhanActivity.this);
                                     tagView.setText(interest);
@@ -217,7 +217,6 @@
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             dialog.setContentView(dialogView);
             dialog.setCancelable(false);
-
             dialog.getWindow().setLayout(
                     (int) (getResources().getDisplayMetrics().widthPixels * 0.9),
                     ViewGroup.LayoutParams.WRAP_CONTENT
@@ -239,26 +238,24 @@
                     Map<String, String> savedMap = new HashMap<>();
 
                     for (DataSnapshot tagSnap : snapshot.getChildren()) {
-                        String key = tagSnap.getKey(); // ví dụ: "Âm nhạc"
-                        String value = tagSnap.getValue(String.class); // ví dụ: "🎼 Âm nhạc"
+                        String key = tagSnap.getKey();               // VD: "Âm nhạc"
+                        String value = tagSnap.getValue(String.class); // VD: "🎵 Âm nhạc"
                         if (key != null && value != null) {
                             savedMap.put(key, value);
                         }
                     }
 
-                    // BƯỚC 2: Gắn tag listener + đánh dấu tag đã chọn
+                    // BƯỚC 2: Duyệt từng tag trong layout và gắn xử lý
                     for (int i = 0; i < tagContainer.getChildCount(); i++) {
-                        View tagView = tagContainer.getChildAt(i);
-                        if (tagView instanceof TextView) {
-                            TextView textView = (TextView) tagView;
+                        View view = tagContainer.getChildAt(i);
+                        if (view instanceof TextView) {
+                            TextView textView = (TextView) view;
+                            String key = String.valueOf(textView.getTag()); // Lấy từ android:tag
+                            String fullText = textView.getText().toString(); // "🎵 Âm nhạc"
 
-                            // Lấy key là từ text sau emoji
-                            String tagValue = textView.getText().toString();      // 🎼 Âm nhạc
-                            String tagKey = String.valueOf(textView.getTag());  // bỏ emoji => "Âm nhạc"
-
-                            // Nếu đã lưu trước đó → đánh dấu selected
-                            if (savedMap.containsKey(tagKey)) {
-                                selectedInterestMap.put(tagKey, tagValue);
+                            // Nếu đã chọn → đánh dấu
+                            if (savedMap.containsKey(key)) {
+                                selectedInterestMap.put(key, fullText);
                                 textView.setBackgroundResource(R.drawable.bg_tagselected);
                                 textView.setTextColor(Color.WHITE);
                             } else {
@@ -266,14 +263,15 @@
                                 textView.setTextColor(Color.BLACK);
                             }
 
-                            // Lắng nghe sự kiện click để chọn/bỏ chọn
+                            // Lắng nghe sự kiện chọn/bỏ chọn
+                            String finalKey = key;
                             textView.setOnClickListener(v -> {
-                                if (selectedInterestMap.containsKey(tagKey)) {
-                                    selectedInterestMap.remove(tagKey);
+                                if (selectedInterestMap.containsKey(finalKey)) {
+                                    selectedInterestMap.remove(finalKey);
                                     textView.setBackgroundResource(R.drawable.bg_tag);
                                     textView.setTextColor(Color.BLACK);
                                 } else {
-                                    selectedInterestMap.put(tagKey, tagValue);
+                                    selectedInterestMap.put(finalKey, fullText);
                                     textView.setBackgroundResource(R.drawable.bg_tagselected);
                                     textView.setTextColor(Color.WHITE);
                                 }
@@ -288,7 +286,7 @@
                 }
             });
 
-            // BƯỚC 3: Lưu khi nhấn nút "Lưu"
+            // BƯỚC 3: Lưu
             Button btnSave = dialogView.findViewById(R.id.btnSave);
             btnSave.setOnClickListener(v -> {
                 if (selectedInterestMap.isEmpty()) {
@@ -296,17 +294,16 @@
                     return;
                 }
 
-                // Lưu vào Firebase
+                // Lưu vào Firebase theo dạng key: fullText (VD: "Âm nhạc": "🎵 Âm nhạc")
                 DatabaseReference accountRef = FirebaseDatabase.getInstance().getReference("accounts");
                 accountRef.child(id).child("Interests").setValue(selectedInterestMap)
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
                                 Toast.makeText(this, "Đã lưu lĩnh vực quan tâm", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
-                                recreate();
+                                recreate(); // Reload giao diện
                             }
                         });
             });
         }
-
     }

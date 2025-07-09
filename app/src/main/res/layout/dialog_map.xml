@@ -6,8 +6,8 @@
     android:id="@+id/main"
     android:layout_width="wrap_content"
     android:orientation="vertical"
-    android:background="#ffffff"
-    android:layout_margin="30dp"
+    android:background="@drawable/bg_popup_menusk"
+    android:layout_margin="20dp"
     android:layout_height="wrap_content"
     tools:context=".MapDialog">
 
@@ -17,8 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:orientation="horizontal"
-        android:layout_marginVertical="5dp"
-        android:layout_marginHorizontal="20dp"
+        android:paddingHorizontal="10dp"
         android:background="@drawable/bg_search_bar"
         android:gravity="center_vertical">
 
@@ -28,28 +27,32 @@
             android:layout_height="24dp"
             android:src="@drawable/ic_back"
             android:backgroundTint="@android:color/white" />
-
-        <TextView
+        <EditText
             android:id="@+id/tvHint"
-            android:layout_width="1dp"
             android:layout_height="wrap_content"
+            android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="Nhập địa chỉ sự kiện của bạn"
+            android:hint="Nhập địa chỉ sự kiện của bạn"
+            android:textColorHint="#BAFFFFFF"
             android:fontFamily="@font/montserrat_regular"
             android:textColor="@android:color/white"
+            android:background="@android:color/transparent"
+            android:backgroundTint="#BAFFFFFF"
             android:gravity="center"
-            android:textSize="16sp"
-            android:paddingHorizontal="8dp" />
+            android:textSize="14sp"
+            android:paddingHorizontal="10dp"
+            android:imeOptions="actionDone"
+            android:inputType="text" />
 
         <ImageView
             android:id="@+id/ivSearch"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:paddingEnd="10dp"
             android:scaleY="1.2"
             android:scaleX="1.2"
-            android:src="@drawable/ic_search_blue"
-            app:tint="@android:color/white" />
+            android:tint="@color/white"
+            android:src="@drawable/ic_search_blue"/>
     </LinearLayout>
     <View
         android:layout_width="match_parent"
@@ -73,18 +76,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="12dp"
         android:divider="#E0E0E0"
         android:dividerHeight="1dp"
-        android:nestedScrollingEnabled="true" />
-
-    <TextView
-        android:id="@+id/tvSeeMore"
-        android:text="Xem thêm"
-        android:textColor="#888888"
-        android:gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:nestedScrollingEnabled="true"
+        android:background="@android:color/transparent" />
 
 </LinearLayout>

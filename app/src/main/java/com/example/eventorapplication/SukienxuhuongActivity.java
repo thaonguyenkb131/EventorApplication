@@ -73,6 +73,7 @@ public class SukienxuhuongActivity extends AppCompatActivity {
             intent.putExtra("event_json", new com.google.gson.Gson().toJson(selectedItem));
             startActivity(intent);
         });
+
     }
 
     private void loadTrendingEventsFromDb() {

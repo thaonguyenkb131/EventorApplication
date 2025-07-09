@@ -184,15 +184,16 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Tổng thanh toán"
+                        android:text="Tổng đơn hàng"
                         android:fontFamily="@font/montserrat_regular"
                         android:paddingLeft="20dp"/>
 
                     <TextView
+                        android:id="@+id/tv_total_amount"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="2.900.000 VND"
+                        android:text="0 VND"
                         android:gravity="end"
                         android:paddingRight="20dp"
                         android:fontFamily="@font/montserrat_regular"/>
@@ -220,6 +221,8 @@
                         android:layout_weight="1"
                         android:text="-50.000 VND"
                         android:gravity="end"
+                        android:textStyle="bold"
+                        android:textColor="#FF3D3D"
                         android:paddingRight="20dp"
                         android:fontFamily="@font/montserrat_regular"/>
                 </LinearLayout>
@@ -244,17 +247,18 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="TỔNG"
+                        android:text="TỔNG THANH TOÁN"
                         android:textStyle="bold"
                         android:fontFamily="@font/montserrat_bold"
                         android:paddingLeft="15dp"
                         android:paddingTop="10dp"/>
 
                     <TextView
+                        android:id="@+id/tv_final_total"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="2.850.000 VND"
+                        android:text="0 VND"
                         android:gravity="end"
                         android:paddingRight="20dp"
                         android:fontFamily="@font/montserrat_bold"/>

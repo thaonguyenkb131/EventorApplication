@@ -26,6 +26,7 @@ import android.widget.Toast;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivityTaosukienBinding;
@@ -34,6 +35,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.gson.Gson;
 
 import java.util.Calendar;
 
@@ -45,6 +47,7 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
     private static final int REQUEST_CODE_PICK_IMAGE = 2001;
     private Uri selectedImageUri = null;
     private String uploadedImageUrl = "";
+    private Thesukien lastCreatedEvent; // Lưu sự kiện vừa tạo
 
     @Override
     protected ActivityTaosukienBinding inflateBinding() {
@@ -119,7 +122,15 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
         binding.edtSearch.setClickable(true);
         binding.edtSearch.setShowSoftInputOnFocus(false);
 
-        binding.edtSearch.setOnClickListener(view -> showPopupMap(view));
+        // Chỉ cho phép chọn địa điểm khi chọn Offline
+        binding.edtSearch.setOnClickListener(view -> {
+            if (binding.rbOffline.isChecked()) {
+                FragmentManager fm = getSupportFragmentManager();
+                MapDialogFragment dialog = MapDialogFragment.newInstance();
+                dialog.setOnPlaceSelectedListener(address -> binding.edtSearch.setText(address));
+                dialog.show(fm, "map_dialog");
+            }
+        });
 
         binding.btnDangkyBTC.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -283,7 +294,7 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
                 event.setLocation("Online");
             }
             // TODO: set thêm các trường khác nếu cần
-
+            lastCreatedEvent = event; // Lưu lại sự kiện vừa tạo
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("postedevents");
             String eventId = ref.push().getKey();
             ref.child(eventId).setValue(event).addOnCompleteListener(task -> {
@@ -307,24 +318,6 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
                 binding.edtOffline.setVisibility(View.VISIBLE);
                 binding.edtOnline.setVisibility(View.GONE);
             }
-        });
-
-        binding.edtStart.setOnClickListener(v -> {
-            Calendar calendar = Calendar.getInstance();
-            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-                    (view, year, month, dayOfMonth) -> {
-                        String selectedDate = dayOfMonth + "/" + (month+1) + "/" + year;
-                        binding.edtStart.setText(selectedDate);
-                    },
-                    calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-            datePickerDialog.show();
-        });
-
-        // Click on map area to pick location
-        View mapEvent = findViewById(R.id.mapevent);
-        mapEvent.setOnClickListener(v -> {
-            Intent intent = new Intent(this, MapDialog.class);
-            startActivityForResult(intent, REQUEST_CODE_PICK_LOCATION);
         });
 
         // Calendar icon for thời gian mở đơn
@@ -364,6 +357,12 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
                     },
                     calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
             datePickerDialog.show();
+        });
+
+        // Click vào mapevent để đổi ảnh nền
+        View mapEvent = findViewById(R.id.mapevent);
+        mapEvent.setOnClickListener(v -> {
+            mapEvent.setBackgroundResource(R.drawable.anhggmap2);
         });
     }
 
@@ -417,8 +416,12 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
         btnXemsukien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Chuyển sang TaosukienActivity
+                // Chuyển sang ChitietsukienActivity với dữ liệu sự kiện vừa tạo
                 Intent intent = new Intent(TaosukienActivity.this, ChitietsukienActivity.class);
+                if (lastCreatedEvent != null) {
+                    String eventJson = new Gson().toJson(lastCreatedEvent);
+                    intent.putExtra("event_json", eventJson);
+                }
                 startActivity(intent);
                 dialog.dismiss(); // đóng dialog
             }

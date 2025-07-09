@@ -129,8 +129,6 @@
     </style>
 
     <style name="DabanTextViewStyle">
-        <item name="android:background">@drawable/bg_corner</item>
-        <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">12sp</item>
         <item name="android:layout_marginTop">4dp</item>
     </style>

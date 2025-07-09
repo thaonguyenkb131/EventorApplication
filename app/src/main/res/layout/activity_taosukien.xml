@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_regular"
                     android:paddingLeft="10dp"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"/>
                 <TextView
                     android:id="@+id/errorTenSukien"
                     android:layout_width="match_parent"
@@ -82,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:orientation="horizontal"
-                android:background="@drawable/bg_search_box_img"
+                android:background="@drawable/bg_edittext_blue_border"
                 android:gravity="center_vertical">
 
                 <EditText
@@ -90,8 +90,9 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:background="@android:color/transparent"
                     android:padding="8dp"
-                    android:background="@null"
                     android:textSize="14sp"/>
 
                 <ImageView
@@ -116,6 +117,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Thời gian diễn ra sự kiện"
+                android:paddingTop="5dp"
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
@@ -131,15 +133,15 @@
                     android:layout_height="wrap_content"
                     android:text="Bắt đầu lúc "
                     android:fontFamily="@font/montserrat_regular"
-                    android:paddingStart="15dp"
+                    android:paddingStart="10dp"
                     android:paddingEnd="5dp"
                     android:textSize="14sp"
                     android:textColor="@color/black"/>
                 <EditText
                     android:id="@+id/edtGiobatdau"
-                    android:layout_width="80dp"
+                    android:layout_width="70dp"
                     android:layout_height="35dp"
-                    android:background="@drawable/bg_search_box_img"
+                    android:background="@drawable/bg_edittext_blue_border"
                     android:padding="8dp"
                     android:textSize="14sp" />
                 <TextView
@@ -155,7 +157,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:orientation="horizontal"
-                    android:background="@drawable/bg_search_box_img"
+                    android:background="@drawable/bg_edittext_blue_border"
                     android:gravity="center_vertical">
 
                     <EditText
@@ -163,9 +165,9 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:background="@android:color/transparent"
                         android:padding="8dp"
-                        android:textSize="14sp"
-                        android:background="@null"/>
+                        android:textSize="14sp"/>
 
                     <ImageView
                         android:id="@+id/imgCalendarStart"
@@ -204,15 +206,15 @@
                     android:layout_height="wrap_content"
                     android:text="Kết thúc lúc"
                     android:fontFamily="@font/montserrat_regular"
-                    android:paddingStart="15dp"
+                    android:paddingStart="10dp"
                     android:paddingEnd="5dp"
                     android:textSize="14sp"
                     android:textColor="@color/black"/>
                 <EditText
                     android:id="@+id/edtGioketthuc"
-                    android:layout_width="80dp"
+                    android:layout_width="70dp"
                     android:layout_height="35dp"
-                    android:background="@drawable/bg_search_box_img"
+                    android:background="@drawable/bg_edittext_blue_border"
                     android:padding="8dp"
                     android:textSize="14sp" />
                 <TextView
@@ -229,7 +231,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:orientation="horizontal"
-                    android:background="@drawable/bg_search_box_img"
+                    android:background="@drawable/bg_edittext_blue_border"
                     android:gravity="center_vertical">
 
                     <EditText
@@ -238,9 +240,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:padding="8dp"
-                        android:textSize="14sp"
-                        android:background="@null"/>
-
+                        android:background="@android:color/transparent"
+                        android:textSize="14sp"/>
                     <ImageView
                         android:id="@+id/imgCalendarEnd"
                         android:layout_width="20dp"
@@ -298,7 +299,7 @@
                             android:text="Online"
                             android:textColor="#000000"
                             android:fontFamily="@font/montserrat_regular"
-                            android:padding="15dp"
+                            android:padding="10dp"
                             android:textSize="14sp" />
 
                         <RadioButton
@@ -308,7 +309,7 @@
                             android:text="Offline"
                             android:textColor="#000000"
                             android:fontFamily="@font/montserrat_regular"
-                            android:padding="15dp"
+                            android:padding="10dp"
                             android:textSize="14sp" />
                     </RadioGroup>
 
@@ -318,7 +319,7 @@
             <!--            Địa điểm tổ chức-->
             <LinearLayout
                 android:id="@+id/edtOffline"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:visibility="gone">
@@ -334,7 +335,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_margin="10dp"
-                    android:background="@drawable/bg_search_box_img"
+                    android:background="@drawable/bg_edittext_blue_border"
                     android:drawableEnd="@drawable/ic_search_blue"
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
@@ -368,7 +369,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_regular"
                     android:paddingLeft="15dp"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"/>
                 <TextView
                     android:id="@+id/errorLinkSukien"
                     android:layout_width="match_parent"
@@ -393,8 +394,8 @@
                 android:layout_gravity="center"
                 app:strokeColor="#006183"
                 app:strokeWidth="2dp"
-                app:cornerRadius="12dp"
-                app:backgroundTint="@android:color/transparent" />
+                app:cornerRadius="5dp"
+                app:backgroundTint="@android:color/white" />
 
             <!--            Mô tả sự kiện-->
             <TextView
@@ -421,7 +422,7 @@
                 android:inputType="textMultiLine"
                 android:maxLines="10"
                 android:scrollbars="vertical"
-                android:overScrollMode="always" />
+                android:overScrollMode="always"/>
             <TextView
                 android:id="@+id/errorMoTa"
                 android:layout_width="match_parent"
@@ -501,7 +502,7 @@
                     android:layout_height="wrap_content"
                     android:spinnerMode="dropdown"
                     android:background="@drawable/bg_search_box_img"
-                    android:padding="8dp"/>
+                    android:paddingLeft="8dp"/>
                 <TextView
                     android:id="@+id/errorCategory"
                     android:layout_width="match_parent"

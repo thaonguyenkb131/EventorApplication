@@ -1,5 +1,6 @@
 package com.example.adapters;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,9 +42,9 @@ public class TicketCategoriesAdapter extends RecyclerView.Adapter<TicketCategori
         }
         // Đan xen màu nền xám trắng cho từng item
         if (position % 2 == 0) {
-            holder.itemView.setBackgroundColor(0xFFFFFFFF); // Trắng
+            holder.itemView.setBackgroundColor(Color.parseColor("#E9E9E9")); // Trắng
         } else {
-            holder.itemView.setBackgroundColor(0xFFE9E9E9); // Xám nhạt
+            holder.itemView.setBackgroundColor(Color.parseColor("#F5F5F5")); // Xám nhạt
         }
     }
 

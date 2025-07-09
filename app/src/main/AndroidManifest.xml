@@ -36,12 +36,6 @@
             android:name=".MenusukienDialog"
             android:exported="false" />
         <activity
-            android:name=".TktochucDialog"
-            android:exported="false" />
-        <activity
-            android:name=".TktraphiDialog"
-            android:exported="false" />
-        <activity
             android:name=".TaikhoanthuongDialog"
             android:exported="false" />
         <activity
@@ -85,14 +79,6 @@
             android:exported="false" />
         <activity
             android:name=".ThanhtoanActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".SoluongveDialog"
-            android:exported="false"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name=".ChiaseskDialog"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
@@ -159,6 +145,7 @@
             android:name=".MapDialog"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
+
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">

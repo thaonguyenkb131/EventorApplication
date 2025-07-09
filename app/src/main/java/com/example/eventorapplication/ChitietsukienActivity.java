@@ -49,6 +49,7 @@ public class ChitietsukienActivity extends AppCompatActivity {
     private List<BinhluanItem> binhluanList;
     private BinhluanAdapter adapter;
     private int visibleItemCount = 3;
+    private Thesukien event;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,17 +104,18 @@ public class ChitietsukienActivity extends AppCompatActivity {
         binding.btnBuyTicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog dialog = new Dialog(ChitietsukienActivity.this);
-                dialog.setContentView(R.layout.dialog_soluongve);
-
-                dialog.show();
-
-                Button btnXacnhan = dialog.findViewById(R.id.btnXacnhan);
-                btnXacnhan.setOnClickListener(view -> {
-                    Intent intent = new Intent(ChitietsukienActivity.this, ThanhtoanActivity.class);
-                    startActivity(intent);
-                    dialog.dismiss();
-                });
+                if (event != null && event.getTicketCategories() != null) {
+                    SoluongveDialogFragment dialog = SoluongveDialogFragment.newInstance(new ArrayList<>(event.getTicketCategories()));
+                    dialog.setOnTicketSelectedListener((selectedTickets, quantities, totalAmount, finalTotal) -> {
+                        Intent intent = new Intent(ChitietsukienActivity.this, ThanhtoanActivity.class);
+                        intent.putExtra("selected_tickets", new Gson().toJson(selectedTickets));
+                        intent.putExtra("quantities", new Gson().toJson(quantities));
+                        intent.putExtra("total_amount", totalAmount);
+                        intent.putExtra("final_total", finalTotal);
+                        startActivity(intent);
+                    });
+                    dialog.show(getSupportFragmentManager(), "soluongve_dialog");
+                }
             }
         });
 
@@ -152,7 +154,6 @@ public class ChitietsukienActivity extends AppCompatActivity {
         ticketAdapter = new TicketCategoriesAdapter(null); // Khởi tạo rỗng, sẽ cập nhật sau
         rcvTicketCategories.setAdapter(ticketAdapter);
 
-        Thesukien event = null;
         String eventJson = getIntent().getStringExtra("event_json");
         if (eventJson != null) {
             event = new Gson().fromJson(eventJson, Thesukien.class);

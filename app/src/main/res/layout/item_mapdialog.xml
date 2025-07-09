@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat_semibold"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:text="Trường Đại học Kinh tế - Luật, ĐHQG TPHCM"
                 android:maxLines="1"
                 android:ellipsize="end" />
@@ -37,7 +37,7 @@
                 android:id="@+id/txtDiachi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textColor="#404040"
                 android:text="669 Quốc lộ 1A, khu phố 6, phường Linh Xuân, Thủ Đức"
                 android:maxLines="1"

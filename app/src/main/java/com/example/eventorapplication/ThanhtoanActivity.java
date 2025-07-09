@@ -23,6 +23,16 @@ public class ThanhtoanActivity extends AppCompatActivity {
         binding = ActivityThanhtoanBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Nhận dữ liệu tổng tiền từ intent
+        double totalAmount = getIntent().getDoubleExtra("total_amount", 0);
+        double finalTotal = getIntent().getDoubleExtra("final_total", 0);
+        if (totalAmount > 0) {
+            binding.tvTotalAmount.setText(String.format("%,.0f VND", totalAmount));
+        }
+        if (finalTotal > 0) {
+            binding.tvFinalTotal.setText(String.format("%,.0f VND", finalTotal));
+        }
+
         addEvents();
     }
 

@@ -33,168 +33,357 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="#F5F7FA"
+            android:paddingBottom="24dp">
 
             <!-- Banner giới thiệu -->
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/bannerImage"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_btc"
+                app:shapeAppearanceOverlay="@style/BannerBottomRounded"/>
+
+            <!-- Card lợi ích -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_btc"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="24dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="Trở thành Ban tổ chức"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:gravity="center"
-                    android:text="Bạn có đam mê và khao khát tạo ra sự kiện đột phá? Hãy trở thành Ban Tổ Chức của chúng tôi ngay hôm nay, biến ý tưởng thành hiện thực và kết nối cộng đồng rộng lớn!"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <!-- Thẻ lợi ích -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="207dp"
                 android:layout_marginTop="-50dp"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_card_white"
-                android:elevation="4dp"
+                android:layout_marginHorizontal="30dp"
+                android:background="@drawable/shadow_background"
+                android:elevation="8dp"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="20dp"
+                android:layout_gravity="center"
+                android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Lợi ích"
                     android:textColor="#006183"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:layout_gravity="start" />
 
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:columnCount="2">
+                    android:columnCount="2"
+                    android:rowCount="2"
+                    android:alignmentMode="alignMargins"
+                    android:useDefaultMargins="true">
 
-                    <!-- Mỗi ô lợi ích -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
-                        android:layout_marginBottom="12dp"
-                        android:orientation="horizontal">
-
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
                         <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
                             android:src="@drawable/ic_income" />
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:text="Tăng doanh thu"
-                            android:textSize="14sp" />
+                            android:text="Tăng\ndoanh thu"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/montserrat_medium" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
-                        android:orientation="horizontal">
-
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
                         <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_community" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="Xây dựng cộng đồng"
-                            android:textSize="14sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:layout_marginBottom="12dp"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
                             android:src="@drawable/ic_trust" />
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:text="Nâng cao uy tín"
-                            android:textSize="14sp" />
+                            android:text="Nâng cao\nuy tín"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/montserrat_medium" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_columnWeight="1"
-                        android:orientation="horizontal">
-
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
                         <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_network" />
-
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:src="@drawable/ic_community" />
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:text="Mở rộng kết nối"
-                            android:textSize="14sp" />
+                            android:text="Xây dựng\ncộng đồng"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/montserrat_medium" />
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:src="@drawable/ic_network" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Mở rộng\nkết nối"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/montserrat_medium" />
+                    </LinearLayout>
                 </GridLayout>
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btndkBTC"
+                    android:layout_width="200dp"
+                    android:layout_height="35dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="16dp"
                     android:backgroundTint="#006183"
                     android:text="Trở thành BTC"
-                    android:textColor="#FFFFFF" />
-
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:background="@drawable/rounded_button" />
             </LinearLayout>
-            <!-- Thẻ tài khoản -->
 
+            <!-- Card gói tài khoản -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_card_white"
-                android:elevation="4dp"
                 android:orientation="vertical"
-                android:padding="16dp">
-
-                <include
-                    layout="@layout/layout_goitaikhoan"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                android:background="@drawable/bg_stroke"
+                android:padding="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="15dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gói Tài Khoản"
+                    android:textColor="#006183"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="12dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:clipToOutline="true"
+                    android:background="@drawable/bg_rounded_blue">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tài khoản trả phí"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:gravity="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ngày đăng ký: 12/02/2025"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ngày hết hạn: 12/02/2026"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:gravity="center"/>
+                </LinearLayout>
+                <!-- 3 gói tài khoản -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp">
+                    <!-- Gói thường -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="180dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:background="@drawable/bg_card_account_item"
+                        android:layout_margin="8dp"
+                        android:elevation="4dp"
+                        android:gravity="fill_vertical|center_horizontal">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center_horizontal">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:background="@drawable/bg_card_header_account_item"
+                                android:text="Tài khoản thường"
+                                android:textColor="#222"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/montserrat_bold"
+                                android:gravity="center"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0 VNĐ"
+                                android:textColor="#F44336"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/montserrat_bold"
+                                android:gravity="center"
+                                android:layout_marginTop="8dp"/>
+                        </LinearLayout>
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:background="@drawable/bg_btn_account_item"
+                            android:text="Chi tiết"
+                            android:textColor="#FFFFFF"
+                            android:textSize="15sp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:gravity="center"
+                            android:layout_margin="5dp"
+                            android:padding="0dp"
+                            android:layout_gravity="bottom|center_horizontal"/>
+                    </LinearLayout>
+                    <!-- Gói trả phí -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="180dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:background="@drawable/bg_card_account_item"
+                        android:layout_margin="8dp"
+                        android:elevation="4dp"
+                        android:gravity="fill_vertical|center_horizontal">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center_horizontal">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:background="@drawable/bg_card_header_account_item"
+                                android:text="Tài khoản trả phí"
+                                android:textColor="#222"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/montserrat_bold"
+                                android:gravity="center"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="499.000 VNĐ/năm"
+                                android:textColor="#43A047"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/montserrat_bold"
+                                android:gravity="center"
+                                android:layout_marginTop="8dp"/>
+                        </LinearLayout>
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:background="@drawable/bg_btn_account_item"
+                            android:text="Chi tiết"
+                            android:textColor="#FFFFFF"
+                            android:textSize="15sp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:gravity="center"
+                            android:layout_margin="5dp"
+                            android:padding="0dp"
+                            android:layout_gravity="bottom|center_horizontal"/>
+                    </LinearLayout>
+                    <!-- Gói tổ chức -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="180dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:background="@drawable/bg_card_account_item"
+                        android:layout_margin="8dp"
+                        android:elevation="4dp"
+                        android:gravity="fill_vertical|center_horizontal">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center_horizontal">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="44dp"
+                                android:background="@drawable/bg_card_header_account_item"
+                                android:text="Tài khoản tổ chức"
+                                android:textColor="#222"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/montserrat_bold"
+                                android:gravity="center"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="999.000 VNĐ/năm"
+                                android:textColor="#43A047"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/montserrat_bold"
+                                android:gravity="center"
+                                android:layout_marginTop="8dp"/>
+                        </LinearLayout>
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:background="@drawable/bg_btn_account_item"
+                            android:text="Chi tiết"
+                            android:layout_margin="5dp"
+                            android:textColor="#FFFFFF"
+                            android:textSize="15sp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:gravity="center"
+                            android:padding="0dp"
+                            android:layout_gravity="bottom|center_horizontal"/>
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

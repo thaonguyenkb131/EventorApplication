@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import android.util.Log;
 
 
 public class SukienxuhuongActivity extends AppCompatActivity {
@@ -77,25 +78,54 @@ public class SukienxuhuongActivity extends AppCompatActivity {
     }
 
     private void loadTrendingEventsFromDb() {
+        Log.d("SukienxuhuongActivity", "Starting to load trending events...");
+        
+        // Hiển thị ProgressBar
+        binding.progressBar.setVisibility(View.VISIBLE);
+        binding.lvSukien.setVisibility(View.GONE);
+        
         dsSuKien = new ArrayList<>();
         adapter = new SukienxuhuongAdapter(this, dsSuKien);
         binding.lvSukien.setAdapter(adapter);
+        
+        // Add a test item to verify ListView is working
+        Thesukien testEvent = new Thesukien();
+        testEvent.setTitle("Test Event");
+        testEvent.setSoldTicket(100);
+        testEvent.setPrice(500000);
+        testEvent.setCity("Test City");
+        dsSuKien.add(testEvent);
+        adapter.notifyDataSetChanged();
+        Log.d("SukienxuhuongActivity", "Added test event, total items: " + dsSuKien.size());
+        
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("topevents");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("SukienxuhuongActivity", "Data received from Firebase. Children count: " + dataSnapshot.getChildrenCount());
                 dsSuKien.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Thesukien event = snapshot.getValue(Thesukien.class);
                     if (event != null) {
+                        Log.d("SukienxuhuongActivity", "Added event: " + event.getTitle());
                         dsSuKien.add(event);
+                    } else {
+                        Log.w("SukienxuhuongActivity", "Event is null for snapshot: " + snapshot.getKey());
                     }
                 }
+                Log.d("SukienxuhuongActivity", "Total events loaded: " + dsSuKien.size());
                 adapter.notifyDataSetChanged();
+                
+                // Ẩn ProgressBar và hiển thị ListView
+                binding.progressBar.setVisibility(View.GONE);
+                binding.lvSukien.setVisibility(View.VISIBLE);
             }
             @Override
             public void onCancelled(DatabaseError error) {
-                // Xử lý lỗi nếu cần
+                Log.e("SukienxuhuongActivity", "Database error: " + error.getMessage());
+                // Ẩn ProgressBar và hiển thị ListView ngay cả khi có lỗi
+                binding.progressBar.setVisibility(View.GONE);
+                binding.lvSukien.setVisibility(View.VISIBLE);
             }
         });
     }

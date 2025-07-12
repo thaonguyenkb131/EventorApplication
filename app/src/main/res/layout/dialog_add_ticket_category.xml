@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="@drawable/white_card_bg">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Thêm hạng mục vé"
+        android:textSize="18sp"
+        android:textColor="#006183"
+        android:textStyle="bold"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tên hạng vé"
+        android:textSize="14sp"
+        android:textColor="#000000"
+        android:fontFamily="@font/montserrat_medium"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/edtTicketName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập tên hạng vé"
+        android:background="@drawable/bg_edittext_border"
+        android:padding="12dp"
+        android:textSize="14sp"
+        android:fontFamily="@font/montserrat_regular"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Giá vé (VND)"
+        android:textSize="14sp"
+        android:textColor="#000000"
+        android:fontFamily="@font/montserrat_medium"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/edtTicketPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập giá vé"
+        android:inputType="number"
+        android:background="@drawable/bg_edittext_border"
+        android:padding="12dp"
+        android:textSize="14sp"
+        android:fontFamily="@font/montserrat_regular"
+        android:layout_marginBottom="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HỦY"
+            android:textColor="#FFFFFF"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_blue_border"
+            android:backgroundTint="#808080"
+            android:fontFamily="@font/montserrat_semibold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thêm"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_blue_border"
+            android:backgroundTint="#006183"
+            android:fontFamily="@font/montserrat_semibold" />
+
+    </LinearLayout>
+
+</LinearLayout> 

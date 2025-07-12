@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="8dp"
+    android:background="#E9E9E9">
+
+    <TextView
+        android:id="@+id/txtTicketName"
+        android:layout_width="0dp"
+        android:layout_weight="0.5"
+        android:layout_height="wrap_content"
+        android:text="Tên vé"
+        android:textStyle="bold"
+        android:paddingStart="10dp"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:fontFamily="@font/montserrat_semibold"/>
+
+    <TextView
+        android:id="@+id/txtTicketPrice"
+        android:layout_width="0dp"
+        android:layout_weight="0.4"
+        android:layout_height="wrap_content"
+        android:text="Giá vé"
+        android:gravity="end"
+        android:paddingEnd="10dp"
+        android:textColor="#006183"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:fontFamily="@font/montserrat_semibold"/>
+
+    <ImageButton
+        android:id="@+id/btnDelete"
+        android:layout_width="0dp"
+        android:layout_weight="0.1"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_delete"
+        android:background="@android:color/transparent"
+        android:padding="8dp"
+        android:contentDescription="Xóa hạng vé"/>
+
+</LinearLayout> 

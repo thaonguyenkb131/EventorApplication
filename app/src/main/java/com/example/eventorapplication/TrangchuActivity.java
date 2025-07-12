@@ -30,6 +30,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.adapters.BannerAdapter;
+import com.example.eventorapplication.utils.DataManager;
 import com.example.models.Thesukien;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -102,9 +103,24 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
             return insets;
         });
 
-        loadOutstandingEvents();
-        loadTrendingEvents();
-        loadForYouEvents();
+        // Kiểm tra cache trước khi load
+        if (dataManager.getData(DataManager.KEY_OUTSTANDING_EVENTS) == null) {
+            loadOutstandingEvents();
+        } else {
+            displayCachedOutstandingEvents();
+        }
+        
+        if (dataManager.getData(DataManager.KEY_TRENDING_EVENTS) == null) {
+            loadTrendingEvents();
+        } else {
+            displayCachedTrendingEvents();
+        }
+        
+        if (dataManager.getData(DataManager.KEY_FOR_YOU_EVENTS) == null) {
+            loadForYouEvents();
+        } else {
+            displayCachedForYouEvents();
+        }
 
         // Lấy FCM token và log ra Logcat
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
@@ -130,44 +146,11 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
                         outstandingList.add(event);
                     }
                 }
-                // Hiển thị danh sách thumbnail sự kiện nổi bật lên linearLayoutSknb
-                binding.linearLayoutSknb.removeAllViews();
-                Gson gson = new Gson();
-                for (Thesukien event : outstandingList) {
-                    CardView cardView = new CardView(TrangchuActivity.this);
-                    LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
-                        (int) getResources().getDimension(R.dimen.sknb_card_width),
-                        (int) getResources().getDimension(R.dimen.sknb_card_height)
-                    );
-                    cardParams.setMargins((int) getResources().getDimension(R.dimen.sknb_card_margin), 0, (int) getResources().getDimension(R.dimen.sknb_card_margin), 0);
-                    cardView.setLayoutParams(cardParams);
-                    cardView.setRadius(getResources().getDimension(R.dimen.sknb_card_radius));
-                    cardView.setCardElevation(8f);
-                    cardView.setUseCompatPadding(true);
-
-                    ImageView imageView = new ImageView(TrangchuActivity.this);
-                    imageView.setLayoutParams(new LayoutParams(
-                        LayoutParams.MATCH_PARENT,
-                        LayoutParams.MATCH_PARENT
-                    ));
-                    imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    if (event.getThumbnail() != null && event.getThumbnail().startsWith("http")) {
-                        if (!TrangchuActivity.this.isFinishing() && !TrangchuActivity.this.isDestroyed()) {
-                            com.bumptech.glide.Glide.with(TrangchuActivity.this)
-                                    .load(event.getThumbnail())
-                                    .placeholder(R.drawable.anhthaythe)
-                                    .into(imageView);
-                        }
-                    }
-                    cardView.addView(imageView);
-                    // Xử lý click: truyền object Thesukien dạng JSON
-                    cardView.setOnClickListener(v -> {
-                        Intent intent = new Intent(TrangchuActivity.this, ChitietsukienActivity.class);
-                        intent.putExtra("event_json", gson.toJson(event));
-                        startActivity(intent);
-                    });
-                    binding.linearLayoutSknb.addView(cardView);
-                }
+                
+                // Lưu vào cache
+                dataManager.putData(DataManager.KEY_OUTSTANDING_EVENTS, outstandingList);
+                
+                displayOutstandingEvents(outstandingList);
                 binding.progressBar.setVisibility(View.GONE);
             }
             @Override
@@ -175,6 +158,55 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
                 binding.progressBar.setVisibility(View.GONE);
             }
         });
+    }
+    
+    private void displayCachedOutstandingEvents() {
+        ArrayList<Thesukien> outstandingList = (ArrayList<Thesukien>) dataManager.getData(DataManager.KEY_OUTSTANDING_EVENTS);
+        if (outstandingList != null) {
+            displayOutstandingEvents(outstandingList);
+            binding.progressBar.setVisibility(View.GONE);
+        }
+    }
+    
+    private void displayOutstandingEvents(ArrayList<Thesukien> outstandingList) {
+        // Hiển thị danh sách thumbnail sự kiện nổi bật lên linearLayoutSknb
+        binding.linearLayoutSknb.removeAllViews();
+        Gson gson = new Gson();
+        for (Thesukien event : outstandingList) {
+            CardView cardView = new CardView(TrangchuActivity.this);
+            LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
+                (int) getResources().getDimension(R.dimen.sknb_card_width),
+                (int) getResources().getDimension(R.dimen.sknb_card_height)
+            );
+            cardParams.setMargins((int) getResources().getDimension(R.dimen.sknb_card_margin), 0, (int) getResources().getDimension(R.dimen.sknb_card_margin), 0);
+            cardView.setLayoutParams(cardParams);
+            cardView.setRadius(getResources().getDimension(R.dimen.sknb_card_radius));
+            cardView.setCardElevation(8f);
+            cardView.setUseCompatPadding(true);
+
+            ImageView imageView = new ImageView(TrangchuActivity.this);
+            imageView.setLayoutParams(new LayoutParams(
+                LayoutParams.MATCH_PARENT,
+                LayoutParams.MATCH_PARENT
+            ));
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            if (event.getThumbnail() != null && event.getThumbnail().startsWith("http")) {
+                if (!TrangchuActivity.this.isFinishing() && !TrangchuActivity.this.isDestroyed()) {
+                    com.bumptech.glide.Glide.with(TrangchuActivity.this)
+                            .load(event.getThumbnail())
+                            .placeholder(R.drawable.anhthaythe)
+                            .into(imageView);
+                }
+            }
+            cardView.addView(imageView);
+            // Xử lý click: truyền object Thesukien dạng JSON
+            cardView.setOnClickListener(v -> {
+                Intent intent = new Intent(TrangchuActivity.this, ChitietsukienActivity.class);
+                intent.putExtra("event_json", gson.toJson(event));
+                startActivity(intent);
+            });
+            binding.linearLayoutSknb.addView(cardView);
+        }
     }
 
     private void loadTrendingEvents() {
@@ -184,42 +216,23 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
         ref.limitToFirst(10).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Không removeAllViews, giữ nguyên layout XML
+                ArrayList<Thesukien> trendingList = new ArrayList<>();
                 Gson gson = new Gson();
                 int maxItems = 10;
                 int idx = 0;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     if (idx >= maxItems) break;
                     Thesukien event = snapshot.getValue(Thesukien.class);
-                    if (event == null) continue;
-                    int imgId = getResources().getIdentifier("imgSkxh" + (idx + 1), "id", getPackageName());
-                    ImageView imgView = findViewById(imgId);
-                    if (imgView != null) {
-                        if (event.getThumbnail() != null && event.getThumbnail().startsWith("http")) {
-                            if (!TrangchuActivity.this.isFinishing() && !TrangchuActivity.this.isDestroyed()) {
-                                com.bumptech.glide.Glide.with(TrangchuActivity.this)
-                                        .load(event.getThumbnail())
-                                        .placeholder(R.drawable.anhthaythe)
-                                        .into(imgView);
-                            }
-                        } else {
-                            imgView.setImageResource(R.drawable.anhthaythe);
-                        }
-                        // Set click cho CardView cha
-                        View parent = (View) imgView.getParent();
-                        while (parent != null && !(parent instanceof androidx.cardview.widget.CardView)) {
-                            parent = (View) parent.getParent();
-                        }
-                        if (parent instanceof androidx.cardview.widget.CardView) {
-                            parent.setOnClickListener(v -> {
-                                Intent intent = new Intent(TrangchuActivity.this, ChitietsukienActivity.class);
-                                intent.putExtra("event_json", gson.toJson(event));
-                                startActivity(intent);
-                            });
-                        }
+                    if (event != null) {
+                        trendingList.add(event);
                     }
                     idx++;
                 }
+                
+                // Lưu vào cache
+                dataManager.putData(DataManager.KEY_TRENDING_EVENTS, trendingList);
+                
+                displayTrendingEvents(trendingList);
                 binding.progressBarSkxh.setVisibility(View.GONE);
                 binding.linearLayoutSkxh.setVisibility(View.VISIBLE);
             }
@@ -229,6 +242,52 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
                 binding.linearLayoutSkxh.setVisibility(View.VISIBLE);
             }
         });
+    }
+    
+    private void displayCachedTrendingEvents() {
+        ArrayList<Thesukien> trendingList = (ArrayList<Thesukien>) dataManager.getData(DataManager.KEY_TRENDING_EVENTS);
+        if (trendingList != null) {
+            displayTrendingEvents(trendingList);
+            binding.progressBarSkxh.setVisibility(View.GONE);
+            binding.linearLayoutSkxh.setVisibility(View.VISIBLE);
+        }
+    }
+    
+    private void displayTrendingEvents(ArrayList<Thesukien> trendingList) {
+        // Không removeAllViews, giữ nguyên layout XML
+        Gson gson = new Gson();
+        int maxItems = 10;
+        int idx = 0;
+        for (Thesukien event : trendingList) {
+            if (idx >= maxItems) break;
+            int imgId = getResources().getIdentifier("imgSkxh" + (idx + 1), "id", getPackageName());
+            ImageView imgView = findViewById(imgId);
+            if (imgView != null) {
+                if (event.getThumbnail() != null && event.getThumbnail().startsWith("http")) {
+                    if (!TrangchuActivity.this.isFinishing() && !TrangchuActivity.this.isDestroyed()) {
+                        com.bumptech.glide.Glide.with(TrangchuActivity.this)
+                                .load(event.getThumbnail())
+                                .placeholder(R.drawable.anhthaythe)
+                                .into(imgView);
+                    }
+                } else {
+                    imgView.setImageResource(R.drawable.anhthaythe);
+                }
+                // Set click cho CardView cha
+                View parent = (View) imgView.getParent();
+                while (parent != null && !(parent instanceof androidx.cardview.widget.CardView)) {
+                    parent = (View) parent.getParent();
+                }
+                if (parent instanceof androidx.cardview.widget.CardView) {
+                    parent.setOnClickListener(v -> {
+                        Intent intent = new Intent(TrangchuActivity.this, ChitietsukienActivity.class);
+                        intent.putExtra("event_json", gson.toJson(event));
+                        startActivity(intent);
+                    });
+                }
+            }
+            idx++;
+        }
     }
 
     private void loadForYouEvents() {
@@ -272,154 +331,171 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
                 ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        java.text.NumberFormat nf = java.text.NumberFormat.getInstance(new java.util.Locale("vi", "VN"));
-                        int cardWidth = (int) getResources().getDimension(R.dimen.dcb_card_width);
-                        int cardHeight = (int) getResources().getDimension(R.dimen.dcb_card_height);
-                        float cardRadius = getResources().getDimension(R.dimen.dcb_card_radius);
-                        Gson gson = new Gson();
-                        Typeface montserrat = ResourcesCompat.getFont(TrangchuActivity.this, R.font.montserrat_semibold);
-
-                        int matchedCount = 0;
-
+                        ArrayList<Thesukien> forYouList = new ArrayList<>();
+                        
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             Thesukien event = snapshot.getValue(Thesukien.class);
                             if (event == null || event.getCategory() == null) continue;
 
                             // Lọc theo Interests
                             if (!interests.contains(event.getCategory())) continue;
-                            matchedCount++;
-
-                            // Tạo layout cho sự kiện...
-                            LinearLayout eventLayout = new LinearLayout(TrangchuActivity.this);
-                            eventLayout.setOrientation(LinearLayout.VERTICAL);
-                            LinearLayout.LayoutParams eventParams = new LinearLayout.LayoutParams(
-                                    cardWidth,
-                                    LinearLayout.LayoutParams.WRAP_CONTENT
-                            );
-                            eventParams.setMargins(0, 0, 20, 0);
-                            eventLayout.setLayoutParams(eventParams);
-                            eventLayout.setGravity(android.view.Gravity.CENTER_HORIZONTAL);
-
-                            // CardView chứa ảnh
-                            CardView cardView = new CardView(TrangchuActivity.this);
-                            cardView.setRadius(cardRadius);
-                            cardView.setCardElevation(8f);
-                            cardView.setUseCompatPadding(true);
-                            LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
-                                    cardWidth,
-                                    cardHeight
-                            );
-                            cardView.setLayoutParams(cardParams);
-
-                            ImageView imageView = new ImageView(TrangchuActivity.this);
-                            imageView.setLayoutParams(new LinearLayout.LayoutParams(
-                                    LinearLayout.LayoutParams.MATCH_PARENT,
-                                    LinearLayout.LayoutParams.MATCH_PARENT
-                            ));
-                            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                            if (event.getThumbnail() != null && event.getThumbnail().startsWith("http")) {
-                                if (!TrangchuActivity.this.isFinishing() && !TrangchuActivity.this.isDestroyed()) {
-                                    Glide.with(TrangchuActivity.this)
-                                            .load(event.getThumbnail())
-                                            .placeholder(R.drawable.default_dcb)
-                                            .into(imageView);
-                                }
-                            } else {
-                                imageView.setImageResource(R.drawable.default_dcb);
-                            }
-                            cardView.addView(imageView);
-                            eventLayout.addView(cardView);
-
-                            // Tên sự kiện
-                            TextView titleView = new TextView(TrangchuActivity.this);
-                            titleView.setText(event.getTitle());
-                            titleView.setMaxLines(2);
-                            titleView.setEllipsize(android.text.TextUtils.TruncateAt.END);
-                            titleView.setTextColor(android.graphics.Color.BLACK);
-                            titleView.setTextSize(14);
-                            titleView.setGravity(android.view.Gravity.START);
-                            if (montserrat != null)
-                                titleView.setTypeface(montserrat, Typeface.BOLD);
-                            titleView.setPadding((int) getResources().getDimension(R.dimen.dcb_text_padding_left), 0, 0, 0);
-                            eventLayout.addView(titleView);
-
-                            // Giá sự kiện
-                            TextView priceView = new TextView(TrangchuActivity.this);
-                            double price = event.getPrice();
-                            final String priceColor;
-                            if (price > 0) {
-                                priceView.setText("Từ " + nf.format(price) + " VND");
-                                priceColor = "#1C9CCA";
-                                priceView.setTextColor(Color.parseColor(priceColor));
-                            } else {
-                                priceView.setText("Miễn phí");
-                                priceColor = "#43A047";
-                                priceView.setTextColor(Color.parseColor(priceColor));
-                            }
-                            priceView.setTextSize(14);
-                            priceView.setGravity(android.view.Gravity.START);
-                            if (montserrat != null)
-                                priceView.setTypeface(montserrat, Typeface.BOLD);
-                            priceView.setPadding((int) getResources().getDimension(R.dimen.dcb_text_padding_left), 0, 0, 0);
-                            eventLayout.addView(priceView);
-
-                            // Line dưới giá
-
-                            priceView.post(() -> {
-                                Paint paint = new Paint();
-                                paint.setTextSize(priceView.getTextSize());
-                                paint.setTypeface(priceView.getTypeface());
-                                float textWidth = paint.measureText(priceView.getText().toString());
-
-                                View line = new View(TrangchuActivity.this);
-                                LinearLayout.LayoutParams lineParams = new LinearLayout.LayoutParams(
-                                        (int) textWidth,
-                                        (int) getResources().getDimension(R.dimen.dcb_line_height)
-                                );
-                                lineParams.gravity = Gravity.START;
-                                lineParams.setMargins(
-                                        (int) getResources().getDimension(R.dimen.dcb_text_padding_left), // left margin
-                                        0,  // top
-                                        0,  // right
-                                        1   // bottom
-                                );                                line.setLayoutParams(lineParams);
-                                line.setBackgroundColor(Color.parseColor(priceColor));
-
-                                eventLayout.addView(line, eventLayout.indexOfChild(priceView) + 1);
-                            });
-
-                            // Click mở chi tiết
-                            cardView.setOnClickListener(v -> {
-                                Intent intent = new Intent(TrangchuActivity.this, ChitietsukienActivity.class);
-                                intent.putExtra("event_json", gson.toJson(event));
-                                startActivity(intent);
-                            });
-
-                            linearLayoutDcb.addView(eventLayout);
+                            forYouList.add(event);
                         }
-
-
-                        // Nếu không có sự kiện nào phù hợp
-                        if (matchedCount == 0) {
-                            TextView warningView = createWarningView("Không có sự kiện phù hợp cho bạn");
-                            linearLayoutDcb.addView(warningView);
-                        }
-
+                        
+                        // Lưu vào cache
+                        dataManager.putData(DataManager.KEY_FOR_YOU_EVENTS, forYouList);
+                        
+                        displayForYouEvents(forYouList);
                         binding.progressBar.setVisibility(View.GONE);
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         binding.progressBar.setVisibility(View.GONE);
                     }
                 });
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 binding.progressBar.setVisibility(View.GONE);
             }
         });
+    }
+    
+    private void displayCachedForYouEvents() {
+        ArrayList<Thesukien> forYouList = (ArrayList<Thesukien>) dataManager.getData(DataManager.KEY_FOR_YOU_EVENTS);
+        if (forYouList != null) {
+            displayForYouEvents(forYouList);
+            binding.progressBar.setVisibility(View.GONE);
+        }
+    }
+    
+    private void displayForYouEvents(ArrayList<Thesukien> forYouList) {
+        LinearLayout linearLayoutDcb = findViewById(R.id.linearLayoutDcb);
+        if (linearLayoutDcb == null) return;
+        linearLayoutDcb.removeAllViews();
+        
+        java.text.NumberFormat nf = java.text.NumberFormat.getInstance(new java.util.Locale("vi", "VN"));
+        int cardWidth = (int) getResources().getDimension(R.dimen.dcb_card_width);
+        int cardHeight = (int) getResources().getDimension(R.dimen.dcb_card_height);
+        float cardRadius = getResources().getDimension(R.dimen.dcb_card_radius);
+        Gson gson = new Gson();
+        Typeface montserrat = ResourcesCompat.getFont(TrangchuActivity.this, R.font.montserrat_semibold);
+
+        for (Thesukien event : forYouList) {
+            // Tạo layout cho sự kiện...
+            LinearLayout eventLayout = new LinearLayout(TrangchuActivity.this);
+            eventLayout.setOrientation(LinearLayout.VERTICAL);
+            LinearLayout.LayoutParams eventParams = new LinearLayout.LayoutParams(
+                    cardWidth,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            eventParams.setMargins(0, 0, 20, 0);
+            eventLayout.setLayoutParams(eventParams);
+            eventLayout.setGravity(android.view.Gravity.CENTER_HORIZONTAL);
+
+            // CardView chứa ảnh
+            CardView cardView = new CardView(TrangchuActivity.this);
+            cardView.setRadius(cardRadius);
+            cardView.setCardElevation(8f);
+            cardView.setUseCompatPadding(true);
+            LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
+                    cardWidth,
+                    cardHeight
+            );
+            cardView.setLayoutParams(cardParams);
+
+            ImageView imageView = new ImageView(TrangchuActivity.this);
+            imageView.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT
+            ));
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            if (event.getThumbnail() != null && event.getThumbnail().startsWith("http")) {
+                if (!TrangchuActivity.this.isFinishing() && !TrangchuActivity.this.isDestroyed()) {
+                    Glide.with(TrangchuActivity.this)
+                            .load(event.getThumbnail())
+                            .placeholder(R.drawable.default_dcb)
+                            .into(imageView);
+                }
+            } else {
+                imageView.setImageResource(R.drawable.default_dcb);
+            }
+            cardView.addView(imageView);
+            eventLayout.addView(cardView);
+
+            // Tên sự kiện
+            TextView titleView = new TextView(TrangchuActivity.this);
+            titleView.setText(event.getTitle());
+            titleView.setMaxLines(2);
+            titleView.setEllipsize(android.text.TextUtils.TruncateAt.END);
+            titleView.setTextColor(android.graphics.Color.BLACK);
+            titleView.setTextSize(14);
+            titleView.setGravity(android.view.Gravity.START);
+            if (montserrat != null)
+                titleView.setTypeface(montserrat, Typeface.BOLD);
+            titleView.setPadding((int) getResources().getDimension(R.dimen.dcb_text_padding_left), 0, 0, 0);
+            eventLayout.addView(titleView);
+
+            // Giá sự kiện
+            TextView priceView = new TextView(TrangchuActivity.this);
+            double price = event.getPrice();
+            final String priceColor;
+            if (price > 0) {
+                priceView.setText("Từ " + nf.format(price) + " VND");
+                priceColor = "#1C9CCA";
+                priceView.setTextColor(Color.parseColor(priceColor));
+            } else {
+                priceView.setText("Miễn phí");
+                priceColor = "#43A047";
+                priceView.setTextColor(Color.parseColor(priceColor));
+            }
+            priceView.setTextSize(14);
+            priceView.setGravity(android.view.Gravity.START);
+            if (montserrat != null)
+                priceView.setTypeface(montserrat, Typeface.BOLD);
+            priceView.setPadding((int) getResources().getDimension(R.dimen.dcb_text_padding_left), 0, 0, 0);
+            eventLayout.addView(priceView);
+
+            // Line dưới giá
+            priceView.post(() -> {
+                Paint paint = new Paint();
+                paint.setTextSize(priceView.getTextSize());
+                paint.setTypeface(priceView.getTypeface());
+                float textWidth = paint.measureText(priceView.getText().toString());
+
+                View line = new View(TrangchuActivity.this);
+                LinearLayout.LayoutParams lineParams = new LinearLayout.LayoutParams(
+                        (int) textWidth,
+                        (int) getResources().getDimension(R.dimen.dcb_line_height)
+                );
+                lineParams.gravity = Gravity.START;
+                lineParams.setMargins(
+                        (int) getResources().getDimension(R.dimen.dcb_text_padding_left), // left margin
+                        0,  // top
+                        0,  // right
+                        1   // bottom
+                );
+                line.setLayoutParams(lineParams);
+                line.setBackgroundColor(Color.parseColor(priceColor));
+
+                eventLayout.addView(line, eventLayout.indexOfChild(priceView) + 1);
+            });
+
+            // Click mở chi tiết
+            cardView.setOnClickListener(v -> {
+                Intent intent = new Intent(TrangchuActivity.this, ChitietsukienActivity.class);
+                intent.putExtra("event_json", gson.toJson(event));
+                startActivity(intent);
+            });
+
+            linearLayoutDcb.addView(eventLayout);
+        }
+
+        // Nếu không có sự kiện nào phù hợp
+        if (forYouList.isEmpty()) {
+            TextView warningView = createWarningView("Không có sự kiện phù hợp cho bạn");
+            linearLayoutDcb.addView(warningView);
+        }
     }
 
     private TextView createWarningView(String message) {
@@ -538,6 +614,23 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
         });
 
         binding.imgSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrangchuActivity.this, ChatbotActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Add click listeners for chat icon and edit text
+        binding.chatIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TrangchuActivity.this, ChatbotActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.edtChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TrangchuActivity.this, ChatbotActivity.class);

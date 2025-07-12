@@ -4,10 +4,10 @@
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:padding="15dp"
     android:id="@+id/main"
     android:layout_margin="20dp"
-    android:background="@drawable/bg_popup_menusk">
+    android:background="@drawable/white_card_bg">
 
     <!-- Header -->
     <TextView

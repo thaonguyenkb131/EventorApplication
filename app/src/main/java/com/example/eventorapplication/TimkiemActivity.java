@@ -225,11 +225,41 @@ public class TimkiemActivity extends BaseActivity<ActivityTimkiemBinding> {
                 @Override
                 public void onFilterApplied(BolocDialog.FilterData filterData) {
                     currentFilter = filterData;
+                    updateFilterIcon();
+                    updateCalendarIcon();
                 }
             });
             dialog.setCurrentFilter(currentFilter);
             dialog.show(getSupportFragmentManager(), "BolocDialog");
         });
+        
+        // Cập nhật icon ban đầu
+        updateFilterIcon();
+        updateCalendarIcon();
+    }
+    
+    private void updateFilterIcon() {
+        // Kiểm tra xem có bộ lọc filter nào được áp dụng không (không bao gồm date)
+        boolean hasFilter = !currentFilter.selectedCategories.isEmpty() || 
+                           !currentFilter.selectedLocations.isEmpty() || 
+                           currentFilter.isFreeOnly;
+        
+        if (hasFilter) {
+            binding.imgFilter.setImageResource(R.drawable.icboloc_filled);
+        } else {
+            binding.imgFilter.setImageResource(R.drawable.ic_filter);
+        }
+    }
+    
+    private void updateCalendarIcon() {
+        // Kiểm tra xem có bộ lọc ngày nào được áp dụng không
+        boolean hasDateFilter = (currentFilter.fromDate != null && currentFilter.toDate != null);
+        
+        if (hasDateFilter) {
+            binding.imgCalendar.setImageResource(R.drawable.icbolocdate_filled);
+        } else {
+            binding.imgCalendar.setImageResource(R.drawable.ic_calendar);
+        }
     }
 
     // Xử lý click vào danh mục
@@ -345,6 +375,8 @@ public class TimkiemActivity extends BaseActivity<ActivityTimkiemBinding> {
                                 java.util.Calendar cal2 = java.util.Calendar.getInstance();
                                 cal2.set(year2, month2, dayOfMonth2);
                                 currentFilter.toDate = sdf.format(cal2.getTime());
+                                updateFilterIcon(); // Cập nhật icon sau khi chọn ngày
+                                updateCalendarIcon(); // Cập nhật icon calendar sau khi chọn ngày
                             },
                             toDate.get(Calendar.YEAR),
                             toDate.get(Calendar.MONTH),

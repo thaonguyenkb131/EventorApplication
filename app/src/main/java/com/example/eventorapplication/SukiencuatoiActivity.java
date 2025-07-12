@@ -14,10 +14,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivitySukiencuatoiBinding;
+import com.example.eventorapplication.utils.DataManager;
 
 public class SukiencuatoiActivity extends BaseActivity<ActivitySukiencuatoiBinding> {
 
-
+    private long lastClickTime = 0;
+    private static final long DOUBLE_CLICK_TIME_DELTA = 300; // 300ms
 
     @Override
     protected ActivitySukiencuatoiBinding inflateBinding() {
@@ -71,20 +73,44 @@ public class SukiencuatoiActivity extends BaseActivity<ActivitySukiencuatoiBindi
         loadFragment(new SukiendaluuFragment());
         updateButtonStates(0);
 
-        // Xử lý click từng nút
+        // Xử lý click từng nút với double-click để reload
         binding.btnSkdaluu.setOnClickListener(v -> {
-            loadFragment(new SukiendaluuFragment());
-            updateButtonStates(0);
+            long clickTime = System.currentTimeMillis();
+            if (clickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA) {
+                // Double click - reload data
+                dataManager.removeData(DataManager.KEY_SAVED_EVENTS);
+                loadFragmentWithDelay(new SukiendaluuFragment(), 0);
+            } else {
+                // Single click - load fragment normally
+                loadFragmentWithDelay(new SukiendaluuFragment(), 0);
+            }
+            lastClickTime = clickTime;
         });
 
         binding.btnVedamua.setOnClickListener(v -> {
-            loadFragment(new VedamuaFragment());
-            updateButtonStates(1);
+            long clickTime = System.currentTimeMillis();
+            if (clickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA) {
+                // Double click - reload data
+                dataManager.removeData(DataManager.KEY_MY_TICKETS);
+                loadFragmentWithDelay(new VedamuaFragment(), 1);
+            } else {
+                // Single click - load fragment normally
+                loadFragmentWithDelay(new VedamuaFragment(), 1);
+            }
+            lastClickTime = clickTime;
         });
 
         binding.btnSkdadang.setOnClickListener(v -> {
-            loadFragment(new SukiendadangFragment());
-            updateButtonStates(2);
+            long clickTime = System.currentTimeMillis();
+            if (clickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA) {
+                // Double click - reload data
+                dataManager.removeData(DataManager.KEY_POSTED_EVENTS);
+                loadFragmentWithDelay(new SukiendadangFragment(), 2);
+            } else {
+                // Single click - load fragment normally
+                loadFragmentWithDelay(new SukiendadangFragment(), 2);
+            }
+            lastClickTime = clickTime;
         });
 
     }
@@ -94,6 +120,16 @@ public class SukiencuatoiActivity extends BaseActivity<ActivitySukiencuatoiBindi
                 .beginTransaction()
                 .replace(R.id.container, fragment)
                 .commit();
+    }
+    
+    private void loadFragmentWithDelay(Fragment fragment, int buttonIndex) {
+        // Load fragment trước
+        loadFragment(fragment);
+        
+        // Delay một chút để fragment load xong rồi mới cập nhật button state
+        new android.os.Handler().postDelayed(() -> {
+            updateButtonStates(buttonIndex);
+        }, 100); // Delay 100ms
     }
 
     private void updateButtonStates(int selected) {

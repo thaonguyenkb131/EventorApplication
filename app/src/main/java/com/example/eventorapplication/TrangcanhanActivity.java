@@ -50,6 +50,9 @@
             binding = ActivityTrangcanhanBinding.inflate(getLayoutInflater());
             setContentView(binding.getRoot());
 
+            View mainLayout = findViewById(R.id.main);
+            mainLayout.setVisibility(View.GONE);
+
             //        Tránh che màn hình
 
             View rootView = findViewById(R.id.main); // ConstraintLayout có id="main"
@@ -123,14 +126,14 @@
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
-                            String firstname = snapshot.child("name").getValue(String.class);
-                            String lastname = snapshot.child("lastname").getValue(String.class);
-                            String email = snapshot.child("email").getValue(String.class);
+                            String firstname = snapshot.child("Name").getValue(String.class);
+                            String lastname = snapshot.child("Lastname").getValue(String.class);
+                            String email = snapshot.child("Email").getValue(String.class);
                             String fullName = (lastname != null ? lastname : "") + " " + (firstname != null ? firstname : "");
                             ((TextView) findViewById(R.id.txtName)).setText(fullName.trim());
                             String city = snapshot.child("City").getValue(String.class);
                             if (city == null || city.isEmpty()) {
-                                city = "Not found";
+                                city = "Hồ Chí Minh";
                             }
                             String avatarUrl = snapshot.child("avatarUrl").getValue(String.class);
                             String coverUrl = snapshot.child("coverUrl").getValue(String.class);
@@ -199,11 +202,13 @@
                         plusTag.setOnClickListener(v -> {
                             showDialogLinhVucQuanTam(userId); // Gọi lại hàm hiển thị dialog
                         });
+                        mainLayout.setVisibility(View.VISIBLE); // Hiện layout sau khi đã load xong dữ liệu
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                         Toast.makeText(TrangcanhanActivity.this, "Không thể tải dữ liệu", Toast.LENGTH_SHORT).show();
+                        mainLayout.setVisibility(View.VISIBLE); // Hiện layout kể cả khi lỗi để tránh bị ẩn vĩnh viễn
                     }
                 });
             }

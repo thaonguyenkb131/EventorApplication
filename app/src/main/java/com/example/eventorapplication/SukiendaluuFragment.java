@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 
 import com.example.adapters.ThesukienAdapter;
 import com.example.eventorapplication.databinding.FragmentSukiendaluuBinding;
+import com.example.eventorapplication.utils.DataManager;
 import com.example.models.Thesukien;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,6 +40,7 @@ public class SukiendaluuFragment extends Fragment {
     private String mParam2;
 
     private FragmentSukiendaluuBinding binding;
+    private DataManager dataManager = DataManager.getInstance();
 
     public SukiendaluuFragment() {
         // Required empty public constructor
@@ -80,28 +82,12 @@ public class SukiendaluuFragment extends Fragment {
         ThesukienAdapter adapter = new ThesukienAdapter(requireContext(), items);
         binding.gvSkdl.setAdapter(adapter);
 
-        binding.progressBar.setVisibility(View.VISIBLE);
-        // Đọc dữ liệu từ Realtime Database
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("savedevents");
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                items.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Thesukien item = snapshot.getValue(Thesukien.class);
-                    items.add(item);
-                    android.util.Log.d("FIREBASE_EVENT", "Loaded: " + item.getTitle());
-                }
-                adapter.notifyDataSetChanged();
-                binding.progressBar.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                android.util.Log.e("FIREBASE_EVENT", "Error: ", error.toException());
-                binding.progressBar.setVisibility(View.GONE);
-            }
-        });
+        // Kiểm tra cache trước khi load
+        if (dataManager.getData(DataManager.KEY_SAVED_EVENTS) == null) {
+            loadSavedEvents(items, adapter);
+        } else {
+            displayCachedSavedEvents(items, adapter);
+        }
 
         binding.gvSkdl.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -114,6 +100,51 @@ public class SukiendaluuFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+    
+    private void loadSavedEvents(List<Thesukien> items, ThesukienAdapter adapter) {
+        binding.progressBar.setVisibility(View.VISIBLE);
+        // Đọc dữ liệu từ Realtime Database
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("savedevents");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Thesukien> savedList = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Thesukien item = snapshot.getValue(Thesukien.class);
+                    if (item != null) {
+                        savedList.add(item);
+                        android.util.Log.d("FIREBASE_EVENT", "Loaded: " + item.getTitle());
+                    }
+                }
+                
+                // Lưu vào cache
+                dataManager.putData(DataManager.KEY_SAVED_EVENTS, savedList);
+                
+                displaySavedEvents(items, adapter, savedList);
+                binding.progressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                android.util.Log.e("FIREBASE_EVENT", "Error: ", error.toException());
+                binding.progressBar.setVisibility(View.GONE);
+            }
+        });
+    }
+    
+    private void displayCachedSavedEvents(List<Thesukien> items, ThesukienAdapter adapter) {
+        ArrayList<Thesukien> savedList = (ArrayList<Thesukien>) dataManager.getData(DataManager.KEY_SAVED_EVENTS);
+        if (savedList != null) {
+            displaySavedEvents(items, adapter, savedList);
+            binding.progressBar.setVisibility(View.GONE);
+        }
+    }
+    
+    private void displaySavedEvents(List<Thesukien> items, ThesukienAdapter adapter, ArrayList<Thesukien> savedList) {
+        items.clear();
+        items.addAll(savedList);
+        adapter.notifyDataSetChanged();
     }
 
     @Override

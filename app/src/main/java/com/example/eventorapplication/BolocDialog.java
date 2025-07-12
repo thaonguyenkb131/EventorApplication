@@ -76,7 +76,7 @@ public class BolocDialog extends DialogFragment {
                 }
             }
             // Set lại checkbox địa điểm
-            binding.checkboxTPHCM.setChecked(currentFilter.selectedLocations.contains("TP.Hồ Chí Minh"));
+            binding.checkboxTPHCM.setChecked(currentFilter.selectedLocations.contains("Hồ Chí Minh"));
             binding.checkboxHaNoi.setChecked(currentFilter.selectedLocations.contains("Hà Nội"));
             binding.checkboxDaLat.setChecked(currentFilter.selectedLocations.contains("Đà Nẵng"));
             binding.checkboxKhac.setChecked(currentFilter.selectedLocations.contains("Khác"));
@@ -232,6 +232,12 @@ public class BolocDialog extends DialogFragment {
         
         // Thu thập thông tin miễn phí
         filterData.isFreeOnly = binding.swMienphi.isChecked();
+        
+        // Giữ nguyên thông tin ngày từ filter hiện tại
+        if (currentFilter != null) {
+            filterData.fromDate = currentFilter.fromDate;
+            filterData.toDate = currentFilter.toDate;
+        }
         
         return filterData;
     }

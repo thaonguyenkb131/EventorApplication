@@ -513,8 +513,9 @@
                     android:layout_marginTop="4dp"/>
             </LinearLayout>
 
-            <!--            Cách hạng mục vé-->
+            <!--            Các hạng mục vé-->
             <LinearLayout
+                android:id="@+id/cardHangmucve"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -523,92 +524,25 @@
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/white_card_bg"
                 android:elevation="4dp"
-                android:padding="16dp"
                 android:layout_gravity="center_horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Các hạng mục vé"
+                    android:layout_margin="16dp"
                     android:textColor="#006183"
                     android:textSize="16sp"
                     android:fontFamily="@font/montserrat_bold"
                     android:layout_marginBottom="12dp" />
 
-                <LinearLayout
+                <!-- RecyclerView cho danh sách hạng vé -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvTicketCategories"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="6dp"
-                    android:paddingBottom="6dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="HOÀNG HÔN"
-                        android:textColor="#000000"
-                        android:fontFamily="@font/montserrat_semibold"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1.500.000 VND"
-                        android:textColor="#006183"
-                        android:textSize="14sp"
-                        android:fontFamily="@font/montserrat_bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="6dp"
-                    android:paddingBottom="6dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="CHIỀU TÀ"
-                        android:textColor="#000000"
-                        android:fontFamily="@font/montserrat_semibold"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1.300.000 VND"
-                        android:textColor="#006183"
-                        android:textSize="14sp"
-                        android:fontFamily="@font/montserrat_bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingTop="6dp"
-                    android:paddingBottom="6dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="CHẠNG VẠNG"
-                        android:textColor="#000000"
-                        android:fontFamily="@font/montserrat_semibold"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1.000.000 VND"
-                        android:textColor="#006183"
-                        android:textSize="14sp"
-                        android:fontFamily="@font/montserrat_bold" />
-                </LinearLayout>
+                    android:layout_marginBottom="16dp"
+                    android:nestedScrollingEnabled="false" />
 
                 <!-- Nút thêm vé -->
                 <com.google.android.material.button.MaterialButton
@@ -616,7 +550,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Thêm hạng mục vé"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:textColor="@android:color/white"
                     android:fontFamily="@font/montserrat_semibold"
                     android:textSize="13sp"

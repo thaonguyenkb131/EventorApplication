@@ -61,7 +61,7 @@
                         android:id="@+id/checkboxTPHCM"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
-                        android:text="TP Hồ Chí Minh"
+                        android:text="Hồ Chí Minh"
                         android:textSize="14sp"
                         android:fontFamily="@font/montserrat_regular"
                         android:textColor="@color/black"/>

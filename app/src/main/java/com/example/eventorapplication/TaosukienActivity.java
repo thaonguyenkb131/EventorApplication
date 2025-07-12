@@ -19,6 +19,7 @@ import android.view.Window;
 import android.view.WindowInsetsController;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.adapters.TicketCategoryEditAdapter;
 import com.example.eventorapplication.base.BaseActivity;
 import com.example.eventorapplication.databinding.ActivityTaosukienBinding;
 import com.example.models.Thesukien;
@@ -36,8 +38,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.gson.Gson;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
 
@@ -48,6 +54,8 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
     private Uri selectedImageUri = null;
     private String uploadedImageUrl = "";
     private Thesukien lastCreatedEvent; // Lưu sự kiện vừa tạo
+    private List<Thesukien.TicketCategory> ticketCategories;
+    private TicketCategoryEditAdapter ticketAdapter;
 
     @Override
     protected ActivityTaosukienBinding inflateBinding() {
@@ -152,6 +160,22 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
                 R.array.event_categories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategory.setAdapter(adapter);
+
+        // Khởi tạo danh sách hạng vé
+        ticketCategories = new ArrayList<>();
+        
+        // Khởi tạo RecyclerView cho hạng vé
+        RecyclerView rcvTicketCategories = findViewById(R.id.rcvTicketCategories);
+        rcvTicketCategories.setLayoutManager(new LinearLayoutManager(this));
+        ticketAdapter = new TicketCategoryEditAdapter(ticketCategories, position -> {
+            // Xóa hạng vé khi nhấn nút xóa
+            ticketCategories.remove(position);
+            ticketAdapter.updateData(ticketCategories);
+        });
+        rcvTicketCategories.setAdapter(ticketAdapter);
+
+        // Xử lý nút thêm hạng vé
+        binding.btnThemHangVe.setOnClickListener(v -> showAddTicketDialog());
 
         binding.btnDangSukien.setOnClickListener(view -> {
             boolean isValid = true;
@@ -261,6 +285,12 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
 
             if (!isValid) return;
 
+            // Lấy thông tin người dùng đang đăng nhập để set làm organizer
+            SharedPreferences userPrefs = getSharedPreferences("user_prefs", MODE_PRIVATE);
+            String userName = userPrefs.getString("userName", "");
+            String userLastname = userPrefs.getString("userLastname", "");
+            String organizerName = (userLastname + " " + userName).trim();
+            
             // Tạo đối tượng Thesukien
             Thesukien event = new Thesukien();
             event.setTitle(title);
@@ -277,6 +307,7 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
             event.setCategory(category);
             event.setSoldTicket(0);
             event.setRemainingTicket(0);
+            event.setOrganizer(organizerName); // Tự động set organizer là tên người dùng đang đăng nhập
             // Tạo detailtime
             String detailtime;
             if (dateStart.equals(dateEnd)) {
@@ -293,6 +324,9 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
                 event.setDetailAddress("Online");
                 event.setLocation("Online");
             }
+            // Thêm danh sách hạng vé vào sự kiện
+            event.setTicketCategories(ticketCategories);
+            
             // TODO: set thêm các trường khác nếu cần
             lastCreatedEvent = event; // Lưu lại sự kiện vừa tạo
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("postedevents");
@@ -461,6 +495,65 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
         popupTaianh.setBackgroundDrawable(getDrawable(android.R.color.transparent));
 
         popupTaianh.showAsDropDown(anchorView, 0, 16);
+    }
+
+    private void showAddTicketDialog() {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_add_ticket_category);
+        dialog.setCancelable(true);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        Window window = dialog.getWindow();
+        if (window != null) {
+            window.setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            int padding = (int) getResources().getDisplayMetrics().density * 24;
+            window.getDecorView().setPadding(padding, padding, padding, padding);
+            window.setGravity(Gravity.CENTER);
+        }
+
+        EditText edtTicketName = dialog.findViewById(R.id.edtTicketName);
+        EditText edtTicketPrice = dialog.findViewById(R.id.edtTicketPrice);
+        Button btnCancel = dialog.findViewById(R.id.btnCancel);
+        Button btnAdd = dialog.findViewById(R.id.btnAdd);
+
+        btnCancel.setOnClickListener(v -> dialog.dismiss());
+
+        btnAdd.setOnClickListener(v -> {
+            String ticketName = edtTicketName.getText().toString().trim();
+            String priceStr = edtTicketPrice.getText().toString().trim();
+
+            if (ticketName.isEmpty()) {
+                edtTicketName.setError("Vui lòng nhập tên hạng vé");
+                return;
+            }
+
+            if (priceStr.isEmpty()) {
+                edtTicketPrice.setError("Vui lòng nhập giá vé");
+                return;
+            }
+
+            double price;
+            try {
+                price = Double.parseDouble(priceStr);
+            } catch (NumberFormatException e) {
+                edtTicketPrice.setError("Giá vé không hợp lệ");
+                return;
+            }
+
+            // Tạo hạng vé mới
+            Thesukien.TicketCategory newTicket = new Thesukien.TicketCategory();
+            newTicket.setName(ticketName);
+            newTicket.setPrice(price);
+
+            // Thêm vào danh sách
+            ticketCategories.add(newTicket);
+            ticketAdapter.updateData(ticketCategories);
+
+            dialog.dismiss();
+            Toast.makeText(this, "Đã thêm hạng vé: " + ticketName, Toast.LENGTH_SHORT).show();
+        });
+
+        dialog.show();
     }
 
     @Override

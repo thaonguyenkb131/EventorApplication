@@ -16,6 +16,7 @@ import com.example.eventorapplication.TkdadangnhapActivity;
 import com.example.eventorapplication.TaosukienActivity;
 import com.example.eventorapplication.TrangthongbaoActivity;
 import com.example.eventorapplication.R;
+import com.example.eventorapplication.utils.DataManager;
 
 public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActivity {
 
@@ -23,6 +24,9 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
     private View footerView;
     private int lastScrollY = 0;
     private boolean isFooterVisible = true;
+    protected DataManager dataManager = DataManager.getInstance();
+    private long lastClickTime = 0;
+    private static final long DOUBLE_CLICK_TIME_DELTA = 300; // 300ms
 
     protected abstract VB inflateBinding();
     protected abstract String getActiveFooterId();
@@ -45,24 +49,29 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
 
         if (homepage != null) {
             homepage.setOnClickListener(v -> {
-                // Nếu đang ở trang chủ thì reload, nếu không thì chuyển trang
-                if (this instanceof TrangchuActivity) {
-                    // Reload trang chủ
+                long clickTime = System.currentTimeMillis();
+                if (clickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA) {
+                    // Double click - reload data
+                    dataManager.removeData(DataManager.KEY_OUTSTANDING_EVENTS);
+                    dataManager.removeData(DataManager.KEY_TRENDING_EVENTS);
+                    dataManager.removeData(DataManager.KEY_FOR_YOU_EVENTS);
                     Intent intent = new Intent(this, TrangchuActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
                 } else {
-                    // Chuyển đến trang chủ
-                    startActivity(new Intent(this, TrangchuActivity.class));
-                    finish();
+                    // Single click - navigate without reload
+                    if (!(this instanceof TrangchuActivity)) {
+                        startActivity(new Intent(this, TrangchuActivity.class));
+                        finish();
+                    }
                 }
+                lastClickTime = clickTime;
             });
         }
 
         if (taosukien != null) {
             taosukien.setOnClickListener(v -> {
-                // Nếu đang ở trang tạo sự kiện thì không làm gì, nếu không thì chuyển trang
                 if (!(this instanceof TaosukienActivity)) {
                     startActivity(new Intent(this, TaosukienActivity.class));
                     finish();
@@ -72,27 +81,48 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
 
         if (thongbao != null) {
             thongbao.setOnClickListener(v -> {
-                // Nếu đang ở trang thông báo thì không làm gì, nếu không thì chuyển trang
-                if (!(this instanceof TrangthongbaoActivity)) {
-                    startActivity(new Intent(this, TrangthongbaoActivity.class));
+                long clickTime = System.currentTimeMillis();
+                if (clickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA) {
+                    // Double click - reload data
+                    dataManager.removeData(DataManager.KEY_NOTIFICATIONS);
+                    Intent intent = new Intent(this, TrangthongbaoActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                     finish();
+                } else {
+                    // Single click - navigate without reload
+                    if (!(this instanceof TrangthongbaoActivity)) {
+                        startActivity(new Intent(this, TrangthongbaoActivity.class));
+                        finish();
+                    }
                 }
+                lastClickTime = clickTime;
             });
         }
 
         if (sukiencuatoi != null) {
             sukiencuatoi.setOnClickListener(v -> {
-                // Nếu đang ở trang sự kiện của tôi thì không làm gì, nếu không thì chuyển trang
-                if (!(this instanceof SukiencuatoiActivity)) {
-                    startActivity(new Intent(this, SukiencuatoiActivity.class));
+                long clickTime = System.currentTimeMillis();
+                if (clickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA) {
+                    // Double click - reload data
+                    dataManager.removeData(DataManager.KEY_MY_EVENTS);
+                    Intent intent = new Intent(this, SukiencuatoiActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                     finish();
+                } else {
+                    // Single click - navigate without reload
+                    if (!(this instanceof SukiencuatoiActivity)) {
+                        startActivity(new Intent(this, SukiencuatoiActivity.class));
+                        finish();
+                    }
                 }
+                lastClickTime = clickTime;
             });
         }
         
         if(taikhoan != null) {
             taikhoan.setOnClickListener(v -> {
-                // Nếu đang ở trang tài khoản thì không làm gì, nếu không thì chuyển trang
                 if (!(this instanceof TkdadangnhapActivity)) {
                     startActivity(new Intent(this, TkdadangnhapActivity.class));
                     finish();

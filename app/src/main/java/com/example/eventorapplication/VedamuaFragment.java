@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 
 import com.example.adapters.ThesukienAdapter;
 import com.example.eventorapplication.databinding.FragmentVedamuaBinding;
+import com.example.eventorapplication.utils.DataManager;
 import com.example.models.Thesukien;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,6 +40,7 @@ public class VedamuaFragment extends Fragment {
     private String mParam2;
 
     private FragmentVedamuaBinding binding;
+    private DataManager dataManager = DataManager.getInstance();
 
     public VedamuaFragment() {
         // Required empty public constructor
@@ -81,28 +83,12 @@ public class VedamuaFragment extends Fragment {
         ThesukienAdapter adapter = new ThesukienAdapter(requireContext(), items);
         binding.gvVdm.setAdapter(adapter);
 
-        binding.progressBar.setVisibility(View.VISIBLE);
-        // Đọc dữ liệu từ Realtime Database
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("mytickets");
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                items.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Thesukien item = snapshot.getValue(Thesukien.class);
-                    items.add(item);
-                    android.util.Log.d("FIREBASE_EVENT", "Loaded: " + item.getTitle());
-                }
-                adapter.notifyDataSetChanged();
-                binding.progressBar.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                android.util.Log.e("FIREBASE_EVENT", "Error: ", error.toException());
-                binding.progressBar.setVisibility(View.GONE);
-            }
-        });
+        // Kiểm tra cache trước khi load
+        if (dataManager.getData(DataManager.KEY_MY_TICKETS) == null) {
+            loadMyTickets(items, adapter);
+        } else {
+            displayCachedMyTickets(items, adapter);
+        }
 
         binding.gvVdm.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -115,6 +101,51 @@ public class VedamuaFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+    
+    private void loadMyTickets(List<Thesukien> items, ThesukienAdapter adapter) {
+        binding.progressBar.setVisibility(View.VISIBLE);
+        // Đọc dữ liệu từ Realtime Database
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("mytickets");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ArrayList<Thesukien> ticketsList = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Thesukien item = snapshot.getValue(Thesukien.class);
+                    if (item != null) {
+                        ticketsList.add(item);
+                        android.util.Log.d("FIREBASE_EVENT", "Loaded: " + item.getTitle());
+                    }
+                }
+                
+                // Lưu vào cache
+                dataManager.putData(DataManager.KEY_MY_TICKETS, ticketsList);
+                
+                displayMyTickets(items, adapter, ticketsList);
+                binding.progressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                android.util.Log.e("FIREBASE_EVENT", "Error: ", error.toException());
+                binding.progressBar.setVisibility(View.GONE);
+            }
+        });
+    }
+    
+    private void displayCachedMyTickets(List<Thesukien> items, ThesukienAdapter adapter) {
+        ArrayList<Thesukien> ticketsList = (ArrayList<Thesukien>) dataManager.getData(DataManager.KEY_MY_TICKETS);
+        if (ticketsList != null) {
+            displayMyTickets(items, adapter, ticketsList);
+            binding.progressBar.setVisibility(View.GONE);
+        }
+    }
+    
+    private void displayMyTickets(List<Thesukien> items, ThesukienAdapter adapter, ArrayList<Thesukien> ticketsList) {
+        items.clear();
+        items.addAll(ticketsList);
+        adapter.notifyDataSetChanged();
     }
 
     @Override

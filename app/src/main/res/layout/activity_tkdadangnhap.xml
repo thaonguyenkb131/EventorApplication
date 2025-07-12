@@ -47,7 +47,7 @@
                         android:layout_height="80dp"
                         android:layout_marginEnd="12dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/avatar6"
+                        android:src="@drawable/avatar_ex"
                         android:padding="2dp"/>
 
                     <!-- Tên + Email + Địa chỉ -->

@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 
 import com.example.adapters.SukiendadangAdapter;
 import com.example.eventorapplication.databinding.FragmentSukiendadangBinding;
+import com.example.eventorapplication.utils.DataManager;
 import com.example.models.Thesukien;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,6 +47,7 @@ public class SukiendadangFragment extends Fragment {
     private FragmentSukiendadangBinding binding;
     private SukiendadangAdapter adapter;
     private ArrayList<Thesukien> eventList = new ArrayList<>();
+    private DataManager dataManager = DataManager.getInstance();
 
     public SukiendadangFragment() {
         // Required empty public constructor
@@ -86,27 +88,12 @@ public class SukiendadangFragment extends Fragment {
         adapter = new SukiendadangAdapter(requireContext(), eventList);
         binding.lvSkdd.setAdapter(adapter);
 
-        binding.progressBar.setVisibility(View.VISIBLE);
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("postedevents");
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                eventList.clear();
-                for (DataSnapshot child : snapshot.getChildren()) {
-                    Thesukien event = child.getValue(Thesukien.class);
-                    if (event != null) {
-                        eventList.add(event);
-                    }
-                }
-                adapter.notifyDataSetChanged();
-                binding.progressBar.setVisibility(View.GONE);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Xử lý lỗi nếu cần
-                binding.progressBar.setVisibility(View.GONE);
-            }
-        });
+        // Kiểm tra cache trước khi load
+        if (dataManager.getData(DataManager.KEY_POSTED_EVENTS) == null) {
+            loadPostedEvents();
+        } else {
+            displayCachedPostedEvents();
+        }
 
         binding.lvSkdd.setOnItemClickListener((parent, view, position, id) -> {
             if (position < eventList.size()) {
@@ -119,6 +106,48 @@ public class SukiendadangFragment extends Fragment {
         });
 
         return binding.getRoot();
+    }
+    
+    private void loadPostedEvents() {
+        binding.progressBar.setVisibility(View.VISIBLE);
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("postedevents");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<Thesukien> postedList = new ArrayList<>();
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    Thesukien event = child.getValue(Thesukien.class);
+                    if (event != null) {
+                        postedList.add(event);
+                    }
+                }
+                
+                // Lưu vào cache
+                dataManager.putData(DataManager.KEY_POSTED_EVENTS, postedList);
+                
+                displayPostedEvents(postedList);
+                binding.progressBar.setVisibility(View.GONE);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Xử lý lỗi nếu cần
+                binding.progressBar.setVisibility(View.GONE);
+            }
+        });
+    }
+    
+    private void displayCachedPostedEvents() {
+        ArrayList<Thesukien> postedList = (ArrayList<Thesukien>) dataManager.getData(DataManager.KEY_POSTED_EVENTS);
+        if (postedList != null) {
+            displayPostedEvents(postedList);
+            binding.progressBar.setVisibility(View.GONE);
+        }
+    }
+    
+    private void displayPostedEvents(ArrayList<Thesukien> postedList) {
+        eventList.clear();
+        eventList.addAll(postedList);
+        adapter.notifyDataSetChanged();
     }
 
     @Override

@@ -104,7 +104,7 @@ public class DangkyActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String lastname = binding.edtLastName.getText().toString().trim();
                 String name = binding.edtName.getText().toString().trim();
-                String email = binding.edtEmail.getText().toString().trim();
+                String email = binding.edtEmail.getText().toString().trim().toLowerCase();
                 String phone = binding.edtPhone.getText().toString().trim();
                 String password = binding.edtPassword.getText().toString().trim();
                 String rePassword = binding.edtRePassword.getText().toString().trim();
@@ -119,9 +119,36 @@ public class DangkyActivity extends AppCompatActivity {
                     Toast.makeText(DangkyActivity.this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                     return;
                 }
+// Kiểm tra họ và tên chỉ chứa chữ cái
+                if (!lastname.matches("^[a-zA-ZÀ-ỹ\\s]+$") || !name.matches("^[a-zA-ZÀ-ỹ\\s]+$")) {
+                    Toast.makeText(DangkyActivity.this, "Họ và tên chỉ được chứa chữ cái, không chứa số hoặc ký tự đặc biệt", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
 // Kiểm tra email
                 if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    binding.txtErrorEmail.setText("Email không hợp lệ");
+                    binding.txtErrorEmail.setVisibility(View.VISIBLE);
+                    return;
+                }
+                if (email.contains(" ")) {
+                    binding.txtErrorEmail.setText("Email không hợp lệ");
+                    binding.txtErrorEmail.setVisibility(View.VISIBLE);
+                    return;
+                }
+                if (!email.contains("@") || email.startsWith(".") || email.endsWith(".")) {
+                    binding.txtErrorEmail.setText("Email không hợp lệ");
+                    binding.txtErrorEmail.setVisibility(View.VISIBLE);
+                    return;
+                }
+                String[] parts = email.split("@");
+                if (parts.length != 2 || parts[0].isEmpty() || parts[1].isEmpty()) {
+                    binding.txtErrorEmail.setText("Email không hợp lệ");
+                    binding.txtErrorEmail.setVisibility(View.VISIBLE);
+                    return;
+                }
+                String domain = parts[1];
+                if (!domain.contains(".") || domain.lastIndexOf('.') > domain.length() - 3) {
                     binding.txtErrorEmail.setText("Email không hợp lệ");
                     binding.txtErrorEmail.setVisibility(View.VISIBLE);
                     return;
@@ -136,7 +163,7 @@ public class DangkyActivity extends AppCompatActivity {
 
     // Kiểm tra mật khẩu
                 if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")) {
-                    binding.txtErrorPassword.setText("Mật khẩu phải từ 8 ký tự, có chữ và số, không ký tự đặc biệt");
+                    binding.txtErrorPassword.setText("Mật khẩu phải từ 8 ký tự, có đủ chữ và số, không ký tự đặc biệt");
                     binding.txtErrorPassword.setVisibility(View.VISIBLE);
                     return;
                 }
@@ -148,20 +175,30 @@ public class DangkyActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Kiểm tra trùng email trong Firebase
-                accountRef.orderByChild("Email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+                // Kiểm tra trùng email trong Firebase (so sánh thủ công, không rely vào orderByChild)
+                accountRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
+                        boolean isDuplicate = false;
+                        for (DataSnapshot child : snapshot.getChildren()) {
+                            String dbEmail = "";
+                            if (child.child("email").exists()) {
+                                dbEmail = child.child("email").getValue(String.class);
+                            }
+                            if (dbEmail != null && dbEmail.trim().toLowerCase().equals(email)) {
+                                isDuplicate = true;
+                                break;
+                            }
+                        }
+                        if (isDuplicate) {
                             showEmailExistsDialog();
                             return;
                         } else {
                             String Id = accountRef.push().getKey();
-                            UserModel user = new UserModel(lastname, name, email, phone, password);
+                            UserModel user = new UserModel(lastname, name, email, phone, password); // email đã là dạng thường
                             showDialogOtp(user, Id);
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) { }
                 });
@@ -203,7 +240,7 @@ public class DangkyActivity extends AppCompatActivity {
         Dialog dialog = new Dialog(this);
 
         dialog.setContentView(dialogView);
-        dialog.setCancelable(false); // Không tắt khi bấm ngoài
+        dialog.setCancelable(false);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.getWindow().setLayout(
                 (int) (getResources().getDisplayMetrics().widthPixels * 0.9),

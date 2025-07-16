@@ -396,6 +396,16 @@ public class TimkiemActivity extends BaseActivity<ActivityTimkiemBinding> {
 
     @Override
     protected String getActiveFooterId() {
-        return "Homepage"; // Footer này sẽ được highlight
+        return "Homepage";
+    }
+
+    @Override
+    protected void scrollToTopIfNeeded(String footerId) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
     }
 }

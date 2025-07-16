@@ -17,16 +17,18 @@ public class LauncherActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("onboarding", MODE_PRIVATE);
         boolean isFirstTime = preferences.getBoolean("isFirstTime", true);
 
-        if (isFirstTime) {
-            // Lần đầu mở app → chuyển đến Onboarding
-            Intent intent = new Intent(this, OnboardingActivity.class);
-            startActivity(intent);
-        } else {
-            // Đã từng mở app → chuyển đến Trang chủ
-            Intent intent = new Intent(this, TrangchuActivity.class);
-            startActivity(intent);
-        }
-
-        finish(); // Kết thúc LauncherActivity
+        // if (isFirstTime) {
+        //     // Lần đầu mở app → chuyển đến Onboarding
+        //     Intent intent = new Intent(this, OnboardingActivity.class);
+        //     startActivity(intent);
+        // } else {
+        //     // Đã từng mở app → chuyển đến Trang chủ
+        //     Intent intent = new Intent(this, TrangchuActivity.class);
+        //     startActivity(intent);
+        // }
+        // Luôn luôn chuyển sang OnboardingActivity khi mở app
+        Intent intent = new Intent(this, OnboardingActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

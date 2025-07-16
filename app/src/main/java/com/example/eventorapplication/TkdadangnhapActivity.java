@@ -174,4 +174,21 @@ public class TkdadangnhapActivity extends BaseActivity<ActivityTkdadangnhapBindi
     protected String getActiveFooterId() {
         return "taikhoan"; // Footer này sẽ được highlight
     }
+
+    @Override
+    protected void scrollToTopIfNeeded(String footerId) {
+        if ("taikhoan".equals(footerId)) {
+            android.view.ViewGroup root = findViewById(android.R.id.content);
+            android.widget.ScrollView scrollView = null;
+            if (root != null) {
+                for (int i = 0; i < root.getChildCount(); i++) {
+                    if (root.getChildAt(i) instanceof android.widget.ScrollView) {
+                        scrollView = (android.widget.ScrollView) root.getChildAt(i);
+                        break;
+                    }
+                }
+            }
+            if (scrollView != null) scrollView.smoothScrollTo(0, 0);
+        }
+    }
 }

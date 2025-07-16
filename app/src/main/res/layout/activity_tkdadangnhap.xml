@@ -94,7 +94,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginStart="4dp"
                                 android:fontFamily="@font/montserrat_medium"
-                                android:text="TP. Hồ Chí Minh"
+                                android:text="Hồ Chí Minh"
                                 android:textColor="#FFFFFF"
                                 android:textSize="14sp" />
                         </LinearLayout>

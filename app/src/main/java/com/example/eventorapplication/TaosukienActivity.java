@@ -458,10 +458,46 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
                 }
                 startActivity(intent);
                 dialog.dismiss(); // đóng dialog
+                resetForm(); // Reset form sau khi tạo sự kiện thành công
             }
         });
 
         dialog.show();
+    }
+
+    // Hàm reset toàn bộ form về mặc định
+    private void resetForm() {
+        binding.edtTenSukien.setText("");
+        binding.edtOpen.setText("");
+        binding.edtGiobatdau.setText("");
+        binding.edtStart.setText("");
+        binding.edtGioketthuc.setText("");
+        binding.edtEnd.setText("");
+        binding.edtMoTa.setText("");
+        binding.edtSearch.setText("");
+        binding.edtlinksukien.setText("");
+        binding.spinnerCategory.setSelection(0);
+        binding.rbOnline.setChecked(false);
+        binding.rbOffline.setChecked(false);
+        binding.edtOffline.setVisibility(View.GONE);
+        binding.edtOnline.setVisibility(View.GONE);
+        binding.imgThumbnail.setImageResource(R.drawable.anhthaythe);
+        uploadedImageUrl = "";
+        selectedImageUri = null;
+        // Reset danh sách vé
+        ticketCategories.clear();
+        ticketAdapter.updateData(ticketCategories);
+        // Reset các lỗi
+        binding.errorTenSukien.setVisibility(View.GONE);
+        binding.errorOpen.setVisibility(View.GONE);
+        binding.errorGiobatdau.setVisibility(View.GONE);
+        binding.errorStart.setVisibility(View.GONE);
+        binding.errorGioketthuc.setVisibility(View.GONE);
+        binding.errorEnd.setVisibility(View.GONE);
+        binding.errorCategory.setVisibility(View.GONE);
+        binding.errorLocation.setVisibility(View.GONE);
+        binding.errorLinkSukien.setVisibility(View.GONE);
+        binding.errorMoTa.setVisibility(View.GONE);
     }
 
     private void showPopupMap(View anchorView) {
@@ -559,5 +595,13 @@ public class TaosukienActivity extends BaseActivity<ActivityTaosukienBinding> {
     @Override
     protected String getActiveFooterId() {
         return "taosukien";
+    }
+
+    @Override
+    protected void scrollToTopIfNeeded(String footerId) {
+        if ("taosukien".equals(footerId)) {
+            android.widget.ScrollView scrollView = findViewById(R.id.scrollView);
+            if (scrollView != null) scrollView.smoothScrollTo(0, 0);
+        }
     }
 }

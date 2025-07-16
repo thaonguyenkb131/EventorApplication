@@ -65,11 +65,12 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/avatar6"
+                    android:src="@drawable/avatar_ex"
                     app:layout_constraintBottom_toBottomOf="@+id/imgCover"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.883"
-                    tools:layout_editor_absoluteX="12dp" />
+                    tools:layout_editor_absoluteX="12dp"
+                    tools:ignore="MissingConstraints" />
 
                 <LinearLayout
                     android:id="@+id/btnEditAvatar"

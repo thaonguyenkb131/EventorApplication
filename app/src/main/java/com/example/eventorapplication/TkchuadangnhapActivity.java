@@ -82,6 +82,16 @@ public class TkchuadangnhapActivity extends BaseActivity<ActivityTkchuadangnhapB
 
     @Override
     protected String getActiveFooterId() {
-        return "taikhoan"; // Footer này sẽ được highlight
+        return "taikhoan";
+    }
+
+    @Override
+    protected void scrollToTopIfNeeded(String footerId) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
     }
 }

@@ -30,6 +30,8 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
 
     protected abstract VB inflateBinding();
     protected abstract String getActiveFooterId();
+    // Bổ sung abstract method để các Activity con override scroll lên đầu trang
+    protected abstract void scrollToTopIfNeeded(String footerId);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,21 +52,26 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         if (homepage != null) {
             homepage.setOnClickListener(v -> {
                 long clickTime = System.currentTimeMillis();
-                if (clickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA) {
-                    // Double click - reload data
-                    dataManager.removeData(DataManager.KEY_OUTSTANDING_EVENTS);
-                    dataManager.removeData(DataManager.KEY_TRENDING_EVENTS);
-                    dataManager.removeData(DataManager.KEY_FOR_YOU_EVENTS);
-                    Intent intent = new Intent(this, TrangchuActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    // Single click - navigate without reload
-                    if (!(this instanceof TrangchuActivity)) {
-                        startActivity(new Intent(this, TrangchuActivity.class));
+                if (this instanceof com.example.eventorapplication.TrangchuActivity) {
+                    if (clickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA) {
+                        // Double click - reload data
+                        dataManager.removeData(DataManager.KEY_OUTSTANDING_EVENTS);
+                        dataManager.removeData(DataManager.KEY_TRENDING_EVENTS);
+                        dataManager.removeData(DataManager.KEY_FOR_YOU_EVENTS);
+                        Intent intent = new Intent(this, com.example.eventorapplication.TrangchuActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        intent.putExtra("force_reload", true);
+                        startActivity(intent);
+                        overridePendingTransition(0, 0);
                         finish();
+                    } else {
+                        // Single click - scroll to top
+                        scrollToTopIfNeeded("Homepage");
                     }
+                } else {
+                    // Chuyển trang
+                    startActivity(new Intent(this, com.example.eventorapplication.TrangchuActivity.class));
+                    finish();
                 }
                 lastClickTime = clickTime;
             });
@@ -72,29 +79,40 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
 
         if (taosukien != null) {
             taosukien.setOnClickListener(v -> {
-                if (!(this instanceof TaosukienActivity)) {
-                    startActivity(new Intent(this, TaosukienActivity.class));
+                long clickTime = System.currentTimeMillis();
+                if (this instanceof com.example.eventorapplication.TaosukienActivity) {
+                    if (clickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA) {
+                        Intent intent = new Intent(this, com.example.eventorapplication.TaosukienActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        scrollToTopIfNeeded("taosukien");
+                    }
+                } else {
+                    startActivity(new Intent(this, com.example.eventorapplication.TaosukienActivity.class));
                     finish();
                 }
+                lastClickTime = clickTime;
             });
         }
 
         if (thongbao != null) {
             thongbao.setOnClickListener(v -> {
                 long clickTime = System.currentTimeMillis();
-                if (clickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA) {
-                    // Double click - reload data
-                    dataManager.removeData(DataManager.KEY_NOTIFICATIONS);
-                    Intent intent = new Intent(this, TrangthongbaoActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    // Single click - navigate without reload
-                    if (!(this instanceof TrangthongbaoActivity)) {
-                        startActivity(new Intent(this, TrangthongbaoActivity.class));
+                if (this instanceof com.example.eventorapplication.TrangthongbaoActivity) {
+                    if (clickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA) {
+                        dataManager.removeData(DataManager.KEY_NOTIFICATIONS);
+                        Intent intent = new Intent(this, com.example.eventorapplication.TrangthongbaoActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         finish();
+                    } else {
+                        scrollToTopIfNeeded("thongbao");
                     }
+                } else {
+                    startActivity(new Intent(this, com.example.eventorapplication.TrangthongbaoActivity.class));
+                    finish();
                 }
                 lastClickTime = clickTime;
             });
@@ -103,19 +121,19 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         if (sukiencuatoi != null) {
             sukiencuatoi.setOnClickListener(v -> {
                 long clickTime = System.currentTimeMillis();
-                if (clickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA) {
-                    // Double click - reload data
-                    dataManager.removeData(DataManager.KEY_MY_EVENTS);
-                    Intent intent = new Intent(this, SukiencuatoiActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    // Single click - navigate without reload
-                    if (!(this instanceof SukiencuatoiActivity)) {
-                        startActivity(new Intent(this, SukiencuatoiActivity.class));
+                if (this instanceof com.example.eventorapplication.SukiencuatoiActivity) {
+                    if (clickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA) {
+                        dataManager.removeData(DataManager.KEY_MY_EVENTS);
+                        Intent intent = new Intent(this, com.example.eventorapplication.SukiencuatoiActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                         finish();
+                    } else {
+                        scrollToTopIfNeeded("Sukiencuatoi");
                     }
+                } else {
+                    startActivity(new Intent(this, com.example.eventorapplication.SukiencuatoiActivity.class));
+                    finish();
                 }
                 lastClickTime = clickTime;
             });
@@ -123,10 +141,21 @@ public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActi
         
         if(taikhoan != null) {
             taikhoan.setOnClickListener(v -> {
-                if (!(this instanceof TkdadangnhapActivity)) {
-                    startActivity(new Intent(this, TkdadangnhapActivity.class));
+                long clickTime = System.currentTimeMillis();
+                if (this instanceof com.example.eventorapplication.TkdadangnhapActivity) {
+                    if (clickTime - lastClickTime < DOUBLE_CLICK_TIME_DELTA) {
+                        Intent intent = new Intent(this, com.example.eventorapplication.TkdadangnhapActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        scrollToTopIfNeeded("taikhoan");
+                    }
+                } else {
+                    startActivity(new Intent(this, com.example.eventorapplication.TkdadangnhapActivity.class));
                     finish();
                 }
+                lastClickTime = clickTime;
             });
         }
     }

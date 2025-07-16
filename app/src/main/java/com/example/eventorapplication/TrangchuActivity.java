@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -43,6 +44,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Collections;
 
 import androidx.cardview.widget.CardView;
 import android.view.ViewGroup.LayoutParams;
@@ -59,6 +61,8 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
             R.drawable.banner3
     };
 
+    private ProgressBar progressBarForYou;
+
     @Override
     protected ActivityTrangchuBinding inflateBinding() {
         return ActivityTrangchuBinding.inflate(getLayoutInflater());
@@ -67,6 +71,13 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        boolean forceReload = getIntent().getBooleanExtra("force_reload", false);
+        if (forceReload) {
+            dataManager.removeData(DataManager.KEY_OUTSTANDING_EVENTS);
+            dataManager.removeData(DataManager.KEY_TRENDING_EVENTS);
+            dataManager.removeData(DataManager.KEY_FOR_YOU_EVENTS);
+        }
 
         setupBannerSlider();
         setupDots();
@@ -131,6 +142,33 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
                 Log.w("FCM_TOKEN", "Lấy token thất bại", task.getException());
             }
         });
+
+        // Chỉ gán sự kiện scroll to top cho icon homepage ở footer
+        View homepage = findViewById(R.id.Homepage);
+        if (homepage != null) {
+            final long[] lastClickTime = {0};
+            homepage.setOnClickListener(v -> {
+                long now = System.currentTimeMillis();
+                android.widget.ScrollView scrollView = findViewById(R.id.ScrollContent);
+                if (scrollView != null) {
+                    scrollView.smoothScrollTo(0, 0);
+                }
+                if (now - lastClickTime[0] < 800) { 
+                    // Xóa cache và reload lại activity
+                    dataManager.removeData(DataManager.KEY_OUTSTANDING_EVENTS);
+                    dataManager.removeData(DataManager.KEY_TRENDING_EVENTS);
+                    dataManager.removeData(DataManager.KEY_FOR_YOU_EVENTS);
+                    Intent intent = getIntent();
+                    intent.putExtra("force_reload", true);
+                    finish();
+                    startActivity(intent);
+                }
+                lastClickTime[0] = now;
+            });
+        }
+
+        progressBarForYou = findViewById(R.id.progressBarForYou);
+        if (progressBarForYou != null) progressBarForYou.setVisibility(View.GONE);
     }
 
     private void loadOutstandingEvents() {
@@ -291,8 +329,7 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
     }
 
     private void loadForYouEvents() {
-        binding.progressBar.setVisibility(View.VISIBLE);
-
+        if (progressBarForYou != null) progressBarForYou.setVisibility(View.VISIBLE);
         LinearLayout linearLayoutDcb = findViewById(R.id.linearLayoutDcb);
         if (linearLayoutDcb == null) return;
         linearLayoutDcb.removeAllViews();
@@ -304,7 +341,7 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
         if (userId == null) {
             TextView warningView = createWarningView("Bạn chưa đăng nhập");
             linearLayoutDcb.addView(warningView);
-            binding.progressBar.setVisibility(View.GONE);
+            if (progressBarForYou != null) progressBarForYou.setVisibility(View.GONE);
             return;
         }
 
@@ -322,7 +359,7 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
                 if (interests.isEmpty()) {
                     TextView warningView = createWarningView("Bạn chưa chọn lĩnh vực quan tâm");
                     linearLayoutDcb.addView(warningView);
-                    binding.progressBar.setVisibility(View.GONE);
+                    if (progressBarForYou != null) progressBarForYou.setVisibility(View.GONE);
                     return;
                 }
 
@@ -342,21 +379,23 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
                             forYouList.add(event);
                         }
                         
+                        // Xáo trộn danh sách để hiển thị ngẫu nhiên
+                        Collections.shuffle(forYouList);
                         // Lưu vào cache
                         dataManager.putData(DataManager.KEY_FOR_YOU_EVENTS, forYouList);
                         
                         displayForYouEvents(forYouList);
-                        binding.progressBar.setVisibility(View.GONE);
+                        if (progressBarForYou != null) progressBarForYou.setVisibility(View.GONE);
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        binding.progressBar.setVisibility(View.GONE);
+                        if (progressBarForYou != null) progressBarForYou.setVisibility(View.GONE);
                     }
                 });
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                binding.progressBar.setVisibility(View.GONE);
+                if (progressBarForYou != null) progressBarForYou.setVisibility(View.GONE);
             }
         });
     }
@@ -373,6 +412,7 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
         LinearLayout linearLayoutDcb = findViewById(R.id.linearLayoutDcb);
         if (linearLayoutDcb == null) return;
         linearLayoutDcb.removeAllViews();
+        if (progressBarForYou != null) progressBarForYou.setVisibility(View.GONE);
         
         java.text.NumberFormat nf = java.text.NumberFormat.getInstance(new java.util.Locale("vi", "VN"));
         int cardWidth = (int) getResources().getDimension(R.dimen.dcb_card_width);
@@ -719,5 +759,13 @@ public class TrangchuActivity extends BaseActivity<ActivityTrangchuBinding> {
     @Override
     protected String getActiveFooterId() {
         return "Homepage";
+    }
+
+    @Override
+    protected void scrollToTopIfNeeded(String footerId) {
+        if ("Homepage".equals(footerId)) {
+            android.widget.ScrollView scrollView = findViewById(R.id.ScrollContent);
+            if (scrollView != null) scrollView.smoothScrollTo(0, 0);
+        }
     }
 }

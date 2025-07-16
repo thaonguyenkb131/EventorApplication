@@ -126,9 +126,9 @@
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
-                            String firstname = snapshot.child("Name").getValue(String.class);
-                            String lastname = snapshot.child("Lastname").getValue(String.class);
-                            String email = snapshot.child("Email").getValue(String.class);
+                            String firstname = snapshot.child("name").getValue(String.class);
+                            String lastname = snapshot.child("lastname").getValue(String.class);
+                            String email = snapshot.child("email").getValue(String.class);
                             String fullName = (lastname != null ? lastname : "") + " " + (firstname != null ? firstname : "");
                             ((TextView) findViewById(R.id.txtName)).setText(fullName.trim());
                             String city = snapshot.child("City").getValue(String.class);

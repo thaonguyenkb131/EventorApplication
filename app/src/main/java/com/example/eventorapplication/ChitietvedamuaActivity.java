@@ -27,10 +27,10 @@ public class ChitietvedamuaActivity extends AppCompatActivity {
 
         //        Tránh che màn hình
 
-        View rootView = findViewById(R.id.main); // ConstraintLayout có id="main"
+        View rootView = findViewById(R.id.main); 
         ViewCompat.setOnApplyWindowInsetsListener(rootView, (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(0, 0, 0, systemBars.bottom); // tránh bị che nút
+            v.setPadding(0, 0, 0, systemBars.bottom);
 
             // Đẩy TextView xuống dưới status bar
             View txtTitle = findViewById(R.id.header);
@@ -50,15 +50,22 @@ public class ChitietvedamuaActivity extends AppCompatActivity {
         TextView txtHeaderTitle = findViewById(R.id.txtTitle);
         ImageView btnBack = findViewById(R.id.btnBack);
 
-        txtHeaderTitle.setText("Vé đã mua"); // Luôn giữ tiêu đề này, không đổi theo sự kiện
+        txtHeaderTitle.setText("Vé đã mua"); 
 
         Thesukien thesukien = (Thesukien) getIntent().getSerializableExtra("thesukien");
         if (thesukien != null) {
-            // Không set lại txtHeaderTitle ở đây nữa
             binding.txtEventTitle.setText(thesukien.getTitle());
             binding.txtTime.setText(thesukien.getDetailTime());
-            binding.location.setText(thesukien.getDetailAddress());
+            binding.location.setText(thesukien.getLocation());
             Glide.with(this).load(thesukien.getThumbnail()).into(binding.imgPoster);
+
+            // Thêm sự kiện click cho btnView
+            binding.btnView.setOnClickListener(v -> {
+                android.content.Intent intent = new android.content.Intent(this, ChitietsukienActivity.class);
+                com.google.gson.Gson gson = new com.google.gson.Gson();
+                intent.putExtra("event_json", gson.toJson(thesukien));
+                startActivity(intent);
+            });
         }
         btnBack.setOnClickListener(v -> finish());
     }

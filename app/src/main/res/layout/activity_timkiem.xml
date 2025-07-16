@@ -271,7 +271,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Theo địa điểm"
                 android:textColor="#006183"
@@ -286,6 +286,7 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
                     <!--                    TP HCM-->
@@ -314,7 +315,7 @@
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/montserrat_semibold"
                             android:gravity="center"
-                            android:text="Thành phố Hồ Chí Minh"
+                            android:text="Hồ Chí Minh"
                             android:textColor="#1c9cca"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -453,7 +454,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Phù hợp với bạn"
                 android:textColor="#006183"

@@ -112,7 +112,6 @@ public class SukiencuatoiActivity extends BaseActivity<ActivitySukiencuatoiBindi
             }
             lastClickTime = clickTime;
         });
-
     }
 
     private void loadFragment(Fragment fragment) {
@@ -144,4 +143,13 @@ public class SukiencuatoiActivity extends BaseActivity<ActivitySukiencuatoiBindi
         return "Sukiencuatoi";
     }
 
+    @Override
+    protected void scrollToTopIfNeeded(String footerId) {
+        if ("Sukiencuatoi".equals(footerId)) {
+            // Nếu có fragment, gọi scrollToTop cho fragment nếu cần
+            // Nếu không, scroll HorizontalScrollView
+            android.widget.HorizontalScrollView hsv = findViewById(R.id.horizontalScrollView);
+            if (hsv != null) hsv.smoothScrollTo(0, 0);
+        }
+    }
 }

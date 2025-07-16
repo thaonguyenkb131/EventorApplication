@@ -133,4 +133,12 @@ public class TrangthongbaoActivity extends BaseActivity<ActivityTrangthongbaoBin
     protected String getActiveFooterId() {
         return "thongbao"; 
     }
+
+    @Override
+    protected void scrollToTopIfNeeded(String footerId) {
+        if ("thongbao".equals(footerId)) {
+            android.widget.ListView lv = findViewById(R.id.lvThongbao);
+            if (lv != null && lv.getCount() > 0) lv.setSelection(0);
+        }
+    }
 }

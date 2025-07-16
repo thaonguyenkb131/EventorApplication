@@ -827,22 +827,34 @@
                 android:layout_gravity="start"
                 android:layout_marginStart="15dp" />
 
-            <!--        Dành cho bạn - Scroll View-->
-            <HorizontalScrollView
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:scrollbars="none">
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:id="@+id/linearLayoutDcb"
-                    android:paddingBottom="8dp">
-                    <!-- Sẽ add động các sự kiện Dành cho bạn ở code, xoá các item cứng bên trong -->
-                </LinearLayout>
-            </HorizontalScrollView>
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:scrollbars="none">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:id="@+id/linearLayoutDcb"
+                        android:paddingBottom="8dp">
+                        <!-- Sẽ add động các sự kiện Dành cho bạn ở code, xoá các item cứng bên trong -->
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <ProgressBar
+                    android:id="@+id/progressBarForYou"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    style="?android:attr/progressBarStyleLarge"/>
+            </FrameLayout>
         </LinearLayout>
 
 

@@ -129,7 +129,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".OnboardingActivity"
-            android:exported="false"
+            android:exported="true"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".base.LauncherActivity"

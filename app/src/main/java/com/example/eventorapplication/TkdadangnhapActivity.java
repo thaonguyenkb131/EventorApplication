@@ -61,9 +61,10 @@ public class TkdadangnhapActivity extends BaseActivity<ActivityTkdadangnhapBindi
         String userEmail = preferences.getString("userEmail", null);
         String userName = preferences.getString("userName", null);
         String userLastname = preferences.getString("userLastname", null);
+        String userId = preferences.getString("userId", null);
 
-        // Nếu chưa đăng nhập (không có email hoặc tên), chuyển về màn hình chưa đăng nhập
-        if (userEmail == null || userName == null) {
+        // Nếu chưa đăng nhập (không có userId), chuyển về màn hình chưa đăng nhập
+        if (userId == null) {
             Intent intent = new Intent(TkdadangnhapActivity.this, TkchuadangnhapActivity.class);
             startActivity(intent);
             finish(); // đóng activity hiện tại
@@ -159,7 +160,7 @@ public class TkdadangnhapActivity extends BaseActivity<ActivityTkdadangnhapBindi
                 SharedPreferences preferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.clear(); // hoặc chỉ xóa từng key: remove("userEmail"), remove("userName"), ...
-                editor.apply();
+                editor.commit(); // Sử dụng commit() thay vì apply() để đảm bảo xóa ngay lập tức
 
                 // Chuyển về trang chưa đăng nhập hoặc trang chủ
                 Intent intent = new Intent(TkdadangnhapActivity.this, TrangchuActivity.class);

@@ -113,7 +113,7 @@ public class DangnhapActivity extends AppCompatActivity {
                     return;
                 }
 
-                accountRef.orderByChild("Email").equalTo(email)
+                accountRef.orderByChild("email").equalTo(email)
                         .addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -121,23 +121,32 @@ public class DangnhapActivity extends AppCompatActivity {
                                     boolean matched = false;
 
                                     for (DataSnapshot userSnap : snapshot.getChildren()) {
-                                        String passInDB = userSnap.child("Password").getValue(String.class);
+                                        String passInDB = userSnap.child("password").getValue(String.class);
                                         if (passInDB != null && passInDB.equals(password)) {
                                             matched = true;
 
                                             String userId = userSnap.getKey();
-                                            String name = userSnap.child("Name").getValue(String.class);
-                                            String lastname = userSnap.child("Lastname").getValue(String.class);
-                                            String emailFromDB = userSnap.child("Email").getValue(String.class);
+                                            String name = userSnap.child("name").getValue(String.class);
+                                            if (name == null) {
+                                                name = userSnap.child("name").getValue(String.class);
+                                            }
+                                            String lastname = userSnap.child("lastname").getValue(String.class);
+                                            if (lastname == null) {
+                                                lastname = userSnap.child("lastname").getValue(String.class);
+                                            }
+                                            String emailFromDB = userSnap.child("email").getValue(String.class);
+                                            if (emailFromDB == null) {
+                                                emailFromDB = userSnap.child("email").getValue(String.class);
+                                            }
 
                                             SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
                                             SharedPreferences.Editor editor = sharedPreferences.edit();
-                                            editor.putString("userId", userId); // lưu ID người dùng
-                                            editor.putString("userName", name);         // lưu tên
+                                            editor.putString("userId", userId);
+                                            editor.putString("userName", name);
                                             editor.putString("userLastname", lastname); // lưu họ
                                             editor.putString("userEmail", emailFromDB); // lưu email
-                                            editor.apply();
-
+                                            editor.commit(); // Sử dụng commit() thay vì apply() để đảm bảo lưu ngay lập tức
+                                            
                                             Toast.makeText(DangnhapActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                                             startActivity(new Intent(DangnhapActivity.this, TrangchuActivity.class));
                                             finish();

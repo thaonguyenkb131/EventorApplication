@@ -195,7 +195,7 @@ public class DangkyActivity extends AppCompatActivity {
                             return;
                         } else {
                             String Id = accountRef.push().getKey();
-                            UserModel user = new UserModel(lastname, name, email, phone, password); // email đã là dạng thường
+                            UserModel user = new UserModel(lastname, name, email, phone, password);
                             showDialogOtp(user, Id);
                         }
                     }
@@ -380,7 +380,7 @@ public class DangkyActivity extends AppCompatActivity {
                         editor.putString("userName", user.getName());
                         editor.putString("userEmail", user.getEmail());
                         editor.putString("userId", userId);
-                        editor.apply();
+                        editor.commit(); // Sử dụng commit() thay vì apply() để đảm bảo lưu ngay lập tức
 
                         Toast.makeText(this, "Xác nhận OTP thành công", Toast.LENGTH_SHORT).show();
                         showDialogDangKyThanhCong(userId);
